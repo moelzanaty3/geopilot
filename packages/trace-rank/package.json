@@ -34,7 +34,13 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./schemas/*": "./schemas/*"
+    "./catalogue": "./dist/rules/catalogue.js",
+    "./variants": "./dist/fix/variants.js",
+    "./commands": "./dist/cli/commands-list.js",
+    "./scoring": "./dist/scoring/score.js",
+    "./version": "./dist/core/version.js",
+    "./schemas/*": "./schemas/*",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist/",

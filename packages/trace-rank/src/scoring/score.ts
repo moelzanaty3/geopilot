@@ -102,7 +102,7 @@ export function score(evaluations: readonly Evaluation[], weightOf: (id: RuleId)
   const unassessed = [...parts.values()].some((p) => p.u > 0 || p.i > 0);
   const assessment: AssessmentScope['assessment'] = !anyApplicable || uncapped === null ? 'incomplete' : unassessed ? 'partial' : 'complete';
   const notes: string[] = [];
-  if (needsRuntime.size > 0) notes.push(`${needsRuntime.size} rule${needsRuntime.size === 1 ? '' : 's'} need runtime evidence — re-run with --url`);
+  if (needsRuntime.size > 0) notes.push(`${needsRuntime.size} rule${needsRuntime.size === 1 ? ' needs' : 's need'} runtime evidence — re-run with --url`);
   const renderer = evaluations.filter((e) => e.statusReason === 'renderer_unavailable').map((e) => e.ruleId);
   if (renderer.length > 0) notes.push(`${[...new Set(renderer)].join(', ')} need a renderer; this release ships none, so they are not evaluated`);
   return {

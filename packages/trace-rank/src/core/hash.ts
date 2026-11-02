@@ -26,6 +26,6 @@ export function canonicalJson(value: unknown, indent = 2): string {
 }
 
 export function newRunId(now: Date = new Date()): string {
-  const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  const stamp = now.toISOString().replace(/[-:.]/g, '');
   return `r-${stamp}-${randomBytes(3).toString('hex')}`;
 }

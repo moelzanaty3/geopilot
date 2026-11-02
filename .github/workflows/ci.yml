@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Install
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Tests (fixtures, properties, SSRF, fix engine, V4 serve)
+        run: pnpm test
+      # The published package runs from dist/: Node refuses to strip types
+      # under node_modules, so a broken emit is a broken install.
+      - name: Build the published output
+        run: pnpm build
+      - name: Pack contents
+        working-directory: packages/trace-rank
+        run: |
+          set -euo pipefail
+          npm pack --dry-run 2>&1 | tee pack.txt
+          grep -q 'skill/geo/SKILL.md' pack.txt
+          grep -q 'schemas/report-v1.json' pack.txt
+          grep -q 'dist/cli/main.js' pack.txt
+
+  # The engine floor is Node 22.18 (the parser's own engines field). Everything
+  # above runs on 24, so this job is what notices a newer API in dist/.
+  node-floor:
+    needs: engine
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '22.18'
+      - name: Install
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Tests on the oldest supported Node
+        run: pnpm test
+      - name: Built CLI smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm build
+          node packages/trace-rank/dist/cli/main.js --version
+          node packages/trace-rank/dist/cli/main.js explain GEO-014 > /dev/null
+          node packages/trace-rank/dist/cli/main.js scan packages/trace-rank/test/fixtures/example-d --no-cache --format json > report.json
+          node -e "const r=require('./report.json'); if (r.readiness.display!=='insufficient_evidence'||Math.round(r.coverage)!==30) process.exit(1)"
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Install
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Typecheck
+        working-directory: web
+        run: pnpm exec tsc --noEmit
+      - name: Static export
+        run: pnpm web:build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: actionlint
+        env:
+          ACTIONLINT_VERSION: '1.7.7'
+        run: |
+          set -euo pipefail
+          curl -sSLo actionlint.tgz \
+            "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          tar -xzf actionlint.tgz actionlint
+          ./actionlint -color
+      - name: JSON parses
+        run: |
+          set -euo pipefail
+          for f in packages/trace-rank/schemas/*.json skill/geo/schemas/*.json .releaserc.json; do
+            node -e "JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'))" "$f"
+            echo "ok $f"
+          done
