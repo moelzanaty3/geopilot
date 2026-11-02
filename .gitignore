@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.geo/
+web/.next/
+web/out/
+web/next-env.d.ts
+.env*
+*.tgz
+packages/trace-rank/skill/

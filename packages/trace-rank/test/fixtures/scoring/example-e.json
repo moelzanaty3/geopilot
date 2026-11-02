@@ -1,0 +1,96 @@
+{
+  "id": "example-e",
+  "title": "Mixed evidence (URL + repository)",
+  "description": "GEO-014 (weight 3): three direct subjects, two pass and one fail, plus one inferred. GEO-012 (weight 2): four direct passes. All sub-checks are available because a URL was supplied.",
+  "evaluations": [
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/a"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/b"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/c"
+      },
+      "status": "fail",
+      "evidenceQuality": "direct",
+      "findings": [
+        {
+          "subCheck": "http_status"
+        }
+      ]
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/d"
+      },
+      "status": "pass",
+      "evidenceQuality": "inferred"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/a"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/b"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/c"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/d"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    }
+  ],
+  "expected": {
+    "readiness": 80,
+    "uncapped": 80,
+    "coverage": 85,
+    "confidence": 85,
+    "display": "readiness",
+    "readinessDisplay": "80",
+    "coverageDisplay": "85%",
+    "confidenceDisplay": "85%",
+    "capReason": null,
+    "formula": "Readiness = 100 × (3 × 2/3 + 2) / 5 = 80; Coverage = Confidence = 100 × (3 × 3/4 + 2) / 5 = 85%"
+  }
+}

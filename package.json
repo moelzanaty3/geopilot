@@ -1,0 +1,20 @@
+{
+  "name": "trace-rank-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.24.0",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter trace-rank build",
+    "test": "pnpm --filter trace-rank test",
+    "typecheck": "pnpm --filter trace-rank typecheck",
+    "check": "pnpm --filter trace-rank check",
+    "web:dev": "pnpm --filter trace-rank-web dev",
+    "web:build": "pnpm --filter trace-rank-web build"
+  },
+  "devDependencies": {
+    "semantic-release": "25.0.9"
+  }
+}

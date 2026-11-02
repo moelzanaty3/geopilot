@@ -1,0 +1,105 @@
+{
+  "id": "example-c",
+  "title": "Unreachable target",
+  "description": "Every applicable evaluation errors. Readiness is null, coverage 0%, confidence null; the assessment is incomplete and the display is “insufficient evidence”. Without --fail-on-incomplete the scan still exits 0, but never with “passed” wording.",
+  "evaluations": [
+    {
+      "ruleId": "GEO-013",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-009",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-011",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "error",
+      "evidenceQuality": "direct",
+      "statusReason": "unreachable"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "entry_route"
+    },
+    {
+      "ruleId": "GEO-101",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "web_profile"
+    }
+  ],
+  "expected": {
+    "readiness": null,
+    "uncapped": null,
+    "coverage": 0,
+    "confidence": null,
+    "display": "insufficient_evidence",
+    "readinessDisplay": "insufficient evidence",
+    "coverageDisplay": "0%",
+    "confidenceDisplay": "n/a",
+    "capReason": null,
+    "formula": "No direct evidence: Readiness null, Coverage 0%, Confidence null"
+  }
+}

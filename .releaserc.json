@@ -1,0 +1,18 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "releaseRules": [
+          { "scope": "web", "release": false },
+          { "scope": "docs", "release": false },
+          { "scope": "ci", "release": false }
+        ]
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/npm", { "pkgRoot": "packages/trace-rank" }],
+    "@semantic-release/github"
+  ]
+}

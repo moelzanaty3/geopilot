@@ -1,0 +1,351 @@
+{
+  "id": "example-b",
+  "title": "Next.js, four groups, robots.txt 503 and one canonical issue",
+  "description": "All web-profile rules are evaluated directly (this fixture assumes a renderer and was collected with --ignore-robots for a named target, because a 5xx robots.txt otherwise stops GEO fetching pages). GEO-013 fails site-wide with a 5xx, which caps readiness at 40. GEO-015 fails on one of four groups. GEO-101 is not applicable in the web profile.",
+  "evaluations": [
+    {
+      "ruleId": "GEO-013",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "fail",
+      "evidenceQuality": "direct",
+      "findings": [
+        {
+          "subCheck": "reachability",
+          "capReason": "GEO-013: robots.txt answered 5xx"
+        }
+      ]
+    },
+    {
+      "ruleId": "GEO-009",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-011",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "fail",
+      "evidenceQuality": "direct",
+      "findings": [
+        {
+          "subCheck": "canonical_present"
+        }
+      ]
+    },
+    {
+      "ruleId": "GEO-101",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "web_profile"
+    }
+  ],
+  "expected": {
+    "readiness": 40,
+    "uncapped": 86,
+    "coverage": 100,
+    "confidence": 100,
+    "display": "readiness",
+    "readinessDisplay": "40",
+    "coverageDisplay": "100%",
+    "confidenceDisplay": "100%",
+    "capReason": "GEO-013: robots.txt answered 5xx",
+    "formula": "Uncapped = 100 × (25 − 3 − 2 × 1/4) / 25 = 86; capped at 40; Coverage and Confidence 100%"
+  }
+}

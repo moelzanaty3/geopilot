@@ -1,0 +1,836 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moelzanaty3.github.io/trace-rank/schema/report/v1.json",
+  "title": "geo-report/v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "geo-report/v1"
+    },
+    "tool": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "rulesetVersion": {
+          "type": "string"
+        },
+        "scoringVersion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "rulesetVersion",
+        "scoringVersion"
+      ]
+    },
+    "run": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^r-"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "volatile"
+        },
+        "durationMs": {
+          "type": "number",
+          "description": "volatile"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mode": {
+          "enum": [
+            "url",
+            "repo",
+            "mixed"
+          ]
+        },
+        "configHash": {
+          "type": "string"
+        },
+        "gitCommit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "profile": {
+          "enum": [
+            "web",
+            "app"
+          ]
+        },
+        "ignoreRobots": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "startedAt",
+        "durationMs",
+        "targets",
+        "mode",
+        "configHash",
+        "gitCommit",
+        "profile",
+        "ignoreRobots"
+      ]
+    },
+    "framework": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": [
+            "nextjs-app",
+            "static",
+            "generic",
+            "unknown"
+          ]
+        },
+        "state": {
+          "enum": [
+            "detected",
+            "suspected",
+            "unknown"
+          ]
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "capabilityTier": {
+          "type": "object",
+          "properties": {
+            "urlAudit": {
+              "enum": [
+                "T0",
+                "T1",
+                "T2",
+                "T3",
+                null
+              ]
+            },
+            "repo": {
+              "enum": [
+                "T0",
+                "T1",
+                "T2",
+                "T3",
+                null
+              ]
+            },
+            "provenance": {
+              "enum": [
+                "T0",
+                "T1",
+                "T2",
+                "T3",
+                null
+              ]
+            },
+            "fixes": {
+              "enum": [
+                "T0",
+                "T1",
+                "T2",
+                "T3",
+                null
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "urlAudit",
+            "repo",
+            "provenance",
+            "fixes"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "state",
+        "version",
+        "confidence",
+        "capabilityTier",
+        "evidence"
+      ]
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "route": {
+            "type": "string"
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dynamic": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "route",
+          "urls",
+          "files",
+          "dynamic"
+        ]
+      }
+    },
+    "evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "enum": [
+              "GEO-002",
+              "GEO-003",
+              "GEO-004",
+              "GEO-009",
+              "GEO-010",
+              "GEO-011",
+              "GEO-012",
+              "GEO-013",
+              "GEO-014",
+              "GEO-015",
+              "GEO-016",
+              "GEO-017",
+              "GEO-101",
+              "GEO-102"
+            ]
+          },
+          "subject": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "site"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "kind"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "routeGroup"
+                  },
+                  "route": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "route"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "file"
+                  },
+                  "path": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "path"
+                ]
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail",
+              "not_applicable",
+              "not_evaluated",
+              "error"
+            ]
+          },
+          "statusReason": {
+            "type": "string"
+          },
+          "evidenceQuality": {
+            "enum": [
+              "direct",
+              "partial",
+              "inferred"
+            ]
+          },
+          "subChecks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "scope": {
+                  "enum": [
+                    "repo",
+                    "url",
+                    "both"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "not_run",
+                    "not_applicable"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "scope",
+                "status"
+              ]
+            }
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fingerprint": {
+                  "type": "string",
+                  "pattern": "^geo1:GEO-\\d{3}:[0-9a-f]{12}$"
+                },
+                "ruleId": {
+                  "enum": [
+                    "GEO-002",
+                    "GEO-003",
+                    "GEO-004",
+                    "GEO-009",
+                    "GEO-010",
+                    "GEO-011",
+                    "GEO-012",
+                    "GEO-013",
+                    "GEO-014",
+                    "GEO-015",
+                    "GEO-016",
+                    "GEO-017",
+                    "GEO-101",
+                    "GEO-102"
+                  ]
+                },
+                "subCheck": {
+                  "type": "string"
+                },
+                "severity": {
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low",
+                    "info"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "evidence": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "kind",
+                      "detail"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "http",
+                          "html",
+                          "robots",
+                          "sitemap",
+                          "source",
+                          "config",
+                          "note"
+                        ]
+                      },
+                      "detail": {
+                        "type": "string"
+                      },
+                      "snippet": {
+                        "type": "string",
+                        "maxLength": 300
+                      }
+                    }
+                  }
+                },
+                "docs": {
+                  "type": "string"
+                },
+                "provenance": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "enum": [
+                        "exact",
+                        "file",
+                        "candidate",
+                        "unmapped",
+                        "absent"
+                      ]
+                    },
+                    "locations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "file": {
+                            "type": "string"
+                          },
+                          "line": {
+                            "type": "integer"
+                          },
+                          "column": {
+                            "type": "integer"
+                          },
+                          "endLine": {
+                            "type": "integer"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "file"
+                        ]
+                      }
+                    },
+                    "reason": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "level",
+                    "locations",
+                    "reason"
+                  ]
+                },
+                "fixes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fixId": {
+                        "type": "string"
+                      },
+                      "variant": {
+                        "type": "string"
+                      },
+                      "class": {
+                        "enum": [
+                          "safe",
+                          "guarded",
+                          "contextual",
+                          "editorial",
+                          "unsupported"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "fixId",
+                      "variant",
+                      "class"
+                    ]
+                  }
+                },
+                "evidenceQuality": {
+                  "enum": [
+                    "direct",
+                    "partial",
+                    "inferred"
+                  ]
+                },
+                "capReason": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "fingerprint",
+                "ruleId",
+                "subCheck",
+                "severity",
+                "message",
+                "evidence",
+                "docs",
+                "provenance",
+                "fixes",
+                "evidenceQuality"
+              ]
+            }
+          },
+          "sampledUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "subject",
+          "status",
+          "evidenceQuality",
+          "subChecks",
+          "findings"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "not_applicable",
+                    "not_evaluated",
+                    "error"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "statusReason"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "informational": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "enum": [
+              "GEO-002",
+              "GEO-003",
+              "GEO-004",
+              "GEO-009",
+              "GEO-010",
+              "GEO-011",
+              "GEO-012",
+              "GEO-013",
+              "GEO-014",
+              "GEO-015",
+              "GEO-016",
+              "GEO-017",
+              "GEO-101",
+              "GEO-102"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "kind",
+                "detail"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "http",
+                    "html",
+                    "robots",
+                    "sitemap",
+                    "source",
+                    "config",
+                    "note"
+                  ]
+                },
+                "detail": {
+                  "type": "string"
+                },
+                "snippet": {
+                  "type": "string",
+                  "maxLength": 300
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "message",
+          "evidence"
+        ]
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "uncapped": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "capReason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "display": {
+          "enum": [
+            "readiness",
+            "provisional",
+            "insufficient_evidence"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "uncapped",
+        "capReason",
+        "display"
+      ]
+    },
+    "coverage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "assessmentScope": {
+      "type": "object",
+      "properties": {
+        "assessment": {
+          "enum": [
+            "complete",
+            "partial",
+            "incomplete"
+          ]
+        },
+        "direct": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ruleId": {
+                "enum": [
+                  "GEO-002",
+                  "GEO-003",
+                  "GEO-004",
+                  "GEO-009",
+                  "GEO-010",
+                  "GEO-011",
+                  "GEO-012",
+                  "GEO-013",
+                  "GEO-014",
+                  "GEO-015",
+                  "GEO-016",
+                  "GEO-017",
+                  "GEO-101",
+                  "GEO-102"
+                ]
+              },
+              "subject": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "ruleId",
+              "subject"
+            ]
+          }
+        },
+        "needsRuntime": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "GEO-002",
+              "GEO-003",
+              "GEO-004",
+              "GEO-009",
+              "GEO-010",
+              "GEO-011",
+              "GEO-012",
+              "GEO-013",
+              "GEO-014",
+              "GEO-015",
+              "GEO-016",
+              "GEO-017",
+              "GEO-101",
+              "GEO-102"
+            ]
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "assessment",
+        "direct",
+        "needsRuntime",
+        "notes"
+      ]
+    },
+    "suppressed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fingerprint": {
+            "type": "string"
+          },
+          "ruleId": {
+            "enum": [
+              "GEO-002",
+              "GEO-003",
+              "GEO-004",
+              "GEO-009",
+              "GEO-010",
+              "GEO-011",
+              "GEO-012",
+              "GEO-013",
+              "GEO-014",
+              "GEO-015",
+              "GEO-016",
+              "GEO-017",
+              "GEO-101",
+              "GEO-102"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "expires": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "fingerprint",
+          "ruleId",
+          "reason",
+          "expires"
+        ]
+      }
+    },
+    "notices": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "baseline": {
+      "type": "null"
+    },
+    "disclaimer": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "tool",
+    "run",
+    "framework",
+    "routes",
+    "evaluations",
+    "informational",
+    "readiness",
+    "coverage",
+    "confidence",
+    "assessmentScope",
+    "suppressed",
+    "notices",
+    "baseline",
+    "disclaimer"
+  ]
+}
