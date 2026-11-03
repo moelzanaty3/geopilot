@@ -14,7 +14,7 @@ export async function agentCommand(argv: readonly string[], deps: Deps): Promise
   if (sub === 'status') {
     const v = installedVersion(root);
     io.out(`engine ${TOOL_VERSION}\nclaude-code skill ${v ?? 'not installed'}${v && v !== TOOL_VERSION ? '  (version mismatch: the skill stops until they match; re-run agent install)' : ''}\n`);
-    for (const h of HOSTS) io.out(`  ${h.id.padEnd(12)} ${h.status}\n`);
+    for (const h of HOSTS) io.out(`  ${h.id.padEnd(12)} ${h.status.padEnd(14)} ${h.note}\n`);
     return v && v !== TOOL_VERSION ? EXIT.gate : EXIT.ok;
   }
   if (sub !== 'install') throw usage('agent takes install or status', 'geopilot agent install --host claude-code');
@@ -22,7 +22,11 @@ export async function agentCommand(argv: readonly string[], deps: Deps): Promise
   if (!host) throw usage('agent install needs --host', `Hosts: ${HOSTS.map((h) => `${h.id} (${h.status})`).join(', ')}`);
   const known = HOSTS.find((h) => h.id === host);
   if (!known) throw usage(`unknown host ${host}`);
-  if (known.status === 'not_available') throw usage(`${host} is not available in this release`, 'Only claude-code is tested; agents-md is a provisional fallback.');
+  if (known.status === 'not_available') throw usage(`${host} is not available in this release`, known.note);
+  if (known.status === 'marketplace') {
+    io.out(`${host} installs the geopilot plugin from its marketplace; nothing is written here:\n  ${known.note}\n`);
+    return EXIT.ok;
+  }
   if (host === 'agents-md' && !p.bool.has('write-agents-md')) throw usage('the AGENTS.md section is written only with --write-agents-md');
   const plan = planInstall(root, host as Host);
   io.out(`agent install --host ${host} (${known.status}) will write:\n`);

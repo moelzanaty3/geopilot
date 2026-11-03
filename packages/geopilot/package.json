@@ -46,13 +46,14 @@
     "dist/",
     "schemas/",
     "skill/",
+    "hosts/",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/copy-skill.mjs",
     "prepack": "pnpm run build",
-    "test": "node --test --test-reporter=spec 'test/**/*.test.ts'",
+    "test": "node --test --test-reporter=spec \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
     "check": "pnpm run typecheck && pnpm run test"
   },

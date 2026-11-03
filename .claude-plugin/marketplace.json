@@ -1,0 +1,22 @@
+{
+  "name": "geopilot",
+  "description": "GEO technical-readiness agents and the geopilot CLI skill",
+  "owner": {
+    "name": "Mohamed Elzanaty",
+    "url": "https://github.com/moelzanaty3"
+  },
+  "plugins": [
+    {
+      "name": "geopilot",
+      "source": "./plugins/geopilot",
+      "description": "Scan, fix, review, investigate and explain GEO technical readiness with the geopilot CLI",
+      "category": "development",
+      "tags": [
+        "geo",
+        "seo",
+        "audit",
+        "nextjs"
+      ]
+    }
+  ]
+}

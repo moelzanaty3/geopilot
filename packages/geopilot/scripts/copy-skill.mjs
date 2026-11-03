@@ -1,10 +1,14 @@
-// The published package carries a copy of the canonical skill so `agent install`
-// works offline from an npx cache. skill/geo/ at the repository root stays the
-// only copy a human edits.
-import { cpSync, rmSync } from 'node:fs';
+// The published package carries the canonical skill and every generated host
+// bundle, so `agent install` works offline from an npx cache. They are rendered
+// at the package's own version, which is the version the agents will pin.
+// skill/ at the repository root stays the only copy a human edits.
+import { cpSync, readFileSync, rmSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-const from = fileURLToPath(new URL('../../../skill/', import.meta.url));
-const to = fileURLToPath(new URL('../skill/', import.meta.url));
-rmSync(to, { recursive: true, force: true });
-cpSync(from, to, { recursive: true });
+const version = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version;
+const skillFrom = fileURLToPath(new URL('../../../skill/geo/', import.meta.url));
+const skillTo = fileURLToPath(new URL('../skill/geo/', import.meta.url));
+rmSync(fileURLToPath(new URL('../skill/', import.meta.url)), { recursive: true, force: true });
+cpSync(skillFrom, skillTo, { recursive: true });
+execFileSync(process.execPath, [fileURLToPath(new URL('../../../scripts/build-plugins.mjs', import.meta.url)), '--out', fileURLToPath(new URL('../hosts/', import.meta.url)), '--version', version], { stdio: 'inherit' });

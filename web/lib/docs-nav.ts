@@ -33,7 +33,7 @@ export const DOCS_NAV: readonly DocGroup[] = [
       { href: '/docs/cli/', title: 'CLI' },
       { href: '/docs/rules/', title: 'Rules' },
       { href: '/docs/schemas/', title: 'Schemas' },
-      { href: '/docs/agent/', title: 'Agent skill' },
+      { href: '/docs/agent/', title: 'Agent plugins' },
     ],
   },
   {

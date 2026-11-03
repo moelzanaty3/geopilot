@@ -104,10 +104,15 @@ jobs:
             "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
           tar -xzf actionlint.tgz actionlint
           ./actionlint -color
+      # plugins/ is generated from skill/; a hand edit there, or a skill/
+      # change without regenerating, would ship agents that differ from source.
+      - name: Agent plugins are current
+        run: node scripts/build-plugins.mjs --check
+
       - name: JSON parses
         run: |
           set -euo pipefail
-          for f in packages/geopilot/schemas/*.json skill/geo/schemas/*.json .releaserc.json; do
+          for f in packages/geopilot/schemas/*.json skill/geo/schemas/*.json .releaserc.json .claude-plugin/marketplace.json plugins/geopilot/.claude-plugin/plugin.json; do
             node -e "JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'))" "$f"
             echo "ok $f"
           done

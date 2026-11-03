@@ -18,5 +18,5 @@ export const NAV_LINKS: readonly NavLink[] = [
   { href: '/docs/getting-started/', label: 'Get started' },
   { href: '/docs/rules/', label: 'Rules' },
   { href: '/docs/cli/', label: 'CLI' },
-  { href: '/docs/agent/', label: 'Agent skill' },
+  { href: '/docs/agent/', label: 'Agent plugins' },
 ];

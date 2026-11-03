@@ -16,8 +16,18 @@ npx geopilot scan .                                 # repository: source locatio
 npx geopilot scan . --url http://127.0.0.1:3000     # both: the strongest evidence
 npx geopilot fix                                    # dry run of closed-list fixes
 npx geopilot fix --apply --approve <fixId> --serve  # guarded fix, verified on a server GEO starts after the write
-npx geopilot agent install --host claude-code       # the agent skill
 ```
+
+### In your coding agent
+
+```bash
+/plugin install geopilot --marketplace moelzanaty3/geopilot                      # Claude Code
+copilot plugin marketplace add moelzanaty3/geopilot && copilot plugin install geopilot@geopilot   # GitHub Copilot CLI (provisional)
+npx geopilot agent install --host opencode                                       # OpenCode (provisional)
+npx geopilot agent install --host claude-code                                    # commit the agents into this repo instead
+```
+
+Agents: `scanner`, `fixer`, `reviewer`, `investigator`, `explainer`. Commands: `scan`, `fix`, `review`, `explain`, `insights`, `init`. They drive the pinned CLI, keep engine findings apart from their own recommendations, and never apply a guarded fix without its id.
 
 The binary is also available as `geo-check`.
 
@@ -36,7 +46,8 @@ The binary is also available as `geo-check`.
 
 ```
 packages/geopilot/   the published CLI and library (src/, test/, schemas/)
-skill/geo/             the canonical agent skill (copied into the package at build)
+skill/                 canonical agent kit: the geo skill, agents/, commands/ (the only copy a human edits)
+plugins/               generated host plugins (Claude Code + Copilot, OpenCode, project install)
 web/                   the documentation site (Next.js static export → GitHub Pages)
 docs/adr/              decisions taken while implementing the specification
 ```
@@ -56,7 +67,7 @@ Requires Node 22.18 or newer. Commits follow Conventional Commits; merges to `ma
 
 ## Status
 
-This is the Phase 1 alpha slice with the parts of Phase 2 it needs to stay honest. Not yet built: a browser renderer (GEO-003/GEO-002 report `not_evaluated`), SARIF and the GitHub Action, `review`/baselines/hooks, fixes G4/G5, and agent hosts other than Claude Code. See [ADR-0004](https://github.com/moelzanaty3/geopilot/blob/main/docs/adr/0004-phase-scope.md).
+This is the Phase 1 alpha slice with the parts of Phase 2 it needs to stay honest. Not yet built: a browser renderer (GEO-003/GEO-002 report `not_evaluated`), SARIF and the GitHub Action, the CLI `review` command, baselines and hooks, fixes G4/G5, Cursor and Codex packages. See [ADR-0004](https://github.com/moelzanaty3/geopilot/blob/main/docs/adr/0004-phase-scope.md).
 
 ## License
 

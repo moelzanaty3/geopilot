@@ -1,0 +1,4 @@
+# Generated plugins, fixtures and golden text are compared byte for byte, and
+# the front-matter parser reads LF. Keep every text file LF on every platform.
+* text=auto eol=lf
+*.png binary

@@ -13,6 +13,17 @@
     ],
     "@semantic-release/release-notes-generator",
     ["@semantic-release/npm", { "pkgRoot": "packages/geopilot" }],
+    [
+      "@semantic-release/exec",
+      { "prepareCmd": "node scripts/build-plugins.mjs --version ${nextRelease.version}" }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["packages/geopilot/package.json", "plugins/**", ".claude-plugin/marketplace.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
+      }
+    ],
     "@semantic-release/github"
   ]
 }
