@@ -98,6 +98,10 @@ describe('CLI contract', () => {
     assert.equal((await cli(d, ['agent', 'install', '--host', 'opencode', '--yes'])).code, EXIT.ok);
     assert.match(readFileSync(join(d, '.opencode', 'agents', 'geopilot-scanner.md'), 'utf8'), /mode: "subagent"[\s\S]*edit: deny/);
     assert.match(readFileSync(join(d, '.opencode', 'commands', 'geopilot-fix.md'), 'utf8'), /agent: "geopilot-fixer"/);
+    assert.equal((await cli(d, ['agent', 'install', '--host', 'codex', '--yes'])).code, EXIT.ok);
+    assert.match(readFileSync(join(d, '.codex', 'agents', 'geopilot-scanner.toml'), 'utf8'), /^name = "geopilot-scanner"$/m);
+    assert.ok(existsSync(join(d, '.agents', 'skills', 'geopilot-scan', 'SKILL.md')));
+    assert.ok(existsSync(join(d, '.agents', 'skills', 'geo', 'SKILL.md')));
     const copilot = await cli(d, ['agent', 'install', '--host', 'copilot']);
     assert.equal(copilot.code, EXIT.ok);
     assert.match(copilot.out, /copilot plugin install geopilot@geopilot/);

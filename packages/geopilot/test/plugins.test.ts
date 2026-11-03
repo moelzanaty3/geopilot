@@ -37,6 +37,30 @@ describe('generated host plugins', () => {
     assert.equal(m.plugins[0].source, './plugins/geopilot');
   });
 
+  it('the Codex plugin carries every skill with its agent instructions, and a Codex marketplace', () => {
+    const manifest = JSON.parse(read('codex', 'plugin.json'));
+    assert.equal(manifest.name, 'geopilot');
+    assert.match(manifest.$schema, /agent-plugins\.org/);
+    assert.deepEqual(readdirSync(join(PLUGINS, 'codex', 'skills')).sort(), ['geo', ...COMMANDS].sort());
+    const scan = read('codex', 'skills', 'scan', 'SKILL.md');
+    assert.match(scan, /You are the geopilot \*\*scanner\*\*/);
+    assert.doesNotMatch(scan, /\$ARGUMENTS/);
+    for (const c of ['fix', 'init']) assert.match(read('codex', 'skills', c, 'agents', 'openai.yaml'), /allow_implicit_invocation: false/);
+    assert.ok(!existsSync(join(PLUGINS, 'codex', 'skills', 'scan', 'agents')));
+    const m = JSON.parse(readFileSync(join(ROOT, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
+    assert.equal(m.plugins[0].source.path, './plugins/codex');
+  });
+
+  it('every Codex project agent is one TOML file with the required fields', () => {
+    for (const a of AGENTS) {
+      const text = read('codex-project', '.codex', 'agents', `geopilot-${a}.toml`);
+      assert.match(text, new RegExp(`^name = "geopilot-${a}"$`, 'm'));
+      assert.match(text, /^description = ".+"$/m);
+      assert.match(text, /^developer_instructions = """$/m);
+      assert.match(text, /does not measure or predict citations/);
+    }
+  });
+
   it('every placeholder is rendered and every agent pins one engine version', () => {
     const version = JSON.parse(readFileSync(join(ROOT, 'packages', 'geopilot', 'package.json'), 'utf8')).version;
     const files = execFileSync('git', ['ls-files', '--others', '--cached', '--exclude-standard', 'plugins'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter((f) => f.endsWith('.md'));
