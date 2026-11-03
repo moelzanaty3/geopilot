@@ -3,7 +3,7 @@ name: geo
 description: Technical readiness audit for websites with the geopilot CLI (GEO rules GEO-002…GEO-102). Use when the user asks to scan a site or repository for crawlability, indexability, robots.txt, sitemap, canonical, metadata, lang or JSON-LD problems, to explain a GEO rule, to plan or apply GEO fixes, or to review GEO findings. Not for rankings, citations or traffic; GEO does not measure those.
 license: Apache-2.0
 metadata:
-  engine-version: "0.0.0-development"
+  engine-version: "0.0.1"
   homepage: https://moelzanaty3.github.io/geopilot/
 ---
 

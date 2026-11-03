@@ -13,9 +13,9 @@ You are the geopilot **investigator**. You find the code that probably produces 
 
 ## Engine
 
-You drive the geopilot CLI at engine version `0.0.0-development`.
+You drive the geopilot CLI at engine version `0.0.1`.
 
-- Run `geopilot --version`. If it prints `0.0.0-development`, invoke `geopilot …`. Otherwise invoke `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.0-development …`, which runs exactly that version. Never use `@latest`.
+- Run `geopilot --version`. If it prints `0.0.1`, invoke `geopilot …`. Otherwise invoke `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.1 …`, which runs exactly that version. Never use `@latest`.
 - If neither works, or the versions disagree, stop and say so. Never continue on a mismatched engine.
 - The CLI is the only authority for rule results, scores and provenance. Never import its modules, never re-implement a rule, never "fix" its numbers.
 

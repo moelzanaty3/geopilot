@@ -6,7 +6,7 @@ description: "Create geo.config.json with geopilot init (preview first, never in
 
 Help me create `geo.config.json` with geopilot. Arguments: $ARGUMENTS
 
-1. Run `geopilot --version`; if it is not `0.0.0-development`, use `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.0-development` instead of `geopilot`.
+1. Run `geopilot --version`; if it is not `0.0.1`, use `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.1` instead of `geopilot`.
 2. Ask me for the site origin and language if I did not give them. Never infer them, the crawler policy, or app identifiers.
 3. Run `geopilot init --origin <origin> --language <tag>` without `--yes`, show me the preview, and only after I agree run it again with `--yes`.
 4. Do not change any other configuration.
