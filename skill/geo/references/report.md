@@ -7,7 +7,7 @@ Write for someone who has never heard of GEO. Use this structure and these headi
 
 **New to GEO?** GEO (generative engine optimization) means making your site easy for search engines and AI tools to find, read and quote. This report checks the technical basics.
 
-## Code score: <low>–<high>/100, <band>
+## Code score: <low>–<high>/100, <band or Unconfirmed>
 
 Confidence: <High|Medium|Low> (checked <checked> of <applicable> points).
 How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<earned> + <unknown>) ÷ <applicable> × 100 = <high>.
@@ -35,7 +35,7 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 - **Size:** <Small | Medium | Large>
 - **Score after this:** <recalculated range, or the two ranges for a check>
 
-<Up to three items, most points at stake first. Points at stake are the points a Problem has lost, or the full weight of a Can't tell rule. Ties go to the smaller change. A blocked live check counts as a top item: confirm real crawlers get through. If any Problem exists, the Problem with the most points lost always takes one of the three places, because it's something the user can fix now.>
+<Up to three items, most points at stake first. A defect from "Other problems found" can take a place if it's more urgent than a check. Points at stake are the points a Problem has lost, or the full weight of a Can't tell rule. Ties go to the smaller change. A blocked live check counts as a top item: confirm real crawlers get through. If any Problem exists, the Problem with the most points lost always takes one of the three places, because it's something the user can fix now.>
 
 ## All results
 
@@ -44,6 +44,16 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 | GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | <same words, or "Not run"> | `<file>:<line>` or what you read |
 
 <The Code and Live cells hold only those exact words. Route counts and notes go in the Where column.>
+
+## Other problems found
+
+<Real defects outside the rules that affect how machines find, read or understand this site. They aren't scored. Each needs a file, a line and an exact quote, and a one-line fix. Only list what the code shows is wrong, such as:
+- private or sign-in pages in the sitemap, or indexable with no noindex
+- a sitemap built from the request's host, or sitemap URLs that differ from canonicals
+- hosts that disagree between canonicals, sitemaps and social tags
+- structured data that points at the wrong page
+
+Never list missing optional things: more JSON-LD types, social tags, llms.txt, FAQs, word counts, longer content, or crawler groups the policy doesn't need. If there's nothing real, write "None found".>
 
 ## Can't tell from code
 

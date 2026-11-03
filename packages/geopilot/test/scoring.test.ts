@@ -183,8 +183,8 @@ describe('the shared score range', () => {
     assert.equal(clearTwoOfThree.low, 28);
     assert.equal(clearTwoOfThree.high, 88);
     assert.equal(clearTwoOfThree.confidence, 'Low');
-    assert.equal(clearTwoOfThree.band, 'At risk');
-    assert.match(guide, /The score is \*\*28–88, At risk\*\*/);
+    assert.equal(clearTwoOfThree.band, null);
+    assert.match(guide, /The score is \*\*28–88, Unconfirmed\*\*/);
   });
 
   it('caps both ends on a blocker, and has no score when nothing was checked', () => {

@@ -76,6 +76,7 @@ The score tells someone how ready their site looks, and shows the arithmetic so 
 **How to decide:**
 
 - A **check marked "live only"** on a rule never changes its code result. List it under "Can't tell from code", but the rule can still be Clear.
+- **Can't tell never means you didn't look.** Read the navigation, shared components and every JSON-LD source before using it. If you ran out of room, say what you didn't read.
 - A **value decided at runtime** (CMS, API, feature flag, environment switch) is unknown for that route. If that leaves no Problem and any route unknown, the rule is Can't tell.
 - A **route with an unknown value** doesn't count in clear or problem routes.
 - A **shared template** counts once per route you sampled. Two phone routes using one template are two routes.
@@ -94,9 +95,9 @@ The score tells someone how ready their site looks, and shows the arithmetic so 
 
 Show the score as `low–high`. If they're equal, show one number. If checked is 0, say "No score yet" and explain why.
 
-**Name the band from the low number:** 90–100 Strong, 70–89 Good, 50–69 Needs work, 0–49 At risk.
+**Name a band only at High confidence, from the low number:** 90–100 Strong, 70–89 Good, 50–69 Needs work, 0–49 At risk. At Medium or Low confidence, say **Unconfirmed**, because a low number that's mostly unknowns says nothing bad about the site.
 
-**Example:** GEO-013 is Clear (3 of 3). GEO-014 has a Problem on 1 of 3 routes (3 × 2/3 = 2 of 3). GEO-011 is a site-wide Problem (0 of 2). GEO-012 is Clear (2 of 2). The other applicable rules total 15 and are Can't tell. Earned is 7, checked is 10, unknown is 15 and applicable is 25. Low is 7 ÷ 25 = **28**. High is 22 ÷ 25 = **88**. Confidence is 10 ÷ 25 = 40%, which is **Low**. The score is **28–88, At risk**.
+**Example:** GEO-013 is Clear (3 of 3). GEO-014 has a Problem on 1 of 3 routes (3 × 2/3 = 2 of 3). GEO-011 is a site-wide Problem (0 of 2). GEO-012 is Clear (2 of 2). The other applicable rules total 15 and are Can't tell. Earned is 7, checked is 10, unknown is 15 and applicable is 25. Low is 7 ÷ 25 = **28**. High is 22 ÷ 25 = **88**. Confidence is 10 ÷ 25 = 40%, which is **Low**. The score is **28–88, Unconfirmed**.
 
 **Score after a fix:** apply the fix to these results and recalculate both numbers. A check you recommend moves the score only by narrowing the range: show the range if it comes back clear and if it comes back a problem.
 
@@ -221,7 +222,7 @@ Weight 2, medium severity.
 
 **In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
 
-**Check in code:** search for `application/ld+json` and for objects with `@context` and `@type`. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
+**Check in code:** search for `application/ld+json`, for objects with `@context` and `@type`, and for JSON files with those keys. Check every one you find, including each entry in a list: a blank or misspelled key counts as a missing property. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
 
 **Can't tell from code:** values built at runtime or loaded from a CMS.
 

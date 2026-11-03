@@ -96,7 +96,7 @@ Weight 2, medium severity.
 
 **In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
 
-**Check in code:** search for `application/ld+json` and for objects with `@context` and `@type`. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
+**Check in code:** search for `application/ld+json`, for objects with `@context` and `@type`, and for JSON files with those keys. Check every one you find, including each entry in a list: a blank or misspelled key counts as a missing property. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
 
 **Can't tell from code:** values built at runtime or loaded from a CMS.
 

@@ -69,8 +69,8 @@ function resultCounts(summary: ScoreSummary): string {
 }
 
 function scoreLine(summary: ScoreSummary): string {
-  if (summary.band === null) return displayRange(summary);
-  return `${displayRange(summary)}, ${summary.band}`;
+  if (summary.low === null) return displayRange(summary);
+  return `${displayRange(summary)}, ${summary.band ?? 'Unconfirmed'}`;
 }
 
 function checkedLine(summary: ScoreSummary): string {

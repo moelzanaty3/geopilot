@@ -53,10 +53,11 @@ Tokens are read only from the environment. Never ask the user to paste one, and 
 
 1. **Understand the project.** Read `package.json` and the layout to identify the framework and how pages render. Read `geo.config.json` if it exists. In a monorepo, audit the app the user named; if it isn't clear, ask which one.
 2. **Find the important pages.** Use the router, the sitemap and the main navigation. Check shared layouts first, because they affect many pages. Sample up to 10 representative routes and say so if there are more.
-3. **Work through every rule below.** Search first, then read what you find. Give each rule one result: Clear, Problem, Can't tell or Not applicable. Don't stop early.
-4. **Calculate the code score** exactly as described below.
-5. **If the user asked for a live check or gave a URL,** run `geopilot scan <url> --format json --output .geo/last-scan.json --quiet` and read that file. Fill in the Live check section and the Live column, and list anything that disagrees with the code results. Never let a live result change a code result, or the reverse.
-6. **Write the report** in the format below, and order "Do these first" by points at stake. Calculate each "Score after this" with the same formula.
+3. **Work through every rule below.** Search first, then read what you find. Give each rule one result: Clear, Problem, Can't tell or Not applicable. Don't stop early. Sampling applies to routes only: find and check every JSON-LD file and template, and read the navigation and shared layouts.
+4. **Note other real defects as you go.** If the code shows something wrong that affects how machines find, read or understand the site, add it to "Other problems found", with its file, line and quote.
+5. **Calculate the code score** exactly as described below.
+6. **If the user asked for a live check or gave a URL,** run `geopilot scan <url> --format json --output .geo/last-scan.json --quiet` and read that file. Fill in the Live check section and the Live column, and list anything that disagrees with the code results. Never let a live result change a code result, or the reverse.
+7. **Write the report** in the format below, and order "Do these first" by points at stake. Calculate each "Score after this" with the same formula.
 
 Show the finished report directly and in full. Don't write any files yourself, apart from the live check's own output.
 
@@ -76,6 +77,7 @@ The score tells someone how ready their site looks, and shows the arithmetic so 
 **How to decide:**
 
 - A **check marked "live only"** on a rule never changes its code result. List it under "Can't tell from code", but the rule can still be Clear.
+- **Can't tell never means you didn't look.** Read the navigation, shared components and every JSON-LD source before using it. If you ran out of room, say what you didn't read.
 - A **value decided at runtime** (CMS, API, feature flag, environment switch) is unknown for that route. If that leaves no Problem and any route unknown, the rule is Can't tell.
 - A **route with an unknown value** doesn't count in clear or problem routes.
 - A **shared template** counts once per route you sampled. Two phone routes using one template are two routes.
@@ -94,9 +96,9 @@ The score tells someone how ready their site looks, and shows the arithmetic so 
 
 Show the score as `low–high`. If they're equal, show one number. If checked is 0, say "No score yet" and explain why.
 
-**Name the band from the low number:** 90–100 Strong, 70–89 Good, 50–69 Needs work, 0–49 At risk.
+**Name a band only at High confidence, from the low number:** 90–100 Strong, 70–89 Good, 50–69 Needs work, 0–49 At risk. At Medium or Low confidence, say **Unconfirmed**, because a low number that's mostly unknowns says nothing bad about the site.
 
-**Example:** GEO-013 is Clear (3 of 3). GEO-014 has a Problem on 1 of 3 routes (3 × 2/3 = 2 of 3). GEO-011 is a site-wide Problem (0 of 2). GEO-012 is Clear (2 of 2). The other applicable rules total 15 and are Can't tell. Earned is 7, checked is 10, unknown is 15 and applicable is 25. Low is 7 ÷ 25 = **28**. High is 22 ÷ 25 = **88**. Confidence is 10 ÷ 25 = 40%, which is **Low**. The score is **28–88, At risk**.
+**Example:** GEO-013 is Clear (3 of 3). GEO-014 has a Problem on 1 of 3 routes (3 × 2/3 = 2 of 3). GEO-011 is a site-wide Problem (0 of 2). GEO-012 is Clear (2 of 2). The other applicable rules total 15 and are Can't tell. Earned is 7, checked is 10, unknown is 15 and applicable is 25. Low is 7 ÷ 25 = **28**. High is 22 ÷ 25 = **88**. Confidence is 10 ÷ 25 = 40%, which is **Low**. The score is **28–88, Unconfirmed**.
 
 **Score after a fix:** apply the fix to these results and recalculate both numbers. A check you recommend moves the score only by narrowing the range: show the range if it comes back clear and if it comes back a problem.
 
@@ -115,7 +117,7 @@ Write for someone who has never heard of GEO. Use this structure and these headi
 
 **New to GEO?** GEO (generative engine optimization) means making your site easy for search engines and AI tools to find, read and quote. This report checks the technical basics.
 
-## Code score: <low>–<high>/100, <band>
+## Code score: <low>–<high>/100, <band or Unconfirmed>
 
 Confidence: <High|Medium|Low> (checked <checked> of <applicable> points).
 How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<earned> + <unknown>) ÷ <applicable> × 100 = <high>.
@@ -143,7 +145,7 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 - **Size:** <Small | Medium | Large>
 - **Score after this:** <recalculated range, or the two ranges for a check>
 
-<Up to three items, most points at stake first. Points at stake are the points a Problem has lost, or the full weight of a Can't tell rule. Ties go to the smaller change. A blocked live check counts as a top item: confirm real crawlers get through. If any Problem exists, the Problem with the most points lost always takes one of the three places, because it's something the user can fix now.>
+<Up to three items, most points at stake first. A defect from "Other problems found" can take a place if it's more urgent than a check. Points at stake are the points a Problem has lost, or the full weight of a Can't tell rule. Ties go to the smaller change. A blocked live check counts as a top item: confirm real crawlers get through. If any Problem exists, the Problem with the most points lost always takes one of the three places, because it's something the user can fix now.>
 
 ## All results
 
@@ -152,6 +154,16 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 | GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | <same words, or "Not run"> | `<file>:<line>` or what you read |
 
 <The Code and Live cells hold only those exact words. Route counts and notes go in the Where column.>
+
+## Other problems found
+
+<Real defects outside the rules that affect how machines find, read or understand this site. They aren't scored. Each needs a file, a line and an exact quote, and a one-line fix. Only list what the code shows is wrong, such as:
+- private or sign-in pages in the sitemap, or indexable with no noindex
+- a sitemap built from the request's host, or sitemap URLs that differ from canonicals
+- hosts that disagree between canonicals, sitemaps and social tags
+- structured data that points at the wrong page
+
+Never list missing optional things: more JSON-LD types, social tags, llms.txt, FAQs, word counts, longer content, or crawler groups the policy doesn't need. If there's nothing real, write "None found".>
 
 ## Can't tell from code
 
@@ -288,7 +300,7 @@ Weight 2, medium severity.
 
 **In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
 
-**Check in code:** search for `application/ld+json` and for objects with `@context` and `@type`. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
+**Check in code:** search for `application/ld+json`, for objects with `@context` and `@type`, and for JSON files with those keys. Check every one you find, including each entry in a list: a blank or misspelled key counts as a missing property. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
 
 **Can't tell from code:** values built at runtime or loaded from a CMS.
 

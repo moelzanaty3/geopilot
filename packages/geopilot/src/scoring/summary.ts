@@ -73,7 +73,9 @@ export function summarize(evaluations: readonly Evaluation[], readiness: Pick<Re
   const low = capped((earned / applicable) * 100);
   const high = capped(((earned + unknown) / applicable) * 100);
   const share = checked / applicable;
-  return { low, high, band: bandFor(low), earned, checked, applicable, confidence: share >= 0.8 ? 'High' : share >= 0.5 ? 'Medium' : 'Low', rules };
+  const confidence = share >= 0.8 ? 'High' : share >= 0.5 ? 'Medium' : 'Low';
+  // Naming a band from a low end that's mostly unknowns would blame the site for missing evidence.
+  return { low, high, band: confidence === 'High' ? bandFor(low) : null, earned, checked, applicable, confidence, rules };
 }
 
 export function displayRange(summary: ScoreSummary): string {

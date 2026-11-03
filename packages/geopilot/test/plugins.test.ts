@@ -94,6 +94,9 @@ describe('generated host plugins', () => {
     assert.match(scanner, /If `blocked` is set, the live check read nothing from the site/);
     assert.match(scanner, /Never work around a denied command/);
     assert.match(scanner, /\(live only\)/);
+    assert.match(scanner, /## Other problems found/);
+    assert.match(scanner, /Can't tell never means you didn't look/);
+    assert.match(scanner, /find and check every JSON-LD file/);
     assert.match(scanner, /\*\*Bot protection:\*\* code can't show whether a CDN or firewall lets real crawlers through/);
     assert.match(scanner, /the Problem with the most points lost always takes one of the three places/);
     assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /confirmed in code, not yet confirmed on a live site/);
