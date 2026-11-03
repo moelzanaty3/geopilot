@@ -53,7 +53,32 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 - hosts that disagree between canonicals, sitemaps and social tags
 - structured data that points at the wrong page
 
-Never list missing optional things: more JSON-LD types, social tags, llms.txt, FAQs, word counts, longer content, or crawler groups the policy doesn't need. If there's nothing real, write "None found".>
+Something merely missing or optional isn't a defect: it belongs in "Worth considering" if it belongs anywhere. If there's nothing real, write "None found".>
+
+## Worth considering
+
+Optional ideas from reading this project. They aren't problems, and they don't change the score.
+
+- **<The idea, in plain words>:** `<file>:<line>`: `<exact quote that prompted it>`. <What to do, and why it might help readers or machines.>
+
+<Up to 10, most useful first. Go through the whole list below before you stop, because most projects have several. If nothing specific comes up, write "None", and never pad the list. Each idea must come from something you read in this project: a quote, or for something absent, a quote of the visible fact that makes it worthwhile. If it would fit any website equally well, leave it out. Don't repeat anything from the sections above, and never move an idea into "Do these first". Look for:
+- a page or heading that promises something the page doesn't deliver
+- a claim with nothing behind it, such as a number or a list the page never backs up
+- what a visitor would come to ask that the site doesn't answer in text
+- facts that exist only in an image, a video or a script
+- facts already visible on the page that structured data could label, such as a business's address and hours, a product's price or an article's author and date
+- a page that's easy to reach but has little linking onward to the pages it relates to
+- signals that could say more, such as a sitemap `<lastmod>` when real dates exist, or social tags on pages people would share
+- settings that exist but aren't connected to anything, or framework config missing the site's URL
+- a list whose items could each have their own page and address
+- head basics that affect how a page is read, such as `charset` and `viewport`, and page structure such as `<main>` and headings
+
+Never suggest:
+- `llms.txt`, word counts, longer content for its own sake, keyword changes, or an FAQ just to have one
+- reversing or extending a choice that looks deliberate, such as a noindex on a private page, a blocked training crawler or `data-nosnippet`
+- improving a page that's deliberately kept out of search
+- code changes with no effect on what machines receive, such as swapping to a framework's link component when plain links already work
+- anything that promises citations, rankings or traffic: say "might help", never "will">
 
 ## Can't tell from code
 
