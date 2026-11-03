@@ -81,6 +81,10 @@ jobs:
           set -euo pipefail
           corepack enable
           pnpm install --frozen-lockfile
+      # The site imports the engine's built output (catalogue, variants,
+      # commands), so the engine is built before the site is typechecked.
+      - name: Build the engine
+        run: pnpm build
       - name: Typecheck
         working-directory: web
         run: pnpm exec tsc --noEmit
