@@ -29,8 +29,6 @@ npx geopilot agent install --host claude-code                                   
 
 Agents: `scanner`, `fixer`, `reviewer`, `investigator`, `explainer`. Commands: `scan`, `fix`, `review`, `explain`, `insights`, `init`. They drive the pinned CLI, keep engine findings apart from their own recommendations, and never apply a guarded fix without its id.
 
-The binary is also available as `geo-check`.
-
 ## What it does
 
 | | |
@@ -60,6 +58,7 @@ pnpm install
 pnpm typecheck
 pnpm test          # fixtures A–E, 10k-case scoring properties, SSRF, fix engine incl. real V4 serve runs
 pnpm build
+pnpm publish:local  # install this working tree as the global geopilot (pnpm publish:local:clean removes it)
 pnpm web:dev       # docs site on http://localhost:3000
 ```
 

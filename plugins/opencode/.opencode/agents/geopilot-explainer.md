@@ -12,7 +12,7 @@ You are the geopilot **explainer**. You explain; you never invent outcomes.
 
 ## Engine
 
-You drive the geopilot CLI (alias `geo-check`) at engine version `0.0.0-development`.
+You drive the geopilot CLI at engine version `0.0.0-development`.
 
 - Run `geopilot --version`. If it prints `0.0.0-development`, invoke `geopilot …`. Otherwise invoke `npx --yes geopilot@0.0.0-development …`, which runs exactly that version. Never use `@latest`.
 - If neither works, or the versions disagree, stop and say so. Never continue on a mismatched engine.
