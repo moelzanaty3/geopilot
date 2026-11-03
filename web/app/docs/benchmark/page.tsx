@@ -28,9 +28,16 @@ export default function Page() {
       </div>
       <p>On the six projects used for tuning (18 runs each), the plain prompt and geopilot had 0.67 and 0 false alarms, 6.0 and 5.2 useful ideas, and 2.3 and 0.7 wrong ideas.</p>
       <p>A false alarm means telling someone to change something that was fine, such as a deliberate <code>noindex</code> on a private page. An idea is any other recommendation, judged by a blind grader that could read the project&rsquo;s files. It&rsquo;s <em>useful</em> if it&rsquo;s specific, accurate and could plausibly help, <em>generic</em> if it would fit almost any site, and <em>wrong</em> if it&rsquo;s false, reverses a deliberate choice or relies on folklore such as word counts.</p>
+      <h2>Why a plain prompt has more ideas, and why that&rsquo;s not all good</h2>
+      <p>A plain prompt raises about 15 ideas per report against geopilot&rsquo;s 11, so it has more to choose from and much more to filter. <strong>About 54% of geopilot&rsquo;s ideas were useful, against 42% for the plain prompt, and the plain prompt raised more than 5 times as many wrong ones.</strong> Sorting the useful ideas by kind shows what&rsquo;s behind the gap of 0.8 per report. The sorting is rough and the samples are small.</p>
+      <ul>
+        <li><strong>Geopilot raised more ideas about what&rsquo;s on your pages:</strong> 1.8 against 1.0 per report on missing page content, such as facts a page promises but never gives, and 0.9 against 0.4 on links and navigation.</li>
+        <li><strong>Geopilot won&rsquo;t extend a choice you made on purpose.</strong> The biggest single difference was naming more training crawlers to block, at 0.7 against 0 per report. Geopilot leaves that decision with you, so you may want to check that list yourself.</li>
+        <li><strong>The plain prompt raised more ideas on some basics:</strong> titles and descriptions, page structure, canonicals and site settings. This is a real gap in geopilot, and we plan to close it.</li>
+      </ul>
       <h2>Where a plain prompt is still better</h2>
       <ul>
-        <li><strong>It raises slightly more useful ideas.</strong> 6.6 against 5.8 per report, so geopilot missed its target of at least matching it. The plain prompt also gives more to filter: about 42% of its ideas were useful, against 54% of geopilot&rsquo;s.</li>
+        <li><strong>It raises slightly more useful ideas.</strong> 6.6 against 5.8 per report, so geopilot missed its target of at least matching it.</li>
         <li><strong>It&rsquo;s cheaper and faster.</strong> Geopilot costs about twice as much and took about 30% longer, and it missed its target of costing less than the previous $0.14. Most of the extra cost is the rulebook it sends to the model, which is also what keeps false alarms down.</li>
         <li><strong>Large repositories are still unproven.</strong> In informal runs on one private production repository, geopilot raised specific findings, at about $0.50 and two minutes per run. Its score has varied between runs, and it has sometimes left code unread. It wasn&rsquo;t graded against an answer key, and we don&rsquo;t claim geopilot is better on large repositories.</li>
       </ul>
