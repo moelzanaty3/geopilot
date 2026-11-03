@@ -5,6 +5,7 @@ import { loadConfig, type LoadedConfig } from '../config/config.ts';
 import { GeoError, usage } from '../core/errors.ts';
 import { cacheRoot } from '../cache/runs.ts';
 import type { Fetcher } from '../collect/crawl.ts';
+import type { Http } from '../evidence/services.ts';
 import { FORMATS, render, type Format } from '../report/render.ts';
 import type { Report } from '../types.ts';
 import type { Io } from './io.ts';
@@ -15,6 +16,7 @@ export interface Deps {
   readonly cwd: string;
   readonly env: NodeJS.ProcessEnv;
   readonly fetcher?: Fetcher;
+  readonly http?: Http;
   readonly now?: () => Date;
 }
 
