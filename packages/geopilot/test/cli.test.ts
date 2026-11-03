@@ -93,6 +93,14 @@ describe('CLI contract', () => {
     assert.match(skill, new RegExp(`engine-version: "${TOOL_VERSION.replace(/\./g, '\\.')}"`));
     assert.doesNotMatch(skill, /\{\{ENGINE_VERSION\}\}/);
     assert.equal((await cli(d, ['agent', 'status'])).code, EXIT.ok);
+    for (const a of ['scanner', 'fixer', 'reviewer', 'investigator', 'explainer']) assert.ok(existsSync(join(d, '.claude', 'agents', `geopilot-${a}.md`)), a);
+    assert.ok(existsSync(join(d, '.claude', 'skills', 'geopilot-scan', 'SKILL.md')));
+    assert.equal((await cli(d, ['agent', 'install', '--host', 'opencode', '--yes'])).code, EXIT.ok);
+    assert.match(readFileSync(join(d, '.opencode', 'agents', 'geopilot-scanner.md'), 'utf8'), /mode: "subagent"[\s\S]*edit: deny/);
+    assert.match(readFileSync(join(d, '.opencode', 'commands', 'geopilot-fix.md'), 'utf8'), /agent: "geopilot-fixer"/);
+    const copilot = await cli(d, ['agent', 'install', '--host', 'copilot']);
+    assert.equal(copilot.code, EXIT.ok);
+    assert.match(copilot.out, /copilot plugin install geopilot@geopilot/);
     assert.equal((await cli(d, ['agent', 'install', '--host', 'cursor', '--yes'])).code, EXIT.usage);
     assert.equal((await cli(d, ['agent', 'install', '--host', 'agents-md', '--yes'])).code, EXIT.usage);
   });

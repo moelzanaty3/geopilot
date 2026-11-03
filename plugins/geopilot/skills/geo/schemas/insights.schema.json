@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moelzanaty3.github.io/geopilot/schema/insights/v1.json",
+  "title": "geo-insights/v1",
+  "description": "Agent output. kind is recommendation or hypothesis, never verified.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "geo-insights/v1"
+    },
+    "producer": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "skillVersion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "host",
+        "model",
+        "skillVersion"
+      ]
+    },
+    "basedOn": {
+      "type": "object",
+      "properties": {
+        "runId": {
+          "type": "string"
+        },
+        "reportSha256": {
+          "type": "string"
+        },
+        "gitCommit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "runId",
+        "reportSha256",
+        "gitCommit"
+      ]
+    },
+    "insights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "recommendation",
+              "hypothesis"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "file",
+                    "url",
+                    "finding",
+                    "note"
+                  ]
+                },
+                "path": {
+                  "type": "string"
+                },
+                "lines": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "end": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "start",
+                    "end"
+                  ]
+                },
+                "quote": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "selector": {
+                  "type": "string"
+                },
+                "fingerprint": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "related": {
+            "type": "object",
+            "properties": {
+              "fingerprints": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "routes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "insights": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "fingerprints",
+              "routes",
+              "files",
+              "insights"
+            ]
+          },
+          "conflictsWith": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "effort": {
+            "enum": [
+              "small",
+              "medium",
+              "large"
+            ]
+          },
+          "expectedBenefit": {
+            "type": "string"
+          },
+          "suggestedAction": {
+            "type": "string"
+          },
+          "fixClass": {
+            "enum": [
+              "contextual",
+              "editorial",
+              "unsupported"
+            ]
+          },
+          "approvalRequired": {
+            "type": "boolean"
+          },
+          "verification": {
+            "enum": [
+              "V2",
+              "V4",
+              "none"
+            ]
+          },
+          "uncertainty": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "category",
+          "title",
+          "description",
+          "evidence",
+          "related",
+          "conflictsWith",
+          "confidence",
+          "priority",
+          "effort",
+          "expectedBenefit",
+          "suggestedAction",
+          "fixClass",
+          "approvalRequired",
+          "verification",
+          "uncertainty"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "producer",
+    "basedOn",
+    "insights"
+  ]
+}

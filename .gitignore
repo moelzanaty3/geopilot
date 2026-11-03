@@ -8,3 +8,4 @@ web/next-env.d.ts
 .env*
 *.tgz
 packages/geopilot/skill/
+packages/geopilot/hosts/
