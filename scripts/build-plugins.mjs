@@ -27,7 +27,7 @@ const OUT = flag('--out') ?? join(ROOT, 'plugins');
 const MARKETPLACE = join(ROOT, '.claude-plugin', 'marketplace.json');
 
 function parse(file) {
-  const text = readFileSync(file, 'utf8');
+  const text = readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   const m = /^---\n([\s\S]*?)\n---\n?([\s\S]*)$/.exec(text);
   if (!m) throw new Error(`${file}: missing front matter`);
   const meta = {};
@@ -41,7 +41,7 @@ function parse(file) {
   return { meta, body: m[2] };
 }
 
-const SHARED = readFileSync(join(SKILL, 'agents', '_shared.md'), 'utf8').trim();
+const SHARED = readFileSync(join(SKILL, 'agents', '_shared.md'), 'utf8').replace(/\r\n/g, '\n').trim();
 const AGENTS = readdirSync(join(SKILL, 'agents')).filter((f) => f.endsWith('.md') && !f.startsWith('_')).sort().map((f) => parse(join(SKILL, 'agents', f)));
 const COMMANDS = readdirSync(join(SKILL, 'commands')).filter((f) => f.endsWith('.md')).sort().map((f) => parse(join(SKILL, 'commands', f)));
 
