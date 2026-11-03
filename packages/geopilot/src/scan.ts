@@ -7,6 +7,7 @@ import { detectFramework } from './repo/detect.ts';
 import { buildGroups, globMatch, includedPath, loadRepoModel, type RepoModel, type ScanContext } from './rules/context.ts';
 import { runRules } from './rules/evaluate.ts';
 import { score } from './scoring/score.ts';
+import { summarize } from './scoring/summary.ts';
 import { DISCLAIMER, RULESET_VERSION, SCORING_VERSION, TOOL_NAME, TOOL_VERSION } from './core/version.ts';
 import { newRunId } from './core/hash.ts';
 import { planFixes, type FixProposal } from './fix/plan.ts';
@@ -72,6 +73,18 @@ function applySuppressions(config: GeoConfig, evaluations: Evaluation[], now: Da
   return { evaluations: out, suppressed };
 }
 
+const EVIDENCE_NEEDED: ReadonlySet<string> = new Set(['not_in_scope', 'no_jsonld', 'entry_route', 'no_subjects']);
+
+// With nothing read from the site, "not applicable" can't be claimed either, unless
+// the repository supplied the evidence for it.
+function asBlockedEvaluation(e: Evaluation, hasRepo: boolean): Evaluation {
+  const reason = e.statusReason ?? '';
+  const unknown = reason === 'unreachable' || reason === 'needs_url' || (!hasRepo && e.status === 'not_applicable' && EVIDENCE_NEEDED.has(reason));
+  if (!unknown) return e;
+  const status = e.status === 'not_applicable' ? 'not_evaluated' : e.status;
+  return { ...e, status, statusReason: 'blocked', subChecks: e.subChecks.map((c) => (c.reason === 'unreachable' ? { ...c, reason: 'blocked' } : c)) };
+}
+
 export async function scan(opts: ScanOptions): Promise<ScanResult> {
   const now = opts.now ?? (() => new Date());
   const startedAt = now();
@@ -116,9 +129,16 @@ export async function scan(opts: ScanOptions): Promise<ScanResult> {
     if (config.crawl.render === 'always') notices.push('--render always was requested, but this release ships no renderer; render-dependent rules are not evaluated');
   }
 
-  const groups = buildGroups(config, url, repo);
-  const ctx: ScanContext = { config, url, repo, groups, rendererAvailable: false, now: startedAt };
-  const { evaluations: raw, informational } = runRules(ctx, opts.only ? new Set(opts.only) : null, new Set(opts.skip ?? []));
+  const blocked = url?.blocked ?? null;
+  if (blocked) {
+    notices.unshift(`${blocked.protection ?? 'A firewall'} answered ${blocked.url} with ${blocked.status} instead of the site, so GEO read nothing from it. That says nothing about the site's health, or about whether real crawlers get through. Check your firewall logs for the crawlers you care about, or scan an environment without the block.`);
+  }
+  // Repository evidence stays valid when the site blocks us; URL evidence doesn't exist.
+  const urlEvidence = blocked && repo ? null : url;
+  const groups = buildGroups(config, urlEvidence, repo);
+  const ctx: ScanContext = { config, url: urlEvidence, repo, groups, rendererAvailable: false, now: startedAt };
+  const { evaluations: ruleEvaluations, informational } = runRules(ctx, opts.only ? new Set(opts.only) : null, new Set(opts.skip ?? []));
+  const raw = blocked ? ruleEvaluations.map((e) => asBlockedEvaluation(e, repo !== null)) : ruleEvaluations;
   const fixes = repo ? planFixes(ctx, raw) : [];
   const withFixes = raw.map((e) => ({
     ...e,
@@ -157,9 +177,11 @@ export async function scan(opts: ScanOptions): Promise<ScanResult> {
     readiness: s.readiness,
     coverage: s.coverage,
     confidence: s.confidence,
-    assessmentScope: s.assessmentScope,
+    assessmentScope: blocked ? { ...s.assessmentScope, notes: s.assessmentScope.notes.filter((n) => !n.includes('--url')) } : s.assessmentScope,
     suppressed,
     notices,
+    ...(blocked ? { blocked: { url: blocked.url, status: blocked.status, protection: blocked.protection } } : {}),
+    summary: summarize(evaluations, s.readiness, blocked && !repo ? 'cant_tell' : 'not_applicable'),
     baseline: null,
     disclaimer: DISCLAIMER,
   };

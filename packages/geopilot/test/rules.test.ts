@@ -117,6 +117,44 @@ describe('URL audit (T0) against recorded exchanges', () => {
     assert.ok(of(report, 'GEO-004', '/bad')[0]!.findings.some((f) => f.subCheck === 'parses'));
   });
 
+  it('a bot challenge is reported as blocked, never as a pass or a missing file', async () => {
+    const challenge = { status: 403, headers: { 'content-type': 'text/html', 'cf-mitigated': 'challenge' }, body: '<!doctype html><html><head><title>Just a moment...</title><meta name="robots" content="noindex,nofollow"></head></html>' };
+    const { report } = await site(() => ({ '/robots.txt': challenge, '/sitemap.xml': challenge, '/': challenge }));
+    assert.equal(report.blocked?.protection, 'Cloudflare');
+    assert.equal(report.blocked?.status, 403);
+    assert.equal(report.summary?.low, null);
+    assert.equal(report.summary.applicable, 25);
+    for (const e of report.evaluations) {
+      assert.notEqual(e.status, 'pass', e.ruleId);
+      assert.notEqual(e.status, 'fail', e.ruleId);
+      assert.equal(e.findings.length, 0, e.ruleId);
+    }
+    for (const id of ['GEO-013', 'GEO-009', 'GEO-011'] as const) assert.equal(of(report, id)[0]?.statusReason, 'blocked', id);
+    assert.equal(report.readiness.display, 'insufficient_evidence');
+    assert.ok(report.notices[0]?.includes('says nothing about the site'));
+    assert.ok(!report.assessmentScope.notes.some((n) => n.includes('--url')));
+  });
+
+  it('a plain firewall refusal on robots.txt and the entry page is blocked too', async () => {
+    const { report } = await site(() => ({ '/robots.txt': { status: 403 }, '/': { status: 403 } }));
+    assert.equal(report.blocked?.protection, null);
+    assert.equal(of(report, 'GEO-013')[0]?.statusReason, 'blocked');
+  });
+
+  it('a 403 robots.txt on a site that serves its pages still means no rules', async () => {
+    const { report } = await site(() => ({ '/robots.txt': { status: 403 }, '/': { status: 200, body: page({ title: 'H', desc: 'd', lang: 'en' }) } }));
+    assert.equal(report.blocked, undefined);
+    assert.equal(of(report, 'GEO-013')[0]?.status, 'pass');
+  });
+
+  it('keeps repository evidence when the site blocks the scan', async () => {
+    const challenge = { status: 403, headers: { 'cf-mitigated': 'challenge' }, body: '' };
+    const { report } = await site(() => ({ '/robots.txt': challenge, '/': challenge }), {}, { repoPath: join(FIXTURES, 'next-fixable') });
+    assert.ok(report.blocked);
+    assert.ok(of(report, 'GEO-012').some((e) => e.status === 'fail'));
+    assert.ok(report.summary?.low !== null);
+  });
+
   it('an unreachable target is incomplete with readiness null (example C)', async () => {
     const r = await scan({ repoPath: null, urls: ['http://127.0.0.1:1/'], config: DEFAULT_CONFIG, configHash: 'x', fetcher: defaultFetcher({ explicitHosts: new Set(['127.0.0.1']) }) });
     assert.equal(r.report.readiness.value, null);

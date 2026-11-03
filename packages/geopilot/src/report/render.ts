@@ -2,6 +2,7 @@ import { canonicalJson } from '../core/hash.ts';
 import type { Palette } from '../core/tty.ts';
 import { ruleMeta } from '../rules/catalogue.ts';
 import { displayPercent, displayReadiness } from '../scoring/score.ts';
+import { displayRange, evaluationResult, type RuleResult, type ScoreSummary } from '../scoring/summary.ts';
 import { subjectKey, type Evaluation, type Finding, type Report, type Severity } from '../types.ts';
 
 export type Format = 'pretty' | 'json' | 'markdown';
@@ -20,17 +21,17 @@ function subjectLabel(e: Evaluation): string {
 }
 
 function statusLabel(e: Evaluation): string {
+  if (evaluationResult(e) === 'clear') return 'Clear';
   switch (e.status) {
     case 'pass':
-      return 'pass';
+      return 'Clear';
     case 'fail':
-      return 'fail';
+      return 'Problem';
     case 'not_applicable':
-      return `n/a (${e.statusReason ?? ''})`;
+      return `Not applicable (${(e.statusReason ?? '').replace(/_/g, ' ')})`;
     case 'not_evaluated':
-      return `not evaluated (${(e.statusReason ?? '').replace(/_/g, ' ')})`;
     case 'error':
-      return `error (${e.statusReason ?? ''})`;
+      return `Can't tell (${(e.statusReason ?? '').replace(/_/g, ' ')})`;
   }
 }
 
@@ -53,12 +54,33 @@ export function ruleRows(report: Report): RuleRow[] {
     const meta = ruleMeta(evals[0]!.ruleId);
     const counts = new Map<string, number>();
     for (const e of evals) {
-      const k = e.evidenceQuality === 'inferred' && (e.status === 'pass' || e.status === 'fail') ? `inferred ${e.status}` : statusLabel(e);
+      const k = e.evidenceQuality === 'inferred' && (e.status === 'pass' || e.status === 'fail') ? `Can't tell (inferred ${e.status === 'pass' ? 'clear' : 'problem'})` : statusLabel(e);
       counts.set(k, (counts.get(k) ?? 0) + 1);
     }
     const summary = [...counts.entries()].map(([k, n]) => (evals.length === 1 ? k : `${n} ${k}`)).join(', ');
     return { id, title: meta.title, summary };
   });
+}
+
+const RESULT_LABELS: readonly (readonly [RuleResult, string])[] = [['clear', 'clear'], ['problem', 'problem'], ['cant_tell', "can't tell"], ['not_applicable', 'not applicable']];
+
+function resultCounts(summary: ScoreSummary): string {
+  return RESULT_LABELS.map(([result, label]) => `${summary.rules.filter((rule) => rule.result === result).length} ${label}`).join(' · ');
+}
+
+function scoreLine(summary: ScoreSummary): string {
+  if (summary.band === null) return displayRange(summary);
+  return `${displayRange(summary)}, ${summary.band}`;
+}
+
+function checkedLine(summary: ScoreSummary): string {
+  return summary.confidence === null ? 'nothing could be checked' : `checked ${summary.checked} of ${summary.applicable} points, ${summary.confidence} confidence`;
+}
+
+function blockedLine(r: Report): string {
+  const blocked = r.blocked!;
+  const scope = r.run.mode === 'mixed' ? 'Results below come from your repository only.' : "Nothing below is about your site.";
+  return `Blocked: ${blocked.protection ?? 'a firewall'} answered with ${blocked.status} instead of the site. ${scope}`;
 }
 
 function tierLine(r: Report): string {
@@ -74,13 +96,16 @@ export function renderPretty(r: Report, p: Palette): string {
   out.push(`${p.brand(p.bold('geopilot'))} ${p.dim(r.tool.version)}  ${p.dim('·')}  ${r.run.targets.join(', ')}  ${p.dim('·')}  ${p.dim(r.run.id)}`);
   out.push(p.dim(`  ${tierLine(r)}`));
   out.push('');
+  if (r.blocked) out.push(`  ${p.red(blockedLine(r))}`, '');
+  out.push(`  ${p.dim('Score     ')}  ${p.bold(scoreLine(r.summary))}  ${p.dim(`(${checkedLine(r.summary)})`)}`);
+  out.push(`  ${p.dim('Results   ')}  ${resultCounts(r.summary)}`);
   const readiness = displayReadiness(r.readiness);
   out.push(`  ${p.dim('Readiness ')}  ${r.readiness.display === 'insufficient_evidence' ? p.yellow(readiness) : p.bold(readiness)}${r.readiness.capReason ? p.red(`  capped: ${r.readiness.capReason}`) : ''}`);
   out.push(`  ${p.dim('Coverage  ')}  ${displayPercent(r.coverage)}    ${p.dim('Confidence')}  ${displayPercent(r.confidence)}    ${p.dim('Assessment')}  ${r.assessmentScope.assessment}`);
   for (const n of r.assessmentScope.notes) out.push(`  ${p.dim('·')} ${n}`);
   out.push('');
   const findings = sortedFindings(r);
-  if (findings.length === 0) out.push(`  ${p.green('No findings')} ${p.dim('on the subjects that were evaluated.')}`);
+  if (findings.length === 0 && !r.blocked) out.push(`  ${p.green('No findings')} ${p.dim('on the subjects that were evaluated.')}`);
   for (const { finding: f, evaluation: e } of findings) {
     const tag = f.severity === 'high' ? p.red('HIGH') : f.severity === 'medium' ? p.yellow('MED ') : p.dim('LOW ');
     const inferred = f.evidenceQuality === 'inferred' ? p.dim(' (inferred, unscored)') : '';
@@ -118,6 +143,8 @@ export function renderMarkdown(r: Report): string {
   out.push(`- **Run:** \`${r.run.id}\` · ${r.run.mode} · geopilot ${r.tool.version} · ruleset ${r.tool.rulesetVersion} · scoring ${r.tool.scoringVersion}`);
   out.push(`- **Capability:** ${tierLine(r)}`);
   out.push('');
+  if (r.blocked) out.push(`**${blockedLine(r)}**`, '');
+  out.push(`**Score: ${scoreLine(r.summary)}** (${checkedLine(r.summary)}). ${resultCounts(r.summary)}.`, '');
   out.push('| Readiness | Coverage | Confidence | Assessment |');
   out.push('| --- | --- | --- | --- |');
   out.push(`| ${displayReadiness(r.readiness)}${r.readiness.capReason ? ` (capped: ${md(r.readiness.capReason)})` : ''} | ${displayPercent(r.coverage)} | ${displayPercent(r.confidence)} | ${r.assessmentScope.assessment} |`);
