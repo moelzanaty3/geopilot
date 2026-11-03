@@ -39,7 +39,7 @@ export default function Page() {
       <pre><code>npx geopilot agent install --host codex</code></pre>
       <p>This writes <code>.codex/agents/geopilot-*.toml</code> and <code>.agents/skills/</code>, with skills run as <code>$geopilot-scan</code>.</p>
       <div className="callout warn">Codex loads <code>.codex/agents/</code> only in a project you have trusted, so the agents don&rsquo;t appear until then. Codex also can&rsquo;t give one agent its own sandbox: read-only agents rely on their instructions, so use a read-only session if you need it enforced.</div>
-      <p><code>$geopilot:fix</code> and <code>$geopilot:init</code> run only when you name them. Codex won&rsquo;t pick them from a prompt.</p>
+      <p>Codex won&rsquo;t auto-select the <code>$geopilot:fix</code> and <code>$geopilot:init</code> skills, but a fix request can still reach the fix workflow through the <code>geo</code> skill or the fixer agent. What protects your code is the approval each fix needs, not how the workflow started.</p>
       <h2>Anything else</h2>
       <pre><code>npx geopilot agent install --host agents-md --write-agents-md</code></pre>
       <p>Adds a short section to <code>AGENTS.md</code> for hosts that read it.</p>
@@ -54,11 +54,11 @@ export default function Page() {
           <thead><tr><th>Command</th><th>Does</th><th>Agent</th><th>Arguments</th></tr></thead>
           <tbody>
             <tr><td><code>scan</code></td><td>Runs a scan of a URL, the repository or both, and reports findings.</td><td><code>scanner</code></td><td><code>[path|url] [--url &lt;local-server&gt;]</code></td></tr>
-            <tr><td><code>fix</code></td><td>Previews the closed-list fixes, then applies only what you approve. You start it yourself; a model can&rsquo;t.</td><td><code>fixer</code></td><td><code>[--rule GEO-xxx]</code></td></tr>
+            <tr><td><code>fix</code></td><td>Previews the closed-list fixes, then applies only what you approve. The model doesn&rsquo;t auto-select this command.</td><td><code>fixer</code></td><td><code>[--rule GEO-xxx]</code></td></tr>
             <tr><td><code>review</code></td><td>Reviews a branch or pull request for readiness regressions.</td><td><code>reviewer</code></td><td><code>[base-branch]</code></td></tr>
             <tr><td><code>explain</code></td><td>Explains a rule, or a finding from the last scan.</td><td><code>explainer</code></td><td><code>&lt;GEO-xxx | fingerprint&gt;</code></td></tr>
             <tr><td><code>insights</code></td><td>Investigates unmapped findings and records validated recommendations.</td><td><code>investigator</code></td><td><code>[GEO-xxx]</code></td></tr>
-            <tr><td><code>init</code></td><td>Previews and creates <code>geo.config.json</code>. You start it yourself; a model can&rsquo;t.</td><td>None</td><td><code>[--origin https://… --language en]</code></td></tr>
+            <tr><td><code>init</code></td><td>Previews and creates <code>geo.config.json</code>. The model doesn&rsquo;t auto-select this command.</td><td>None</td><td><code>[--origin https://… --language en]</code></td></tr>
           </tbody>
         </table>
       </div>
