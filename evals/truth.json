@@ -1,0 +1,222 @@
+{
+  "mugs": {
+    "stack": "React + Vite",
+    "planted": [
+      {
+        "id": "robots-blocks-all",
+        "description": "public/robots.txt blocks every crawler from the whole site (Disallow: /)"
+      },
+      {
+        "id": "client-only-rendering",
+        "description": "The app renders only in the browser: index.html has an empty #root and no prerendering, so crawlers without JavaScript see no content"
+      },
+      {
+        "id": "no-html-lang",
+        "description": "index.html's <html> has no lang attribute"
+      },
+      {
+        "id": "generic-title-no-description",
+        "description": "index.html has the generic title 'Vite App' and/or no meta description"
+      },
+      {
+        "id": "no-sitemap",
+        "description": "There is no sitemap, and robots.txt has no Sitemap line"
+      },
+      {
+        "id": "button-navigation",
+        "description": "The catalogue page is reached by a <button> with navigate(), not a real link"
+      },
+      {
+        "id": "image-missing-alt",
+        "description": "The hero <img> in Home.jsx has no alt text"
+      }
+    ],
+    "decoys": []
+  },
+  "ledger": {
+    "stack": "Next.js App Router",
+    "planted": [
+      {
+        "id": "pricing-noindex",
+        "description": "/pricing is noindex while listed in the sitemap and linked from the navigation"
+      },
+      {
+        "id": "robots-no-sitemap-line",
+        "description": "robots.txt has no Sitemap line even though public/sitemap.xml exists"
+      },
+      {
+        "id": "no-html-lang",
+        "description": "<html> in app/layout.tsx has no lang attribute"
+      },
+      {
+        "id": "docs-missing-canonical",
+        "description": "/docs has no canonical, while the other public pages declare one"
+      },
+      {
+        "id": "blog-client-rendered",
+        "description": "/blog is a client component that loads its posts in useEffect, so the content isn't in server HTML"
+      }
+    ],
+    "decoys": [
+      {
+        "id": "thank-you-noindex",
+        "description": "/thank-you is noindex. It's not in the sitemap or the navigation, so this is correct"
+      },
+      {
+        "id": "gptbot-blocked",
+        "description": "GPTBot is blocked in robots.txt. geo.config.json declares trainingCrawlers: block, so this is deliberate"
+      },
+      {
+        "id": "data-nosnippet",
+        "description": "data-nosnippet on the cookie notice is a scoped choice and fine"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      }
+    ]
+  },
+  "harbor": {
+    "stack": "Astro",
+    "planted": [
+      {
+        "id": "faq-jsonld-bad-key",
+        "description": "The first FAQ question in src/data/faq.json has a blank key where acceptedAnswer should be"
+      },
+      {
+        "id": "article-jsonld-invalid",
+        "description": "The Article JSON-LD in moorings.astro has a trailing comma, so it doesn't parse"
+      },
+      {
+        "id": "canonical-hardcoded",
+        "description": "Base.astro hardcodes the canonical to the home page on every page"
+      },
+      {
+        "id": "max-snippet-zero",
+        "description": "Base.astro sets max-snippet:0 by default on every page"
+      },
+      {
+        "id": "ai-search-crawlers-blocked",
+        "description": "robots.txt blocks OAI-SearchBot and PerplexityBot from the whole site"
+      },
+      {
+        "id": "contact-noindex-in-sitemap",
+        "description": "/contact is noindex but listed in the sitemap and linked from the navigation"
+      }
+    ],
+    "decoys": [
+      {
+        "id": "newsletter-client-load",
+        "description": "The Newsletter island uses client:load. It's only a form, and the page's main content is server-rendered"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      }
+    ]
+  },
+  "trailhead": {
+    "stack": "Nuxt",
+    "planted": [
+      {
+        "id": "guides-x-robots-noindex",
+        "description": "server/middleware/headers.ts sends X-Robots-Tag: noindex on /guides, which is listed in the sitemap"
+      },
+      {
+        "id": "ssr-disabled",
+        "description": "nuxt.config.ts sets ssr: false, so pages render only in the browser"
+      },
+      {
+        "id": "relative-sitemap-line",
+        "description": "robots.txt's Sitemap line is a relative URL. It must be absolute"
+      },
+      {
+        "id": "same-title-everywhere",
+        "description": "Only app.vue sets a title, so every page has the same title and description"
+      },
+      {
+        "id": "button-navigation",
+        "description": "The home page reaches /guides by a <button> with router.push, not a real link"
+      }
+    ],
+    "decoys": [
+      {
+        "id": "admin-noindex-disallow",
+        "description": "/admin is noindex and disallowed in robots.txt, which is correct"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      }
+    ]
+  },
+  "orchard": {
+    "stack": "Next.js App Router (healthy control)",
+    "planted": [],
+    "decoys": [
+      {
+        "id": "training-crawlers-blocked",
+        "description": "GPTBot and ClaudeBot are blocked. geo.config.json declares trainingCrawlers: block, so this is deliberate"
+      },
+      {
+        "id": "account-noindex-disallow",
+        "description": "/account is noindex and disallowed in robots.txt, which is correct for a private page"
+      },
+      {
+        "id": "data-nosnippet",
+        "description": "data-nosnippet on the cookie notice is a scoped choice and fine"
+      },
+      {
+        "id": "no-json-ld",
+        "description": "Having no JSON-LD is not a required fix"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      },
+      {
+        "id": "no-faq-or-word-count",
+        "description": "Short pages and having no FAQ are not problems"
+      }
+    ]
+  },
+  "quay": {
+    "stack": "SvelteKit",
+    "planted": [
+      {
+        "id": "ssr-disabled",
+        "description": "src/routes/+layout.ts sets ssr = false, so every page renders only in the browser"
+      },
+      {
+        "id": "googlebot-blocked",
+        "description": "robots.txt blocks Googlebot from the whole site"
+      },
+      {
+        "id": "product-jsonld-incomplete",
+        "description": "The Product JSON-LD on /shop lacks offers, review or aggregateRating"
+      },
+      {
+        "id": "empty-description-shop",
+        "description": "/shop has an empty meta description"
+      },
+      {
+        "id": "no-html-lang",
+        "description": "<html> in src/app.html has no lang attribute"
+      }
+    ],
+    "decoys": [
+      {
+        "id": "search-noindex",
+        "description": "/search is noindex and isn't in the sitemap, which is correct"
+      },
+      {
+        "id": "data-nosnippet",
+        "description": "data-nosnippet on the delivery notice is a scoped choice and fine"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      }
+    ]
+  }
+}

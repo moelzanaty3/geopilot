@@ -1,0 +1,14 @@
+{
+  "fixture": "ledger",
+  "arm": "plain",
+  "run": 1,
+  "found": [
+    "pricing-noindex",
+    "blog-client-rendered",
+    "no-html-lang",
+    "robots-no-sitemap-line",
+    "docs-missing-canonical"
+  ],
+  "flagged": [],
+  "extraIssues": 7
+}

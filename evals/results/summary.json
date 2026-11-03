@@ -1,0 +1,43 @@
+{
+  "plain": {
+    "reports": 18,
+    "recall": 1,
+    "falseAlarmsPerReport": 0.7777777777777778,
+    "consistency": 1,
+    "invalidReferencesPerReport": 2.4444444444444446,
+    "fileReferencesPerReport": 12.5,
+    "extraIssuesPerReport": 7.666666666666667,
+    "costPerRun": 0.07137116111111111,
+    "secondsPerRun": 27.109500000000008,
+    "runsThatChangedFiles": 0,
+    "controlFalseAlarmsPerReport": 1.3333333333333333,
+    "missed": {},
+    "flagged": {
+      "ledger/gptbot-blocked": 1,
+      "harbor/newsletter-client-load": 3,
+      "trailhead/admin-noindex-disallow": 2,
+      "trailhead/no-llms-txt": 1,
+      "orchard/account-noindex-disallow": 1,
+      "orchard/no-json-ld": 2,
+      "orchard/no-faq-or-word-count": 1,
+      "quay/data-nosnippet": 3
+    }
+  },
+  "geopilot": {
+    "reports": 18,
+    "recall": 1,
+    "falseAlarmsPerReport": 0.05555555555555555,
+    "consistency": 1,
+    "invalidReferencesPerReport": 1.0555555555555556,
+    "fileReferencesPerReport": 9.5,
+    "extraIssuesPerReport": 0.5555555555555556,
+    "costPerRun": 0.151186,
+    "secondsPerRun": 44.307388888888894,
+    "runsThatChangedFiles": 0,
+    "controlFalseAlarmsPerReport": 0,
+    "missed": {},
+    "flagged": {
+      "trailhead/admin-noindex-disallow": 1
+    }
+  }
+}

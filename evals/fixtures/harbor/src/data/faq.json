@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I book by the night?",
+      " ": {
+        "@type": "Answer",
+        "text": "Yes, visitor moorings are available by the night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a water taxi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, from May to September."
+      }
+    }
+  ]
+}
