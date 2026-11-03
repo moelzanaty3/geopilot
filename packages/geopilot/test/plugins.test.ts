@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
+import { RULES } from '../src/rules/catalogue.ts';
 
 const ROOT = fileURLToPath(new URL('../../../', import.meta.url));
 const PLUGINS = join(ROOT, 'plugins');
@@ -72,7 +73,7 @@ describe('generated host plugins', () => {
   });
 
   it('every agent can audit on its own: it carries every rule and starts without the CLI', () => {
-    const rules = JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import { RULES } from ${JSON.stringify(join(ROOT, 'packages/geopilot/src/rules/catalogue.ts'))}; console.log(JSON.stringify(RULES.map((r) => r.id)))`], { encoding: 'utf8' })) as string[];
+    const rules = RULES.map((r) => r.id);
     assert.ok(rules.length >= 14);
     for (const a of AGENTS) {
       const body = read('geopilot', 'agents', `${a}.agent.md`);
