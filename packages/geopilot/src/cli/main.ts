@@ -18,7 +18,7 @@ export { COMMANDS };
 
 export function helpText(): string {
   const lines = [
-    `geopilot ${TOOL_VERSION} — local-first technical readiness auditor (binary alias: geo-check)`,
+    `geopilot ${TOOL_VERSION} — local-first technical readiness auditor`,
     '',
     'Usage: geopilot <command> [options]',
     '',

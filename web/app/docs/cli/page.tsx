@@ -16,7 +16,7 @@ const EXITS: [string, string][] = [
 
 export default function Page() {
   return (
-    <DocsPage href="/docs/cli/" crumb="CLI" title="CLI reference" intro="geopilot (alias geo-check). Only the CLI writes to stdout, prompts, or sets the exit code.">
+    <DocsPage href="/docs/cli/" crumb="CLI" title="CLI reference" intro="geopilot. Only the CLI writes to stdout, prompts, or sets the exit code.">
       <h2>Commands</h2>
       <div className="table-wrap">
         <table>

@@ -1,6 +1,6 @@
 ## Engine
 
-You drive the geopilot CLI (alias `geo-check`) at engine version `{{ENGINE_VERSION}}`.
+You drive the geopilot CLI at engine version `{{ENGINE_VERSION}}`.
 
 - Run `geopilot --version`. If it prints `{{ENGINE_VERSION}}`, invoke `geopilot …`. Otherwise invoke `{{CLI}} …`, which runs exactly that version. Never use `@latest`.
 - If neither works, or the versions disagree, stop and say so. Never continue on a mismatched engine.

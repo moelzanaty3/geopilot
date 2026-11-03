@@ -4,27 +4,24 @@ import { fileURLToPath } from 'node:url';
 import { TOOL_VERSION } from '../core/version.ts';
 
 // One canonical agent kit (skill/: the geo skill, agents, commands), rendered
-// per host by scripts/build-plugins.mjs. Hosts are labelled by what has been
-// checked: Claude Code's plugin and project formats are validated and its
-// install is tested; OpenCode's layout follows its documentation but has not
-// been run in OpenCode; Copilot CLI installs the shared plugin from the
-// marketplace and is provisional; the AGENTS.md section is a fallback.
+// per host by scripts/build-plugins.mjs. A host is "supported" once its own CLI
+// has installed and loaded the bundle (ADR-0006); the AGENTS.md section is a fallback.
 
-export type Host = 'claude-code' | 'opencode' | 'agents-md';
+export type Host = 'claude-code' | 'opencode' | 'codex' | 'agents-md';
 export type HostStatus = 'supported' | 'provisional' | 'marketplace' | 'not_available';
 export const HOSTS: readonly { readonly id: string; readonly status: HostStatus; readonly note: string }[] = [
   { id: 'claude-code', status: 'supported', note: 'project install: .claude/agents and .claude/skills; or the plugin: /plugin install geopilot --marketplace moelzanaty3/geopilot' },
-  { id: 'opencode', status: 'provisional', note: 'project install: .opencode/agents, .opencode/commands, .opencode/skills' },
-  { id: 'copilot', status: 'marketplace', note: 'copilot plugin marketplace add moelzanaty3/geopilot && copilot plugin install geopilot@geopilot (provisional)' },
+  { id: 'opencode', status: 'supported', note: 'project install: .opencode/agents, .opencode/commands, .opencode/skills' },
+  { id: 'copilot', status: 'marketplace', note: 'copilot plugin marketplace add moelzanaty3/geopilot && copilot plugin install geopilot@geopilot' },
+  { id: 'codex', status: 'supported', note: 'project install: .codex/agents and .agents/skills; or the plugin: codex plugin marketplace add moelzanaty3/geopilot && codex plugin add geopilot@geopilot' },
   { id: 'agents-md', status: 'provisional', note: 'a section in AGENTS.md, with --write-agents-md' },
   { id: 'cursor', status: 'not_available', note: 'not tested yet; use agents-md' },
-  { id: 'codex', status: 'not_available', note: 'not tested yet; use agents-md' },
 ];
 
 export const VERSION_PLACEHOLDER = '{{ENGINE_VERSION}}';
 
 /** A generated host bundle: published under hosts/, in the repository under plugins/. */
-export function bundleSource(bundle: 'claude-project' | 'opencode' | 'geopilot'): string {
+export function bundleSource(bundle: 'claude-project' | 'opencode' | 'codex-project' | 'codex' | 'geopilot'): string {
   const published = fileURLToPath(new URL(`../../hosts/${bundle}/`, import.meta.url));
   if (existsSync(published)) return published;
   return fileURLToPath(new URL(`../../../../plugins/${bundle}/`, import.meta.url));
@@ -63,8 +60,8 @@ const AGENTS_START = '<!-- geopilot:begin -->';
 const AGENTS_END = '<!-- geopilot:end -->';
 
 export function planInstall(repoRoot: string, host: Host): InstallPlan {
-  if (host === 'claude-code' || host === 'opencode') {
-    const src = host === 'claude-code' ? bundleSource('claude-project') : bundleSource('opencode');
+  if (host !== 'agents-md') {
+    const src = bundleSource(host === 'claude-code' ? 'claude-project' : host === 'codex' ? 'codex-project' : 'opencode');
     const writes = listSkillFiles(src).map((rel) => {
       const content = readFileSync(join(src, rel), 'utf8').replaceAll(VERSION_PLACEHOLDER, TOOL_VERSION);
       const path = join(repoRoot, rel);
@@ -73,7 +70,9 @@ export function planInstall(repoRoot: string, host: Host): InstallPlan {
     return { host, writes };
   }
   const path = join(repoRoot, 'AGENTS.md');
-  const section = `${AGENTS_START}\n## geopilot (GEO technical readiness)\n\nUse the geopilot CLI for technical readiness checks; never claim rule outcomes it did not report.\n\n- Scan: \`npx geopilot@${TOOL_VERSION} scan --format json\`\n- Explain a rule: \`npx geopilot@${TOOL_VERSION} explain <ruleId>\`\n- Fixes are dry-run by default; apply only after the user approves each guarded fix (\`--approve <fixId>\`).\n- Label your own file attributions as agent-suggested; they are not engine provenance.\n- Report verification honestly: \`applied_unverified\` is not success.\n\nTechnical readiness only. GEO does not measure or predict citations, rankings, traffic or inclusion in any AI or search product.\n${AGENTS_END}\n`;
+  // --prefix keeps npx from running or configuring itself from the repository being scanned.
+  const cli = `npx --yes --prefix "$(mktemp -d)" geopilot@${TOOL_VERSION}`;
+  const section = `${AGENTS_START}\n## geopilot (GEO technical readiness)\n\nUse the geopilot CLI for technical readiness checks; never claim rule outcomes it did not report.\n\n- Scan: \`${cli} scan --format json\`\n- Explain a rule: \`${cli} explain <ruleId>\`\n- Fixes are dry-run by default; apply only after the user approves each guarded fix (\`--approve <fixId>\`).\n- Label your own file attributions as agent-suggested; they are not engine provenance.\n- Report verification honestly: \`applied_unverified\` is not success.\n\nTechnical readiness only. GEO does not measure or predict citations, rankings, traffic or inclusion in any AI or search product.\n${AGENTS_END}\n`;
   const exists = existsSync(path);
   let content = section;
   if (exists) {

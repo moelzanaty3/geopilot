@@ -17,7 +17,7 @@ or, on older versions:
     /plugin marketplace add moelzanaty3/geopilot
     /plugin install geopilot@geopilot
 
-GitHub Copilot CLI (provisional):
+GitHub Copilot CLI:
 
     copilot plugin marketplace add moelzanaty3/geopilot
     copilot plugin install geopilot@geopilot

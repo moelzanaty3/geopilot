@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { DocsPage } from '@/components/docs-page';
 
 export const metadata = { title: 'Getting started' };
@@ -28,8 +29,8 @@ export default function Page() {
         Guarded fixes need their own id; <code>--yes</code> never approves one. Fixes that require runtime verification (V4) are reported as <code>applied_unverified</code> (exit 6) unless GEO starts your dev server itself after the write — see <a href="../fixes/">Fixes &amp; verification</a>. Every apply can be undone with <code>geopilot fix --rollback &lt;runId&gt;</code>.
       </p>
       <h2>Use it from your agent</h2>
-      <pre><code>npx geopilot agent install --host claude-code</code></pre>
-      <p>Then ask Claude Code to “run a GEO scan”. The skill drives the same CLI and keeps its own recommendations apart from engine findings.</p>
+      <pre><code>/plugin install geopilot --marketplace moelzanaty3/geopilot</code></pre>
+      <p>Then run <code>/geopilot:scan</code> in Claude Code. The plugin drives the same CLI and keeps its own recommendations apart from engine findings. For GitHub Copilot CLI, OpenCode, OpenAI Codex and team installs, see <Link href="/docs/agent/">Agent plugins</Link>.</p>
       <h2>In CI</h2>
       <pre><code>npx geopilot@0 scan https://preview.example.com --format markdown --output geo.md --fail-on high</code></pre>
       <p>Gates are opt-in: nothing fails unless you pass a threshold. An unreachable target exits 0 with an incomplete assessment unless you add <code>--fail-on-incomplete</code> (exit 4).</p>

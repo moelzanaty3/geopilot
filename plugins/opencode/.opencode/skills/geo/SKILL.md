@@ -9,7 +9,7 @@ metadata:
 
 # GEO technical readiness (geopilot)
 
-You drive the **geopilot** CLI (binary alias `geo-check`). The CLI is the only
+You drive the **geopilot** CLI. The CLI is the only
 authority for rule results, scores and source provenance. You add judgement on
 top, clearly labelled as yours.
 

@@ -11,6 +11,8 @@
     "test": "pnpm --filter geopilot test",
     "typecheck": "pnpm --filter geopilot typecheck",
     "check": "pnpm --filter geopilot check",
+    "publish:local": "node scripts/publish-local.mjs",
+    "publish:local:clean": "node scripts/publish-local.mjs --clean",
     "web:dev": "pnpm --filter geopilot-web dev",
     "web:build": "pnpm --filter geopilot-web build"
   },
