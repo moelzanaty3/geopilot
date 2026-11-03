@@ -1,22 +1,32 @@
 import type { FetchResult } from './fetch.ts';
 
-const BLOCKING_STATUSES = new Set([401, 403, 429, 503]);
 const REFUSAL_STATUSES = new Set([401, 403, 429]);
+const SERVER_BUSY = 503;
 
-const SIGNATURES: readonly { readonly protection: string; readonly pattern: RegExp }[] = [
-  { protection: 'Cloudflare', pattern: /<title>\s*(just a moment|attention required)|cf-chl-|cdn-cgi\/challenge-platform/i },
-  { protection: 'Imperva', pattern: /incapsula incident|_incapsula_resource/i },
-  { protection: 'DataDome', pattern: /captcha-delivery\.com|datadome/i },
-  { protection: 'PerimeterX', pattern: /_pxcaptcha|px-captcha/i },
-  { protection: 'Sucuri', pattern: /sucuri website firewall/i },
-  { protection: 'Akamai', pattern: /<title>\s*access denied\s*<\/title>[\s\S]*errors\.edgesuite\.net/i },
+// Challenge pages are small, and a body can be 5 MB, so only the start is checked.
+const SIGNATURE_WINDOW = 64 * 1024;
+
+const CLOUDFLARE_CHALLENGE = /cdn-cgi\/challenge-platform|cf-chl-/i;
+
+const SIGNATURES: readonly { readonly protection: string; readonly matches: (body: string) => boolean }[] = [
+  { protection: 'Cloudflare', matches: (body) => CLOUDFLARE_CHALLENGE.test(body) || /<title>\s*(just a moment|attention required)/i.test(body) },
+  { protection: 'Imperva', matches: (body) => /incapsula incident|_incapsula_resource/i.test(body) },
+  { protection: 'DataDome', matches: (body) => body.includes('captcha-delivery.com') },
+  { protection: 'PerimeterX', matches: (body) => /_pxcaptcha|px-captcha/i.test(body) },
+  { protection: 'Sucuri', matches: (body) => /sucuri website firewall/i.test(body) },
+  { protection: 'Akamai', matches: (body) => /<title>\s*access denied\s*<\/title>/i.test(body) && body.includes('errors.edgesuite.net') },
 ];
 
 /** The bot-protection product that answered instead of the site, if one can be identified. */
 export function botProtection(result: FetchResult): string | null {
-  if (result.status === null || !BLOCKING_STATUSES.has(result.status)) return null;
+  if (result.status === null) return null;
+  const refused = REFUSAL_STATUSES.has(result.status);
+  if (!refused && result.status !== SERVER_BUSY) return null;
   if (result.headers['cf-mitigated']?.toLowerCase().includes('challenge')) return 'Cloudflare';
-  return SIGNATURES.find((s) => s.pattern.test(result.body))?.protection ?? null;
+  const body = result.body.slice(0, SIGNATURE_WINDOW);
+  // A 503 is a real outage signal and caps readiness, so a word in its page can't explain it away.
+  if (!refused) return CLOUDFLARE_CHALLENGE.test(body) ? 'Cloudflare' : null;
+  return SIGNATURES.find((s) => s.matches(body))?.protection ?? null;
 }
 
 export function isRefusal(result: FetchResult): boolean {

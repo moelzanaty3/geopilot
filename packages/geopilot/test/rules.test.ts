@@ -147,6 +147,28 @@ describe('URL audit (T0) against recorded exchanges', () => {
     assert.equal(of(report, 'GEO-013')[0]?.status, 'pass');
   });
 
+  it('a challenge on one deep page fails only that page, and keeps the rest of the scan', async () => {
+    const challenge = { status: 403, headers: { 'cf-mitigated': 'challenge' }, body: '' };
+    const { report } = await site(() => ({
+      '/robots.txt': { status: 404 },
+      '/': { status: 200, body: page({ title: 'H', desc: 'd', lang: 'en', links: ['/deep'] }) },
+      '/deep': challenge,
+    }));
+    assert.equal(report.blocked, undefined);
+    assert.equal(of(report, 'GEO-013')[0]?.status, 'pass');
+    assert.ok(of(report, 'GEO-012', '/').some((e) => e.status === 'pass'));
+  });
+
+  it('a page that only mentions bot protection is never treated as blocked', async () => {
+    const { report } = await site(() => ({
+      '/robots.txt': { status: 503, body: 'We are down. Powered by datadome and Just a moment' },
+      '/': { status: 200, body: page({ title: 'H', desc: 'd', lang: 'en' }) },
+    }));
+    assert.equal(report.blocked, undefined);
+    assert.equal(of(report, 'GEO-013')[0]?.status, 'fail');
+    assert.ok(report.readiness.capReason);
+  });
+
   it('keeps repository evidence when the site blocks the scan', async () => {
     const challenge = { status: 403, headers: { 'cf-mitigated': 'challenge' }, body: '' };
     const { report } = await site(() => ({ '/robots.txt': challenge, '/': challenge }), {}, { repoPath: join(FIXTURES, 'next-fixable') });

@@ -101,13 +101,16 @@ export async function crawl(opts: CrawlOptions): Promise<UrlEvidence> {
     block.evidence ??= { url: result.url, status: result.status!, protection };
     return asBlocked(result, protection);
   };
+  const robotsUrl = new URL('/robots.txt', origin).href;
+  // Only robots.txt and the entry page speak for the whole site. A challenge on any
+  // other URL is that URL's failure, and the rest of the evidence stays valid.
   const f: Fetcher = async (url, kind) => {
     const result = await opts.fetcher(url, kind);
     const protection = botProtection(result);
-    return protection ? markBlocked(result, protection) : result;
+    if (!protection) return result;
+    return url === robotsUrl || url === first.href ? markBlocked(result, protection) : asBlocked(result, protection);
   };
 
-  const robotsUrl = new URL('/robots.txt', origin).href;
   let robotsResult = await f(robotsUrl, 'robots');
   // RFC 9309 reads a 4xx robots.txt as "no rules". If the entry page refuses us too,
   // the 4xx is the firewall talking, so it says nothing about the site's rules.
