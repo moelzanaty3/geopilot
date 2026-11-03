@@ -1,8 +1,8 @@
-export const NAME = 'trace-rank';
-export const GITHUB_REPO = 'moelzanaty3/trace-rank';
+export const NAME = 'geopilot';
+export const GITHUB_REPO = 'moelzanaty3/geopilot';
 export const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
 export const ISSUES_URL = `${GITHUB_URL}/issues`;
-export const NPM_PACKAGE = 'trace-rank';
+export const NPM_PACKAGE = 'geopilot';
 export const NPM_URL = `https://www.npmjs.com/package/${NPM_PACKAGE}`;
 export const AUTHOR = 'Mohamed Elzanaty';
 export const AUTHOR_URL = 'https://github.com/moelzanaty3';

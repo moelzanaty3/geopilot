@@ -12,7 +12,7 @@ export default function Page() {
     ['merged/v1.json', 'geo-merged/v1', 'A report and validated insights, kept in separate sections.'],
   ];
   return (
-    <DocsPage href="/docs/schemas/" crumb="Schemas" title="Schemas" intro="JSON Schema 2020-12, published with the package (trace-rank/schemas/*) and here.">
+    <DocsPage href="/docs/schemas/" crumb="Schemas" title="Schemas" intro="JSON Schema 2020-12, published with the package (geopilot/schemas/*) and here.">
       <div className="table-wrap">
         <table>
           <thead><tr><th>Schema</th><th>Document</th><th>Describes</th></tr></thead>

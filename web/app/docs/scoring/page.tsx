@@ -21,7 +21,7 @@ Confidence = 100 · Σ w(r)·|D|/(|D|+|I|) / Σ w(r)      over rules with direct
         <li><strong>Display.</strong> Coverage ≥ 80% shows readiness; 50–80% shows it as provisional; below 50% (or no readiness) shows “insufficient evidence” and no number.</li>
       </ul>
       <h2>Worked examples</h2>
-      <p>These are executable fixtures in <code>packages/trace-rank/test/fixtures/scoring</code>. The test suite recomputes every number below from them on every change, and this page reads the same files, so the prose cannot drift from the engine.</p>
+      <p>These are executable fixtures in <code>packages/geopilot/test/fixtures/scoring</code>. The test suite recomputes every number below from them on every change, and this page reads the same files, so the prose cannot drift from the engine.</p>
       {examples.map((x) => (
         <section key={x.id}>
           <h3>

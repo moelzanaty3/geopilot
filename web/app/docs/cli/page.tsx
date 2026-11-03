@@ -1,4 +1,4 @@
-import { COMMANDS } from 'trace-rank/commands';
+import { COMMANDS } from 'geopilot/commands';
 import { DocsPage } from '@/components/docs-page';
 
 export const metadata = { title: 'CLI reference' };
@@ -16,7 +16,7 @@ const EXITS: [string, string][] = [
 
 export default function Page() {
   return (
-    <DocsPage href="/docs/cli/" crumb="CLI" title="CLI reference" intro="trace-rank (alias geo-check). Only the CLI writes to stdout, prompts, or sets the exit code.">
+    <DocsPage href="/docs/cli/" crumb="CLI" title="CLI reference" intro="geopilot (alias geo-check). Only the CLI writes to stdout, prompts, or sets the exit code.">
       <h2>Commands</h2>
       <div className="table-wrap">
         <table>
@@ -32,7 +32,7 @@ export default function Page() {
                 </td>
                 <td>
                   <div>{c.summary}</div>
-                  <code style={{ display: 'inline-block', marginTop: 6, whiteSpace: 'pre-wrap' }}>trace-rank {c.usage}</code>
+                  <code style={{ display: 'inline-block', marginTop: 6, whiteSpace: 'pre-wrap' }}>geopilot {c.usage}</code>
                 </td>
               </tr>
             ))}

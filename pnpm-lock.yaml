@@ -15,7 +15,7 @@ importers:
         specifier: 25.0.9
         version: 25.0.9(supports-color@7.2.0)(typescript@5.9.3)
 
-  packages/trace-rank:
+  packages/geopilot:
     dependencies:
       '@babel/parser':
         specifier: 8.0.6
@@ -36,6 +36,9 @@ importers:
       geist:
         specifier: 1.8.1
         version: 1.8.1(next@16.4.2(@types/node@22.20.5)(react-dom@19.2.9(react@19.2.9))(react@19.2.9))
+      geopilot:
+        specifier: workspace:*
+        version: link:../packages/geopilot
       next:
         specifier: 16.4.2
         version: 16.4.2(@types/node@22.20.5)(react-dom@19.2.9(react@19.2.9))(react@19.2.9)
@@ -45,9 +48,6 @@ importers:
       react-dom:
         specifier: 19.2.9
         version: 19.2.9(react@19.2.9)
-      trace-rank:
-        specifier: workspace:*
-        version: link:../packages/trace-rank
     devDependencies:
       '@types/node':
         specifier: ^22.10.0

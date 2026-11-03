@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://moelzanaty3.github.io/trace-rank/schema/insights/v1.json",
+  "$id": "https://moelzanaty3.github.io/geopilot/schema/insights/v1.json",
   "title": "geo-insights/v1",
   "description": "Agent output. kind is recommendation or hypothesis, never verified.",
   "type": "object",

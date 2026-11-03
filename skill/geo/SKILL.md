@@ -1,15 +1,15 @@
 ---
 name: geo
-description: Technical readiness audit for websites with the trace-rank CLI (GEO rules GEO-002…GEO-102). Use when the user asks to scan a site or repository for crawlability, indexability, robots.txt, sitemap, canonical, metadata, lang or JSON-LD problems, to explain a GEO rule, to plan or apply GEO fixes, or to review GEO findings. Not for rankings, citations or traffic; GEO does not measure those.
+description: Technical readiness audit for websites with the geopilot CLI (GEO rules GEO-002…GEO-102). Use when the user asks to scan a site or repository for crawlability, indexability, robots.txt, sitemap, canonical, metadata, lang or JSON-LD problems, to explain a GEO rule, to plan or apply GEO fixes, or to review GEO findings. Not for rankings, citations or traffic; GEO does not measure those.
 license: Apache-2.0
 metadata:
   engine-version: "{{ENGINE_VERSION}}"
-  homepage: https://moelzanaty3.github.io/trace-rank/
+  homepage: https://moelzanaty3.github.io/geopilot/
 ---
 
-# GEO technical readiness (trace-rank)
+# GEO technical readiness (geopilot)
 
-You drive the **trace-rank** CLI (binary alias `geo-check`). The CLI is the only
+You drive the **geopilot** CLI (binary alias `geo-check`). The CLI is the only
 authority for rule results, scores and source provenance. You add judgement on
 top, clearly labelled as yours.
 
@@ -20,9 +20,9 @@ top, clearly labelled as yours.
 
 1. Run `scripts/geo.sh --version` (PowerShell: `scripts/geo.ps1 --version`).
 2. It must print exactly the `engine-version` in this file's front matter. If it
-   does not, **stop** and tell the user to run `trace-rank agent install --host claude-code`.
+   does not, **stop** and tell the user to run `geopilot agent install --host claude-code`.
    Never continue on a mismatched engine.
-3. Never import trace-rank modules. Always go through the CLI.
+3. Never import geopilot modules. Always go through the CLI.
 
 ## Pick the workflow
 
@@ -34,7 +34,7 @@ top, clearly labelled as yours.
 | decide what to change | `references/workflow-plan.md` | `.geo/plan.md` |
 | change code | `references/workflow-fix.md` | only what they approve |
 | compare before/after | `references/workflow-review.md` | none |
-| create `geo.config.json` | `references/workflow-init.md` | via `trace-rank init` |
+| create `geo.config.json` | `references/workflow-init.md` | via `geopilot init` |
 
 Always read `references/safety.md` once per session. For insight files, follow
 `references/insight-contract.md` and validate with the CLI.
@@ -43,7 +43,7 @@ Always read `references/safety.md` once per session. For insight files, follow
 
 Use three headed sections, in this order, and never mix them:
 
-1. **Engine findings** — what `trace-rank scan --format json` reported. Quote rule
+1. **Engine findings** — what `geopilot scan --format json` reported. Quote rule
    id, subject, provenance level and location exactly. Do not round or restate
    readiness differently from the CLI: if it says "insufficient evidence", say that.
 2. **Agent recommendations** — your proposals, grounded in files you read.

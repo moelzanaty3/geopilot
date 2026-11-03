@@ -1,11 +1,11 @@
 {
-  "name": "trace-rank-web",
+  "name": "geopilot-web",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "pnpm --filter trace-rank build && node scripts/copy-schemas.mjs",
-    "predev": "pnpm --filter trace-rank build && node scripts/copy-schemas.mjs",
+    "prebuild": "pnpm --filter geopilot build && node scripts/copy-schemas.mjs",
+    "predev": "pnpm --filter geopilot build && node scripts/copy-schemas.mjs",
     "dev": "next dev",
     "build": "next build",
     "typecheck": "tsc --noEmit"
@@ -15,7 +15,7 @@
     "next": "16.4.2",
     "react": "19.2.9",
     "react-dom": "19.2.9",
-    "trace-rank": "workspace:*"
+    "geopilot": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

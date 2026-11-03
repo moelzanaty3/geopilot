@@ -18,7 +18,7 @@ export function ThemeToggle() {
     document.documentElement.setAttribute('data-theme', next);
     setTheme(next);
     try {
-      localStorage.setItem('trace-rank-theme', next);
+      localStorage.setItem('geopilot-theme', next);
     } catch {
       // storage unavailable: the theme still applies to this page view
     }

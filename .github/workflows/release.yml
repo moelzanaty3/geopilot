@@ -115,7 +115,7 @@ jobs:
           corepack enable
           pnpm install --frozen-lockfile
       - name: Publish canary
-        working-directory: packages/trace-rank
+        working-directory: packages/geopilot
         run: |
           set -euo pipefail
           npm version --no-git-tag-version "0.0.0-canary.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}.g$(git rev-parse --short HEAD)"

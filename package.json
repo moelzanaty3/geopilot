@@ -1,5 +1,5 @@
 {
-  "name": "trace-rank-workspace",
+  "name": "geopilot-workspace",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.24.0",
@@ -7,12 +7,12 @@
     "node": ">=22.18.0"
   },
   "scripts": {
-    "build": "pnpm --filter trace-rank build",
-    "test": "pnpm --filter trace-rank test",
-    "typecheck": "pnpm --filter trace-rank typecheck",
-    "check": "pnpm --filter trace-rank check",
-    "web:dev": "pnpm --filter trace-rank-web dev",
-    "web:build": "pnpm --filter trace-rank-web build"
+    "build": "pnpm --filter geopilot build",
+    "test": "pnpm --filter geopilot test",
+    "typecheck": "pnpm --filter geopilot typecheck",
+    "check": "pnpm --filter geopilot check",
+    "web:dev": "pnpm --filter geopilot-web dev",
+    "web:build": "pnpm --filter geopilot-web build"
   },
   "devDependencies": {
     "semantic-release": "25.0.9"

@@ -12,7 +12,7 @@
       }
     ],
     "@semantic-release/release-notes-generator",
-    ["@semantic-release/npm", { "pkgRoot": "packages/trace-rank" }],
+    ["@semantic-release/npm", { "pkgRoot": "packages/geopilot" }],
     "@semantic-release/github"
   ]
 }

@@ -7,7 +7,7 @@ import { join } from 'node:path';
 const ROOT = join(process.cwd(), '..');
 
 export function engineVersion(): string {
-  const pkg = JSON.parse(readFileSync(join(ROOT, 'packages', 'trace-rank', 'package.json'), 'utf8')) as { version: string };
+  const pkg = JSON.parse(readFileSync(join(ROOT, 'packages', 'geopilot', 'package.json'), 'utf8')) as { version: string };
   return pkg.version;
 }
 
@@ -26,7 +26,7 @@ export interface ScoringExample {
 }
 
 export function scoringExamples(): ScoringExample[] {
-  const dir = join(ROOT, 'packages', 'trace-rank', 'test', 'fixtures', 'scoring');
+  const dir = join(ROOT, 'packages', 'geopilot', 'test', 'fixtures', 'scoring');
   return readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
     .sort()

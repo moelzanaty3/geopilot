@@ -6,7 +6,7 @@ export const metadata = { title: 'Introduction' };
 
 export default function Page() {
   return (
-    <DocsPage href="/docs/" crumb="Introduction" title="Introduction" intro="trace-rank is an open-source, local-first, framework-agnostic technical readiness auditor and source-aware remediation assistant for websites.">
+    <DocsPage href="/docs/" crumb="Introduction" title="Introduction" intro="geopilot is an open-source, local-first, framework-agnostic technical readiness auditor and source-aware remediation assistant for websites.">
       <div className="callout">{DISCLAIMER}</div>
       <p>
         It combines a deterministic CLI that is useful on its own with a portable agent skill that works through the coding agent you already use. The promise is narrow on purpose: <strong>find the observable issue, show the evidence, trace its source when reliable, propose the smallest safe change, and honestly report what was verified.</strong>

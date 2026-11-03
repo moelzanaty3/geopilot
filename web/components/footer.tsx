@@ -10,7 +10,7 @@ export function SiteFooter() {
           <div>
             <Link className="logo" href="/" style={{ color: 'var(--text)', marginBottom: 12 }}>
               <LogoMark size={20} />
-              trace-rank
+              geopilot
             </Link>
             <p style={{ maxWidth: 340, marginTop: 12 }}>Local-first technical readiness for websites. No accounts, no hosted service, no telemetry, no model calls.</p>
           </div>

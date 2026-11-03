@@ -1,4 +1,4 @@
-import { VARIANTS } from 'trace-rank/variants';
+import { VARIANTS } from 'geopilot/variants';
 import { DocsPage } from '@/components/docs-page';
 
 export const metadata = { title: 'Fixes & verification' };

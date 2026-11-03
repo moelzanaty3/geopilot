@@ -30,7 +30,7 @@ jobs:
       - name: Build the published output
         run: pnpm build
       - name: Pack contents
-        working-directory: packages/trace-rank
+        working-directory: packages/geopilot
         run: |
           set -euo pipefail
           npm pack --dry-run 2>&1 | tee pack.txt
@@ -64,9 +64,9 @@ jobs:
         run: |
           set -euo pipefail
           pnpm build
-          node packages/trace-rank/dist/cli/main.js --version
-          node packages/trace-rank/dist/cli/main.js explain GEO-014 > /dev/null
-          node packages/trace-rank/dist/cli/main.js scan packages/trace-rank/test/fixtures/example-d --no-cache --format json > report.json
+          node packages/geopilot/dist/cli/main.js --version
+          node packages/geopilot/dist/cli/main.js explain GEO-014 > /dev/null
+          node packages/geopilot/dist/cli/main.js scan packages/geopilot/test/fixtures/example-d --no-cache --format json > report.json
           node -e "const r=require('./report.json'); if (r.readiness.display!=='insufficient_evidence'||Math.round(r.coverage)!==30) process.exit(1)"
 
   web:
@@ -103,7 +103,7 @@ jobs:
       - name: JSON parses
         run: |
           set -euo pipefail
-          for f in packages/trace-rank/schemas/*.json skill/geo/schemas/*.json .releaserc.json; do
+          for f in packages/geopilot/schemas/*.json skill/geo/schemas/*.json .releaserc.json; do
             node -e "JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'))" "$f"
             echo "ok $f"
           done

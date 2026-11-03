@@ -1,4 +1,4 @@
-import { RULES } from 'trace-rank/catalogue';
+import { RULES } from 'geopilot/catalogue';
 
 export interface DocLink {
   readonly href: string;
@@ -40,7 +40,7 @@ export const DOCS_NAV: readonly DocGroup[] = [
     label: 'Project',
     links: [
       { href: '/docs/security/', title: 'Security & privacy' },
-      { href: '/docs/crawler/', title: 'The trace-rank crawler' },
+      { href: '/docs/crawler/', title: 'The geopilot crawler' },
       { href: '/docs/releases/', title: 'Releases' },
       { href: '/docs/decisions/', title: 'Decisions (ADRs)' },
     ],

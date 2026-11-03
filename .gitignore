@@ -7,4 +7,4 @@ web/out/
 web/next-env.d.ts
 .env*
 *.tgz
-packages/trace-rank/skill/
+packages/geopilot/skill/

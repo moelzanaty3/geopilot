@@ -3,7 +3,7 @@ import { DocsPage } from '@/components/docs-page';
 export const metadata = { title: 'Configuration' };
 
 const EXAMPLE = `{
-  "$schema": "https://moelzanaty3.github.io/trace-rank/schema/config/v1.json",
+  "$schema": "https://moelzanaty3.github.io/geopilot/schema/config/v1.json",
   "version": 1,
   "framework": "auto",
   "profile": "web",

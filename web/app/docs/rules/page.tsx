@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { RETIRED, RULES } from 'trace-rank/catalogue';
+import { RETIRED, RULES } from 'geopilot/catalogue';
 import { DocsPage } from '@/components/docs-page';
 
 export const metadata = { title: 'Rules' };

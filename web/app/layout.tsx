@@ -7,7 +7,7 @@ import { BLURB } from '@/lib/site';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: { default: 'trace-rank — technical readiness for websites', template: '%s — trace-rank' },
+  title: { default: 'geopilot — technical readiness for websites', template: '%s — geopilot' },
   description: BLURB,
 };
 
@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 };
 
 // Runs before first paint so a stored theme never flashes the other one.
-const themeInit = `try{var t=localStorage.getItem("trace-rank-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
+const themeInit = `try{var t=localStorage.getItem("geopilot-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

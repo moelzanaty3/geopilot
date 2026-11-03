@@ -1,22 +1,22 @@
-# trace-rank
+# geopilot
 
 **Find the observable issue, show the evidence, trace its source when reliable, propose the smallest safe change, and honestly report what was verified.**
 
-trace-rank is an open-source, local-first technical readiness auditor and source-aware remediation assistant for websites. It is an implementation of the GEO Build Specification v2.2.1: a deterministic CLI that is useful on its own, plus a portable agent skill that drives it from your coding agent.
+geopilot is an open-source, local-first technical readiness auditor and source-aware remediation assistant for websites. It is an implementation of the GEO Build Specification v2.2.1: a deterministic CLI that is useful on its own, plus a portable agent skill that drives it from your coding agent.
 
 > Technical readiness only. GEO does not measure or predict citations, rankings, traffic or inclusion in any AI or search product.
 
-Docs: https://moelzanaty3.github.io/trace-rank/
+Docs: https://moelzanaty3.github.io/geopilot/
 
 ## Quick start
 
 ```bash
-npx trace-rank scan https://www.example.com          # any stack (T0)
-npx trace-rank scan .                                 # repository: source locations on Next.js App Router / static HTML
-npx trace-rank scan . --url http://127.0.0.1:3000     # both: the strongest evidence
-npx trace-rank fix                                    # dry run of closed-list fixes
-npx trace-rank fix --apply --approve <fixId> --serve  # guarded fix, verified on a server GEO starts after the write
-npx trace-rank agent install --host claude-code       # the agent skill
+npx geopilot scan https://www.example.com          # any stack (T0)
+npx geopilot scan .                                 # repository: source locations on Next.js App Router / static HTML
+npx geopilot scan . --url http://127.0.0.1:3000     # both: the strongest evidence
+npx geopilot fix                                    # dry run of closed-list fixes
+npx geopilot fix --apply --approve <fixId> --serve  # guarded fix, verified on a server GEO starts after the write
+npx geopilot agent install --host claude-code       # the agent skill
 ```
 
 The binary is also available as `geo-check`.
@@ -35,7 +35,7 @@ The binary is also available as `geo-check`.
 ## Repository layout
 
 ```
-packages/trace-rank/   the published CLI and library (src/, test/, schemas/)
+packages/geopilot/   the published CLI and library (src/, test/, schemas/)
 skill/geo/             the canonical agent skill (copied into the package at build)
 web/                   the documentation site (Next.js static export → GitHub Pages)
 docs/adr/              decisions taken while implementing the specification
@@ -52,7 +52,7 @@ pnpm build
 pnpm web:dev       # docs site on http://localhost:3000
 ```
 
-Requires Node 22.18 or newer. Commits follow Conventional Commits; merges to `main` release through semantic-release with npm trusted publishing (see [Releases](https://moelzanaty3.github.io/trace-rank/docs/releases/)).
+Requires Node 22.18 or newer. Commits follow Conventional Commits; merges to `main` release through semantic-release with npm trusted publishing (see [Releases](https://moelzanaty3.github.io/geopilot/docs/releases/)).
 
 ## Status
 

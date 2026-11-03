@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import { RULES } from 'trace-rank/catalogue';
+import { RULES } from 'geopilot/catalogue';
 import { Command } from '@/components/copy-button';
 import { DISCLAIMER, GITHUB_URL, LICENSE_NAME, NPM_URL } from '@/lib/site';
 import { engineVersion } from '@/lib/data';
 
 export const dynamic = 'force-static';
 
-// Output of the real CLI against packages/trace-rank/test/fixtures/next-fixable,
+// Output of the real CLI against packages/geopilot/test/fixtures/next-fixable,
 // trimmed for width. Nothing here is invented: rerun it to check.
 function Terminal() {
   return (
-    <div className="term" role="img" aria-label="trace-rank scan and fix output for a Next.js repository">
+    <div className="term" role="img" aria-label="geopilot scan and fix output for a Next.js repository">
       <div className="term-bar">
         <i />
         <i />
@@ -18,8 +18,8 @@ function Terminal() {
         <span>~/acme-web</span>
       </div>
       <pre>
-        <span className="t-dim">$ </span>npx trace-rank scan .{'\n'}
-        <span className="t-acc t-b">trace-rank</span> <span className="t-dim">· nextjs-app (detected) · provenance T2 · fixes T3</span>{'\n\n'}
+        <span className="t-dim">$ </span>npx geopilot scan .{'\n'}
+        <span className="t-acc t-b">geopilot</span> <span className="t-dim">· nextjs-app (detected) · provenance T2 · fixes T3</span>{'\n\n'}
         {'  '}<span className="t-dim">Readiness </span> <span className="t-amb">insufficient evidence</span>{'\n'}
         {'  '}<span className="t-dim">Coverage  </span> 43%   <span className="t-dim">Confidence</span> 82%{'\n'}
         {'  '}<span className="t-dim">· 6 rules need runtime evidence — re-run with --url</span>{'\n\n'}
@@ -29,7 +29,7 @@ function Terminal() {
         {'  '}<span className="t-amb">MED </span>  <span className="t-b">GEO-012</span>  <span className="t-acc">/</span>  root {'<html>'} has no lang attribute{'\n'}
         {'        '}<span className="t-dim">app/layout.tsx:10  provenance absent</span>{'\n'}
         {'        '}<span className="t-dim">fix</span> S2-d8092663 (safe){'\n\n'}
-        <span className="t-dim">$ </span>npx trace-rank fix --apply --approve G1-b75653d6 --serve{'\n'}
+        <span className="t-dim">$ </span>npx geopilot fix --apply --approve G1-b75653d6 --serve{'\n'}
         <span className="t-b">S2-d8092663</span>  <span className="t-grn">verified</span>  <span className="t-dim">required V2, achieved V2</span>{'\n'}
         <span className="t-b">G1-b75653d6</span>  <span className="t-grn">verified</span>  <span className="t-dim">required V4, achieved V4</span>{'\n'}
         {'    '}<span className="t-dim">V4</span> <span className="t-grn">pass</span> <span className="t-dim">served by a process GEO started after the write</span>{'\n'}
@@ -81,10 +81,10 @@ export default function Home() {
               <span className="b">Prove the fix.</span>
             </h1>
             <p className="lead">
-              trace-rank audits any website for the technical conditions crawlers and AI search systems document — robots, sitemaps, indexability, canonicals, metadata, structured data — shows the evidence, maps it to the line that caused it, and verifies the change it proposes.
+              geopilot audits any website for the technical conditions crawlers and AI search systems document — robots, sitemaps, indexability, canonicals, metadata, structured data — shows the evidence, maps it to the line that caused it, and verifies the change it proposes.
             </p>
             <div className="hero-actions">
-              <Command text="npx trace-rank scan https://your.site" />
+              <Command text="npx geopilot scan https://your.site" />
             </div>
             <div className="hero-actions" style={{ marginTop: 14 }}>
               <Link className="btn btn-accent" href="/docs/getting-started/">
@@ -243,7 +243,7 @@ export default function Home() {
             <h2>One command to the first result.</h2>
             <p>Point it at a URL, a repository, or both. Nothing is written outside .geo/ until you approve it.</p>
             <div className="hero-actions">
-              <Command text="npx trace-rank scan . --url http://127.0.0.1:3000" />
+              <Command text="npx geopilot scan . --url http://127.0.0.1:3000" />
             </div>
           </div>
         </div>

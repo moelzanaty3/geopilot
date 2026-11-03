@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { RULES, findRule } from 'trace-rank/catalogue';
-import { VARIANTS } from 'trace-rank/variants';
+import { RULES, findRule } from 'geopilot/catalogue';
+import { VARIANTS } from 'geopilot/variants';
 import { DocsPage } from '@/components/docs-page';
 
 export function generateStaticParams() {
@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         ))}
       </ul>
       <h2>Run it</h2>
-      <pre><code>{`npx trace-rank explain ${r.id}\nnpx trace-rank scan . --rule ${r.id}`}</code></pre>
+      <pre><code>{`npx geopilot explain ${r.id}\nnpx geopilot scan . --rule ${r.id}`}</code></pre>
     </DocsPage>
   );
 }

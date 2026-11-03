@@ -9,7 +9,7 @@ export function SiteNav() {
       <div className="inner">
         <Link className="logo" href="/">
           <LogoMark />
-          trace-rank
+          geopilot
         </Link>
         <nav className="nav-links" aria-label="Main">
           {NAV_LINKS.map((l) => (
