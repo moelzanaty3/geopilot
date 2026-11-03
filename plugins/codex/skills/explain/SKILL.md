@@ -30,7 +30,7 @@ The person you're helping may never have heard of GEO, so explain each term the 
 
 The CLI measures a running site, which code can't prove: real status codes, redirects and headers. Use it only when the user asks for a live check or gives you a URL.
 
-- Run `geopilot --version`. If it prints `0.0.1`, invoke `geopilot …`. Otherwise invoke `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.1 …`, which runs exactly that version. Never use `@latest`.
+- Run `geopilot --version`. If it prints `0.0.2`, invoke `geopilot …`. Otherwise invoke `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.2 …`, which runs exactly that version. Never use `@latest`.
 - Local URLs are fetched only because the user named them. Never start a server yourself. Ask the user to start it.
 - Quote the CLI's readiness display exactly, as **Live readiness**. "insufficient evidence" is not a number, so don't compute one. Keep it separate from the code score.
 

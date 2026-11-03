@@ -3,7 +3,7 @@ name: geo
 description: Makes a website or app easy for search engines and AI tools to find, read and quote. Audits the code on any framework with no install, gives a code score and plain-language fixes, and explains GEO to newcomers. Use when the user asks to scan or audit a site or repo, improve discoverability or GEO, check crawlability, robots.txt, sitemaps, canonicals, metadata, lang or JSON-LD, explain a GEO rule, or fix GEO problems. It doesn't measure or predict rankings, citations or traffic.
 license: Apache-2.0
 metadata:
-  engine-version: "0.0.1"
+  engine-version: "0.0.2"
   homepage: https://moelzanaty3.github.io/geopilot/
 ---
 
