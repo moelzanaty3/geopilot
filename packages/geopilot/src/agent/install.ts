@@ -70,7 +70,9 @@ export function planInstall(repoRoot: string, host: Host): InstallPlan {
     return { host, writes };
   }
   const path = join(repoRoot, 'AGENTS.md');
-  const section = `${AGENTS_START}\n## geopilot (GEO technical readiness)\n\nUse the geopilot CLI for technical readiness checks; never claim rule outcomes it did not report.\n\n- Scan: \`npx geopilot@${TOOL_VERSION} scan --format json\`\n- Explain a rule: \`npx geopilot@${TOOL_VERSION} explain <ruleId>\`\n- Fixes are dry-run by default; apply only after the user approves each guarded fix (\`--approve <fixId>\`).\n- Label your own file attributions as agent-suggested; they are not engine provenance.\n- Report verification honestly: \`applied_unverified\` is not success.\n\nTechnical readiness only. GEO does not measure or predict citations, rankings, traffic or inclusion in any AI or search product.\n${AGENTS_END}\n`;
+  // --prefix keeps npx from running or configuring itself from the repository being scanned.
+  const cli = `npx --yes --prefix "$(mktemp -d)" geopilot@${TOOL_VERSION}`;
+  const section = `${AGENTS_START}\n## geopilot (GEO technical readiness)\n\nUse the geopilot CLI for technical readiness checks; never claim rule outcomes it did not report.\n\n- Scan: \`${cli} scan --format json\`\n- Explain a rule: \`${cli} explain <ruleId>\`\n- Fixes are dry-run by default; apply only after the user approves each guarded fix (\`--approve <fixId>\`).\n- Label your own file attributions as agent-suggested; they are not engine provenance.\n- Report verification honestly: \`applied_unverified\` is not success.\n\nTechnical readiness only. GEO does not measure or predict citations, rankings, traffic or inclusion in any AI or search product.\n${AGENTS_END}\n`;
   const exists = existsSync(path);
   let content = section;
   if (exists) {

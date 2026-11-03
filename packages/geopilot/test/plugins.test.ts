@@ -51,9 +51,19 @@ describe('generated host plugins', () => {
     assert.equal(m.plugins[0].source.path, './plugins/codex');
   });
 
+  it('the skill never runs geopilot from the repository being scanned', () => {
+    for (const script of ['geo.sh', 'geo.ps1']) {
+      const text = read('geopilot', 'skills', 'geo', 'scripts', script).split('\n').filter((line) => !line.startsWith('#')).join('\n');
+      assert.doesNotMatch(text, /node_modules/);
+      assert.match(text, /npx --yes --prefix /);
+    }
+    assert.match(read('geopilot', 'agents', 'scanner.agent.md'), /npx --yes --prefix "\$\(mktemp -d\)" geopilot@/);
+  });
+
   it('every Codex project agent is one TOML file with the required fields', () => {
     for (const a of AGENTS) {
       const text = read('codex-project', '.codex', 'agents', `geopilot-${a}.toml`);
+      assert.doesNotMatch(/^description = .*$/m.exec(text)?.[0] ?? '', /read-only/i);
       assert.match(text, new RegExp(`^name = "geopilot-${a}"$`, 'm'));
       assert.match(text, /^description = ".+"$/m);
       assert.match(text, /^developer_instructions = """$/m);
