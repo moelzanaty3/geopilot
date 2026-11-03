@@ -1,0 +1,122 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    # The docs site, the docs and this repository's own CI are not part of the
+    # installable package; a change to them must not cut an npm release.
+    paths-ignore:
+      - 'web/**'
+      - 'docs/**'
+      - '.github/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Proves the pinned release toolchain resolves from the lockfile. On a PR
+  # semantic-release detects the context and exits before verifyConditions, so
+  # no credentials are checked or provided. Fork PRs are skipped.
+  dry-run:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Resolve pinned release toolchain (dry run, exits early on PRs)
+        run: pnpm exec semantic-release --dry-run
+
+  release:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      # @semantic-release/github comments on released issues/PRs and opens an
+      # issue when a release fails; it needs both scopes.
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+      # No registry-url: it writes an .npmrc expecting NODE_AUTH_TOKEN, and an
+      # empty token is reported as invalid instead of falling through to OIDC.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Upgrade npm (trusted publishing needs >= 11.5.1)
+        run: |
+          set -euo pipefail
+          npm install -g npm@latest
+          npm --version
+      - run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      # With no v* tag semantic-release computes 1.0.0, a number this project
+      # has not earned (spec 15: 1.0.0 needs the beta gates). Anchor the line at
+      # zero once so the first release is 0.0.1 (fix:) or 0.1.0 (feat:).
+      - name: First-release guard
+        run: |
+          set -euo pipefail
+          if [ -z "$(git tag -l 'v*')" ]; then
+            echo "::error::No v* tag exists — semantic-release would publish 1.0.0."
+            echo "::error::Anchor the release line once, then re-run:"
+            echo "::error::  git tag v0.0.0 <commit the release line starts from> && git push origin v0.0.0"
+            exit 1
+          fi
+
+      - name: Gate before publish
+        run: |
+          set -euo pipefail
+          pnpm typecheck
+          pnpm test
+          pnpm build
+
+      # No NPM_TOKEN: OIDC trusted publishing (id-token: write) mints a
+      # short-lived credential, so there is no long-lived secret to leak.
+      # Provenance stays on: the repository is public and npm can attest it.
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm exec semantic-release
+
+  # Manual rehearsal of the publish path on the `canary` dist-tag, so `latest`
+  # is untouched.
+  canary:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+      - name: Upgrade npm
+        run: |
+          set -euo pipefail
+          npm install -g npm@latest
+      - run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Publish canary
+        working-directory: packages/geopilot
+        run: |
+          set -euo pipefail
+          npm version --no-git-tag-version "0.0.0-canary.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}.g$(git rev-parse --short HEAD)"
+          npm publish --tag canary --provenance

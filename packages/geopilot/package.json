@@ -1,0 +1,67 @@
+{
+  "name": "geopilot",
+  "version": "0.0.0-development",
+  "description": "Local-first technical readiness auditor for websites: find the observable issue, show the evidence, trace its source, propose the smallest safe change, and report honestly what was verified.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "homepage": "https://moelzanaty3.github.io/geopilot/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moelzanaty3/geopilot.git",
+    "directory": "packages/geopilot"
+  },
+  "bugs": {
+    "url": "https://github.com/moelzanaty3/geopilot/issues"
+  },
+  "author": "Mohamed Elzanaty (https://github.com/moelzanaty3)",
+  "keywords": [
+    "geo",
+    "seo",
+    "robots-txt",
+    "sitemap",
+    "structured-data",
+    "audit",
+    "nextjs",
+    "cli",
+    "agent-skill"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "bin": {
+    "geopilot": "dist/cli/main.js",
+    "geo-check": "dist/cli/main.js"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./catalogue": "./dist/rules/catalogue.js",
+    "./variants": "./dist/fix/variants.js",
+    "./commands": "./dist/cli/commands-list.js",
+    "./scoring": "./dist/scoring/score.js",
+    "./version": "./dist/core/version.js",
+    "./schemas/*": "./schemas/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/",
+    "schemas/",
+    "skill/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/copy-skill.mjs",
+    "prepack": "pnpm run build",
+    "test": "node --test --test-reporter=spec 'test/**/*.test.ts'",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm run typecheck && pnpm run test"
+  },
+  "dependencies": {
+    "@babel/parser": "8.0.6"
+  },
+  "devDependencies": {
+    "@babel/types": "8.0.6",
+    "@types/node": "^22.10.0",
+    "typescript": "5.9.3"
+  }
+}

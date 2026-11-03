@@ -1,0 +1,377 @@
+{
+  "id": "example-d",
+  "title": "Repository only, recomputed under the sub-check rule",
+  "description": "Next.js repository, four groups, no --url, web profile. GEO-009 and GEO-017 are fully evaluable from source and pass. GEO-012 fails on one group. GEO-003 is inferred. GEO-013, GEO-014, GEO-015 and GEO-011 pass their static sub-checks but cannot run their HTTP sub-checks, so they are not_evaluated (incomplete_subchecks). GEO-016 and GEO-002 need a URL. The same numbers are produced end-to-end by test/fixtures/example-d.",
+  "evaluations": [
+    {
+      "ruleId": "GEO-009",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-013",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-011",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-101",
+      "subject": {
+        "kind": "site"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "web_profile"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "no_jsonld"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "entry_route"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "no_jsonld"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "no_jsonld"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-017",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-014",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-015",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "incomplete_subchecks"
+    },
+    {
+      "ruleId": "GEO-002",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-004",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "not_applicable",
+      "evidenceQuality": "direct",
+      "statusReason": "no_jsonld"
+    },
+    {
+      "ruleId": "GEO-016",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "not_evaluated",
+      "evidenceQuality": "direct",
+      "statusReason": "needs_url"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "pass",
+      "evidenceQuality": "direct"
+    },
+    {
+      "ruleId": "GEO-012",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "fail",
+      "evidenceQuality": "direct",
+      "findings": [
+        {
+          "subCheck": "description"
+        }
+      ]
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/"
+      },
+      "status": "pass",
+      "evidenceQuality": "inferred"
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/pricing"
+      },
+      "status": "pass",
+      "evidenceQuality": "inferred"
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/blog"
+      },
+      "status": "fail",
+      "evidenceQuality": "inferred",
+      "findings": [
+        {
+          "subCheck": "server_text_ratio"
+        }
+      ]
+    },
+    {
+      "ruleId": "GEO-003",
+      "subject": {
+        "kind": "routeGroup",
+        "route": "/docs"
+      },
+      "status": "fail",
+      "evidenceQuality": "inferred",
+      "findings": [
+        {
+          "subCheck": "server_text_ratio"
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "readiness": 92.85714285714286,
+    "uncapped": 92.85714285714286,
+    "coverage": 30.434782608695652,
+    "confidence": 70,
+    "display": "insufficient_evidence",
+    "readinessDisplay": "insufficient evidence",
+    "coverageDisplay": "30%",
+    "confidenceDisplay": "70%",
+    "capReason": null,
+    "formula": "Readiness = 100 × (7 − 0.5) / 7 = 92.86 (hidden); Coverage = 100 × 7 / 23 = 30.4% → 30%: below 50%, so “insufficient evidence”; Confidence = 100 × 7 / (7 + 3) = 70%"
+  }
+}

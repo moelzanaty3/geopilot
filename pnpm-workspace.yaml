@@ -1,0 +1,13 @@
+packages:
+  - packages/*
+  - web
+
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
+
+
+# The parser's only dependency, held to the same release as the parser so the
+# runtime tree is exactly what was reviewed rather than whatever ^8 resolves to.
+overrides:
+  '@babel/types': 8.0.6
