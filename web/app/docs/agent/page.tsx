@@ -109,6 +109,14 @@ export default function Page() {
       <h2>Live checks</h2>
       <p>Reading code can&rsquo;t prove real status codes, redirects or headers. To measure them, ask the agent for a live check with your site&rsquo;s URL. It runs the pinned CLI and adds a <strong>live score</strong> beside the code score, then calls out any rule where the two disagree. See <Link href="/docs/scoring/">Scoring</Link>.</p>
       <div className="callout warn">If bot protection such as Cloudflare answers instead of your site, the live check reports <strong>blocked</strong> and counts nothing. That doesn&rsquo;t mean your site has a problem, and it doesn&rsquo;t show whether real crawlers get through. To check that, look at your firewall logs for the crawlers you care about.</div>
+      <h2>Adding real evidence</h2>
+      <p>Four CLI commands settle what neither code nor a blocked scan can. See the <Link href="/docs/cli/">CLI reference</Link>.</p>
+      <ul>
+        <li><code>geopilot logs</code> checks your access logs against the address lists crawlers publish, so it shows which real crawlers got through and where they were blocked.</li>
+        <li><code>geopilot cloudflare</code> shows crawler requests and blocks from Cloudflare. It matches by user agent, which can be spoofed.</li>
+        <li><code>geopilot inspect</code> shows Google&rsquo;s index status for a URL.</li>
+        <li><code>geopilot citations</code> samples whether Perplexity cites your domain for one question, with a confidence range. It makes paid calls and is a sample, not a measure of your overall visibility.</li>
+      </ul>
       <h2>Boundaries</h2>
       <ul>
         <li>Agents never say a result was measured or verified on a live site unless a live check showed it. After a fix, they report &ldquo;confirmed in code, not yet confirmed on a live site&rdquo;.</li>

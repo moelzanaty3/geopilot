@@ -18,6 +18,8 @@ The people we want to help often have never heard of GEO. They need a clear repo
 - When bot protection or a firewall answers instead of the site, the CLI reports the scan as blocked. Nothing about the site is passed or failed. A challenge says nothing about the site behind it, or about what real crawlers receive.
 - Fixes are made by the agent on any framework, after the user sees and approves each exact change. They're reported as "confirmed in code, not yet confirmed on a live site".
 
+- Evidence a scan can't see comes from four commands: `logs`, `cloudflare`, `inspect` and `citations`. They use built-in Node APIs only. Each service's host is a constant, so a token can't be sent elsewhere, and tokens come only from the environment. A browser renderer and a third-party JSON-LD validator were left out, because they weren't tested.
+
 ## Consequences
 
 - The code score comes from a model reading code, so two scans can differ. Strict result rules and required quotes reduce this but don't remove it. Only the live score is deterministic.

@@ -48,7 +48,7 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 ## Can't tell from code
 
 - **<Rule>:** <why the code doesn't decide this> <how to confirm it>
-- **Bot protection:** code can't show whether a CDN or firewall lets real crawlers through. Unless a live check settled this, always include this line and say to check the firewall logs for the crawlers you care about.
+- **Bot protection:** code can't show whether a CDN or firewall lets real crawlers through. Unless a live check settled this, always include this line and suggest `geopilot logs <access log>`, which checks real crawlers against their published addresses.
 
 ## Assumptions
 

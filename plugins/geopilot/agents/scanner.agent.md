@@ -35,6 +35,17 @@ The CLI measures a running site, which code can't prove: real status codes, redi
 - If a permission policy, or anything else, stops the command, say exactly why and give the user the command to run themselves. Never work around a denied command, and never fetch the URL another way.
 - Don't use a stored run from `.geo/` as a live result unless the user asks. If you mention one, give its date.
 
+## Evidence the user can add
+
+When a result depends on something outside the code, name the command that settles it, and run it only if the user asks and has supplied what it needs:
+
+- `geopilot logs <file>` checks access logs against the address lists crawlers publish, so it shows which real crawlers got through. This is the strongest answer to "can crawlers reach my site?".
+- `geopilot cloudflare --zone <id>` shows crawler requests and blocks from Cloudflare. It needs `CLOUDFLARE_API_TOKEN`, and it matches by user agent, which can be spoofed.
+- `geopilot inspect <url> --site <property>` shows Google's index status. It needs `GOOGLE_ACCESS_TOKEN`.
+- `geopilot citations <question> --domain <domain>` samples whether Perplexity cites a domain. It needs `PERPLEXITY_API_KEY` and costs money, so the user must approve each run. A sample isn't a measure of overall visibility, and it doesn't prove a fix caused a change.
+
+Tokens are read only from the environment. Never ask the user to paste one, and never read or print one.
+
 ## Procedure
 
 1. **Understand the project.** Read `package.json` and the layout to identify the framework and how pages render. Read `geo.config.json` if it exists. In a monorepo, audit the app the user named; if it isn't clear, ask which one.
@@ -142,7 +153,7 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 ## Can't tell from code
 
 - **<Rule>:** <why the code doesn't decide this> <how to confirm it>
-- **Bot protection:** code can't show whether a CDN or firewall lets real crawlers through. Unless a live check settled this, always include this line and say to check the firewall logs for the crawlers you care about.
+- **Bot protection:** code can't show whether a CDN or firewall lets real crawlers through. Unless a live check settled this, always include this line and suggest `geopilot logs <access log>`, which checks real crawlers against their published addresses.
 
 ## Assumptions
 

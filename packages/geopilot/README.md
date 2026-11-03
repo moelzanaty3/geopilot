@@ -55,6 +55,19 @@ It uses the same results and score formula as your agent, on different evidence.
 npx geopilot fix --apply --approve <fixId> --serve
 ```
 
+## Prove it with real evidence
+
+A scan can't show what real crawlers receive, so these commands read the places that can. They add no dependencies, and tokens are read only from the environment.
+
+```bash
+geopilot logs access.log                                 # which real crawlers got through, checked against their published addresses
+geopilot cloudflare --zone <id>                          # crawler requests and blocks (CLOUDFLARE_API_TOKEN)
+geopilot inspect https://example.com/a --site <property> # Google's index status (GOOGLE_ACCESS_TOKEN)
+geopilot citations "your question" --domain example.com  # does Perplexity cite you? (PERPLEXITY_API_KEY, paid)
+```
+
+`citations` is a sample of one question on one engine, with a confidence range. It isn't a measure of your overall visibility, and it doesn't prove a fix caused a change.
+
 ## What you get
 
 | | |
