@@ -1,18 +1,8 @@
 # Workflow: scan
 
-1. Choose the target with the user: a URL (`scan https://…`), the repository
-   (`scan .`), or both (`scan . --url http://127.0.0.1:3000`). Private or local
-   URLs are fetched only because the user named them.
-2. Run: `scripts/geo.sh scan <target> --format json --output .geo/last-scan.json --quiet`
-   then read `.geo/last-scan.json`.
-3. Report:
-   - **Engine findings**: group by severity; for each give rule id, subject,
-     message, provenance level and location. Mention inferred findings separately
-     as unscored.
-   - The readiness *display* exactly as reported (`readiness`, `provisional`, or
-     `insufficient evidence`), plus coverage, confidence and assessment scope.
-   - Any `assessmentScope.notes` (for example "6 rules need runtime evidence").
-   - Then your **Agent recommendations** and **Hypotheses**, labelled.
-4. If coverage < 50%, say the result is not a readiness verdict and suggest the
-   missing evidence (usually `--url` against a running local server).
-5. Do not write anything except what the CLI writes.
+1. Identify the framework and how pages render. Read `geo.config.json` if it exists. See `frameworks.md`.
+2. Find the important routes from the router, sitemap and navigation. Check shared layouts first. Sample up to 10 representative routes and say so if there are more.
+3. Give every rule in `rules.md` one result: Clear, Problem, Can't tell or Not applicable.
+4. Calculate the code score from `scoring.md`.
+5. Write the report in the format in `report.md`, with "Do these first" ordered by score gain.
+6. Run a live check only if the user gives a URL or asks for one: `scripts/geo.sh scan <target> --format json --output .geo/last-scan.json --quiet`. Report it as **Live readiness**, separately from the code score. Never start a server yourself.

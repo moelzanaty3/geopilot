@@ -9,7 +9,7 @@ export default function Page() {
     <DocsPage href="/docs/" crumb="Introduction" title="Introduction" intro="geopilot is an open-source, local-first, framework-agnostic technical readiness auditor and source-aware remediation assistant for websites.">
       <div className="callout">{DISCLAIMER}</div>
       <p>
-        It combines a deterministic CLI that is useful on its own with a portable agent skill that works through the coding agent you already use. The promise is narrow on purpose: <strong>find the observable issue, show the evidence, trace its source when reliable, propose the smallest safe change, and honestly report what was verified.</strong>
+        Your coding agent audits your code on any framework with no install, explains what it finds in plain words, and fixes it with your approval. A deterministic CLI measures your running site when you want proof. The promise is narrow on purpose: <strong>find the observable issue, show the evidence, trace its source when reliable, propose the smallest safe change, and honestly report what was verified.</strong>
       </p>
       <h2>Two experiences, neither depends on the other</h2>
       <div className="table-wrap">

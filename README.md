@@ -9,70 +9,60 @@
 
 **[Documentation](https://moelzanaty3.github.io/geopilot/)** · [Getting started](https://moelzanaty3.github.io/geopilot/docs/getting-started/) · [Rules](https://moelzanaty3.github.io/geopilot/docs/rules/) · [CLI](https://moelzanaty3.github.io/geopilot/docs/cli/) · [Agent plugins](https://moelzanaty3.github.io/geopilot/docs/agent/) · [npm](https://www.npmjs.com/package/geopilot)
 
-geopilot audits any website for the technical conditions crawlers and AI search systems document: robots, sitemaps, indexability, canonicals, metadata and structured data. It shows the evidence, maps the problem to the line that caused it, proposes the smallest safe change, and reports honestly what was verified.
-
-It runs on your machine, with no accounts, telemetry or model calls.
+geopilot makes your site or app easy for search engines and AI tools to find, read and quote, and you don't need to know anything about GEO to start. Ask your coding agent to scan your code. You get a score, the exact lines to change and a plain explanation of why they matter. Then it fixes them with your approval.
 
 > Technical readiness only. geopilot does not measure or predict citations, rankings, traffic or inclusion in any AI or search product.
 
 ## Quick start
 
-Requires Node 22.18 or newer.
+Install the plugin in your coding agent. The audit itself needs no package install and no running site, and it works on any framework.
+
+| Host | Install | Run a scan |
+| --- | --- | --- |
+| Claude Code | `/plugin install geopilot --marketplace moelzanaty3/geopilot` | `/geopilot:scan` |
+| GitHub Copilot CLI | `copilot plugin marketplace add moelzanaty3/geopilot`<br>`copilot plugin install geopilot@geopilot` | Ask it to use the `scan` skill |
+| OpenAI Codex | `codex plugin marketplace add moelzanaty3/geopilot`<br>`codex plugin add geopilot@geopilot` | `$geopilot:scan` |
+| OpenCode | `npx geopilot agent install --host opencode` | `/geopilot-scan` |
+
+To commit the agents into a repository for your whole team, run `npx geopilot agent install --host claude-code` or `--host codex`. [Read the plugin guide](https://moelzanaty3.github.io/geopilot/docs/agent/).
+
+## What your agent does
+
+| Command | What you get |
+| --- | --- |
+| `scan` | A code score with its arithmetic, every rule checked, and the fixes to do first, each with its file, line and quote |
+| `fix` | Each exact change and why it matters. It applies only what you approve, then updates the score |
+| `explain` | GEO, or any rule, in plain words, using your own code as the example. With no argument, a guided tour |
+| `review` | Whether a branch makes your site harder or easier to find |
+| `insights` | A step-by-step plan for a hard question |
+| `init` | A `geo.config.json`, when you want to declare your domain and policy |
+
+The code score comes from reading your source, so it can't prove what only a running site shows, such as real status codes and headers. Those rules are reported as "can't tell", never guessed. Scans come from a model reading code, so results can vary between runs.
+
+## Live checks with the CLI
+
+To measure a running site, use the CLI. It's deterministic, makes no model calls, and needs Node 22.18 or newer.
 
 ```bash
 npx geopilot scan https://www.example.com        # any stack
-npx geopilot scan .                              # a repository, with source locations
-npx geopilot scan . --url http://127.0.0.1:3000  # both: the strongest evidence
-npx geopilot fix                                 # preview fixes; nothing is written
+npx geopilot scan . --url http://127.0.0.1:3000  # your code and your running site
+npx geopilot fix                                 # preview closed-list fixes; nothing is written
 ```
 
-A repository scan on a Next.js app looks like this:
-
-```text
-Readiness   insufficient evidence
-Coverage    43%    Confidence  82%    Assessment  partial
-· 6 rules need runtime evidence — re-run with --url
-
-HIGH  GEO-014  /pricing  /pricing sets robots noindex in its metadata
-      app/pricing/page.tsx:5  provenance exact
-      fix G1-b75653d6 (guarded)  → geopilot fix --rule GEO-014
-MED   GEO-011  site  public/robots.txt has no Sitemap: line
-      public/robots.txt  provenance exact
-      fix S1-6d0f6bea (safe)  → geopilot fix --rule GEO-011
-```
-
-Apply a guarded fix by its id, then have geopilot verify it on a server it starts after the write:
+Its live readiness number is reported separately from the code score. Apply a guarded fix by its id, then verify it on a server geopilot starts after the write:
 
 ```bash
 npx geopilot fix --apply --approve <fixId> --serve
 ```
-
-## Use it from your coding agent
-
-Plugins add five agents and six commands that drive the same CLI. On Codex, the marketplace plugin carries them as skills; install into the repo for real subagents. They keep engine findings apart from their own recommendations, and they never apply a guarded fix without its id.
-
-| Host | Install | Status |
-| --- | --- | --- |
-| Claude Code | `/plugin install geopilot --marketplace moelzanaty3/geopilot` | Supported |
-| GitHub Copilot CLI | `copilot plugin marketplace add moelzanaty3/geopilot`<br>`copilot plugin install geopilot@geopilot` | Supported |
-| OpenCode | `npx geopilot agent install --host opencode` | Supported |
-| OpenAI Codex | `codex plugin marketplace add moelzanaty3/geopilot`<br>`codex plugin add geopilot@geopilot` | Supported |
-| Claude Code or Codex, committed to one repo | `npx geopilot agent install --host claude-code`<br>`npx geopilot agent install --host codex` | Supported |
-| Other hosts that read `AGENTS.md` | `npx geopilot agent install --host agents-md --write-agents-md` | Provisional |
-
-**Agents:** `scanner`, `fixer`, `reviewer`, `investigator`, `explainer`
-**Commands:** `scan`, `fix`, `review`, `explain`, `insights`, `init`
-
-[Read the plugin guide →](https://moelzanaty3.github.io/geopilot/docs/agent/)
 
 ## What you get
 
 | | |
 | --- | --- |
 | **Rules** | A closed catalogue covering robots, crawler access, indexability, canonicals, server HTML, JSON-LD, sitemaps, metadata, links and snippet controls. Each rule cites the documentation it rests on. [Browse the rules](https://moelzanaty3.github.io/geopilot/docs/rules/). |
-| **Four separate outputs** | Readiness, coverage, confidence and assessment scope are never blended. Below 50% coverage, geopilot shows no readiness number rather than guess. [How scoring works](https://moelzanaty3.github.io/geopilot/docs/scoring/). |
-| **Source tracing** | On Next.js App Router and static HTML, findings map to file and line by reading source as an AST. Source is never executed, and every mapping states how much to trust it. [Provenance](https://moelzanaty3.github.io/geopilot/docs/provenance/). |
-| **Fixes** | Five closed-list fixes, each with snapshots and byte-exact rollback. Safe fixes apply with `--apply`; guarded fixes also need their id. [Fixes and verification](https://moelzanaty3.github.io/geopilot/docs/fixes/). |
+| **Live scoring** | On live checks, readiness, coverage, confidence and assessment scope are never blended. Below 50% coverage, the CLI shows no readiness number rather than guess. [How scoring works](https://moelzanaty3.github.io/geopilot/docs/scoring/). |
+| **Source tracing** | Agents trace findings on any framework. The CLI also maps findings on Next.js App Router and static HTML by reading source as an AST. Source is never executed. [Provenance](https://moelzanaty3.github.io/geopilot/docs/provenance/). |
+| **Fixes** | Agents propose fixes for your stack and apply them with your approval. The CLI adds five closed-list fixes, each with snapshots and byte-exact rollback. [Fixes and verification](https://moelzanaty3.github.io/geopilot/docs/fixes/). |
 | **Honest verification** | Runtime verification counts only on a server geopilot started after the write. Anything less is reported as `applied_unverified`. |
 | **Safety** | An SSRF guard, private targets only when you name them, and robots.txt respected. [Security and privacy](https://moelzanaty3.github.io/geopilot/docs/security/). |
 

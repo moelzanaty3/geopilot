@@ -7,8 +7,8 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const version = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version;
-const skillFrom = fileURLToPath(new URL('../../../skill/geo/', import.meta.url));
+const skillFrom = fileURLToPath(new URL('../hosts/geopilot/skills/geo/', import.meta.url));
 const skillTo = fileURLToPath(new URL('../skill/geo/', import.meta.url));
+execFileSync(process.execPath, [fileURLToPath(new URL('../../../scripts/build-plugins.mjs', import.meta.url)), '--out', fileURLToPath(new URL('../hosts/', import.meta.url)), '--version', version], { stdio: 'inherit' });
 rmSync(fileURLToPath(new URL('../skill/', import.meta.url)), { recursive: true, force: true });
 cpSync(skillFrom, skillTo, { recursive: true });
-execFileSync(process.execPath, [fileURLToPath(new URL('../../../scripts/build-plugins.mjs', import.meta.url)), '--out', fileURLToPath(new URL('../hosts/', import.meta.url)), '--version', version], { stdio: 'inherit' });

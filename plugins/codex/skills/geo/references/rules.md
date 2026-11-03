@@ -1,0 +1,219 @@
+# The rules
+
+### GEO-013: robots.txt is reachable, parseable and within size limits
+
+Weight 3, high severity. Blocker: robots.txt answered 5xx.
+
+**In plain words:** `robots.txt` is the first file crawlers ask for. If it's broken, they may treat the whole site as off limits.
+
+**Check in code:** find `public/robots.txt`, a `robots.txt` route, or a framework robots file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
+
+**Can't tell from code:** whether the server really answers 200 or 404. A problem here needs a live check, unless the code visibly generates a broken response.
+
+**How to fix:** Serve robots.txt as text/plain with a 200 (or a 404 if you want no rules). Fix the server error behind a 5xx before anything else.
+
+**Not a problem when:** A CDN serving a transient 5xx during the scan; re-run to confirm.
+
+**Official sources:** [RFC 9309: Robots Exclusion Protocol](https://www.rfc-editor.org/rfc/rfc9309)
+
+### GEO-009: Search crawlers have the access your declared policy says they should
+
+Weight 3, high severity. Blocker: a search crawler is blocked site-wide against declared policy.
+
+**In plain words:** you decide whether search and AI search crawlers may read your site. This checks that `robots.txt` matches that decision, so you aren't blocking them by accident.
+
+**Check in code:** read `policy.aiSearchCrawlers` in `geo.config.json`. With no config, assume the goal is to be found, and say you assumed that. Then read the `robots.txt` groups for `Googlebot`, `Bingbot`, `OAI-SearchBot`, `Claude-SearchBot`, `PerplexityBot` and `*`. It's a problem if a wanted crawler is blocked from the whole site or from key pages. Blocking training crawlers such as `GPTBot` or `ClaudeBot` is a separate choice: mention it, but don't count it.
+
+**Can't tell from code:** rules added by a CDN, firewall or hosting platform.
+
+**How to fix:** Adjust the user-agent groups in robots.txt so the crawlers your policy allows can reach the paths you want found. Crawler-specific fixes stay manual until the Phase 2 equivalence proof ships.
+
+**Not a problem when:** A user-agent group written for a crawler token GEO does not list.
+
+**Official sources:** [RFC 9309: Robots Exclusion Protocol](https://www.rfc-editor.org/rfc/rfc9309), [OpenAI crawlers](https://developers.openai.com/docs/gptbot), [Anthropic crawlers](https://support.claude.com/en/articles/8896518-anthropic-crawlers), [Perplexity crawlers](https://docs.perplexity.ai/docs/resources/perplexity-crawlers.md), [Google: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+
+### GEO-014: Sitemap-listed and linked routes are indexable
+
+Weight 3, high severity. Blocker: every sampled route is noindex.
+
+**In plain words:** pages you want found must not tell search engines to stay away. A page that's listed in your sitemap or linked from your menu, but marked `noindex`, sends mixed signals.
+
+**Check in code:** list the important routes from the router, the sitemap and the main navigation. For each, look for `noindex` or `none` in page metadata, head tags and shared layouts, and for `robots.txt` rules blocking `Googlebot` or `Bingbot`. Look for environment switches too, such as `noindex` set unless production. Report those as can't tell, not as a problem.
+
+**Can't tell from code:** real status codes, redirects and `X-Robots-Tag` headers set outside the repository.
+
+**How to fix:** Either make the route indexable (remove noindex, fix the status, allow it in robots.txt) or remove it from the sitemap and internal links.
+
+**Not a problem when:** Intentionally noindexed pages that remain in a sitemap; remove them from the sitemap or suppress with a reason.
+
+**Official sources:** [Google: robots meta tag and X-Robots-Tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag), [RFC 9309: Robots Exclusion Protocol](https://www.rfc-editor.org/rfc/rfc9309), [sitemaps.org protocol](https://www.sitemaps.org/protocol.html)
+
+### GEO-015: An absolute canonical resolves to an indexable URL on the declared origin
+
+Weight 2, medium severity.
+
+**In plain words:** a canonical link says "this is the main address of this page". Without a clear one, search engines have to guess between duplicate addresses.
+
+**Check in code:** look for `rel="canonical"`, `alternates.canonical`, or the framework's head helper. Each indexable route should produce exactly one absolute URL on the site's own domain. A relative canonical, or one hardcoded to the same URL on every page, is a problem. Use `site.origin` from `geo.config.json` or a domain clearly declared in code. Never guess the domain.
+
+**Can't tell from code:** whether the target page really answers 200, or which domain is intended when none is declared. Ask the user for the domain and treat the rule as can't tell until they answer.
+
+**How to fix:** Emit one absolute canonical per page on your declared origin, pointing at a 200, indexable URL.
+
+**Not a problem when:** Deliberate cross-domain canonicals for syndicated content.
+
+**Official sources:** [Google: consolidate duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
+
+### GEO-003: Primary content is present in server HTML
+
+Weight 3, medium severity.
+
+**In plain words:** many crawlers read the HTML your server first sends and don't run JavaScript. If your content only appears after JavaScript runs, they may see an empty page.
+
+**Check in code:** work out how pages render. Server Components, SSR and static generation are clear. A client-only app, such as React with Vite or Create React App and an almost empty `<div id="root">` with no prerendering, is a problem for pages whose content matters. In server frameworks, flag a page whose main content is fetched only in the browser, such as inside `useEffect`.
+
+**Can't tell from code:** how much text really reaches crawlers when the setup is mixed, or when prerendering happens at the hosting layer. Say the code suggests this and a live check would confirm it.
+
+**How to fix:** Render primary content on the server (a Server Component, SSR or static generation) and hydrate interactivity on top.
+
+**Not a problem when:** Pages whose primary content is intentionally interactive.
+
+**Official sources:** [Google: JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)
+
+### GEO-004: Present JSON-LD parses and meets documented requirements
+
+Weight 2, medium severity.
+
+**In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
+
+**Check in code:** search for `application/ld+json` and for objects with `@context` and `@type`. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
+
+**Can't tell from code:** values built at runtime or loaded from a CMS.
+
+**How to fix:** Fix the JSON syntax, then add the required properties for the declared @type.
+
+**Not a problem when:** Types GEO does not model are checked for parsing only.
+
+**Official sources:** [Google: structured data general guidelines](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)
+
+### GEO-011: A valid sitemap is discoverable and its URLs are reachable
+
+Weight 2, medium severity.
+
+**In plain words:** a sitemap is the list of pages you want found. `robots.txt` should point to it so crawlers can find that list.
+
+**Check in code:** find `sitemap.xml`, `app/sitemap.ts`, or a sitemap plugin or generator. Check that it's a valid sitemap and that `robots.txt` has an absolute `Sitemap:` line. A public site with no sitemap at all is a problem.
+
+**Can't tell from code:** whether listed URLs really answer 200, or the contents of a sitemap generated at build time or by a CMS.
+
+**How to fix:** Publish a sitemap, reference it with an absolute Sitemap: line in robots.txt, and keep only reachable URLs in it.
+
+**Not a problem when:** Sitemaps submitted only through a search console; GEO cannot see those.
+
+**Official sources:** [sitemaps.org protocol](https://www.sitemaps.org/protocol.html), [RFC 9309: Robots Exclusion Protocol](https://www.rfc-editor.org/rfc/rfc9309)
+
+### GEO-012: Title, meta description and html lang are present
+
+Weight 2, medium severity.
+
+**In plain words:** the title and description are what people and machines read first about a page. The `lang` attribute tells them which language it's in.
+
+**Check in code:** find the root `<html>` and check `lang`. For each important route, follow the metadata from the page up through its layouts. Every route needs a non-empty title and description. A site-wide default that makes every page look identical counts as a problem for the routes that share it.
+
+**Can't tell from code:** values loaded entirely from a CMS or API.
+
+**How to fix:** Give every route a specific title and description, and set lang on the root <html>.
+
+**Official sources:** [WHATWG HTML: the lang attribute](https://html.spec.whatwg.org/multipage/dom.html#the-lang-and-xml:lang-attributes), [Google: influencing title links](https://developers.google.com/search/docs/appearance/title-link), [Google: control your snippets](https://developers.google.com/search/docs/appearance/snippet)
+
+### GEO-016: Key routes are reachable through server-rendered links
+
+Weight 2, medium severity.
+
+**In plain words:** crawlers find pages by following normal links. If a page can only be reached by a button or script, they may never find it.
+
+**Check in code:** look at navigation, footers and page content. Good links are `<a href>` or framework links that render one, such as `Link` or `RouterLink`. It's a problem if an important page is reached only through `onClick` with `navigate()`, or only appears after login or in a client-only menu. The home page doesn't need a link to it.
+
+**Can't tell from code:** whether links are in the served HTML when the app renders only in the browser. That's covered by GEO-003, so mention it there.
+
+**How to fix:** Link the route from server-rendered navigation or content with a plain <a href>.
+
+**Not a problem when:** Routes linked only from pages outside the crawl budget; raise --max-pages.
+
+**Official sources:** [Google: make your links crawlable](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)
+
+### GEO-017: Snippet restrictions do not conflict with an AI-search inclusion policy
+
+Weight 2, medium severity.
+
+**In plain words:** `nosnippet` and `max-snippet:0` stop search tools from quoting your page. If you want AI search to show you, these work against you.
+
+**Check in code:** this applies when the policy is to allow AI search, or when you assumed that goal under GEO-009. Search metadata and head tags for page-wide `nosnippet` and `max-snippet:0`. Also check code that sets `X-Robots-Tag`, such as middleware, `next.config` `headers()`, or server and CDN config in the repository. `data-nosnippet` on one element is a deliberate choice and is fine.
+
+**Can't tell from code:** headers added outside the repository.
+
+**How to fix:** Remove page-wide nosnippet / max-snippet:0, or change the declared policy if exclusion is intended.
+
+**Not a problem when:** data-nosnippet on specific elements is not flagged; it is a scoped choice.
+
+**Official sources:** [Google: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features), [Google: control your snippets](https://developers.google.com/search/docs/appearance/snippet), [Google: robots meta tag and X-Robots-Tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag)
+
+### GEO-002: Selected accessibility checks pass on the rendered page
+
+Weight 1, low severity.
+
+**In plain words:** machines read pages much like screen readers do. Images need descriptions, and links and buttons need names.
+
+**Check in code:** check shared components and the main pages for `<img>` or image components with no `alt`, icon-only links or buttons with no accessible name, and pages with no title. Report what you actually read, and sample the most-used components rather than every file.
+
+**Can't tell from code:** the full rendered page. A clear result here means the code you sampled is clear, so say which components you read.
+
+**How to fix:** Fix the reported elements; see the axe-core rule pages.
+
+**Official sources:** [axe-core rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
+
+### GEO-101: Mobile app association files are served correctly
+
+Weight 2, medium severity.
+
+**In plain words:** if you have a mobile app, two small files prove that it and your website belong together, so links can open the app.
+
+**Check in code:** this applies only when the project declares a mobile app, through `profile: "app"` in `geo.config.json` or clear evidence the user confirms. Otherwise it's not applicable. Look for `.well-known/apple-app-site-association` and `.well-known/assetlinks.json` in the public folder or a route, and check they name the right app.
+
+**Can't tell from code:** whether they're served as JSON with no redirect.
+
+**How to fix:** Serve the association files at the documented paths with a 200, application/json, and no redirect.
+
+**Official sources:** [Apple: supporting associated domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains), [Android: verify App Links](https://developer.android.com/training/app-links/verify-android-applinks)
+
+### GEO-010: llms.txt presence (informational)
+
+For information only. Never scored.
+
+**In plain words:** `llms.txt` is an experimental idea for a file that guides AI tools. It's optional, and most sites don't have one.
+
+**Check in code:** note whether `public/llms.txt` or a route for it exists. Never count it, never call its absence a problem, and don't recommend it as a way to be found.
+
+**Can't tell from code:** nothing that matters. This rule is for information only.
+
+**How to fix:** None required.
+
+**Official sources:** [llms.txt proposal](https://llmstxt.org/)
+
+### GEO-102: App-specific structured data (informational, app profile)
+
+For information only. Never scored.
+
+**In plain words:** app listings can use structured data to describe the app. It's useful context, but not a requirement.
+
+**Check in code:** when the project is an app, note any `SoftwareApplication` or `MobileApplication` JSON-LD. Never count it.
+
+**Can't tell from code:** nothing that matters. This rule is for information only.
+
+**How to fix:** None required.
+
+**Official sources:** [Google: structured data general guidelines](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)
+
+## Not requirements
+
+These old ideas were retired and aren't rules: GEO-001 (Q&A format mandate), GEO-005 (Word-count requirement), GEO-006 (Paragraph-length requirement), GEO-007 (FAQ / summary mandate), GEO-008 (Numbers / citations mandate). Don't recommend them.

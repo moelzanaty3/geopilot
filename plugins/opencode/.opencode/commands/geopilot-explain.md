@@ -1,5 +1,5 @@
 ---
-description: "Explain a GEO rule or a finding from the last geopilot scan"
+description: "Explain GEO, a rule or a finding in plain words, using this project as the example. With no argument, get a guided tour"
 agent: "geopilot-explainer"
 ---
 

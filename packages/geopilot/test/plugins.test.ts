@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
+import { RULES } from '../src/rules/catalogue.ts';
 
 const ROOT = fileURLToPath(new URL('../../../', import.meta.url));
 const PLUGINS = join(ROOT, 'plugins');
@@ -69,6 +70,29 @@ describe('generated host plugins', () => {
       assert.match(text, /^developer_instructions = """$/m);
       assert.match(text, /does not measure or predict citations/);
     }
+  });
+
+  it('every agent can audit on its own: it carries every rule and starts without the CLI', () => {
+    const rules = RULES.map((r) => r.id);
+    assert.ok(rules.length >= 14);
+    for (const a of AGENTS) {
+      const body = read('geopilot', 'agents', `${a}.agent.md`);
+      for (const id of rules) assert.match(body, new RegExp(`^### ${id}: `, 'm'), `${a} is missing ${id}`);
+      assert.match(body, /needs no install, no CLI and no running site/);
+      assert.match(body, /Every Problem needs a file, a line and an exact quote/);
+    }
+    for (const id of rules) assert.match(read('geopilot', 'skills', 'geo', 'references', 'rules.md'), new RegExp(`^### ${id}: `, 'm'));
+    for (const skill of ['scan', 'fix', 'explain']) assert.match(read('codex', 'skills', skill, 'SKILL.md'), /^### GEO-014: /m);
+  });
+
+  it('the scanner reports a code score with its arithmetic, and keeps live readiness apart', () => {
+    const scanner = read('geopilot', 'agents', 'scanner.agent.md');
+    assert.match(scanner, /points earned ÷ points possible × 100/);
+    assert.match(scanner, /How it's calculated:/);
+    assert.match(scanner, /New to GEO\?/);
+    assert.match(scanner, /Never merge it with the CLI's live readiness number/);
+    assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /confirmed in code, not yet confirmed on a live site/);
+    assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /show the code score before and after/);
   });
 
   it('every placeholder is rendered and every agent pins one engine version', () => {

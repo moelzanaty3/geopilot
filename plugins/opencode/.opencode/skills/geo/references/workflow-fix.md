@@ -1,20 +1,12 @@
 # Workflow: fix
 
-1. Confirm the user wants changes now. Create `geo/fix-<YYYYMMDDHHMMSS>` from the
-   current branch (`git switch -c …`). Do not commit.
-2. Dry run: `scripts/geo.sh fix --format json`. Show each proposal's diff,
-   preconditions and required verification. Blocked variants explain why.
-3. Approvals:
-   - safe fixes: one confirmation for the batch, then `fix --apply`;
-   - guarded fixes: ask for each by id, then `fix --apply --approve <fixId>`.
-     `--yes` never approves a guarded fix.
-4. Verification: V4 fixes need a server GEO starts after the write. Only if the
-   user approves the configured `fix.serve.command` for this run, add `--serve`.
-   Otherwise the outcome will be `applied_unverified` (exit 6) — say that plainly.
-5. Your own contextual/editorial edits: list exact files and intended changes,
-   get approval per change, edit, then re-run `scripts/geo.sh scan … --format json`.
-   Report the outcome with the same vocabulary: required level, achieved level,
-   `verified` / `applied_unverified` / rolled back. Say your approval was
-   behavioural, not CLI-enforced.
-6. Report rollback: `scripts/geo.sh fix --rollback <runId>`.
-7. Never touch more than 10 files or anything outside the approved list.
+1. Use the current report. If there isn't one, audit against every rule first, even when the user named one rule, so you can show the code score before and after.
+2. Check `git status`. If a target file has uncommitted edits, stop and ask. If on the default branch, create `geo/fix-<YYYYMMDDHHMMSS>`. Do not commit.
+3. Propose each change first: the exact file and diff, why it matters in plain words, and the score after it.
+4. Approvals, before anything is written:
+   - low risk (`lang`, a `Sitemap:` line, one missing canonical): one confirmation for the batch;
+   - check first (removing `noindex`, `robots.txt` rules, site-wide canonicals, a sitemap generator): ask for each, and say what could go wrong;
+   - your wording (titles, descriptions): write it from what the page says, invent nothing, and ask the user to review it.
+5. Apply only what was approved, re-read each file, re-evaluate the rule, and show the score before and after.
+6. Say "confirmed in code, not yet confirmed on a live site". For proof, the user starts the site and asks for a live scan.
+7. Never touch more than 10 files or anything outside the approved list. Your approvals are behavioural, not enforced by a tool, so say so if asked.
