@@ -30,7 +30,7 @@ To commit the agents into a repository for your whole team, run `npx geopilot ag
 
 | Command | What you get |
 | --- | --- |
-| `scan` | A code score with its arithmetic, every rule checked, and the fixes to do first, each with its file, line and quote |
+| `scan` | A code score range with its arithmetic, every rule checked, and the fixes to do first, each with its file, line and quote |
 | `fix` | Each exact change and why it matters. It applies only what you approve, then updates the score |
 | `explain` | GEO, or any rule, in plain words, using your own code as the example. With no argument, a guided tour |
 | `review` | Whether a branch makes your site harder or easier to find |
@@ -49,7 +49,7 @@ npx geopilot scan . --url http://127.0.0.1:3000  # your code and your running si
 npx geopilot fix                                 # preview closed-list fixes; nothing is written
 ```
 
-Its live readiness number is reported separately from the code score. Apply a guarded fix by its id, then verify it on a server geopilot starts after the write:
+It uses the same results and score formula as your agent, on different evidence. If bot protection answers instead of your site, it reports the scan as blocked rather than guessing. Apply a guarded fix by its id, then verify it on a server geopilot starts after the write:
 
 ```bash
 npx geopilot fix --apply --approve <fixId> --serve

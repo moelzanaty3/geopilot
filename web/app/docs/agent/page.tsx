@@ -103,11 +103,12 @@ export default function Page() {
         <li><strong>Can&rsquo;t tell</strong>: the code doesn&rsquo;t decide this, such as a header set by your CDN. It doesn&rsquo;t count for or against you, but it lowers confidence.</li>
         <li><strong>Not applicable</strong>: the rule doesn&rsquo;t apply to this project.</li>
       </ul>
-      <h2>The code score</h2>
-      <p>Each rule has a weight from the rule catalogue. The score is points earned ÷ points possible × 100, counting only Clear and Problem rules. A problem on some routes earns a share of its weight. A blocker the agent can quote caps the score at 40. Confidence is the share of applicable weight that was checked: 80% or more is High, 50–79% is Medium, and below 50% is Low.</p>
-      <p>The bands are 90–100 Strong, 70–89 Good, 50–69 Needs work and 0–49 At risk. The report shows the arithmetic, so you can check it.</p>
+      <h2>The score</h2>
+      <p>Each rule has a weight from the rule catalogue. The score is a range, because a single number would leave the biggest unknowns out. The low end assumes every Can&rsquo;t tell rule is a problem, and the high end assumes every one is clear. A problem on some routes earns a share of its weight, and a blocker the agent can quote caps the score at 40. Confidence is the share of applicable weight that was checked: 80% or more is High, 50–79% is Medium, and below 50% is Low.</p>
+      <p>The band comes from the low end: 90–100 Strong, 70–89 Good, 50–69 Needs work and 0–49 At risk. The report shows the arithmetic, so you can check it. The CLI uses the same formula.</p>
       <h2>Live checks</h2>
-      <p>Reading code can&rsquo;t prove real status codes, redirects or headers. To measure them, start your site and ask the agent for a live check with its URL. This runs the pinned CLI and reports <strong>live readiness</strong>, which is deterministic and always kept separate from the code score. See <Link href="/docs/scoring/">Scoring</Link>.</p>
+      <p>Reading code can&rsquo;t prove real status codes, redirects or headers. To measure them, ask the agent for a live check with your site&rsquo;s URL. It runs the pinned CLI and adds a <strong>live score</strong> beside the code score, then calls out any rule where the two disagree. See <Link href="/docs/scoring/">Scoring</Link>.</p>
+      <div className="callout warn">If bot protection such as Cloudflare answers instead of your site, the live check reports <strong>blocked</strong> and counts nothing. That doesn&rsquo;t mean your site has a problem, and it doesn&rsquo;t show whether real crawlers get through. To check that, look at your firewall logs for the crawlers you care about.</div>
       <h2>Boundaries</h2>
       <ul>
         <li>Agents never say a result was measured or verified on a live site unless a live check showed it. After a fix, they report &ldquo;confirmed in code, not yet confirmed on a live site&rdquo;.</li>

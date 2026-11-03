@@ -20,6 +20,9 @@ Confidence = 100 · Σ w(r)·|D|/(|D|+|I|) / Σ w(r)      over rules with direct
         <li><strong>Blocker cap.</strong> Readiness is capped at 40 when direct evidence shows robots.txt answering 5xx, a search crawler blocked site-wide against declared policy, or every route noindex. The uncapped value and the reason are kept.</li>
         <li><strong>Display.</strong> Coverage ≥ 80% shows readiness; 50–80% shows it as provisional; below 50% (or no readiness) shows “insufficient evidence” and no number.</li>
       </ul>
+      <h2>The score range</h2>
+      <p>Every report also gives each rule one result: Clear, Problem, Can&rsquo;t tell or Not applicable. From those, the CLI and the agent plugins calculate one score with one formula, shown as a range. The low end assumes every Can&rsquo;t tell rule is a problem, and the high end assumes every one is clear. The CLI puts this in the report&rsquo;s <code>summary</code>. Readiness below stays stricter: a rule never passes on part of its checks.</p>
+      <p>If bot protection or a firewall answers instead of the site, the report says it was blocked, sets <code>blocked</code>, and passes or fails nothing about the site.</p>
       <h2>Worked examples</h2>
       <p>These are executable fixtures in <code>packages/geopilot/test/fixtures/scoring</code>. The test suite recomputes every number below from them on every change, and this page reads the same files, so the prose cannot drift from the engine.</p>
       {examples.map((x) => (
