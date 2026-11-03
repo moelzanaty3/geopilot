@@ -1,5 +1,5 @@
 ---
-description: "Investigate unmapped GEO findings in this codebase and record validated recommendations"
+description: "Dig into a hard GEO question in this codebase and write a step-by-step plan"
 agent: "geopilot-investigator"
 ---
 
@@ -7,4 +7,4 @@ agent: "geopilot-investigator"
 
 Use the `geopilot-investigator` agent agent to investigate: $ARGUMENTS
 
-Write only `.geo/insights.json` (and `.geo/plan.md` if useful), then validate it with the CLI.
+Write only inside `.geo/`.

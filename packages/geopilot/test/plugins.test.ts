@@ -71,6 +71,29 @@ describe('generated host plugins', () => {
     }
   });
 
+  it('every agent can audit on its own: it carries every rule and starts without the CLI', () => {
+    const rules = JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import { RULES } from ${JSON.stringify(join(ROOT, 'packages/geopilot/src/rules/catalogue.ts'))}; console.log(JSON.stringify(RULES.map((r) => r.id)))`], { encoding: 'utf8' })) as string[];
+    assert.ok(rules.length >= 14);
+    for (const a of AGENTS) {
+      const body = read('geopilot', 'agents', `${a}.agent.md`);
+      for (const id of rules) assert.match(body, new RegExp(`^### ${id}: `, 'm'), `${a} is missing ${id}`);
+      assert.match(body, /needs no install, no CLI and no running site/);
+      assert.match(body, /Every Problem needs a file, a line and an exact quote/);
+    }
+    for (const id of rules) assert.match(read('geopilot', 'skills', 'geo', 'references', 'rules.md'), new RegExp(`^### ${id}: `, 'm'));
+    for (const skill of ['scan', 'fix', 'explain']) assert.match(read('codex', 'skills', skill, 'SKILL.md'), /^### GEO-014: /m);
+  });
+
+  it('the scanner reports a code score with its arithmetic, and keeps live readiness apart', () => {
+    const scanner = read('geopilot', 'agents', 'scanner.agent.md');
+    assert.match(scanner, /points earned ÷ points possible × 100/);
+    assert.match(scanner, /How it's calculated:/);
+    assert.match(scanner, /New to GEO\?/);
+    assert.match(scanner, /Never merge it with the CLI's live readiness number/);
+    assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /confirmed in code, not yet confirmed on a live site/);
+    assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /show the code score before and after/);
+  });
+
   it('every placeholder is rendered and every agent pins one engine version', () => {
     const version = JSON.parse(readFileSync(join(ROOT, 'packages', 'geopilot', 'package.json'), 'utf8')).version;
     const files = execFileSync('git', ['ls-files', '--others', '--cached', '--exclude-standard', 'plugins'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter((f) => f.endsWith('.md'));

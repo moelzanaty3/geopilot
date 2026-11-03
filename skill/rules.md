@@ -1,0 +1,103 @@
+<!--
+How to check each rule by reading code, in words a beginner understands.
+Titles, weights, fixes and sources come from packages/geopilot/src/rules/catalogue.ts;
+scripts/build-plugins.mjs merges the two and fails if a rule is missing here.
+-->
+
+## GEO-013
+**In plain words:** `robots.txt` is the first file crawlers ask for. If it's broken, they may treat the whole site as off limits.
+
+**Check in code:** find `public/robots.txt`, a `robots.txt` route, or a framework robots file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
+
+**Can't tell from code:** whether the server really answers 200 or 404. A problem here needs a live check, unless the code visibly generates a broken response.
+
+## GEO-009
+**In plain words:** you decide whether search and AI search crawlers may read your site. This checks that `robots.txt` matches that decision, so you aren't blocking them by accident.
+
+**Check in code:** read `policy.aiSearchCrawlers` in `geo.config.json`. With no config, assume the goal is to be found, and say you assumed that. Then read the `robots.txt` groups for `Googlebot`, `Bingbot`, `OAI-SearchBot`, `Claude-SearchBot`, `PerplexityBot` and `*`. It's a problem if a wanted crawler is blocked from the whole site or from key pages. Blocking training crawlers such as `GPTBot` or `ClaudeBot` is a separate choice: mention it, but don't count it.
+
+**Can't tell from code:** rules added by a CDN, firewall or hosting platform.
+
+## GEO-014
+**In plain words:** pages you want found must not tell search engines to stay away. A page that's listed in your sitemap or linked from your menu, but marked `noindex`, sends mixed signals.
+
+**Check in code:** list the important routes from the router, the sitemap and the main navigation. For each, look for `noindex` or `none` in page metadata, head tags and shared layouts, and for `robots.txt` rules blocking `Googlebot` or `Bingbot`. Look for environment switches too, such as `noindex` set unless production. Report those as can't tell, not as a problem.
+
+**Can't tell from code:** real status codes, redirects and `X-Robots-Tag` headers set outside the repository.
+
+## GEO-015
+**In plain words:** a canonical link says "this is the main address of this page". Without a clear one, search engines have to guess between duplicate addresses.
+
+**Check in code:** look for `rel="canonical"`, `alternates.canonical`, or the framework's head helper. Each indexable route should produce exactly one absolute URL on the site's own domain. A relative canonical, or one hardcoded to the same URL on every page, is a problem. Use `site.origin` from `geo.config.json` or a domain clearly declared in code. Never guess the domain.
+
+**Can't tell from code:** whether the target page really answers 200, or which domain is intended when none is declared. Ask the user for the domain and treat the rule as can't tell until they answer.
+
+## GEO-003
+**In plain words:** many crawlers read the HTML your server first sends and don't run JavaScript. If your content only appears after JavaScript runs, they may see an empty page.
+
+**Check in code:** work out how pages render. Server Components, SSR and static generation are clear. A client-only app, such as React with Vite or Create React App and an almost empty `<div id="root">` with no prerendering, is a problem for pages whose content matters. In server frameworks, flag a page whose main content is fetched only in the browser, such as inside `useEffect`.
+
+**Can't tell from code:** how much text really reaches crawlers when the setup is mixed, or when prerendering happens at the hosting layer. Say the code suggests this and a live check would confirm it.
+
+## GEO-004
+**In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
+
+**Check in code:** search for `application/ld+json` and for objects with `@context` and `@type`. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
+
+**Can't tell from code:** values built at runtime or loaded from a CMS.
+
+## GEO-011
+**In plain words:** a sitemap is the list of pages you want found. `robots.txt` should point to it so crawlers can find that list.
+
+**Check in code:** find `sitemap.xml`, `app/sitemap.ts`, or a sitemap plugin or generator. Check that it's a valid sitemap and that `robots.txt` has an absolute `Sitemap:` line. A public site with no sitemap at all is a problem.
+
+**Can't tell from code:** whether listed URLs really answer 200, or the contents of a sitemap generated at build time or by a CMS.
+
+## GEO-012
+**In plain words:** the title and description are what people and machines read first about a page. The `lang` attribute tells them which language it's in.
+
+**Check in code:** find the root `<html>` and check `lang`. For each important route, follow the metadata from the page up through its layouts. Every route needs a non-empty title and description. A site-wide default that makes every page look identical counts as a problem for the routes that share it.
+
+**Can't tell from code:** values loaded entirely from a CMS or API.
+
+## GEO-016
+**In plain words:** crawlers find pages by following normal links. If a page can only be reached by a button or script, they may never find it.
+
+**Check in code:** look at navigation, footers and page content. Good links are `<a href>` or framework links that render one, such as `Link` or `RouterLink`. It's a problem if an important page is reached only through `onClick` with `navigate()`, or only appears after login or in a client-only menu. The home page doesn't need a link to it.
+
+**Can't tell from code:** whether links are in the served HTML when the app renders only in the browser. That's covered by GEO-003, so mention it there.
+
+## GEO-017
+**In plain words:** `nosnippet` and `max-snippet:0` stop search tools from quoting your page. If you want AI search to show you, these work against you.
+
+**Check in code:** this applies when the policy is to allow AI search, or when you assumed that goal under GEO-009. Search metadata and head tags for page-wide `nosnippet` and `max-snippet:0`. Also check code that sets `X-Robots-Tag`, such as middleware, `next.config` `headers()`, or server and CDN config in the repository. `data-nosnippet` on one element is a deliberate choice and is fine.
+
+**Can't tell from code:** headers added outside the repository.
+
+## GEO-002
+**In plain words:** machines read pages much like screen readers do. Images need descriptions, and links and buttons need names.
+
+**Check in code:** check shared components and the main pages for `<img>` or image components with no `alt`, icon-only links or buttons with no accessible name, and pages with no title. Report what you actually read, and sample the most-used components rather than every file.
+
+**Can't tell from code:** the full rendered page. A clear result here means the code you sampled is clear, so say which components you read.
+
+## GEO-101
+**In plain words:** if you have a mobile app, two small files prove that it and your website belong together, so links can open the app.
+
+**Check in code:** this applies only when the project declares a mobile app, through `profile: "app"` in `geo.config.json` or clear evidence the user confirms. Otherwise it's not applicable. Look for `.well-known/apple-app-site-association` and `.well-known/assetlinks.json` in the public folder or a route, and check they name the right app.
+
+**Can't tell from code:** whether they're served as JSON with no redirect.
+
+## GEO-010
+**In plain words:** `llms.txt` is an experimental idea for a file that guides AI tools. It's optional, and most sites don't have one.
+
+**Check in code:** note whether `public/llms.txt` or a route for it exists. Never count it, never call its absence a problem, and don't recommend it as a way to be found.
+
+**Can't tell from code:** nothing that matters. This rule is for information only.
+
+## GEO-102
+**In plain words:** app listings can use structured data to describe the app. It's useful context, but not a requirement.
+
+**Check in code:** when the project is an app, note any `SoftwareApplication` or `MobileApplication` JSON-LD. Never count it.
+
+**Can't tell from code:** nothing that matters. This rule is for information only.

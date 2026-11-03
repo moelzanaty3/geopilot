@@ -1,6 +1,6 @@
 ---
 name: "review"
-description: "Review this branch or pull request for GEO technical-readiness regressions"
+description: "Check whether this branch or pull request makes your site harder or easier to find"
 argument-hint: "[base-branch]"
 ---
 

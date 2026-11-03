@@ -1,6 +1,6 @@
 # ADR-0006: Agent plugins for several hosts
 
-Status: Accepted
+Status: Accepted. ADR-0007 replaces the rule that only the CLI can report results.
 
 ## Context
 

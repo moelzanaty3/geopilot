@@ -1,5 +1,5 @@
 ---
-description: "Run a geopilot GEO technical-readiness scan (URL, repository or both) and report findings"
+description: "Audit this codebase for GEO technical readiness, with a code score, evidence and what to fix first. No install or running site needed"
 agent: "geopilot-scanner"
 ---
 
@@ -7,4 +7,4 @@ agent: "geopilot-scanner"
 
 Use the `geopilot-scanner` agent agent to scan: $ARGUMENTS
 
-If no target was given, scan the current repository, and if a local dev server is obviously running, ask whether to add `--url`.
+If no target was given, audit the current repository from its code. Only run a live check if I gave a URL or asked for one. Show me the full report, exactly as the agent wrote it.

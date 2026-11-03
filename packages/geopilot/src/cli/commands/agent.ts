@@ -13,7 +13,7 @@ export async function agentCommand(argv: readonly string[], deps: Deps): Promise
   const io = deps.io;
   if (sub === 'status') {
     const v = installedVersion(root);
-    io.out(`engine ${TOOL_VERSION}\nclaude-code skill ${v ?? 'not installed'}${v && v !== TOOL_VERSION ? '  (version mismatch: the skill stops until they match; re-run agent install)' : ''}\n`);
+    io.out(`engine ${TOOL_VERSION}\nclaude-code skill ${v ?? 'not installed'}${v && v !== TOOL_VERSION ? '  (version mismatch: code audits still work; re-run agent install so live checks match)' : ''}\n`);
     for (const h of HOSTS) io.out(`  ${h.id.padEnd(12)} ${h.status.padEnd(14)} ${h.note}\n`);
     return v && v !== TOOL_VERSION ? EXIT.gate : EXIT.ok;
   }

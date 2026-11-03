@@ -1,10 +1,10 @@
 ---
 name: insights
-description: Investigate unmapped GEO findings in this codebase and record validated recommendations
-argument-hint: "[GEO-xxx]"
+description: Dig into a hard GEO question in this codebase and write a step-by-step plan
+argument-hint: "<GEO-xxx | a question>"
 agent: investigator
 ---
 
 Use the {{AGENT:investigator}} agent to investigate: $ARGUMENTS
 
-Write only `.geo/insights.json` (and `.geo/plan.md` if useful), then validate it with the CLI.
+Write only inside `.geo/`.

@@ -1,8 +1,6 @@
 # Workflow: explain
 
-1. `scripts/geo.sh explain <ruleId>` — use its purpose, sub-checks, evidence class,
-   fix variants and references as the source of truth.
-2. Add context from the repository if it helps (where the framework sets the
-   value), labelled as your reading.
-3. Never invent a rule outcome. If the user asks "does my site pass?", run a scan.
-4. Retired ids (GEO-001, GEO-005…GEO-008) are not requirements; say so.
+1. With nothing named, give a guided tour: what GEO is, the four things that matter (crawlers can get in, find your pages, read your content, and understand each page), what's not required, and to run a scan next.
+2. With a rule or finding named, use `rules.md`: what it means in plain words, why it matters here, where it applies in this code with a quote, what good looks like in this framework, and how to fix it.
+3. Never invent a result. If the user asks "does my site pass?", check that rule against the code and say what you read.
+4. Retired ids (GEO-001, GEO-005 to GEO-008) aren't requirements, so say so.

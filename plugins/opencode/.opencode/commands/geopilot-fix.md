@@ -1,5 +1,5 @@
 ---
-description: "Preview geopilot's closed-list fixes, then apply only what you approve, with honest verification"
+description: "Fix GEO findings in your code. See each exact change first, apply only what you approve, then watch the code score update"
 agent: "geopilot-fixer"
 ---
 
@@ -7,4 +7,4 @@ agent: "geopilot-fixer"
 
 Use the `geopilot-fixer` agent agent to fix GEO findings: $ARGUMENTS
 
-Always start with the dry run and wait for my approval of each guarded fix by id.
+Show me each exact change first, and don't write anything until I approve it.

@@ -1,7 +1,7 @@
 ---
 name: "geopilot-fix"
-description: "Preview geopilot's closed-list fixes, then apply only what you approve, with honest verification"
-argument-hint: "[--rule GEO-xxx]"
+description: "Fix GEO findings in your code. See each exact change first, apply only what you approve, then watch the code score update"
+argument-hint: "[GEO-xxx | item number]"
 disable-model-invocation: true
 ---
 
@@ -9,4 +9,4 @@ disable-model-invocation: true
 
 Use the `geopilot-fixer` subagent agent to fix GEO findings: $ARGUMENTS
 
-Always start with the dry run and wait for my approval of each guarded fix by id.
+Show me each exact change first, and don't write anything until I approve it.
