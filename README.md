@@ -39,6 +39,18 @@ To commit the agents into a repository for your whole team, run `npx geopilot ag
 
 The code score comes from reading your source, so it can't prove what only a running site shows, such as real status codes and headers. Those rules are reported as "can't tell", never guessed. Scans come from a model reading code, so results can vary between runs.
 
+## Why not just ask your agent?
+
+You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopilot/docs/benchmark/) on six sample projects with known answers, 18 runs each:
+
+| | Plain prompt | geopilot |
+| --- | --- | --- |
+| Planted bugs found | 100% | 100% |
+| **False alarms per report** | **0.78** | **0.06** |
+| Cost per run | $0.07 | $0.15 |
+
+geopilot's advantage is advice you can act on: fewer changes to things that were fine, every problem tied to a quote, and the same structure every time. A plain prompt is cheaper and raises more ideas, some useful and some noise. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
+
 ## Live checks with the CLI
 
 To measure a running site, use the CLI. It's deterministic, makes no model calls, and needs Node 22.18 or newer.

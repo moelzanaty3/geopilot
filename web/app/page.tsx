@@ -21,7 +21,7 @@ function Terminal() {
       <pre>
         <span className="t-dim">$ </span>npx geopilot scan .{'\n'}
         <span className="t-acc t-b">geopilot</span> <span className="t-dim">· nextjs-app (detected) · provenance T2 · fixes T3</span>{'\n\n'}
-        {'  '}<span className="t-dim">Score     </span> <span className="t-b">41–75/100, At risk</span> <span className="t-dim">(checked 15 of 23 points)</span>{'\n'}
+        {'  '}<span className="t-dim">Score     </span> <span className="t-b">41–75/100, Unconfirmed</span> <span className="t-dim">(checked 15 of 23 points)</span>{'\n'}
         {'  '}<span className="t-dim">Readiness </span> <span className="t-amb">insufficient evidence</span>{'\n'}
         {'  '}<span className="t-dim">Coverage  </span> 43%   <span className="t-dim">Confidence</span> 82%{'\n'}
         {'  '}<span className="t-dim">· 6 rules need runtime evidence — re-run with --url</span>{'\n\n'}
@@ -229,6 +229,9 @@ export default function Home() {
           </ul>
           <p className="hosts-more">
             <Link href="/docs/agent/">Read the plugin guide →</Link>
+          </p>
+          <p className="hosts-more">
+            In our <Link href="/docs/benchmark/">published benchmark on six sample projects</Link>, geopilot and a plain prompt found the same planted bugs, and geopilot raised about 14 times fewer false alarms, at about twice the cost.
           </p>
           <div className="grid cols-2">
             <div className="card">
