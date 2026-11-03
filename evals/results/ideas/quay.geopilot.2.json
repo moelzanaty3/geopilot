@@ -1,0 +1,37 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Remove or move the Product JSON-LD on /shop because a listing page with several items is mislabeled as a single Product",
+      "verdict": "useful",
+      "why": "/shop lists bilge pumps, cleats and rope, so a single-product 'Bilge pump' schema misdescribes the page, which is specific and accurate."
+    },
+    {
+      "idea": "Add <main> landmark and a viewport meta tag",
+      "verdict": "generic",
+      "why": "The viewport tag is missing from app.html and the content isn't in <main>, but both are standard advice with little effect on discoverability."
+    },
+    {
+      "idea": "Give each product its own page with name, price and photo",
+      "verdict": "useful",
+      "why": "/shop only mentions products in a single sentence, so separate linkable pages would let people and machines find individual items."
+    },
+    {
+      "idea": "Add a delivery page explaining cut-off times and regions",
+      "verdict": "useful",
+      "why": "The next-day and free-delivery claims have no supporting readable detail, since the delivery notice is data-nosnippet, so a delivery page would answer buyer questions."
+    },
+    {
+      "idea": "Add og:title and og:description share tags to the home page",
+      "verdict": "generic",
+      "why": "Open Graph tags are accurately missing but only affect link previews and apply to almost any site."
+    },
+    {
+      "idea": "Add a meta description to /search",
+      "verdict": "wrong",
+      "why": "/search is deliberately noindex, so a description there is pointless and the report itself says to leave it alone."
+    }
+  ]
+}

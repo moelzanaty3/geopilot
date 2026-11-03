@@ -1,0 +1,72 @@
+{
+  "fixture": "trailhead",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Prerender or remove ssr:false (use nitro prerender routes)",
+      "verdict": "useful",
+      "why": "The fix is specific to this config; the ssr:false problem itself is already known, but prerender routes for / and /guides are a concrete, accurate way to fix it."
+    },
+    {
+      "idea": "Remove or restrict the noindex middleware to /admin, or remove /guides from sitemap",
+      "verdict": "useful",
+      "why": "Accurate to headers.ts and sitemap.xml and directly affects indexing of the main section."
+    },
+    {
+      "idea": "Replace button router.push with NuxtLink and remove unused useRouter",
+      "verdict": "useful",
+      "why": "Accurate and concrete; makes /guides crawlable from the home page."
+    },
+    {
+      "idea": "Add per-page useSeoMeta titles/descriptions and a titleTemplate",
+      "verdict": "useful",
+      "why": "Pages have no per-page metadata and the fix is specific and actionable."
+    },
+    {
+      "idea": "Add canonical, Open Graph, Twitter card metadata and a favicon",
+      "verdict": "generic",
+      "why": "Accurate since none exist, but it is a standard checklist item that applies to nearly any site."
+    },
+    {
+      "idea": "Add WebSite/Organization JSON-LD in app.vue, plus Article/ItemList/BreadcrumbList on guide pages",
+      "verdict": "generic",
+      "why": "Standard advice for any site; there is little real effect for a 3-page site with no entity content."
+    },
+    {
+      "idea": "Content too thin; add real content, per-trail pages, answer-first quotable format, last-updated date and author",
+      "verdict": "useful",
+      "why": "The guides page is a heading and one sentence, so real trail content and per-route pages would help readers and machines understand the site."
+    },
+    {
+      "idea": "Use absolute Sitemap URL in robots.txt",
+      "verdict": "generic",
+      "why": "This is a known problem and is already graded separately, so it adds nothing new."
+    },
+    {
+      "idea": "Robots.txt Disallow /admin conflicts with noindex on admin; allow crawling and keep noindex",
+      "verdict": "wrong",
+      "why": "It reverses the deliberate choice that /admin is noindex and disallowed in robots.txt."
+    },
+    {
+      "idea": "Put real authentication on /admin",
+      "verdict": "generic",
+      "why": "Reasonable security advice, but it is not specific to discoverability and applies to any admin area."
+    },
+    {
+      "idea": "Replace hand-written sitemap with @nuxtjs/sitemap or the @nuxtjs/seo bundle; add lastmod",
+      "verdict": "useful",
+      "why": "The sitemap is static with two URLs, so generating it would keep it current as guides are added."
+    },
+    {
+      "idea": "Add an explicit AI crawler policy in robots.txt for GPTBot, ClaudeBot, etc.",
+      "verdict": "generic",
+      "why": "The default already allows all crawlers, so stating a policy has little effect."
+    },
+    {
+      "idea": "Optionally add llms.txt",
+      "verdict": "wrong",
+      "why": "The lack of llms.txt is a deliberate choice, and llms.txt is folklore as a way to be found."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Give /blog server-rendered metadata (title/description) by splitting into a server page plus client component",
+      "verdict": "useful",
+      "why": "The blog has no metadata of its own and inherits the home page's title and description, which the files confirm."
+    },
+    {
+      "idea": "Add a canonical to /blog",
+      "verdict": "generic",
+      "why": "This repeats the known /docs canonical problem and the known blog client-component problem, so it adds little beyond what is already graded."
+    },
+    {
+      "idea": "Resolve the pricing noindex conflict: remove index:false, or else remove it from the sitemap and navigation/canonical",
+      "verdict": "generic",
+      "why": "This is the known pricing noindex problem restated, with a conditional fix."
+    },
+    {
+      "idea": "Give each blog post its own page/URL instead of titles only from /api/posts",
+      "verdict": "useful",
+      "why": "Posts render only as titles with no addresses, so individual posts can't be linked, indexed or cited."
+    },
+    {
+      "idea": "Expand the thin /docs content with setup steps",
+      "verdict": "useful",
+      "why": "The docs page has one sentence while its description promises setup instructions for Ledger."
+    },
+    {
+      "idea": "List the actual plans on /pricing",
+      "verdict": "useful",
+      "why": "The page says only 'Free for up to three people' while its description promises plans for every team size."
+    },
+    {
+      "idea": "Add other training crawlers such as ClaudeBot to robots.txt to apply the trainingCrawlers: block policy",
+      "verdict": "useful",
+      "why": "The policy says to block training crawlers but robots.txt names only GPTBot, so the policy is only partly applied."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries if real dates exist",
+      "verdict": "generic",
+      "why": "This is accurate, but lastmod is a minor hint and applies to almost any sitemap."
+    },
+    {
+      "idea": "Add openGraph/social tags to shared pages",
+      "verdict": "generic",
+      "why": "This is accurate but applies to nearly any site and has little effect on discovery or understanding."
+    }
+  ]
+}

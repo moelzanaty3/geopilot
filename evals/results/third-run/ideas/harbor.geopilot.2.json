@@ -1,0 +1,42 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Let OAI-SearchBot and PerplexityBot in, or confirm blocking is intended",
+      "verdict": "useful",
+      "why": "This is the known robots.txt problem restated, but it is accurate; it is excluded from grading as a known problem."
+    },
+    {
+      "idea": "Show the FAQ questions as visible text on the home page, matching the FAQ JSON-LD",
+      "verdict": "useful",
+      "why": "index.astro emits FAQPage JSON-LD but the page shows no FAQ text, so markup and visible content don't match."
+    },
+    {
+      "idea": "Drop noindex on /contact and add LocalBusiness structured data with address and phone",
+      "verdict": "useful",
+      "why": "The phone number is on a noindex page, and LocalBusiness markup would suit a harbour office; the advice is conditional on the noindex not being deliberate."
+    },
+    {
+      "idea": "Use Offer/price structured data on the moorings page instead of or alongside Article",
+      "verdict": "useful",
+      "why": "The page is mainly about prices (£40 a night) but is marked up only as a generic Article."
+    },
+    {
+      "idea": "Add charset and viewport meta tags to the layout",
+      "verdict": "generic",
+      "why": "Base.astro does lack both, but this applies to almost any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Wrap the slot content in a <main> element",
+      "verdict": "generic",
+      "why": "This is accurate, but it is a general semantic HTML tip with little effect on finding the site."
+    },
+    {
+      "idea": "Add GPTBot and ClaudeBot rules to robots.txt so the crawler policy is stated consistently",
+      "verdict": "generic",
+      "why": "The advice is conditional on blocking being deliberate, and it applies to any site that has a crawler policy."
+    }
+  ]
+}

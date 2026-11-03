@@ -1,0 +1,16 @@
+{
+  "fixture": "trailhead",
+  "arm": "plain",
+  "run": 2,
+  "found": [
+    "ssr-disabled",
+    "guides-x-robots-noindex",
+    "button-navigation",
+    "same-title-everywhere",
+    "relative-sitemap-line"
+  ],
+  "flagged": [
+    "admin-noindex-disallow"
+  ],
+  "extraIssues": 6
+}

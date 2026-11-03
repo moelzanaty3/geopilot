@@ -61,3 +61,30 @@ If none holds, the result is "no demonstrated value over a plain prompt", and th
 - **After the first full run:** geopilot met the false-alarm criterion, but an informal run on one real production repository showed a plain prompt giving more useful findings. geopilot was changed: bands only at High confidence, "Can't tell" no longer excuses unread files, every JSON-LD source is checked, and real defects outside the rules go in an unscored section. Only geopilot's arm was then rerun, against the same plain reports. The first results are in `results/first-run/`.
 - **Invalid references:** this measure also counted files a report suggested creating, so it doesn't measure what it was meant to. It's kept in `summary.json` but isn't reported as a result. It wasn't part of the win criteria.
 - **Not pre-registered:** the real-repository run was exploratory and wasn't graded against an answer key. Its contents aren't published because the repository is private.
+
+## Third run: fewer steps and more ideas
+
+Written before this run. Profiling showed `/geopilot:scan` wrote its report twice and carried a large prompt, and that the prompt banned optional ideas. geopilot was changed to fix both. Both arms are rerun from scratch, so they're measured at the same moment. Earlier results stay in `results/first-run/` and `results/second-run/`.
+
+**New measure: ideas.** The old "other issues" count didn't say whether the issues were any good. A separate blind grader now reads each report alongside the repository's files, with section names masked, and classifies every recommendation that isn't a planted problem:
+
+- **Useful:** specific to this repository, accurate according to its code, and a concrete action that could plausibly help people or machines find, read or understand the site.
+- **Generic:** accurate, but would apply to almost any site or has very little effect.
+- **Wrong:** false according to the code, reverses a deliberate choice, or relies on folklore such as `llms.txt` as a way to be found, word counts or mandatory FAQs.
+
+**Targets for geopilot, against the plain arm in this run:**
+
+1. Useful ideas per report at least equal.
+2. Wrong ideas per report lower.
+3. The existing criteria still hold: recall not lower by more than 5 points, consistency not lower by more than 0.05, and false alarms at most half the plain arm's.
+4. Cost and time per run within 25%.
+
+Every target is reported whether it's met or not.
+
+**Limits of this run:** the changes were made after seeing reports on these same fixtures, so the fixtures can't be treated as unseen. The ideas guidance doesn't name anything from them, but a reader should still discount the result. The same author defined the three idea classes, and a model grades them.
+
+**Changed after a one-pass pilot, before the full run:** the pilot (6 reports per arm) had geopilot at 3.67 useful ideas per report against 5.67 for the plain arm, so five general kinds of idea the plain arm found were added to geopilot's guidance. The targets didn't change. geopilot's pilot reports were discarded and its arm rerun; the plain arm didn't change, so its pilot reports were kept as its first run. The pilot also showed the ideas grader can be inconsistent, giving the same suggestion different verdicts in different reports.
+
+**Changed after the first full run of this comparison, and the last change on these fixtures:** that run missed targets 1 and 4 and is kept in `results/third-run/`. Two of the five added kinds of idea were removed because they conflicted with deliberate choices, one of them causing a false alarm on the healthy site. An idea had also been promoted into "Do these first", which is now forbidden. The limit rose from 7 to 10 ideas, and the guidance now asks for the whole list to be checked. The targets didn't change. The plain arm's reports were kept and only geopilot's arm was rerun. Whatever this run shows gets published, and further tuning would need fixtures it hasn't seen.
+
+**Changed because of a real repository, not these fixtures:** that run's reports are kept in `results/third-run-b/`. An informal scan of a private production repository stopped early and said it hadn't read the navigation, so a step was added that makes the scan check it finished reading before it scores. It doesn't touch the ideas guidance. geopilot's arm was rerun only so the published numbers describe the prompt that ships.

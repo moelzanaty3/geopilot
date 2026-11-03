@@ -1,0 +1,11 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 1,
+  "found": [],
+  "flagged": [
+    "training-crawlers-blocked",
+    "no-json-ld"
+  ],
+  "extraIssues": 9
+}

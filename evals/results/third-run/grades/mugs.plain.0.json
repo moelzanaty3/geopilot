@@ -1,0 +1,16 @@
+{
+  "fixture": "mugs",
+  "arm": "plain",
+  "run": 0,
+  "found": [
+    "robots-blocks-all",
+    "client-only-rendering",
+    "no-html-lang",
+    "generic-title-no-description",
+    "no-sitemap",
+    "button-navigation",
+    "image-missing-alt"
+  ],
+  "flagged": [],
+  "extraIssues": 9
+}

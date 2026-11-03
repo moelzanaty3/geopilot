@@ -1,0 +1,37 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add directions/address text to the visit page to match its meta description",
+      "verdict": "useful",
+      "why": "The visit page body lacks directions despite the description promising them, so adding text helps people and machines."
+    },
+    {
+      "idea": "Add LocalBusiness structured data for hours and location on the visit page",
+      "verdict": "generic",
+      "why": "Accurate but optional, and JSON-LD absence is explicitly not a required fix."
+    },
+    {
+      "idea": "List named varieties or add per-variety pages to back up the 'over forty' claim",
+      "verdict": "useful",
+      "why": "The varieties page names only two varieties, so a list gives a concrete answer to a likely query."
+    },
+    {
+      "idea": "Extend robots.txt to block more training crawlers beyond GPTBot and ClaudeBot",
+      "verdict": "useful",
+      "why": "The config says trainingCrawlers block but robots.txt names only two bots, so other training crawlers are still allowed."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml entries",
+      "verdict": "generic",
+      "why": "Accurate since no lastmod is present, but it applies to almost any site and has a small effect."
+    },
+    {
+      "idea": "Add in-text links from the home page to varieties and visit pages",
+      "verdict": "generic",
+      "why": "The home page is very short and already links via the nav, so the benefit is small."
+    }
+  ]
+}

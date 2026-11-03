@@ -1,0 +1,37 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add absolute canonical URLs on each page (Absolute canonical rule: 0 of 2 routes)",
+      "verdict": "useful",
+      "why": "No canonical exists anywhere in the code, and adding one per route is a concrete, repo-specific fix."
+    },
+    {
+      "idea": "List actual routes as text on the guides page, ideally each with its own page and address",
+      "verdict": "useful",
+      "why": "guides.vue promises graded routes but lists none, so adding real content and URLs gives readers and crawlers something to index and quote."
+    },
+    {
+      "idea": "Add more descriptive text on the home page about who the site is for and what it covers",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and a button, so a short description helps people and machines understand the site."
+    },
+    {
+      "idea": "Set a site URL in nuxt.config (e.g. via a Nuxt site module) to generate correct absolute canonicals and sitemap URLs",
+      "verdict": "useful",
+      "why": "The config has no site URL, and sitemap.xml uses a placeholder domain, so this supports absolute URLs."
+    },
+    {
+      "idea": "Make sure the placeholder domain trailhead.example in sitemap.xml is the real origin and matches canonicals and the Sitemap line",
+      "verdict": "useful",
+      "why": "sitemap.xml really uses https://trailhead.example/, and the origin must be consistent across canonicals, the sitemap and robots.txt."
+    },
+    {
+      "idea": "Use the Nitro middleware noindex caveat: on a static host the header may not run, so check with a live scan",
+      "verdict": "generic",
+      "why": "It is a check of the deployment outside the code, and the noindex removal already covers the actual fix."
+    }
+  ]
+}

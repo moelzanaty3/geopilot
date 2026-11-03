@@ -57,7 +57,7 @@ export default function Page() {
         <table>
           <thead><tr><th>Command</th><th>Does</th><th>Agent</th><th>Arguments</th></tr></thead>
           <tbody>
-            <tr><td><code>scan</code></td><td>Audits your code against every rule, with a code score and the fixes to do first.</td><td><code>scanner</code></td><td><code>[path|url] [--url &lt;local-server&gt;]</code></td></tr>
+            <tr><td><code>scan</code></td><td>Audits your code against every rule, with a code score, the fixes to do first and optional ideas worth considering.</td><td><code>scanner</code></td><td><code>[path|url] [--url &lt;local-server&gt;]</code></td></tr>
             <tr><td><code>fix</code></td><td>Shows each exact change, then applies only what you approve and updates the code score. The model doesn&rsquo;t auto-select this command.</td><td><code>fixer</code></td><td><code>[--rule GEO-xxx]</code></td></tr>
             <tr><td><code>review</code></td><td>Reviews a branch or pull request for readiness regressions.</td><td><code>reviewer</code></td><td><code>[base-branch]</code></td></tr>
             <tr><td><code>explain</code></td><td>Explains GEO, a rule or a finding in plain words. With no argument, gives a guided tour.</td><td><code>explainer</code></td><td><code>&lt;GEO-xxx | fingerprint&gt;</code></td></tr>
@@ -66,6 +66,7 @@ export default function Page() {
           </tbody>
         </table>
       </div>
+      <p><code>scan</code> runs in your session on Claude Code, Copilot and Codex, so its report is written only once. There, staying read-only is an instruction the model follows, not something the host enforces. OpenCode can enforce it, so <code>scan</code> runs in the read-only <code>scanner</code> agent there.</p>
       <h2>The agents</h2>
       <div className="table-wrap">
         <table>

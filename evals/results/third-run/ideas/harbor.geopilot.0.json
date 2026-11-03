@@ -1,0 +1,47 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add `site` to Astro config and derive canonicals and sitemap from it",
+      "verdict": "useful",
+      "why": "There is no astro.config, the origin is hardcoded, and a single source of truth would help fix the canonical."
+    },
+    {
+      "idea": "Mark up the harbour office phone and location as LocalBusiness structured data",
+      "verdict": "generic",
+      "why": "This is accurate, but the report itself says it only helps if the page is indexable, and /contact is noindex."
+    },
+    {
+      "idea": "Add seasonal prices and mooring sizes to the moorings page text, since the description promises them",
+      "verdict": "useful",
+      "why": "The page has only one price sentence and no sizes or seasonal prices, so the description's promise goes unmet."
+    },
+    {
+      "idea": "Put the water-taxi details (May to September) in visible page text",
+      "verdict": "useful",
+      "why": "The only mention of the dates is in the FAQ JSON-LD, which is broken, so the facts are not in the page text."
+    },
+    {
+      "idea": "Add og: social tags to the layout",
+      "verdict": "generic",
+      "why": "This is accurate, but social preview tags are standard advice and do little to help machines find or read the site."
+    },
+    {
+      "idea": "Add meta charset and viewport to Base.astro",
+      "verdict": "generic",
+      "why": "The head does lack both, but this is standard boilerplate with a small effect on discoverability."
+    },
+    {
+      "idea": "Add a <main> landmark and a link from the moorings page to /contact",
+      "verdict": "generic",
+      "why": "This is accurate, but landmarks and an extra internal link have little effect, and a link to a noindex page does not help discovery."
+    },
+    {
+      "idea": "Change the robots default to `index, follow` or remove the tag",
+      "verdict": "useful",
+      "why": "This is a concrete fix, but it duplicates the known max-snippet:0 problem, so it should be left out; it is kept only as the fix for that problem."
+    }
+  ]
+}

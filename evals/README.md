@@ -6,7 +6,7 @@ This compares the geopilot plugin with asking the same model directly, on reposi
 - [`fixtures/`](fixtures/): six small projects.
 - [`truth.json`](truth.json): the answer key, with planted problems and decoys.
 - [`run.mjs`](run.mjs): runs both arms, grades the reports blind and summarizes them.
-- [`results/`](results/): reports, grades and `summary.json`. `results/first-run/` holds geopilot's results before it was changed.
+- [`results/`](results/): reports, grades and `summary.json`. The current run is at the top level. `first-run/`, `second-run/`, `third-run/` and `third-run-b/` hold earlier results.
 
 ## Run it
 

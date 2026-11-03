@@ -1,0 +1,14 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 0,
+  "found": [
+    "ssr-disabled",
+    "guides-x-robots-noindex",
+    "relative-sitemap-line",
+    "same-title-everywhere",
+    "button-navigation"
+  ],
+  "flagged": [],
+  "extraIssues": 2
+}

@@ -1,0 +1,67 @@
+{
+  "fixture": "trailhead",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Use NuxtLink instead of the button, and remove unused useRouter",
+      "verdict": "generic",
+      "why": "This restates the known button/router.push problem; the cleanup of useRouter is trivial."
+    },
+    {
+      "idea": "Add per-page useSeoMeta and a titleTemplate in app.vue",
+      "verdict": "useful",
+      "why": "Pages have only the shared title and description, and giving index and guides their own titles and descriptions is a concrete fix."
+    },
+    {
+      "idea": "Add canonical links plus Open Graph and Twitter card tags, with a site URL set in config",
+      "verdict": "generic",
+      "why": "This is accurate but standard advice for any site, and its effect on discoverability is small."
+    },
+    {
+      "idea": "Add real route content to the pages (distances, grades, ascent, named routes, a quotable summary)",
+      "verdict": "useful",
+      "why": "The pages are only an h1 and one line, so there is nothing substantive for search engines or AI assistants to read or cite."
+    },
+    {
+      "idea": "Add JSON-LD structured data (WebSite, Organization, ItemList/Article, Place/TouristTrip)",
+      "verdict": "generic",
+      "why": "No structured data exists, but it would add little on pages with almost no content, and the advice is not specific to this site."
+    },
+    {
+      "idea": "Decide an explicit AI-crawler policy in robots.txt (GPTBot, ClaudeBot, etc.)",
+      "verdict": "generic",
+      "why": "Setting a bot policy is true of any site and has little effect here."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "The report presents it as a cheap addition, but not having llms.txt is a deliberate, acceptable choice and it does not help the site get found."
+    },
+    {
+      "idea": "Generate the sitemap with @nuxtjs/sitemap and add lastmod",
+      "verdict": "generic",
+      "why": "A two-URL sitemap is fine as it is, and lastmod and generation add little."
+    },
+    {
+      "idea": "Remove the double blocking on /admin: require auth, or allow crawling and use a noindex header",
+      "verdict": "wrong",
+      "why": "It reverses the deliberate choice that /admin is noindex and disallowed in robots.txt."
+    },
+    {
+      "idea": "Plan favicon, image alt text and og:image for future images",
+      "verdict": "generic",
+      "why": "There are no images yet, so this is speculative advice that applies to any site."
+    },
+    {
+      "idea": "Use prerender routeRules as an alternative to removing ssr:false",
+      "verdict": "generic",
+      "why": "It is a variant of the known ssr:false problem."
+    },
+    {
+      "idea": "Narrow the /guides noindex middleware to specific paths if some guides should be hidden",
+      "verdict": "generic",
+      "why": "It is an extension of the known noindex-on-/guides problem."
+    }
+  ]
+}

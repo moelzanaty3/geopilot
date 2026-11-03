@@ -1,0 +1,37 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Block other training crawlers (e.g. ClaudeBot) in robots.txt to match trainingCrawlers: block",
+      "verdict": "useful",
+      "why": "The config says block training crawlers but robots.txt only blocks GPTBot, so the policy is only partly applied."
+    },
+    {
+      "idea": "Give each blog post its own page/URL linked from /blog",
+      "verdict": "useful",
+      "why": "Posts are only titles in a client-rendered list with no addresses, so individual pages would make them findable and quotable."
+    },
+    {
+      "idea": "List plans and prices as text on the pricing page",
+      "verdict": "useful",
+      "why": "The page says only 'Free for up to three people' while the description promises plans for every team size, so concrete text helps readers and machines."
+    },
+    {
+      "idea": "Expand the docs page beyond one sentence with bank feed import steps",
+      "verdict": "useful",
+      "why": "The docs page has a single sentence and doesn't explain how to import a bank feed, which it tells the reader to do."
+    },
+    {
+      "idea": "Add Organization/SoftwareApplication JSON-LD to the home page",
+      "verdict": "generic",
+      "why": "No JSON-LD exists so it's accurate, but it's standard advice with modest effect for this small site."
+    },
+    {
+      "idea": "Add a canonical to /blog (and fix the canonical/noindex mismatch on /pricing)",
+      "verdict": "generic",
+      "why": "The /docs canonical is a known problem and the pricing noindex is already known; the /blog canonical is the same kind of fix."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add author and datePublished to the Article JSON-LD",
+      "verdict": "generic",
+      "why": "Accurate, but the Article block is a thin, arguably unneeded markup on a pricing page, and the missing properties have little effect."
+    },
+    {
+      "idea": "Build canonical from Astro.url.pathname and a declared site origin",
+      "verdict": "useful",
+      "why": "This is a concrete fix for the hardcoded canonical in Base.astro, using a mechanism that suits Astro."
+    },
+    {
+      "idea": "Show FAQ questions and answers as visible page text on the home page",
+      "verdict": "useful",
+      "why": "The FAQ exists only in JSON-LD in index.astro, so visitors and machines can't see it as page content, and markup should match visible content."
+    },
+    {
+      "idea": "Add a booking link or instructions, since the description says 'Book a mooring'",
+      "verdict": "useful",
+      "why": "The index description promises booking but the page has no way to book, which is accurate and actionable."
+    },
+    {
+      "idea": "Add LocalBusiness/Offer structured data for prices and contact details",
+      "verdict": "useful",
+      "why": "Prices on moorings.astro and the phone number on contact.astro are plain text, and labelling them helps machines read them."
+    },
+    {
+      "idea": "Link from the home page to /moorings in body text",
+      "verdict": "useful",
+      "why": "The home page only reaches the prices page through the nav, so an in-content link is a specific and plausible improvement."
+    },
+    {
+      "idea": "Make spelling consistent (Harbor vs harbour)",
+      "verdict": "useful",
+      "why": "The index title says 'Harbor' while the body and descriptions say 'harbour', so the title doesn't match the language people search with."
+    },
+    {
+      "idea": "Add charset and viewport meta and a <main> element",
+      "verdict": "generic",
+      "why": "Accurate for Base.astro, but it is standard hygiene that applies to nearly any site."
+    },
+    {
+      "idea": "Declare site in an astro.config so canonicals and sitemaps come from one source",
+      "verdict": "useful",
+      "why": "There is no astro.config, and the sitemap is hand-written, so declaring site is accurate and supports the canonical fix."
+    },
+    {
+      "idea": "Mention GPTBot and ClaudeBot (training crawlers) in robots.txt",
+      "verdict": "generic",
+      "why": "The report itself says this is a separate, unscored choice, so it is a low-impact observation."
+    }
+  ]
+}

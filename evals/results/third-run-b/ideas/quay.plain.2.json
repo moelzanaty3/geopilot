@@ -1,0 +1,82 @@
+{
+  "fixture": "quay",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Fix Product JSON-LD type: use CollectionPage/ItemList on category page, and escape `<` in JSON in the {@html} template",
+      "verdict": "useful",
+      "why": "The shop page is a category listing with a single Product, and the escaping advice applies to the actual {@html} script injection."
+    },
+    {
+      "idea": "Add Organization and WebSite JSON-LD to the homepage",
+      "verdict": "useful",
+      "why": "The homepage has no structured data, and entity markup helps search engines and AI systems identify the brand."
+    },
+    {
+      "idea": "Add viewport meta tag to app.html",
+      "verdict": "useful",
+      "why": "app.html has no viewport meta tag, which affects mobile rendering and mobile-first indexing."
+    },
+    {
+      "idea": "Remove data-nosnippet from the delivery notice and wrap it in a footer/aside",
+      "verdict": "wrong",
+      "why": "data-nosnippet is a deliberate scoped choice that the task says is fine, so this reverses it."
+    },
+    {
+      "idea": "Add brand name to titles (Search | Quay, Shop title with keywords and brand) and make separators consistent",
+      "verdict": "useful",
+      "why": "The search and shop titles lack the brand and the homepage uses a different separator, so unifying them is a concrete, file-specific fix."
+    },
+    {
+      "idea": "Add thin-content expansion: product listings, prices, descriptions, product page links, shipping/returns facts",
+      "verdict": "generic",
+      "why": "Pages are one heading and a line, so more content helps, but the advice is broad and bundles the FAQ folklore."
+    },
+    {
+      "idea": "Add FAQ section to pages",
+      "verdict": "wrong",
+      "why": "A mandatory FAQ is folklore and not a real requirement."
+    },
+    {
+      "idea": "Add lastmod to sitemap and generate it from routes/product data",
+      "verdict": "useful",
+      "why": "The sitemap is a static hand-written file with no lastmod, so generating it from routes avoids staleness."
+    },
+    {
+      "idea": "Change search page to noindex, follow",
+      "verdict": "generic",
+      "why": "The report itself says the current setting is acceptable, and the change has almost no effect because follow is the default."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags with defaults in the layout",
+      "verdict": "useful",
+      "why": "No pages have OG or Twitter tags, and the layout is a natural place for shared defaults."
+    },
+    {
+      "idea": "Replace hardcoded quay.example domain in canonicals, robots and sitemap with a shared config value",
+      "verdict": "useful",
+      "why": "The placeholder domain appears in multiple files, and a single config value avoids mismatched URLs."
+    },
+    {
+      "idea": "Add aria-label to nav, wrap content in <main>, drop extra div wrapper",
+      "verdict": "useful",
+      "why": "The layout has a bare nav and no main landmark, so these changes improve accessibility and content parsing."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt is folklore as a way to be found, and not having one is a stated non-problem."
+    },
+    {
+      "idea": "Decide on AI-crawler policy in robots.txt naming GPTBot, ClaudeBot, etc.",
+      "verdict": "generic",
+      "why": "This is a policy decision that applies to almost any site and the report doesn't tie it to this repository's needs."
+    },
+    {
+      "idea": "Add About/Contact page with address, company details and policies",
+      "verdict": "useful",
+      "why": "The site has only a home and shop page and no entity or trust information, so an About page adds identifiable information."
+    }
+  ]
+}

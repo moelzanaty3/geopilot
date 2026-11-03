@@ -1,0 +1,47 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Pre-render or enable SSR so server HTML contains content (remove ssr:false)",
+      "verdict": "wrong",
+      "why": "This is the known ssr:false problem, already graded separately, so it should not be counted as a new idea."
+    },
+    {
+      "idea": "Make the robots.txt Sitemap line an absolute URL",
+      "verdict": "wrong",
+      "why": "This duplicates the known relative-Sitemap problem."
+    },
+    {
+      "idea": "Replace the button with NuxtLink to /guides",
+      "verdict": "wrong",
+      "why": "This duplicates the known button/router.push problem."
+    },
+    {
+      "idea": "Remove the noindex X-Robots-Tag on /guides",
+      "verdict": "wrong",
+      "why": "This duplicates the known noindex-on-/guides problem."
+    },
+    {
+      "idea": "List actual routes as text on the guides page, ideally one page each with its own URL",
+      "verdict": "useful",
+      "why": "guides.vue only promises routes without listing any, so adding crawlable per-route pages gives real content to index and quote."
+    },
+    {
+      "idea": "Add a short text description and onward links to the home page",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and one button, so descriptive text and links would help visitors and machines understand the site."
+    },
+    {
+      "idea": "Give each page its own title and description via useHead/useSeoMeta",
+      "verdict": "wrong",
+      "why": "This duplicates the known single-title/description problem."
+    },
+    {
+      "idea": "Declare the real site origin and add an absolute canonical link per page",
+      "verdict": "useful",
+      "why": "No canonical or site URL exists anywhere in the config, and the sitemap uses the placeholder trailhead.example, so declaring the origin enables correct canonicals."
+    }
+  ]
+}

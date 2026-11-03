@@ -1,0 +1,62 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add Organization/LocalBusiness structured data for phone and address on contact page",
+      "verdict": "useful",
+      "why": "Contact page has a phone number as plain text only, so schema would give machines the details directly."
+    },
+    {
+      "idea": "Add structured data (Offer) for the £40 a night price on moorings",
+      "verdict": "useful",
+      "why": "The price appears as a single line of text and structured data would help machines quote it accurately."
+    },
+    {
+      "idea": "Show FAQ answers as visible text on the home page",
+      "verdict": "useful",
+      "why": "The FAQ answers exist only in JSON-LD, which doesn't match visible content, and the report is accurate about this."
+    },
+    {
+      "idea": "Make the home page an overview linking to /moorings to resolve topic overlap",
+      "verdict": "generic",
+      "why": "The overlap between the two pages is modest and the advice is broadly applicable with little effect."
+    },
+    {
+      "idea": "Use one spelling of Harbor/harbour across title and content",
+      "verdict": "useful",
+      "why": "The index title says 'Harbor' while content and the contact page use 'harbour', which is a real inconsistency affecting matching."
+    },
+    {
+      "idea": "Add charset and viewport meta tags and a <main> element to the layout",
+      "verdict": "useful",
+      "why": "Base.astro really lacks charset, viewport and main, and adding them is concrete and cheap."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "Accurate, but lastmod on a three-URL sitemap has very little effect."
+    },
+    {
+      "idea": "Add a site setting in astro.config (site: https://harbor.example)",
+      "verdict": "useful",
+      "why": "There is no astro config, and the site setting is needed to build per-page absolute canonicals from Astro.url."
+    },
+    {
+      "idea": "Add missing Article properties such as author and date to the Article JSON-LD",
+      "verdict": "generic",
+      "why": "Accurate but optional properties on a block whose main problem is that it doesn't parse; low effect."
+    },
+    {
+      "idea": "Layout should list robots defaults explicitly because the prop overwrites the whole value",
+      "verdict": "generic",
+      "why": "The report itself says this is fine today, so it has little effect."
+    },
+    {
+      "idea": "Page for moorings should give sizes and seasonal prices as promised by title and description",
+      "verdict": "useful",
+      "why": "The moorings page only has one line of price text while its title and description promise sizes and seasonal prices."
+    }
+  ]
+}

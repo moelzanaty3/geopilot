@@ -1,0 +1,52 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Give each page its own title and description via useHead/useSeoMeta",
+      "verdict": "generic",
+      "why": "This is the same as the known problem that only app.vue sets a title, so it adds nothing new."
+    },
+    {
+      "idea": "Remove the noindex middleware or limit it to /admin",
+      "verdict": "generic",
+      "why": "This is the known problem of /guides being sent X-Robots-Tag: noindex."
+    },
+    {
+      "idea": "Add actual routes with grades as text on /guides, each with its own page",
+      "verdict": "useful",
+      "why": "guides.vue promises graded routes but lists none, so the page has little content for readers or machines to quote."
+    },
+    {
+      "idea": "Describe walks and areas in text on the home page",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and a button, so there is almost no descriptive content."
+    },
+    {
+      "idea": "Replace the sitemap placeholder host trailhead.example with the real production domain, and use it in robots.txt and canonicals",
+      "verdict": "useful",
+      "why": "sitemap.xml uses a .example placeholder host, which search engines can't use."
+    },
+    {
+      "idea": "Add an absolute canonical link on the site's domain",
+      "verdict": "useful",
+      "why": "No canonical exists anywhere in the repo, and the site origin isn't declared."
+    },
+    {
+      "idea": "Fix the sitemap line in robots.txt (relative URL)",
+      "verdict": "generic",
+      "why": "This is the known relative-URL problem in robots.txt."
+    },
+    {
+      "idea": "Turn on server rendering or prerender the pages",
+      "verdict": "generic",
+      "why": "This is the known problem that nuxt.config.ts sets ssr: false."
+    },
+    {
+      "idea": "Use NuxtLink for the /guides link on the home page",
+      "verdict": "generic",
+      "why": "This is the known problem of reaching /guides through a button."
+    }
+  ]
+}

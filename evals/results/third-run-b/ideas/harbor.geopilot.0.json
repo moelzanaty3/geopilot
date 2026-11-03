@@ -1,0 +1,62 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Unblock OAI-SearchBot and PerplexityBot in robots.txt",
+      "verdict": "useful",
+      "why": "It duplicates a known problem, but is accurate; still it's listed as known so excluded in spirit—kept as accurate and specific."
+    },
+    {
+      "idea": "Remove the sitewide max-snippet:0 default",
+      "verdict": "useful",
+      "why": "Accurate and specific to Base.astro, though overlapping a known problem."
+    },
+    {
+      "idea": "Fix the FAQ and Article JSON-LD",
+      "verdict": "useful",
+      "why": "Accurate, but overlaps known problems."
+    },
+    {
+      "idea": "Remove noindex from /contact or drop it from the sitemap",
+      "verdict": "useful",
+      "why": "Accurate, but overlaps a known problem."
+    },
+    {
+      "idea": "Remove FAQ JSON-LD from home page or show the questions as visible text",
+      "verdict": "useful",
+      "why": "The home page emits FAQPage markup with no visible FAQ content, so markup and page content mismatch."
+    },
+    {
+      "idea": "Add LocalBusiness structured data for the harbour office phone and location on /contact",
+      "verdict": "generic",
+      "why": "Plausible, but the page is noindex and the report itself hedges with 'might help'."
+    },
+    {
+      "idea": "Add the mooring sizes and seasonal prices as text on /moorings",
+      "verdict": "useful",
+      "why": "The meta description promises sizes and seasonal prices but the page only says prices start at £40 a night."
+    },
+    {
+      "idea": "Add charset and viewport meta tags and a <main> element in Base.astro",
+      "verdict": "generic",
+      "why": "Accurate, but standard hygiene that applies to almost any site."
+    },
+    {
+      "idea": "Add <lastmod> dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "Accurate but low effect, and it is conditioned on having real dates."
+    },
+    {
+      "idea": "Set Astro `site` config to https://harbor.example so canonicals can be built from Astro.url",
+      "verdict": "useful",
+      "why": "astro.config is absent, and this would let the hardcoded canonical be replaced with per-page values."
+    },
+    {
+      "idea": "Link from the home page body to /moorings",
+      "verdict": "generic",
+      "why": "The nav already links to /moorings, so the added value is small."
+    }
+  ]
+}

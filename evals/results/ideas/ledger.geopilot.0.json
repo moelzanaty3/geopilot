@@ -1,0 +1,47 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Remove noindex from Pricing or drop it from sitemap/nav (second Pricing note)",
+      "verdict": "useful",
+      "why": "Duplicates a known problem only in framing, but the 'canonical points at itself' remark is harmless; this is the known pricing issue."
+    },
+    {
+      "idea": "Blog fetches /api/posts but no such route exists in the repo",
+      "verdict": "useful",
+      "why": "Accurate: no api route in the files, and the report hedges that it may be served elsewhere, so the blog could render empty."
+    },
+    {
+      "idea": "Add a text list of plans and prices to Pricing to match its description",
+      "verdict": "useful",
+      "why": "The page only says 'Free for up to three people' while the description promises plans, so concrete text helps readers and machines."
+    },
+    {
+      "idea": "Expand Docs with written setup steps",
+      "verdict": "useful",
+      "why": "Docs is a single sentence, so real steps would give users and machines something to read and quote."
+    },
+    {
+      "idea": "Give each blog post its own URL and list it in the sitemap",
+      "verdict": "useful",
+      "why": "Posts are only titles on one client-rendered page, so individual addresses would make them discoverable."
+    },
+    {
+      "idea": "Add Organization/SoftwareApplication JSON-LD to the home page once real details exist",
+      "verdict": "generic",
+      "why": "Accurate and appropriately caveated, but it is standard advice with little effect on its own."
+    },
+    {
+      "idea": "Add openGraph social-share tags",
+      "verdict": "generic",
+      "why": "True that none are set, but the report itself says it only helps if pages are shared."
+    },
+    {
+      "idea": "Move /blog out of the client component so it can export server metadata (part of canonical item)",
+      "verdict": "useful",
+      "why": "Accurate: a 'use client' file cannot export metadata, and this is the concrete step the canonical fix needs."
+    }
+  ]
+}

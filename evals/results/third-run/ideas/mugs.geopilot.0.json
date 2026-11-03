@@ -1,0 +1,32 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Render the Catalogue list on the server or at build time instead of a browser fetch in useEffect",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs client-side, so crawlers without JavaScript never see the mugs."
+    },
+    {
+      "idea": "Give each mug its own page with links, plus Product structured data",
+      "verdict": "useful",
+      "why": "The catalogue shows only names as <p> elements, so individual URLs and Product markup would give each mug an address and machine-readable details."
+    },
+    {
+      "idea": "Say more about what you sell, such as price, sizes and shipping, in text on the Home page",
+      "verdict": "generic",
+      "why": "This is plausible content advice, but it rests on a guess about what visitors would ask and not on anything the code shows."
+    },
+    {
+      "idea": "Declare the site's production domain so canonical links and a sitemap can be built",
+      "verdict": "useful",
+      "why": "No domain appears anywhere in the repo, and canonical URLs and sitemap entries both need an absolute origin."
+    },
+    {
+      "idea": "Add per-page titles using a head helper, since the SPA shares one head",
+      "verdict": "useful",
+      "why": "Both routes share index.html's single title, so a head manager would let Home and Catalogue have distinct titles."
+    }
+  ]
+}

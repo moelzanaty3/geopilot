@@ -1,0 +1,87 @@
+{
+  "fixture": "quay",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add a viewport meta tag to app.html",
+      "verdict": "useful",
+      "why": "app.html really has no viewport meta, and adding it helps mobile rendering."
+    },
+    {
+      "idea": "Replace the quay.example placeholder domain in the sitemap, robots.txt and canonicals, ideally from one config value",
+      "verdict": "useful",
+      "why": "The placeholder domain appears in all of those files, and real URLs are needed for canonicals and the sitemap to work."
+    },
+    {
+      "idea": "Add lastmod to the sitemap entries",
+      "verdict": "generic",
+      "why": "It is accurate, but lastmod has little effect on a two-URL sitemap."
+    },
+    {
+      "idea": "Remove data-nosnippet from the free-delivery line",
+      "verdict": "wrong",
+      "why": "This reverses a deliberate scoped choice, even though the report hedges with 'if deliberate'."
+    },
+    {
+      "idea": "Wrap the delivery line in a footer or landmark and add an aria-label to the nav",
+      "verdict": "generic",
+      "why": "This is accurate accessibility advice, but it would apply to almost any site and has little effect on discovery."
+    },
+    {
+      "idea": "Change the page titles to include the brand and keywords",
+      "verdict": "generic",
+      "why": "The titles are already adequate, so rewording them has little effect and is mostly keyword stuffing."
+    },
+    {
+      "idea": "Add more text and links to products or categories on the home and shop pages",
+      "verdict": "useful",
+      "why": "Both pages hold almost no content or internal links, so there is little for people or machines to understand."
+    },
+    {
+      "idea": "Add Open Graph and Twitter tags to pages",
+      "verdict": "generic",
+      "why": "No page has them, but they only affect link previews and apply to nearly any site."
+    },
+    {
+      "idea": "Link to the search page from the nav or home page",
+      "verdict": "wrong",
+      "why": "/search is a deliberate noindex page, so promoting it with internal links works against that choice."
+    },
+    {
+      "idea": "Switch the shop Product JSON-LD to ItemList with per-product Product entries, or move Product markup to product pages",
+      "verdict": "useful",
+      "why": "The shop page is a listing, and its single 'Bilge pump' Product markup misdescribes it."
+    },
+    {
+      "idea": "Build the JSON-LD with JSON.stringify and escape < as \\u003c instead of using a raw {@html} string",
+      "verdict": "generic",
+      "why": "This is sound hardening advice, but the JSON-LD here is static and the change has little effect."
+    },
+    {
+      "idea": "Add Organization or WebSite JSON-LD in the layout",
+      "verdict": "useful",
+      "why": "The layout has no site-wide structured data, and this would help search engines and AI systems identify the brand."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt is not a way to be found, and the brief says its absence is not a problem."
+    },
+    {
+      "idea": "Add explicit AI-crawler rules to robots.txt",
+      "verdict": "generic",
+      "why": "The report itself says the * group already allows everything, so extra rules add little."
+    },
+    {
+      "idea": "Add factual content for AI to quote, such as specs, delivery and returns terms, product descriptions and an FAQ with FAQPage markup",
+      "verdict": "wrong",
+      "why": "A mandatory FAQ with FAQPage markup is folklore, and the advice is not tied to anything the site actually has."
+    },
+    {
+      "idea": "Use prerender = true for static pages",
+      "verdict": "useful",
+      "why": "The routes are all static, so prerendering fits and fixes the empty server shell."
+    }
+  ]
+}

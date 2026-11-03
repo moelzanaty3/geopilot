@@ -1,0 +1,42 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Give each mug its own page/URL linked from the catalogue (with product structured data)",
+      "verdict": "useful",
+      "why": "Catalogue.jsx renders mugs as plain <p> text with no links, so individual products have no addressable pages."
+    },
+    {
+      "idea": "Add shipping, delivery and returns information in text to back up the 'shipped worldwide' claim",
+      "verdict": "useful",
+      "why": "Home.jsx claims worldwide shipping but no page gives details, so adding them helps users and machines understand the offer."
+    },
+    {
+      "idea": "Add a viewport meta tag in index.html",
+      "verdict": "generic",
+      "why": "index.html does lack it and it helps mobile rendering, but it applies to nearly every site and has little effect on being found."
+    },
+    {
+      "idea": "Link from Home content to the catalogue",
+      "verdict": "useful",
+      "why": "Home.jsx has no in-content link to /catalogue, and the only route is the nav, so a real link improves discovery."
+    },
+    {
+      "idea": "Use a head helper such as react-helmet-async for per-page titles and descriptions",
+      "verdict": "useful",
+      "why": "Both routes share one static title in index.html, so per-route head management is a concrete fix, though it overlaps with the known title issue."
+    },
+    {
+      "idea": "Add a canonical link tag once the domain is known",
+      "verdict": "generic",
+      "why": "Accurate but the report itself says it can't tell what it should be, and it is standard advice for any site."
+    },
+    {
+      "idea": "Prerender at build time or move to a server-rendering framework for the catalogue data too",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs client-side, so the product list needs to be in prerendered HTML to be seen by non-JS crawlers."
+    }
+  ]
+}

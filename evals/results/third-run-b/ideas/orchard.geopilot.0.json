@@ -1,0 +1,32 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add LocalBusiness JSON-LD for opening hours on the visit page (Notes #2 and 'Label the business facts')",
+      "verdict": "wrong",
+      "why": "Adding JSON-LD is explicitly not a required fix, and the report itself concedes it has no effect on the score."
+    },
+    {
+      "idea": "Add directions/address text to the visit page since the description promises 'Opening times and directions'",
+      "verdict": "useful",
+      "why": "The visit page body has only days and months, so the meta description promises content the page lacks, and adding it helps readers and machines."
+    },
+    {
+      "idea": "Create individual variety pages (e.g. /varieties/ashmeads-kernel) and list varieties, since the page claims over forty but names two",
+      "verdict": "useful",
+      "why": "It is accurate to the files and gives crawlers and users real, addressable content for the 'over forty varieties' claim."
+    },
+    {
+      "idea": "Add in-body content links from the home page to Varieties and Visit",
+      "verdict": "generic",
+      "why": "It is accurate, but the nav already links all pages, so the added value is small and applies to almost any site."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries",
+      "verdict": "generic",
+      "why": "It is accurate but is standard sitemap advice with minor effect, and it only helps if real dates exist."
+    }
+  ]
+}

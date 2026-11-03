@@ -1,0 +1,37 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add a meta description to the /account page",
+      "verdict": "generic",
+      "why": "Accurate, but the page is deliberately noindex and private, so a description has almost no effect, as the report itself admits."
+    },
+    {
+      "idea": "Add address and directions as visible text on the Visit page, since the description promises directions",
+      "verdict": "useful",
+      "why": "The visit page body only gives opening months and days, so the description's promise of directions goes unmet."
+    },
+    {
+      "idea": "Add LocalBusiness JSON-LD to the Visit page once address and hours are visible",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is explicitly not a required fix, though the report hedges it as optional."
+    },
+    {
+      "idea": "Give each variety its own page and link to it from the Varieties page",
+      "verdict": "useful",
+      "why": "The page claims over forty varieties but names only two, so separate linked pages would make the content findable."
+    },
+    {
+      "idea": "Add body links from the home page to Varieties and Visit",
+      "verdict": "generic",
+      "why": "The nav already links to both pages, so in-body links add only a small benefit."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml if real update dates are known",
+      "verdict": "generic",
+      "why": "This is accurate, but it applies to almost any site and has a small effect on a three-page sitemap."
+    }
+  ]
+}

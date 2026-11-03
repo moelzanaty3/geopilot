@@ -1,0 +1,82 @@
+{
+  "fixture": "quay",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Product JSON-LD is fragile: lists several products but declares one generic Bilge pump; use ItemList/per-product data, and build with JSON.stringify and escape <",
+      "verdict": "useful",
+      "why": "The shop page lists bilge pumps, cleats and rope but the hand-written {@html} JSON-LD names only one product."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD to the homepage with name, url, logo, sameAs",
+      "verdict": "useful",
+      "why": "The homepage has no structured data, and brand entity markup helps machines identify the site."
+    },
+    {
+      "idea": "Add viewport meta tag to src/app.html",
+      "verdict": "useful",
+      "why": "app.html has no viewport meta, so mobile rendering and mobile-first indexing suffer."
+    },
+    {
+      "idea": "Search page title 'Search' is weak",
+      "verdict": "generic",
+      "why": "The page is noindex, so improving its title has almost no effect."
+    },
+    {
+      "idea": "Don't add a Disallow for /search in robots.txt so crawlers can see the noindex",
+      "verdict": "useful",
+      "why": "This is correct for the repo: robots.txt allows /search, so the noindex stays visible to crawlers."
+    },
+    {
+      "idea": "Improve titles/descriptions: add brand and keyword to the home title, add a brand to the shop title, expand the home description",
+      "verdict": "useful",
+      "why": "These are the actual titles and descriptions in the files, and the shop title has no brand."
+    },
+    {
+      "idea": "Remove data-nosnippet from the delivery notice and move the text into page content",
+      "verdict": "wrong",
+      "why": "This reverses the deliberate, scoped data-nosnippet choice."
+    },
+    {
+      "idea": "Move the delivery notice out of its odd placement after children / into a footer",
+      "verdict": "generic",
+      "why": "This is a minor structural tidy-up with little effect on discoverability."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags via a shared component",
+      "verdict": "useful",
+      "why": "No page has OG or Twitter tags, so shared links lack titles and images."
+    },
+    {
+      "idea": "Thin content: add product pages with unique copy, specs, FAQs and delivery/returns info",
+      "verdict": "wrong",
+      "why": "Pushing FAQs and content volume is folklore, though real product pages would help; the FAQ framing is mandatory-FAQ advice."
+    },
+    {
+      "idea": "Use <main> and <footer> landmarks and an aria-label on nav",
+      "verdict": "useful",
+      "why": "The layout has no <main> or <footer>, so landmarks help parsers find the main content."
+    },
+    {
+      "idea": "Generate the sitemap dynamically via +server.ts and add lastmod",
+      "verdict": "generic",
+      "why": "The sitemap has only 2 URLs, so the benefit is small and the advice is common to any site."
+    },
+    {
+      "idea": "Add an llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt as a way to be found is folklore, and the report's own caveat doesn't change that."
+    },
+    {
+      "idea": "Add explicit AI-crawler groups to robots.txt",
+      "verdict": "generic",
+      "why": "The * group already allows them, so this only states a policy and applies to any site."
+    },
+    {
+      "idea": "Add a favicon, link rel=alternate and hreflang en-GB",
+      "verdict": "generic",
+      "why": "This is boilerplate for any site, and hreflang is only needed if multiple regions are served."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Give each mug its own page and URL",
+      "verdict": "useful",
+      "why": "Catalogue.jsx renders each mug as a bare <p>, so per-mug routes would give people and machines a direct address for each product."
+    },
+    {
+      "idea": "Add price, size and shipping details to the home page text",
+      "verdict": "generic",
+      "why": "This is hedged advice that would apply to almost any shop and isn't tied to a specific gap in the code."
+    },
+    {
+      "idea": "Add Organization/Product JSON-LD",
+      "verdict": "generic",
+      "why": "It's accurate and the page does state Bristol and handmade, but it is hedged on real prices and details that don't exist yet, so it is standard advice for any shop."
+    },
+    {
+      "idea": "Add a viewport meta tag to index.html",
+      "verdict": "useful",
+      "why": "index.html has only charset and title and no viewport tag, so mobile rendering is affected and the fix is a one-line change."
+    },
+    {
+      "idea": "Add an in-body link from Home to the catalogue",
+      "verdict": "useful",
+      "why": "Home.jsx has no link onward to /catalogue, and the only nav entry is a button, so a body link would give crawlers and visitors a real path."
+    },
+    {
+      "idea": "Add a canonical URL once the domain is known",
+      "verdict": "generic",
+      "why": "It is accurate and no canonical tag exists, but it is standard advice and the report leaves it as 'can't tell' pending the domain."
+    },
+    {
+      "idea": "Give each page its own title and description, not just index.html's",
+      "verdict": "useful",
+      "why": "The app has two routes sharing one static head, so per-route titles and descriptions would help distinguish them."
+    }
+  ]
+}

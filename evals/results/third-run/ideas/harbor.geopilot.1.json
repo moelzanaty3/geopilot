@@ -1,0 +1,67 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add LocalBusiness/Organization JSON-LD with phone and address, placed on the home page since contact is noindex",
+      "verdict": "useful",
+      "why": "Contact details exist only as plain text on a noindex page, so structured data on an indexable page would help machines identify the harbour office."
+    },
+    {
+      "idea": "Replace the price sentence with a table of mooring sizes and prices",
+      "verdict": "useful",
+      "why": "The moorings description promises sizes and seasonal prices, but the page only says 'from £40 a night'."
+    },
+    {
+      "idea": "Link from the home page body to /moorings and /contact",
+      "verdict": "generic",
+      "why": "The nav already links all pages, so links in the body add little."
+    },
+    {
+      "idea": "Show the FAQ questions and answers in visible page text, not only in JSON-LD",
+      "verdict": "useful",
+      "why": "The FAQ content exists only in structured data, so the page text and the markup don't match."
+    },
+    {
+      "idea": "State the water taxi season (May to September) in the page text",
+      "verdict": "useful",
+      "why": "The season is only in the FAQ JSON, and the page just says 'with a water taxi'."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "This is accurate, but it has little effect on a three-page site, and the report itself says to add it only if the dates are real."
+    },
+    {
+      "idea": "Add charset and viewport meta tags to the head",
+      "verdict": "generic",
+      "why": "This is accurate for the layout but is standard boilerplate with little effect on discoverability."
+    },
+    {
+      "idea": "Add a <main> element to the layout",
+      "verdict": "generic",
+      "why": "This is accurate, but it's a standard semantic improvement that many sites could use, and it has little effect."
+    },
+    {
+      "idea": "Set Astro's `site` option in an astro.config",
+      "verdict": "useful",
+      "why": "There is no astro.config, so no site origin is set, and that origin is needed to build absolute canonical URLs."
+    },
+    {
+      "idea": "Change the robots default to \"index, follow\" or drop the tag",
+      "verdict": "generic",
+      "why": "This is the same fix as the known max-snippet problem, only restated."
+    },
+    {
+      "idea": "Fix the Article headline by removing the trailing comma and adding a geo.config.json policy if the crawler block is deliberate",
+      "verdict": "generic",
+      "why": "This restates known problems or points to a tool config rather than adding anything specific to this site."
+    },
+    {
+      "idea": "Describe the home page's duplicate purpose ('Two pages overlap in purpose')",
+      "verdict": "wrong",
+      "why": "The note's heading claims the home and moorings pages overlap, but the files don't show that, and the advice it gives is only about internal links."
+    }
+  ]
+}

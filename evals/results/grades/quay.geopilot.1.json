@@ -1,0 +1,14 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 1,
+  "found": [
+    "googlebot-blocked",
+    "ssr-disabled",
+    "no-html-lang",
+    "empty-description-shop",
+    "product-jsonld-incomplete"
+  ],
+  "flagged": [],
+  "extraIssues": 2
+}

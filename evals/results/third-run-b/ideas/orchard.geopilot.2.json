@@ -1,0 +1,32 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add address and directions text to the visit page, since the description promises directions",
+      "verdict": "useful",
+      "why": "The visit page description says 'Opening times and directions' but the body has only opening days, so the gap is real and fixable."
+    },
+    {
+      "idea": "Add LocalBusiness JSON-LD for address and hours on the visit page",
+      "verdict": "generic",
+      "why": "It is accurate but optional, and the deliberate choices say having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Give each apple variety its own page and URL",
+      "verdict": "useful",
+      "why": "The varieties page claims over forty varieties but lists only two, so individual pages would give people and machines something specific to find and cite."
+    },
+    {
+      "idea": "Add in-text links from the home page to the varieties and visit pages",
+      "verdict": "generic",
+      "why": "The pages are already linked from the site-wide nav, so body links add little."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "It is accurate, since the sitemap has no lastmod, but it is a small signal that applies to almost any site and the site has only three pages."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add price and availability (offers) to the Product structured data",
+      "verdict": "useful",
+      "why": "Product JSON-LD on /shop has only a name, so adding offers is specific and helps machines read what is sold, though it overlaps the known JSON-LD problem."
+    },
+    {
+      "idea": "Add a visible delivery policy page linked from the nav to back up 'shipped next day'",
+      "verdict": "useful",
+      "why": "The only delivery detail is in a data-nosnippet element, so a crawlable policy page gives the claim visible support."
+    },
+    {
+      "idea": "Create separate pages for each product or category and list them in the sitemap",
+      "verdict": "useful",
+      "why": "The shop page is a single stub line with no product pages, so individual addressable pages would give crawlers and users something to find."
+    },
+    {
+      "idea": "Add a viewport meta tag to src/app.html",
+      "verdict": "useful",
+      "why": "The shell has no viewport meta, which is true and affects mobile rendering."
+    },
+    {
+      "idea": "Wrap page content in a <main> landmark",
+      "verdict": "generic",
+      "why": "The content is not in <main>, which is accurate, but this is a common structural suggestion with small effect."
+    },
+    {
+      "idea": "Expand the home page with text and links to shop sections",
+      "verdict": "generic",
+      "why": "The home page has only a heading, but the advice to add more text and links is vague and could apply to any site."
+    },
+    {
+      "idea": "Run the tool's fix command to apply item 1",
+      "verdict": "generic",
+      "why": "This points at the already-known Googlebot block and is a tool usage step rather than a new site recommendation."
+    }
+  ]
+}

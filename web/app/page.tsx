@@ -231,7 +231,7 @@ export default function Home() {
             <Link href="/docs/agent/">Read the plugin guide →</Link>
           </p>
           <p className="hosts-more">
-            In our <Link href="/docs/benchmark/">published benchmark on six sample projects</Link>, geopilot and a plain prompt found the same planted bugs, and geopilot raised about 14 times fewer false alarms, at about twice the cost.
+            In our <Link href="/docs/benchmark/">published benchmark on six sample projects</Link>, geopilot and a plain prompt found the same planted bugs. Geopilot raised no false alarms against 0.67 per report, and far fewer wrong ideas. A plain prompt raised more useful ideas, and cost about half as much.
           </p>
           <div className="grid cols-2">
             <div className="card">

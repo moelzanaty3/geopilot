@@ -46,10 +46,13 @@ You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopil
 | | Plain prompt | geopilot |
 | --- | --- | --- |
 | Planted bugs found | 100% | 100% |
-| **False alarms per report** | **0.78** | **0.06** |
-| Cost per run | $0.07 | $0.15 |
+| **False alarms per report** | **0.67** | **0** |
+| Useful ideas per report | 6.0 | 4.2 |
+| Wrong ideas per report | 2.3 | 0.6 |
+| Cost per run | $0.07 | $0.14 |
+| Time per run | 32s | 44s |
 
-geopilot's advantage is advice you can act on: fewer changes to things that were fine, every problem tied to a quote, and the same structure every time. A plain prompt is cheaper and raises more ideas, some useful and some noise. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
+geopilot's advantage is advice you can act on: no false alarms in this test, far fewer wrong ideas, every problem tied to a quote, and ideas kept apart from problems and the score. A plain prompt is cheaper, faster and still raises more useful ideas, along with more noise. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
 
 ## Live checks with the CLI
 

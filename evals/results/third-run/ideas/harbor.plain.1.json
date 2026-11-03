@@ -1,0 +1,77 @@
+{
+  "fixture": "harbor",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Fix canonical using Astro.url and Astro.site (item 2 fix)",
+      "verdict": "useful",
+      "why": "Part of the known canonical problem, but the report's added requirement of setting site in astro config is a concrete step; still, the canonical issue itself is known."
+    },
+    {
+      "idea": "Replace Article JSON-LD on moorings with Service/Product with offers (£40/night), not just fix comma",
+      "verdict": "useful",
+      "why": "The Article type with no author or date is a poor fit for a pricing page, and offers markup would describe the actual content."
+    },
+    {
+      "idea": "Render the FAQ questions and answers visibly on the home page to match the FAQ JSON-LD",
+      "verdict": "useful",
+      "why": "index.astro injects FAQ JSON-LD while the page shows only an h1 and one sentence, so markup does not match visible content."
+    },
+    {
+      "idea": "Add astro.config.mjs with site and @astrojs/sitemap integration instead of hand-maintained sitemap",
+      "verdict": "useful",
+      "why": "No astro config exists, the sitemap is hand-written without lastmod, and absolute URLs need site."
+    },
+    {
+      "idea": "Replace placeholder harbor.example domain with the production domain",
+      "verdict": "generic",
+      "why": "The domain is clearly a placeholder, but the fix needs the real domain from the owner and is a deployment step."
+    },
+    {
+      "idea": "Add meta charset, viewport, Open Graph/Twitter tags and favicon to Base.astro",
+      "verdict": "useful",
+      "why": "Base.astro head has only title, description, canonical and robots, so charset and viewport are missing and the claim is accurate."
+    },
+    {
+      "idea": "Add LocalBusiness/Organization schema with address, phone and hours on the homepage",
+      "verdict": "useful",
+      "why": "No entity markup exists and the site is a local harbour business with a phone number on the contact page."
+    },
+    {
+      "idea": "Align Harbor/harbour spelling in index title and put the Falmouth keyword in the title",
+      "verdict": "useful",
+      "why": "The title says 'Harbor moorings in Cornwall' while the H1 and description say Falmouth harbour, an actual inconsistency."
+    },
+    {
+      "idea": "Expand home page content on mooring types, booking and water taxi",
+      "verdict": "generic",
+      "why": "Page content is thin, but this is general 'add more content' advice with no specific facts to anchor it."
+    },
+    {
+      "idea": "Add a real pricing table with sizes and seasons on the moorings page",
+      "verdict": "useful",
+      "why": "The description promises sizes and seasonal prices but the page only says prices start at £40 a night."
+    },
+    {
+      "idea": "Make the phone number a tel: link and add address and email on contact page",
+      "verdict": "useful",
+      "why": "The contact page has the number as plain text only, so a tel: link and fuller details help people and machines."
+    },
+    {
+      "idea": "Switch Newsletter from client:load to a static component or client:visible",
+      "verdict": "wrong",
+      "why": "It reverses the deliberate choice to use client:load for the form, and the form is not the main content."
+    },
+    {
+      "idea": "Add a default title and brand suffix to the layout",
+      "verdict": "generic",
+      "why": "Accurate but low impact; titles are already passed on every page."
+    },
+    {
+      "idea": "Add an llms.txt file",
+      "verdict": "generic",
+      "why": "The report itself calls it optional and not a ranking factor, and the absence is a deliberate choice."
+    }
+  ]
+}

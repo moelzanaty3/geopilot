@@ -1,0 +1,77 @@
+{
+  "fixture": "harbor",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Delete/allow the OAI-SearchBot and PerplexityBot blocks, block GPTBot instead for training opt-out",
+      "verdict": "useful",
+      "why": "This is the known robots.txt problem, but the added GPTBot suggestion is not a separate harmful claim; it is still part of the known item."
+    },
+    {
+      "idea": "Replace Article JSON-LD with Product/Offer data for the £40/night price and add author/datePublished/dateModified/image",
+      "verdict": "generic",
+      "why": "Adding Article fields is standard advice, and Product/Offer for a mooring with a single 'from' price is a stretch with little effect."
+    },
+    {
+      "idea": "Add lastmod to each sitemap URL",
+      "verdict": "generic",
+      "why": "Accurate but minor, and applies to nearly any sitemap."
+    },
+    {
+      "idea": "Render the FAQ Q&As from faq.json as visible HTML on the home page",
+      "verdict": "useful",
+      "why": "index.astro injects FAQPage JSON-LD but the body has no visible FAQ, so markup doesn't match visible content."
+    },
+    {
+      "idea": "Add LocalBusiness/Marina structured data in Base.astro using the phone number from contact.astro",
+      "verdict": "useful",
+      "why": "No Organization/LocalBusiness data exists and the phone number and place are in the files, though putting it in Base would apply it to every page."
+    },
+    {
+      "idea": "Add astro.config.mjs with site and preact() integration, and consider @astrojs/sitemap",
+      "verdict": "useful",
+      "why": "No config file exists, so Preact isn't registered for Newsletter.jsx and site is unset for canonicals."
+    },
+    {
+      "idea": "Add meta charset, viewport, Open Graph and Twitter tags in Base.astro",
+      "verdict": "generic",
+      "why": "Accurate since these are missing, but it's standard head boilerplate that applies to nearly any site."
+    },
+    {
+      "idea": "Fix title/description quality: Harbor vs harbour spelling, add place name/brand, lengthen descriptions to 120-155 characters",
+      "verdict": "useful",
+      "why": "The spelling inconsistency is real in index.astro versus the body text, and the short descriptions lack place and detail, though the character-count target is folklore."
+    },
+    {
+      "idea": "Expand thin content with sizes, seasonal rates, booking steps, water taxi times and keep one page per topic",
+      "verdict": "useful",
+      "why": "moorings.astro has a single price line and index.astro is two lines, so concrete quotable facts are missing."
+    },
+    {
+      "idea": "Wrap page content in <main> and add header landmarks in Base.astro",
+      "verdict": "generic",
+      "why": "Accurate since there's no <main>, but it's a general accessibility practice with little effect on discovery."
+    },
+    {
+      "idea": "Add name to the newsletter input and type to the button",
+      "verdict": "generic",
+      "why": "Accurate but minor form hygiene that applies to any site."
+    },
+    {
+      "idea": "Switch Newsletter from client:load to client:visible",
+      "verdict": "wrong",
+      "why": "Newsletter's client:load is a stated deliberate choice, so recommending a change reverses it."
+    },
+    {
+      "idea": "Optionally add /llms.txt",
+      "verdict": "wrong",
+      "why": "The report itself says the benefit is unproven, and llms.txt as a way to be found is folklore and a deliberate non-issue."
+    },
+    {
+      "idea": "Remove noindex or drop /contact from sitemap, and add lastmod (the decision part)",
+      "verdict": "generic",
+      "why": "The mismatch is a known problem, so this is the same item and not a separate recommendation."
+    }
+  ]
+}

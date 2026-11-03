@@ -1,0 +1,37 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Give each product its own page with price and availability markup, listing real products",
+      "verdict": "useful",
+      "why": "The shop has one sentence and a bare Product with only a name, so real product pages with price and availability would help machines understand the catalogue."
+    },
+    {
+      "idea": "Expand /shop text to list which pumps, sizes and prices as machine-readable text",
+      "verdict": "useful",
+      "why": "The shop page is one short sentence, so concrete product details would give readers and crawlers real content."
+    },
+    {
+      "idea": "Back up the 'shipped next day' claim with cut-off times and regions on the page",
+      "verdict": "useful",
+      "why": "The home page makes the claim, and the only delivery text is in a nosnippet footer, so the claim is unsupported where it can be read."
+    },
+    {
+      "idea": "Add a meta viewport tag to app.html",
+      "verdict": "generic",
+      "why": "It is accurate, since app.html has no viewport tag, but it is a standard item for any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Wrap page content in a <main> landmark",
+      "verdict": "generic",
+      "why": "It is accurate because the body is a plain div, but this is standard advice that applies to almost any site and has a small effect."
+    },
+    {
+      "idea": "Add a meta description for /search",
+      "verdict": "wrong",
+      "why": "The report itself says it isn't needed. /search is noindex on purpose, so this would work against a deliberate choice."
+    }
+  ]
+}

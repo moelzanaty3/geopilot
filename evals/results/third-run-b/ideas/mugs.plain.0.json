@@ -1,0 +1,107 @@
+{
+  "fixture": "mugs",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add per-route titles, descriptions and canonical links (React 19 head hoisting or helmet) for Home and Catalogue",
+      "verdict": "useful",
+      "why": "Both routes share one generic head, so per-route metadata is concrete and fits this React 19 app."
+    },
+    {
+      "idea": "Add viewport meta tag to index.html",
+      "verdict": "useful",
+      "why": "index.html has no viewport meta, so mobile rendering and indexing suffer."
+    },
+    {
+      "idea": "Add Open Graph/Twitter tags",
+      "verdict": "generic",
+      "why": "Accurate, since none exist, but it mainly affects social link previews and applies to any site."
+    },
+    {
+      "idea": "Add canonical link",
+      "verdict": "generic",
+      "why": "Accurate, but the site has two simple routes and little duplication risk, so the effect is small."
+    },
+    {
+      "idea": "Prerender or SSR routes, including /catalogue",
+      "verdict": "useful",
+      "why": "The prerendering advice is specific to this empty-root client-only app, and /catalogue is a real route."
+    },
+    {
+      "idea": "Render catalogue data at build or server time instead of a client fetch from /api/mugs",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches in useEffect, so product names aren't in the served HTML."
+    },
+    {
+      "idea": "Add per-product pages linked with <Link> and richer product details",
+      "verdict": "useful",
+      "why": "Catalogue renders bare <p> names with no URLs, price or image, so products can't be found or cited individually."
+    },
+    {
+      "idea": "Remove the unused useNavigate import after switching to Link",
+      "verdict": "generic",
+      "why": "Accurate cleanup but it has no effect on discoverability."
+    },
+    {
+      "idea": "Add JSON-LD Organization/LocalBusiness on Home",
+      "verdict": "useful",
+      "why": "Home states Bristol and worldwide shipping, which gives concrete facts to mark up."
+    },
+    {
+      "idea": "Add Product/Offer JSON-LD for each mug",
+      "verdict": "generic",
+      "why": "Reasonable, but the data has no prices or offers yet, so it depends on first adding product details."
+    },
+    {
+      "idea": "Add BreadcrumbList JSON-LD on product pages",
+      "verdict": "wrong",
+      "why": "No product pages exist and the report treats them as a future addition, so breadcrumbs add little."
+    },
+    {
+      "idea": "Image width/height, fetchpriority, modern formats and srcset for the hero image",
+      "verdict": "useful",
+      "why": "The hero <img> in Home.jsx has no dimensions or priority hints, so it can cause layout shift and slow LCP."
+    },
+    {
+      "idea": "Expand thin Home content with materials, care, sizes, shipping, returns, and about/contact info",
+      "verdict": "useful",
+      "why": "Home has one sentence, so this adds real facts that users and AI engines can use."
+    },
+    {
+      "idea": "Add an FAQ section with FAQPage JSON-LD",
+      "verdict": "wrong",
+      "why": "A mandatory FAQ is folklore, and FAQPage rich results are largely restricted."
+    },
+    {
+      "idea": "Make the Catalogue h1 and nav labels more descriptive",
+      "verdict": "generic",
+      "why": "'Catalogue' is already clear on a mug shop, so the effect is minimal."
+    },
+    {
+      "idea": "Add aria-label to <nav>",
+      "verdict": "generic",
+      "why": "There's only one nav, so a label adds almost nothing."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt isn't a way to be found, and the report itself says adoption is inconsistent."
+    },
+    {
+      "idea": "Add error handling and loading state to the Catalogue fetch",
+      "verdict": "generic",
+      "why": "Accurate, since there's no .catch, but it's a UX robustness point more than a discoverability one."
+    },
+    {
+      "idea": "Serve robots.txt only on staging if it was meant for staging",
+      "verdict": "generic",
+      "why": "This is a conditional note about the known robots.txt problem and applies to any site."
+    },
+    {
+      "idea": "Add per-bot Disallow blocks to opt out of AI training",
+      "verdict": "generic",
+      "why": "This is optional policy advice that applies to any site."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Server-render the blog list and give each post its own page/URL",
+      "verdict": "useful",
+      "why": "The blog is client-fetched in useEffect, so moving it server-side and adding per-post URLs makes the content visible in HTML and linkable."
+    },
+    {
+      "idea": "Expand the pricing page with paid plan details",
+      "verdict": "useful",
+      "why": "The page only says 'Free for up to three people' while its description promises plans for every team size."
+    },
+    {
+      "idea": "Expand the docs page beyond a single sentence with real setup steps",
+      "verdict": "useful",
+      "why": "The docs page has one sentence while its description promises setup instructions, so readers and machines get little content."
+    },
+    {
+      "idea": "Add Organization/SoftwareApplication JSON-LD",
+      "verdict": "generic",
+      "why": "This is accurate but would apply to almost any site, and the report itself hedges with 'if you want that'."
+    },
+    {
+      "idea": "Add links from the home page to pricing and docs",
+      "verdict": "generic",
+      "why": "The nav already links to these pages from every page, so in-body links add little."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries once real dates exist",
+      "verdict": "generic",
+      "why": "This is standard sitemap advice that applies to any site and has little effect here."
+    },
+    {
+      "idea": "Remove the noindex from /pricing, or drop it from the sitemap and nav",
+      "verdict": "wrong",
+      "why": "This duplicates the known pricing noindex problem and is not a separate recommendation."
+    }
+  ]
+}

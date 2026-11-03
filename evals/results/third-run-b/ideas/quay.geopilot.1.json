@@ -1,0 +1,37 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Make delivery/shipping promise machine-readable with a visible shipping page, keeping the data-nosnippet block",
+      "verdict": "useful",
+      "why": "The only delivery terms sit in a nosnippet block and a visible page would back the 'next day' claim without reversing the deliberate choice."
+    },
+    {
+      "idea": "Give each product its own page with name, price and description",
+      "verdict": "useful",
+      "why": "/shop is a single page listing categories in one sentence, so individual product URLs would give crawlers real items and let Product data describe them."
+    },
+    {
+      "idea": "Link from the home page to categories/products with a short intro",
+      "verdict": "useful",
+      "why": "The home page is only an h1 and relies on the nav, so a short intro with links adds content and crawl paths."
+    },
+    {
+      "idea": "Add a viewport meta tag in app.html",
+      "verdict": "useful",
+      "why": "src/app.html really lacks a viewport meta, which affects mobile rendering and mobile-first indexing."
+    },
+    {
+      "idea": "Wrap page content in a <main> landmark",
+      "verdict": "generic",
+      "why": "Accurate (children render outside any landmark) but it has little effect on discoverability and applies to almost any site."
+    },
+    {
+      "idea": "Product JSON-LD is injected client-side via {@html} and will work once SSR is on",
+      "verdict": "generic",
+      "why": "It is a consequence of the known ssr=false problem and is fixed by that same change."
+    }
+  ]
+}

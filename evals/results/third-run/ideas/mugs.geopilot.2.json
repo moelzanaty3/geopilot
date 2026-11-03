@@ -1,0 +1,32 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Give each mug its own address/page with description and price",
+      "verdict": "useful",
+      "why": "Catalogue only lists names fetched client-side, so per-mug pages with details would give crawlers and people something concrete to index."
+    },
+    {
+      "idea": "Add more home page text answering prices, sizes, care and delivery",
+      "verdict": "generic",
+      "why": "The home page is thin, but this is broad content advice that applies to almost any shop and is speculative."
+    },
+    {
+      "idea": "Declare the site address/domain so canonical links and sitemap can use it",
+      "verdict": "useful",
+      "why": "No canonical or site URL exists anywhere in the repo, and an absolute canonical and sitemap need it."
+    },
+    {
+      "idea": "Add a viewport meta tag to index.html",
+      "verdict": "useful",
+      "why": "index.html has only charset and title, so mobile rendering lacks a viewport declaration, and the fix is a specific one-line change."
+    },
+    {
+      "idea": "Give each page its own title",
+      "verdict": "useful",
+      "why": "Both routes share one static title and nothing sets per-route titles, so route-specific titles are a concrete fix."
+    }
+  ]
+}

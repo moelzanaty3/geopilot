@@ -1,0 +1,47 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add a list of actual routes on the guides page, each with its own page and address",
+      "verdict": "useful",
+      "why": "guides.vue promises graded routes but lists none, so adding named routes gives crawlers and readers real content."
+    },
+    {
+      "idea": "Add intro text to the home page describing the walks",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and a button, so a short intro gives readers and machines something to understand and quote."
+    },
+    {
+      "idea": "Declare the real site URL in nuxt.config.ts so canonical links can be generated",
+      "verdict": "useful",
+      "why": "No canonical link or site origin exists, and the sitemap uses the placeholder trailhead.example."
+    },
+    {
+      "idea": "Replace the button with a NuxtLink",
+      "verdict": "generic",
+      "why": "This repeats the known problem about the button with router.push."
+    },
+    {
+      "idea": "Change the Sitemap line in robots.txt to an absolute URL",
+      "verdict": "generic",
+      "why": "This repeats a known problem."
+    },
+    {
+      "idea": "Turn on server rendering or prerender the routes",
+      "verdict": "generic",
+      "why": "This repeats the known ssr: false problem."
+    },
+    {
+      "idea": "Remove the X-Robots-Tag noindex rule for /guides",
+      "verdict": "generic",
+      "why": "This repeats a known problem."
+    },
+    {
+      "idea": "Give each page its own title and description",
+      "verdict": "generic",
+      "why": "This repeats the known problem of every page sharing one title."
+    }
+  ]
+}

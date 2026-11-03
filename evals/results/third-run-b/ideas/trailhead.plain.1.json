@@ -1,0 +1,67 @@
+{
+  "fixture": "trailhead",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Prerender / and /guides as an alternative to removing ssr:false (routeRules)",
+      "verdict": "useful",
+      "why": "Concrete, repo-specific nuxt.config change that makes content visible to non-JS crawlers."
+    },
+    {
+      "idea": "Scope the X-Robots-Tag middleware to /admin or delete it; note startsWith would catch future /guides/* pages",
+      "verdict": "useful",
+      "why": "Accurate reading of headers.ts; the startsWith point flags a real future risk on nested guide pages."
+    },
+    {
+      "idea": "Replace button with NuxtLink and remove unused useRouter",
+      "verdict": "useful",
+      "why": "Specific to index.vue and cleans up the unused router once the button is gone."
+    },
+    {
+      "idea": "Add per-page useSeoMeta titles/descriptions/OG tags to each page",
+      "verdict": "useful",
+      "why": "Pages set no head of their own, so unique titles and descriptions are a concrete fix."
+    },
+    {
+      "idea": "Add canonical URLs, Open Graph/Twitter tags and set a site URL (e.g. @nuxtjs/seo)",
+      "verdict": "useful",
+      "why": "No canonical or social tags exist and the site has a known base URL, so this is actionable."
+    },
+    {
+      "idea": "Add WebSite/Organization JSON-LD in app.vue and ItemList/Article schema on /guides",
+      "verdict": "generic",
+      "why": "Structured data is valid but gives little benefit for a site with two near-empty pages."
+    },
+    {
+      "idea": "Resolve the /admin conflict: drop the robots.txt Disallow, serve noindex via header, or put admin behind auth",
+      "verdict": "wrong",
+      "why": "/admin noindex plus Disallow is a deliberate, correct choice, and this advice reverses it."
+    },
+    {
+      "idea": "Expand thin content: real route pages with one URL each, distances, difficulty, summaries",
+      "verdict": "useful",
+      "why": "guides.vue and index.vue hold one heading and one sentence, so there is nothing substantive to find or cite."
+    },
+    {
+      "idea": "Add llms.txt (noted as optional)",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is a deliberate choice that isn't a problem."
+    },
+    {
+      "idea": "State an explicit AI-crawler policy in robots.txt",
+      "verdict": "generic",
+      "why": "The default is allow-all, so stating a policy changes almost nothing and applies to any site."
+    },
+    {
+      "idea": "Generate the sitemap (e.g. @nuxtjs/sitemap) with lastmod so it tracks real routes",
+      "verdict": "generic",
+      "why": "A two-URL sitemap is already correct, so generation and lastmod add little."
+    },
+    {
+      "idea": "Add generate/preview scripts to package.json",
+      "verdict": "generic",
+      "why": "Minor tooling note with no effect on discoverability, and it only matters if prerendering is used."
+    }
+  ]
+}
