@@ -122,7 +122,7 @@ describe('generated host plugins', () => {
     const scan = read('geopilot', 'skills', 'scan', 'SKILL.md');
     assert.match(scan, /## Worth considering/);
     assert.match(scan, /They aren't problems, and they don't change the score/);
-    assert.match(scan, /Each idea must come from something you read in this project/);
+    assert.match(scan, /Each idea must rest on something you read in this project/);
     assert.match(scan, /`llms\.txt`, word counts, longer content for its own sake/);
     assert.match(scan, /reversing or extending a choice that looks deliberate/);
     assert.match(scan, /never move an idea into "Do these first"/);

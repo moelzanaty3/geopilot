@@ -52,7 +52,7 @@ Tokens are read only from the environment. Never ask the user to paste one, and 
 2. **Find the important pages.** Use the router, the sitemap and the main navigation. Check shared layouts first, because they affect many pages. Sample up to 10 representative routes and say so if there are more.
 3. **Work through every rule below.** Search first, then read what you find. Request several files at once rather than one per step, and don't read a file twice. Give each rule one result: Clear, Problem, Can't tell or Not applicable. Don't stop early. Sampling applies to routes only: find and check every JSON-LD file and template, and read the navigation and shared layouts.
 4. **Note other real defects as you go.** If the code shows something wrong that affects how machines find, read or understand the site, add it to "Other problems found", with its file, line and quote.
-5. **Now read the main pages as a visitor would.** The rules check the plumbing, so this step is where your own judgement adds the most. Ask what this site is for and what someone would come to it to learn, then whether the pages answer that in text a machine can read. Add what you find to "Worth considering".
+5. **Now read the main pages as a visitor would.** The rules check the plumbing, so this step is where your own judgement adds the most. Ask what this site is for and what someone would come to it to learn. Then, for each main page, ask what that page promises, what a visitor would want from it that isn't there as text, and what's missing from its head. Add what you find to "Worth considering".
 6. **Before you score, check that you finished reading.** You need to have read the route table, the main navigation, the shared layout, up to 5 of the main pages and where their text comes from, and the code that loads each runtime value, such as where page metadata is set. If you skipped any of these, read it now. A large repository is a reason to search more precisely, not to stop. Only write "I didn't read this" if you truly ran out of room, and give the reason.
 7. **Calculate the code score** exactly as described below.
 8. **If the user asked for a live check or gave a URL,** run `geopilot scan <url> --format json --output .geo/last-scan.json --quiet` and read that file. Fill in the Live check section and the Live column, and list anything that disagrees with the code results. Never let a live result change a code result, or the reverse.
@@ -148,11 +148,11 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 
 ## All results
 
-| Rule | What it checks | Code | Live | Where |
-| --- | --- | --- | --- | --- |
-| GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | <same words, or "Not run"> | `<file>:<line>` or what you read |
+| Rule | What it checks | Code | Where |
+| --- | --- | --- | --- |
+| GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | `<file>:<line>` or what you read |
 
-<The Code and Live cells hold only those exact words. Route counts and notes go in the Where column.>
+<The Code cell holds only those exact words. Route counts and notes go in the Where column, kept short. Add a Live column only when a live check ran.>
 
 ## Other problems found
 
@@ -170,17 +170,20 @@ Optional ideas from reading this project. They aren't problems, and they don't c
 
 - **<The idea, in plain words>:** `<file>:<line>`: `<exact quote that prompted it>`. <What to do, and why it might help readers or machines.>
 
-<Up to 10, most useful first. Go through the whole list below before you stop, because most projects have several. If nothing specific comes up, write "None", and never pad the list. Each idea must come from something you read in this project: a quote, or for something absent, a quote of the visible fact that makes it worthwhile. If it would fit any website equally well, leave it out. Don't repeat anything from the sections above, and never move an idea into "Do these first". Look for:
+<Up to 10, most useful first, one line each. Go through the whole list below before you stop: a project with several pages usually has at least 6. Each idea must rest on something you read in this project: a quote, or for something missing, the file where it would go and what you checked. Name the concrete thing to add or change, so "add the opening hours and address to /visit" and not "improve content". If you truly find nothing, write "None". Don't repeat anything from the sections above, and never move an idea into "Do these first". Look for:
 - a page or heading that promises something the page doesn't deliver
 - a claim with nothing behind it, such as a number or a list the page never backs up
 - what a visitor would come to ask that the site doesn't answer in text
 - facts that exist only in an image, a video or a script
 - facts already visible on the page that structured data could label, such as a business's address and hours, a product's price or an article's author and date
 - a page that's easy to reach but has little linking onward to the pages it relates to
-- signals that could say more, such as a sitemap `<lastmod>` when real dates exist, or social tags on pages people would share
+- a sitemap with no `<lastmod>` when real dates exist
 - settings that exist but aren't connected to anything, or framework config missing the site's URL
 - a list whose items could each have their own page and address
-- head basics that affect how a page is read, such as `charset` and `viewport`, and page structure such as `<main>` and headings
+- head basics the code doesn't set, such as `charset`, `viewport` and social tags, and page structure such as `<main>` and headings
+- site identity that nothing states in a machine-readable way, such as Organization or WebSite structured data with the name and links the site already shows
+- titles and descriptions that exist but don't say what the page is, who it's from or where
+- wrong addresses that can't return a real 404, or a hand-kept sitemap the framework could generate
 
 Never suggest:
 - `llms.txt`, word counts, longer content for its own sake, keyword changes, or an FAQ just to have one
@@ -215,13 +218,11 @@ If nothing is wrong, say so plainly, and use "Do these first" for the biggest un
 
 Weight 3, high severity. Blocker: robots.txt answered 5xx.
 
-**In plain words:** `robots.txt` is the first file crawlers ask for. If it's broken, they may treat the whole site as off limits.
-
 **Check in code:** find `public/robots.txt`, a `robots.txt` route, or a framework robots file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
 
 **Can't tell from code:** whether the server really answers 200 or 404. A problem here needs a live check, unless the code visibly generates a broken response.
 
-**Checks:** /robots.txt answers 2xx or 4xx, not 5xx or a network error (live only); robots.txt is plain text within 500 KiB (code or live).
+**Checks:** /robots.txt answers 2xx or 4xx, not 5xx or a network error (live only).
 
 **Not a problem when:** A CDN serving a transient 5xx during the scan; re-run to confirm.
 
@@ -229,13 +230,9 @@ Weight 3, high severity. Blocker: robots.txt answered 5xx.
 
 Weight 3, high severity. Blocker: a search crawler is blocked site-wide against declared policy.
 
-**In plain words:** you decide whether search and AI search crawlers may read your site. This checks that `robots.txt` matches that decision, so you aren't blocking them by accident.
-
 **Check in code:** read `policy.aiSearchCrawlers` in `geo.config.json`. With no config, assume the goal is to be found, and say you assumed that. Then read the `robots.txt` groups for `Googlebot`, `Bingbot`, `OAI-SearchBot`, `Claude-SearchBot`, `PerplexityBot` and `*`. It's a problem if a wanted crawler is blocked from the whole site or from key pages. Blocking training crawlers such as `GPTBot` or `ClaudeBot` is a separate choice: mention it, but don't count it.
 
 **Can't tell from code:** rules added by a CDN, firewall or hosting platform.
-
-**Checks:** every search crawler is allowed (or blocked) on sampled paths as policy.aiSearchCrawlers declares (code or live).
 
 **Not a problem when:** A user-agent group written for a crawler token GEO does not list.
 
@@ -243,13 +240,11 @@ Weight 3, high severity. Blocker: a search crawler is blocked site-wide against 
 
 Weight 3, high severity. Blocker: every sampled route is noindex.
 
-**In plain words:** pages you want found must not tell search engines to stay away. A page that's listed in your sitemap or linked from your menu, but marked `noindex`, sends mixed signals.
-
 **Check in code:** list the important routes from the router, the sitemap and the main navigation. For each, look for `noindex` or `none` in page metadata, head tags and shared layouts, and for `robots.txt` rules blocking `Googlebot` or `Bingbot`. Look for environment switches too, such as `noindex` set unless production. Report those as can't tell, not as a problem.
 
 **Can't tell from code:** real status codes, redirects and `X-Robots-Tag` headers set outside the repository.
 
-**Checks:** sampled URLs answer 200 after redirects (live only); no noindex or none in robots metadata (code or live); no noindex in X-Robots-Tag (live only); robots.txt does not disallow Googlebot or Bingbot from the route (code or live).
+**Checks:** sampled URLs answer 200 after redirects (live only); no noindex in X-Robots-Tag (live only).
 
 **Not a problem when:** Intentionally noindexed pages that remain in a sitemap; remove them from the sitemap or suppress with a reason.
 
@@ -257,21 +252,17 @@ Weight 3, high severity. Blocker: every sampled route is noindex.
 
 Weight 2, medium severity.
 
-**In plain words:** a canonical link says "this is the main address of this page". Without a clear one, search engines have to guess between duplicate addresses.
-
 **Check in code:** look for `rel="canonical"`, `alternates.canonical`, or the framework's head helper. Each indexable route should produce exactly one absolute URL on the site's own domain. A relative canonical, or one hardcoded to the same URL on every page, is a problem. Use `site.origin` from `geo.config.json` or a domain clearly declared in code. Never guess the domain.
 
 **Can't tell from code:** whether the target page really answers 200, or which domain is intended when none is declared. Ask the user for the domain and treat the rule as can't tell until they answer.
 
-**Checks:** exactly one absolute canonical URL (code or live); the canonical is on site.origin (code or live); the canonical target answers 200 and is not noindex (live only).
+**Checks:** the canonical target answers 200 and is not noindex (live only).
 
 **Not a problem when:** Deliberate cross-domain canonicals for syndicated content.
 
 ### GEO-003: Primary content is present in server HTML
 
 Weight 3, medium severity.
-
-**In plain words:** many crawlers read the HTML your server first sends and don't run JavaScript. If your content only appears after JavaScript runs, they may see an empty page.
 
 **Check in code:** work out how pages render. Server Components, SSR and static generation are clear. A client-only app, such as React with Vite or Create React App and an almost empty `<div id="root">` with no prerendering, is a problem for pages whose content matters. In server frameworks, flag a page whose main content is fetched only in the browser, such as inside `useEffect`.
 
@@ -285,13 +276,9 @@ Weight 3, medium severity.
 
 Weight 2, medium severity.
 
-**In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
-
 **Check in code:** search for `application/ld+json`, for objects with `@context` and `@type`, and for JSON files with those keys. Check every one you find, including each entry in a list: a blank or misspelled key counts as a missing property. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
 
 **Can't tell from code:** values built at runtime or loaded from a CMS.
-
-**Checks:** every application/ld+json block is valid JSON (code or live); known types carry their documented required properties (code or live).
 
 **Not a problem when:** Types GEO does not model are checked for parsing only.
 
@@ -299,13 +286,11 @@ Weight 2, medium severity.
 
 Weight 2, medium severity.
 
-**In plain words:** a sitemap is the list of pages you want found. `robots.txt` should point to it so crawlers can find that list.
-
 **Check in code:** find `sitemap.xml`, `app/sitemap.ts`, or a sitemap plugin or generator. Check that it's a valid sitemap and that `robots.txt` has an absolute `Sitemap:` line. A public site with no sitemap at all is a problem. If the code serves a sitemap through a route or library and `robots.txt` points to it, the rule is Clear, even when the URLs in it are built at runtime.
 
 **Can't tell from code:** whether listed URLs really answer 200, or what a runtime-built sitemap contains. List those under "Can't tell from code". They don't change the result.
 
-**Checks:** a sitemap exists and parses as urlset or sitemapindex (code or live); robots.txt carries a Sitemap: line (code or live); sampled listed URLs answer 200 (live only).
+**Checks:** sampled listed URLs answer 200 (live only).
 
 **Not a problem when:** Sitemaps submitted only through a search console; GEO cannot see those.
 
@@ -313,19 +298,13 @@ Weight 2, medium severity.
 
 Weight 2, medium severity.
 
-**In plain words:** the title and description are what people and machines read first about a page. The `lang` attribute tells them which language it's in.
-
 **Check in code:** find the root `<html>` and check `lang`. For each important route, follow the metadata from the page up through its layouts. Every route needs a non-empty title and description. A site-wide default that makes every page look identical counts as a problem for the routes that share it.
 
 **Can't tell from code:** values loaded entirely from a CMS or API.
 
-**Checks:** a non-empty <title> (code or live); a non-empty meta description (code or live); a non-empty lang on <html> (code or live).
-
 ### GEO-016: Key routes are reachable through server-rendered links
 
 Weight 2, medium severity.
-
-**In plain words:** crawlers find pages by following normal links. If a page can only be reached by a button or script, they may never find it.
 
 **Check in code:** look at navigation, footers and page content. Good links are `<a href>` or framework links that render one, such as `Link` or `RouterLink`. It's a problem if an important page is reached only through `onClick` with `navigate()`, or only appears after login or in a client-only menu. The home page doesn't need a link to it. Leave out dynamic routes whose real URLs you can't list; mention them under "Can't tell from code".
 
@@ -339,21 +318,15 @@ Weight 2, medium severity.
 
 Weight 2, medium severity.
 
-**In plain words:** `nosnippet` and `max-snippet:0` stop search tools from quoting your page. If you want AI search to show you, these work against you.
-
 **Check in code:** this applies when the policy is to allow AI search, or when you assumed that goal under GEO-009. Search metadata and head tags for page-wide `nosnippet` and `max-snippet:0`. Also check code that sets `X-Robots-Tag`, such as middleware, `next.config` `headers()`, or server and CDN config in the repository. `data-nosnippet` on one element is a deliberate choice and is fine.
 
 **Can't tell from code:** headers added outside the repository.
-
-**Checks:** no nosnippet or max-snippet:0 in robots metadata (code or live); no nosnippet or max-snippet:0 in X-Robots-Tag (from source: no middleware or headers() that could set it) (code or live).
 
 **Not a problem when:** data-nosnippet on specific elements is not flagged; it is a scoped choice.
 
 ### GEO-002: Selected accessibility checks pass on the rendered page
 
 Weight 1, low severity.
-
-**In plain words:** machines read pages much like screen readers do. Images need descriptions, and links and buttons need names.
 
 **Check in code:** check shared components and the main pages for `<img>` or image components with no `alt`, icon-only links or buttons with no accessible name, and pages with no title. Report what you actually read, and sample the most-used components rather than every file.
 
@@ -365,8 +338,6 @@ Weight 1, low severity.
 
 Weight 2, medium severity.
 
-**In plain words:** if you have a mobile app, two small files prove that it and your website belong together, so links can open the app.
-
 **Check in code:** this applies only when the project declares a mobile app, through `profile: "app"` in `geo.config.json` or clear evidence the user confirms. Otherwise it's not applicable. Look for `.well-known/apple-app-site-association` and `.well-known/assetlinks.json` in the public folder or a route, and check they name the right app.
 
 **Can't tell from code:** whether they're served as JSON with no redirect.
@@ -377,8 +348,6 @@ Weight 2, medium severity.
 
 For information only. Never scored.
 
-**In plain words:** `llms.txt` is an experimental idea for a file that guides AI tools. It's optional, and most sites don't have one.
-
 **Check in code:** note whether `public/llms.txt` or a route for it exists. Never count it, never call its absence a problem, and don't recommend it as a way to be found.
 
 **Can't tell from code:** nothing that matters. This rule is for information only.
@@ -386,8 +355,6 @@ For information only. Never scored.
 ### GEO-102: App-specific structured data (informational, app profile)
 
 For information only. Never scored.
-
-**In plain words:** app listings can use structured data to describe the app. It's useful context, but not a requirement.
 
 **Check in code:** when the project is an app, note any `SoftwareApplication` or `MobileApplication` JSON-LD. Never count it.
 

@@ -57,6 +57,13 @@ for (const c of COMMANDS) {
 
 // Facts come from the engine's catalogue and the how-to from skill/rules.md, so the
 // agents and the CLI can't disagree about what a rule is.
+// The scan's guide already says what to read, so it only needs the checks that wait for a live site.
+function checksLine(rule, forScan) {
+  const checks = forScan ? rule.subChecks.filter((c) => c.scope === 'url') : rule.subChecks;
+  if (checks.length === 0) return [];
+  return [`**Checks:** ${checks.map((c) => `${c.description} (${c.scope === 'url' ? 'live only' : 'code or live'})`).join('; ')}.`];
+}
+
 // A scan only has to judge each rule. Fix steps and sources are left to `fix` and
 // `explain`, which keeps them out of the prompt on the path everyone runs first.
 function ruleGuide({ forScan = false } = {}) {
@@ -70,8 +77,8 @@ function ruleGuide({ forScan = false } = {}) {
     return [
       `### ${r.id}: ${r.title}`,
       r.scored ? `Weight ${r.weight}, ${r.severity} severity.${r.blockerCap ? ` Blocker: ${r.blockerCap}.` : ''}` : 'For information only. Never scored.',
-      guide,
-      ...(r.subChecks.length > 0 ? [`**Checks:** ${r.subChecks.map((c) => `${c.description} (${c.scope === 'url' ? 'live only' : 'code or live'})`).join('; ')}.`] : []),
+      forScan ? guide.replace(/^\*\*In plain words:\*\*[^\n]*\n\n/, '') : guide,
+      ...checksLine(r, forScan),
       ...(forScan ? [] : [`**How to fix:** ${r.remediation}`]),
       ...(r.falsePositives.length > 0 ? [`**Not a problem when:** ${r.falsePositives.join(' ')}`] : []),
       ...(forScan ? [] : [`**Official sources:** ${r.references.map((s) => `[${s.title}](${s.url})`).join(', ')}`]),

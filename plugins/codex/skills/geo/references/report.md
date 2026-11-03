@@ -39,11 +39,11 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 
 ## All results
 
-| Rule | What it checks | Code | Live | Where |
-| --- | --- | --- | --- | --- |
-| GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | <same words, or "Not run"> | `<file>:<line>` or what you read |
+| Rule | What it checks | Code | Where |
+| --- | --- | --- | --- |
+| GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | `<file>:<line>` or what you read |
 
-<The Code and Live cells hold only those exact words. Route counts and notes go in the Where column.>
+<The Code cell holds only those exact words. Route counts and notes go in the Where column, kept short. Add a Live column only when a live check ran.>
 
 ## Other problems found
 
@@ -61,17 +61,20 @@ Optional ideas from reading this project. They aren't problems, and they don't c
 
 - **<The idea, in plain words>:** `<file>:<line>`: `<exact quote that prompted it>`. <What to do, and why it might help readers or machines.>
 
-<Up to 10, most useful first. Go through the whole list below before you stop, because most projects have several. If nothing specific comes up, write "None", and never pad the list. Each idea must come from something you read in this project: a quote, or for something absent, a quote of the visible fact that makes it worthwhile. If it would fit any website equally well, leave it out. Don't repeat anything from the sections above, and never move an idea into "Do these first". Look for:
+<Up to 10, most useful first, one line each. Go through the whole list below before you stop: a project with several pages usually has at least 6. Each idea must rest on something you read in this project: a quote, or for something missing, the file where it would go and what you checked. Name the concrete thing to add or change, so "add the opening hours and address to /visit" and not "improve content". If you truly find nothing, write "None". Don't repeat anything from the sections above, and never move an idea into "Do these first". Look for:
 - a page or heading that promises something the page doesn't deliver
 - a claim with nothing behind it, such as a number or a list the page never backs up
 - what a visitor would come to ask that the site doesn't answer in text
 - facts that exist only in an image, a video or a script
 - facts already visible on the page that structured data could label, such as a business's address and hours, a product's price or an article's author and date
 - a page that's easy to reach but has little linking onward to the pages it relates to
-- signals that could say more, such as a sitemap `<lastmod>` when real dates exist, or social tags on pages people would share
+- a sitemap with no `<lastmod>` when real dates exist
 - settings that exist but aren't connected to anything, or framework config missing the site's URL
 - a list whose items could each have their own page and address
-- head basics that affect how a page is read, such as `charset` and `viewport`, and page structure such as `<main>` and headings
+- head basics the code doesn't set, such as `charset`, `viewport` and social tags, and page structure such as `<main>` and headings
+- site identity that nothing states in a machine-readable way, such as Organization or WebSite structured data with the name and links the site already shows
+- titles and descriptions that exist but don't say what the page is, who it's from or where
+- wrong addresses that can't return a real 404, or a hand-kept sitemap the framework could generate
 
 Never suggest:
 - `llms.txt`, word counts, longer content for its own sake, keyword changes, or an FAQ just to have one
