@@ -69,6 +69,7 @@ function ruleGuide() {
       `### ${r.id}: ${r.title}`,
       r.scored ? `Weight ${r.weight}, ${r.severity} severity.${r.blockerCap ? ` Blocker: ${r.blockerCap}.` : ''}` : 'For information only. Never scored.',
       guide,
+      ...(r.subChecks.length > 0 ? [`**Checks:** ${r.subChecks.map((c) => `${c.description} (${c.scope === 'url' ? 'live only' : 'code or live'})`).join('; ')}.`] : []),
       `**How to fix:** ${r.remediation}`,
       ...(r.falsePositives.length > 0 ? [`**Not a problem when:** ${r.falsePositives.join(' ')}`] : []),
       `**Official sources:** ${r.references.map((s) => `[${s.title}](${s.url})`).join(', ')}`,

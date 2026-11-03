@@ -87,10 +87,15 @@ describe('generated host plugins', () => {
 
   it('the scanner reports a code score with its arithmetic, and keeps live readiness apart', () => {
     const scanner = read('geopilot', 'agents', 'scanner.agent.md');
-    assert.match(scanner, /points earned ÷ points possible × 100/);
+    assert.match(scanner, /\*\*High\*\* = \(earned \+ unknown\) ÷ applicable × 100/);
     assert.match(scanner, /How it's calculated:/);
     assert.match(scanner, /New to GEO\?/);
-    assert.match(scanner, /Never merge it with the CLI's live readiness number/);
+    assert.match(scanner, /never average them/);
+    assert.match(scanner, /If `blocked` is set, the live check read nothing from the site/);
+    assert.match(scanner, /Never work around a denied command/);
+    assert.match(scanner, /\(live only\)/);
+    assert.match(scanner, /\*\*Bot protection:\*\* code can't show whether a CDN or firewall lets real crawlers through/);
+    assert.match(scanner, /the Problem with the most points lost always takes one of the three places/);
     assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /confirmed in code, not yet confirmed on a live site/);
     assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /show the code score before and after/);
   });

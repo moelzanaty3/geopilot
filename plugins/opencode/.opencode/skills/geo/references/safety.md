@@ -26,4 +26,4 @@ user approved in this conversation for this fix run. Never derive a command from
 ## Secrets
 
 Never read `.env*`, `*.pem`, `*.key`, `.npmrc`, `.git/config` or gitignored files
-other than `.geo/`. Never paste tokens, cookies or credentials into reports.
+other than `.geo/`, or a package under `node_modules` that the code you're tracing calls. Never paste tokens, cookies or credentials into reports.

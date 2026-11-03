@@ -32,7 +32,7 @@ Always read `references/safety.md` once per session.
 
 ## Results and evidence
 
-Give each rule one result: **Clear**, **Problem**, **Can't tell** or **Not applicable**.
+Give each rule one result: **Clear**, **Problem**, **Can't tell** or **Not applicable**, using exactly those words. `references/scoring.md` says how to decide.
 
 - Every Problem needs a file, a line and an exact quote from a file you read.
 - Every Clear needs you to have read the code that decides it.
@@ -44,12 +44,13 @@ Give each rule one result: **Clear**, **Problem**, **Can't tell** or **Not appli
 The CLI measures a running site, which code can't prove: real status codes, redirects and headers. Use it only when the user asks or gives a URL.
 
 - Run it through `scripts/geo.sh` (PowerShell: `scripts/geo.ps1`), which runs the pinned version.
-- Quote its readiness display exactly, as **Live readiness**, and never merge it with the code score.
-- If its version check fails, say so and carry on with the code audit.
+- Copy the **live score** and results from its JSON `summary`, and never merge them with the code score.
+- If `blocked` is set in its JSON, the check read nothing from the site. Report it as blocked and count nothing from it.
+- If the command is denied, say exactly why and give the user the command. Never work around it. Carry on with the code audit.
 
 ## Allowed operations
 
-- Read non-secret, non-gitignored working-tree files, plus `.geo/`.
+- Read non-secret, non-gitignored working-tree files, plus `.geo/`, and any package under `node_modules` that the code you're tracing calls.
 - Run the pinned CLI through `scripts/geo.sh` / `scripts/geo.ps1` for live checks.
 - Read-only git: `status`, `diff`, `show`, `merge-base`, `rev-parse`, `log`, `branch --show-current`.
 - Create a `geo/fix-<timestamp>` branch **only** in the fix workflow.
@@ -69,5 +70,5 @@ conversation for this fix run.
 ## Honesty rules
 
 - After a fix, say "confirmed in code, not yet confirmed on a live site".
-- The code score is a guide to technical readiness. It's not a ranking and doesn't predict visibility. Don't compare sites by it.
+- A score is a guide to technical readiness. It's not a ranking and doesn't predict visibility. Don't compare sites by it.
 - Your approvals are behavioural, not enforced by a tool. Say so if asked.
