@@ -52,7 +52,7 @@ You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopil
 | Cost per run | $0.07 | $0.14 |
 | Time per run | 32s | 42s |
 
-geopilot's advantage is advice you can act on: no false alarms in this test, far fewer wrong ideas, every problem tied to a quote, and ideas kept apart from problems and the score. A plain prompt is cheaper, faster and raises slightly more useful ideas, along with more noise. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
+geopilot's advantage is advice you can act on: no false alarms in this test, far fewer wrong ideas, every problem tied to a quote, and ideas kept apart from problems and the score. A plain prompt is cheaper, faster and raises slightly more useful ideas, along with more noise. On a lightweight model (GPT-5.6 Luna on Copilot), geopilot found only 90% of the planted bugs, so use your host's default or a stronger model for an audit. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
 
 ## Live checks with the CLI
 

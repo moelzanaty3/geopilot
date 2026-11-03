@@ -1,0 +1,57 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Use Link for /features instead of onClick div (note in report)",
+      "verdict": "generic",
+      "why": "This is the known problem of /features being reached only by a div, restated, though it is accurate."
+    },
+    {
+      "idea": "Add /features to the main nav in root.tsx",
+      "verdict": "useful",
+      "why": "The nav lists only Pricing and Changelog, so a real link to /features would fix discovery and is accurate to root.tsx."
+    },
+    {
+      "idea": "Name the actual integrations in the home page text",
+      "verdict": "useful",
+      "why": "The home page says 'Integrates with all the tools you already use' with no names, so naming them gives readers and machines something concrete."
+    },
+    {
+      "idea": "Put concrete plan names and prices on /pricing, possibly with Offer structured data",
+      "verdict": "useful",
+      "why": "The pricing page only says 'Talk to us for a quote', so plan details are missing and could be added as text (Offer markup is optional)."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries",
+      "verdict": "generic",
+      "why": "This is accurate, but with four URLs and no date source in the repo it has little effect."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD",
+      "verdict": "wrong",
+      "why": "No JSON-LD is a deliberate choice that is not a required fix."
+    },
+    {
+      "idea": "Add charset, viewport and og tags in root meta",
+      "verdict": "generic",
+      "why": "This is standard advice for any site, and the og:image suggestion has no matching asset in the repo."
+    },
+    {
+      "idea": "Give each changelog entry its own page/URL",
+      "verdict": "useful",
+      "why": "The changelog is a single list, so per-release URLs would be linkable and citable, which fits this repo."
+    },
+    {
+      "idea": "Expand features page with per-feature headings and descriptions",
+      "verdict": "useful",
+      "why": "features.tsx has a single one-line paragraph, so per-feature headings and detail would give more to read and quote."
+    },
+    {
+      "idea": "Move changelog fetch into a Remix loader (note)",
+      "verdict": "generic",
+      "why": "This restates the known useEffect changelog problem."
+    }
+  ]
+}

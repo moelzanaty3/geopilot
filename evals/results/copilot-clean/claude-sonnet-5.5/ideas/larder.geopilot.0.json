@@ -1,0 +1,52 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add the missing /img/loaves.jpg image or fix the path",
+      "verdict": "useful",
+      "why": "index.html references /img/loaves.jpg and no img folder exists in the repo, so the image would 404."
+    },
+    {
+      "idea": "Add Bakery/LocalBusiness JSON-LD to the home page",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Show address, opening hours and contact as text on the home page or a visit section",
+      "verdict": "useful",
+      "why": "No page has this information, and it is basic local-business content that readers and machines need."
+    },
+    {
+      "idea": "List every loaf on breads.html with ingredients and baking days, possibly with their own pages",
+      "verdict": "useful",
+      "why": "The page claims over twenty loaves but names only two, so adding the list gives readers and machines real content."
+    },
+    {
+      "idea": "Add price, date, duration and a booking link to classes.html",
+      "verdict": "useful",
+      "why": "The page tells people to book early but gives no way to book and no practical details."
+    },
+    {
+      "idea": "Explain how pre-ordering works on the home page or a new page",
+      "verdict": "useful",
+      "why": "The home page mentions weekend pre-ordering but gives no instructions or link."
+    },
+    {
+      "idea": "Add <lastmod> dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "This is valid but has little effect on a three-URL sitemap, and the report itself says to add dates only if they are real."
+    },
+    {
+      "idea": "Add og:title, og:description and og:image tags to each page",
+      "verdict": "generic",
+      "why": "This is standard share-preview advice that applies to almost any site and does little for discovery or understanding."
+    },
+    {
+      "idea": "Add onward links between breads and classes pages",
+      "verdict": "generic",
+      "why": "The site-wide nav on every page already links to all pages, so extra links add little."
+    }
+  ]
+}

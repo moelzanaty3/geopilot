@@ -1,0 +1,82 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Remove the GPTBot block, claiming it conflicts with geo.config.json",
+      "verdict": "wrong",
+      "why": "geo.config.json sets trainingCrawlers to block, so blocking GPTBot is deliberate and not a conflict."
+    },
+    {
+      "idea": "Add Schema.org JSON-LD (Bakery/LocalBusiness, Product, Course, BreadcrumbList)",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is explicitly not a required fix."
+    },
+    {
+      "idea": "Add address, phone, opening hours, and a real pre-order link to the homepage",
+      "verdict": "useful",
+      "why": "The homepage mentions pre-ordering and York but gives no address, hours, contact details or order link."
+    },
+    {
+      "idea": "Add class dates, price, duration, venue and a booking link to classes.html",
+      "verdict": "useful",
+      "why": "The page says 'Book early' but gives no booking route, price or schedule, so it can't answer basic class queries."
+    },
+    {
+      "idea": "Add FAQs and Course/Event schema on the classes page",
+      "verdict": "wrong",
+      "why": "Mandatory FAQs and schema are not required, and the file shows no need for them."
+    },
+    {
+      "idea": "List each bread individually with name, description, price, ingredients and availability",
+      "verdict": "useful",
+      "why": "breads.html only says 'over twenty loaves' and names two, so there is little specific content to find."
+    },
+    {
+      "idea": "Add Product/ItemList schema on the breads page",
+      "verdict": "wrong",
+      "why": "Structured data is not a required fix."
+    },
+    {
+      "idea": "Add the missing /img/loaves.jpg or fix the path",
+      "verdict": "generic",
+      "why": "The image file may be deployed elsewhere, and the repository snapshot gives no evidence it is broken."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice",
+      "verdict": "wrong",
+      "why": "The scoped data-nosnippet is a deliberate choice."
+    },
+    {
+      "idea": "Publish complete allergen information on the breads page",
+      "verdict": "useful",
+      "why": "The page only says 'Ask us about allergens', so real allergen details would help readers and machines."
+    },
+    {
+      "idea": "Add concise factual sections and FAQ content to make pages answerable for AI search",
+      "verdict": "wrong",
+      "why": "Relies on the FAQ-as-requirement idea, which is a deliberate non-problem."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata",
+      "verdict": "generic",
+      "why": "This applies to nearly any site and only affects link previews."
+    },
+    {
+      "idea": "Allow crawling of /members so the noindex can be seen",
+      "verdict": "wrong",
+      "why": "The noindex plus disallow on /members is a deliberate choice for a private page."
+    },
+    {
+      "idea": "Change lang to en-GB",
+      "verdict": "generic",
+      "why": "It is accurate for a UK site but has very little effect on discovery."
+    },
+    {
+      "idea": "Keep sitemap.xml updated when new pages are added",
+      "verdict": "generic",
+      "why": "This is true of any site and gives no specific action."
+    }
+  ]
+}

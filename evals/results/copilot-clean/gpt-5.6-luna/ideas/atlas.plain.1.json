@@ -1,0 +1,47 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Define explicit policies for search crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot) separate from training crawlers, treating the GPTBot block as contradictory",
+      "verdict": "wrong",
+      "why": "GPTBot is a training crawler deliberately blocked per trainingCrawlers: block, so there is no contradiction; the claim reverses a deliberate choice."
+    },
+    {
+      "idea": "Render changelog server-side with a Remix loader and add structured dates and summaries",
+      "verdict": "useful",
+      "why": "The loader fix is already a known problem, but adding dates and summaries to entries is a concrete extra improvement."
+    },
+    {
+      "idea": "Add JSON-LD (Organization, SoftwareApplication, WebSite, BreadcrumbList, Article/Product)",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is declared not a required fix."
+    },
+    {
+      "idea": "Replace the clickable div with a Link to /features",
+      "verdict": "generic",
+      "why": "This restates the known problem of /features being reached only through a div with onClick."
+    },
+    {
+      "idea": "Add crawlable links to /, /features, /pricing and /changelog in the root nav, which currently omits home and Features",
+      "verdict": "useful",
+      "why": "The nav in app/root.tsx links only /pricing and /changelog, so adding /features and / gives crawlers a real path."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata to public pages",
+      "verdict": "generic",
+      "why": "This is accurate since none exists, but it mainly affects link previews and would apply to almost any site."
+    },
+    {
+      "idea": "Make page content more specific (integrations, use cases, pricing details, FAQs, evidence-backed claims)",
+      "verdict": "useful",
+      "why": "The home page says only 'Integrates with all the tools you already use' and pricing says 'Talk to us for a quote', so specifics would help people and machines understand the site. The FAQ part is folklore, but the core advice holds."
+    },
+    {
+      "idea": "Generate origin, canonical URLs and sitemap from the real production URL instead of the .example placeholder",
+      "verdict": "generic",
+      "why": "Real hard-coded placeholder hosts exist, but the .example domain is a reserved placeholder in this repo and the advice amounts to a standard deploy-time configuration step."
+    }
+  ]
+}

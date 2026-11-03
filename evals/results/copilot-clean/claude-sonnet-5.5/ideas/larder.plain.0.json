@@ -1,0 +1,67 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups for other training crawlers (CCBot, Google-Extended, ClaudeBot, etc.)",
+      "verdict": "useful",
+      "why": "Config says block training crawlers but robots.txt only blocks GPTBot, so the stated policy isn't enforced."
+    },
+    {
+      "idea": "Add explicit allow groups for AI search bots (OAI-SearchBot, Claude-SearchBot, etc.)",
+      "verdict": "generic",
+      "why": "They are already allowed via the * group, so explicit groups only add future-proofing and documentation."
+    },
+    {
+      "idea": "Avoid combining robots.txt Disallow with noindex on /members/",
+      "verdict": "generic",
+      "why": "Accurate, but the report itself concedes the page is private and low risk, and it is a deliberate choice."
+    },
+    {
+      "idea": "Add JSON-LD (Bakery/LocalBusiness, ItemList, Course, BreadcrumbList)",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is declared not a required fix."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "generic",
+      "why": "Valid for any site, with little effect on discovery or understanding by search and AI engines."
+    },
+    {
+      "idea": "Add address, hours, phone, and pre-order link/instructions to the home page",
+      "verdict": "useful",
+      "why": "The home page mentions pre-order but gives no instructions, link, or contact details."
+    },
+    {
+      "idea": "List the breads on breads.html with descriptions, ingredients and prices",
+      "verdict": "useful",
+      "why": "The page claims over twenty loaves but names only two, so the content is thin on specifics."
+    },
+    {
+      "idea": "Add dates, price, duration, group size and booking link to classes.html",
+      "verdict": "useful",
+      "why": "The page says 'Book early' but has no booking details or other facts to act on."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice",
+      "verdict": "wrong",
+      "why": "The data-nosnippet on the allergen notice is a deliberate, scoped choice."
+    },
+    {
+      "idea": "Fix the missing /img/loaves.jpg",
+      "verdict": "wrong",
+      "why": "The repo files given may not include static assets, and the file's absence from the listing doesn't prove a 404."
+    },
+    {
+      "idea": "Add lastmod to sitemap.xml entries",
+      "verdict": "generic",
+      "why": "Accurate, but it is a small gain for a three-page site."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is not a problem and it is folklore as a way to be found."
+    }
+  ]
+}

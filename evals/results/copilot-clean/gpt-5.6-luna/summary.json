@@ -1,0 +1,100 @@
+{
+  "plain": {
+    "reports": 9,
+    "recall": 1,
+    "falseAlarmsPerReport": 2.3333333333333335,
+    "consistency": 1,
+    "invalidReferencesPerReport": 0.3333333333333333,
+    "fileReferencesPerReport": 6.888888888888889,
+    "extraIssuesPerReport": 6.444444444444445,
+    "usefulIdeasPerReport": 4,
+    "genericIdeasPerReport": 3.2222222222222223,
+    "wrongIdeasPerReport": 3.5555555555555554,
+    "costPerRun": 0,
+    "secondsPerRun": 69.44444444444444,
+    "runsThatChangedFiles": 0,
+    "controlFalseAlarmsPerReport": 3.3333333333333335,
+    "missed": {},
+    "flagged": {
+      "clinic/data-nosnippet": 3,
+      "clinic/no-llms-txt": 1,
+      "atlas/gptbot-blocked": 3,
+      "atlas/dashboard-noindex-disallow": 1,
+      "atlas/no-json-ld": 3,
+      "larder/gptbot-blocked": 3,
+      "larder/data-nosnippet": 3,
+      "larder/no-json-ld": 3,
+      "larder/no-faq-or-word-count": 1
+    }
+  },
+  "geopilot": {
+    "reports": 9,
+    "recall": 0.9,
+    "falseAlarmsPerReport": 0,
+    "consistency": 0.8666666666666667,
+    "invalidReferencesPerReport": 1.7777777777777777,
+    "fileReferencesPerReport": 7.666666666666667,
+    "extraIssuesPerReport": 0.7777777777777778,
+    "usefulIdeasPerReport": 4.111111111111111,
+    "genericIdeasPerReport": 2.4444444444444446,
+    "wrongIdeasPerReport": 0.7777777777777778,
+    "costPerRun": 0,
+    "secondsPerRun": 80.33333333333333,
+    "runsThatChangedFiles": 0,
+    "controlFalseAlarmsPerReport": 0,
+    "missed": {
+      "clinic/no-html-lang": 2,
+      "atlas/features-not-a-link": 1
+    },
+    "flagged": {}
+  },
+  "plain:heldOut": {
+    "reports": 9,
+    "recall": 1,
+    "falseAlarmsPerReport": 2.3333333333333335,
+    "consistency": 1,
+    "invalidReferencesPerReport": 0.3333333333333333,
+    "fileReferencesPerReport": 6.888888888888889,
+    "extraIssuesPerReport": 6.444444444444445,
+    "usefulIdeasPerReport": 4,
+    "genericIdeasPerReport": 3.2222222222222223,
+    "wrongIdeasPerReport": 3.5555555555555554,
+    "costPerRun": 0,
+    "secondsPerRun": 69.44444444444444,
+    "runsThatChangedFiles": 0,
+    "controlFalseAlarmsPerReport": 3.3333333333333335,
+    "missed": {},
+    "flagged": {
+      "clinic/data-nosnippet": 3,
+      "clinic/no-llms-txt": 1,
+      "atlas/gptbot-blocked": 3,
+      "atlas/dashboard-noindex-disallow": 1,
+      "atlas/no-json-ld": 3,
+      "larder/gptbot-blocked": 3,
+      "larder/data-nosnippet": 3,
+      "larder/no-json-ld": 3,
+      "larder/no-faq-or-word-count": 1
+    }
+  },
+  "geopilot:heldOut": {
+    "reports": 9,
+    "recall": 0.9,
+    "falseAlarmsPerReport": 0,
+    "consistency": 0.8666666666666667,
+    "invalidReferencesPerReport": 1.7777777777777777,
+    "fileReferencesPerReport": 7.666666666666667,
+    "extraIssuesPerReport": 0.7777777777777778,
+    "usefulIdeasPerReport": 4.111111111111111,
+    "genericIdeasPerReport": 2.4444444444444446,
+    "wrongIdeasPerReport": 0.7777777777777778,
+    "costPerRun": 0,
+    "secondsPerRun": 80.33333333333333,
+    "runsThatChangedFiles": 0,
+    "controlFalseAlarmsPerReport": 0,
+    "missed": {
+      "clinic/no-html-lang": 2,
+      "atlas/features-not-a-link": 1
+    },
+    "flagged": {}
+  }
+}

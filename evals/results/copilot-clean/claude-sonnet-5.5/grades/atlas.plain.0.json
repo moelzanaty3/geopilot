@@ -1,0 +1,17 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 0,
+  "found": [
+    "bingbot-blocked",
+    "robots-no-sitemap-line",
+    "changelog-client-rendered",
+    "features-not-a-link",
+    "pricing-no-own-meta"
+  ],
+  "flagged": [
+    "no-json-ld",
+    "no-llms-txt"
+  ],
+  "extraIssues": 6
+}

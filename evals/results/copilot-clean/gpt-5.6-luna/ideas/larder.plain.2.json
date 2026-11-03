@@ -1,0 +1,52 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Remove the GPTBot block / allow AI crawlers because it contradicts geo.config.json",
+      "verdict": "wrong",
+      "why": "The GPTBot block is deliberate and matches trainingCrawlers: block, so reversing it is wrong."
+    },
+    {
+      "idea": "Add JSON-LD (LocalBusiness/Bakery, Product, Course, BreadcrumbList) to pages",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is explicitly not a required fix, and this recommendation presents it as a high-priority defect."
+    },
+    {
+      "idea": "Add address, phone, opening hours, service area, ordering URL and sameAs profiles to the homepage",
+      "verdict": "useful",
+      "why": "The homepage has no location, hours or contact details, so adding them would help people and machines understand the business."
+    },
+    {
+      "idea": "Add dates, duration, price, capacity, location, instructor and a booking link to the classes page",
+      "verdict": "useful",
+      "why": "classes.html says only 'book early' and gives no booking details, so this is a concrete gap specific to the page."
+    },
+    {
+      "idea": "Turn the breads page into a real catalogue with individual bread names, ingredients, prices, availability and per-product URLs",
+      "verdict": "useful",
+      "why": "breads.html claims over twenty loaves but names only two, so listing them would help users and answer engines."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice",
+      "verdict": "wrong",
+      "why": "The data-nosnippet on the allergen notice is a deliberate, scoped choice."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata to all pages",
+      "verdict": "generic",
+      "why": "This is accurate because the pages lack it, but it applies to almost any site and mainly affects link previews."
+    },
+    {
+      "idea": "Replace the .example placeholder origin with the real production domain",
+      "verdict": "generic",
+      "why": "The .example domain is clearly a placeholder, so this is a launch step that applies to any site and isn't a code finding here."
+    },
+    {
+      "idea": "Publish complete allergen/ingredient information visibly",
+      "verdict": "useful",
+      "why": "The page offers only 'Ask us about allergens', so listing allergens per loaf would give readers and answer engines real content."
+    }
+  ]
+}

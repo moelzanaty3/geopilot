@@ -1,0 +1,52 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Unblock GPTBot and treat its block as contradicting geo.config.json",
+      "verdict": "wrong",
+      "why": "geo.config.json sets trainingCrawlers to block, so blocking GPTBot is deliberate and consistent with it."
+    },
+    {
+      "idea": "Generate robots.txt from geo.config.json as the single source of policy",
+      "verdict": "generic",
+      "why": "The policy does match robots.txt for GPTBot, so the 'opposite policy' premise is false and this is general config hygiene."
+    },
+    {
+      "idea": "Fix duplicate title and description from root and home meta",
+      "verdict": "wrong",
+      "why": "In Remix v2 a child route's meta replaces the parent's by default, so no duplicate tags are emitted."
+    },
+    {
+      "idea": "Add dates, version headings and stable URLs to changelog entries",
+      "verdict": "generic",
+      "why": "This is accurate, but it is standard structuring advice and the entries are plain strings."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata",
+      "verdict": "generic",
+      "why": "This is accurate and applies to almost any site, with little effect on discovery."
+    },
+    {
+      "idea": "Add JSON-LD structured data, including Article markup for the changelog",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is a deliberate choice and not a required fix."
+    },
+    {
+      "idea": "Add Features to the global nav as a real link",
+      "verdict": "useful",
+      "why": "The nav in root.tsx lists only Pricing and Changelog, so a nav link would give /features a crawlable path."
+    },
+    {
+      "idea": "Generate sitemap.xml with lastmod values",
+      "verdict": "generic",
+      "why": "The sitemap is a static list of 4 URLs, so this has little effect."
+    },
+    {
+      "idea": "Add more substantive answer-style content, such as Q&A, to thin pages",
+      "verdict": "generic",
+      "why": "The pages are thin, but the advice is broad and leans on the FAQ folklore."
+    }
+  ]
+}

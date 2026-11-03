@@ -8,6 +8,8 @@ This compares the geopilot plugin with asking the same model directly, on reposi
 - [`run.mjs`](run.mjs): runs both arms, grades the reports blind and summarizes them.
 - [`results/`](results/): reports, grades and `summary.json`. The current run is at the top level. `first-run/`, `second-run/`, `third-run/`, `third-run-b/` and `third-run-c/` hold earlier results.
 
+`results/copilot-clean/` holds Copilot CLI runs on the three held-out projects. They were run by hand, with no geopilot plugin installed for the plain arm, and graded with `--grade-only <dir>`. Copilot runs have no cost figure.
+
 ## Run it
 
 ```bash

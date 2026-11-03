@@ -1,0 +1,47 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Enrich Dentist JSON-LD on /contact with address, url, image, openingHours, sameAs",
+      "verdict": "useful",
+      "why": "The schema contains only name and telephone, and the address is on the page, so adding these fields helps machines resolve the business."
+    },
+    {
+      "idea": "Add provider profiles (names, qualifications, specialties) to /team",
+      "verdict": "useful",
+      "why": "The team page has one vague sentence with no named dentists, so real profiles would give readers and machines concrete content."
+    },
+    {
+      "idea": "Expand /services with treatment-specific explanations, process, pricing context, and per-service pages",
+      "verdict": "useful",
+      "why": "Services is a bare four-item list with a vague 'prices are simple and clear' line, so detail would help people and answer engines."
+    },
+    {
+      "idea": "Add FAQs to the services content",
+      "verdict": "wrong",
+      "why": "Mandatory FAQs are folklore. This is bundled into the services-expansion advice and is not a real need."
+    },
+    {
+      "idea": "Add Open Graph and Twitter Card metadata in base.njk",
+      "verdict": "generic",
+      "why": "This is standard advice for any site and mainly improves link previews, not discovery."
+    },
+    {
+      "idea": "Fix the broken /img/reception.jpg reference because no image asset exists in the repo",
+      "verdict": "wrong",
+      "why": "The repo listing shows only source files, and there is no passthrough copy for img, so the claim is unverifiable and probably not accurate. The build could still fail to copy the image, but the report cannot show it is missing."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance statement on /contact",
+      "verdict": "wrong",
+      "why": "This reverses the deliberate choice that the scoped data-nosnippet is fine."
+    },
+    {
+      "idea": "Centralize business data (name, address, phone, URL) and wire geo.config.json origin into templates",
+      "verdict": "useful",
+      "why": "The origin in geo.config.json is not used by base.njk, which hardcodes the staging host, so a single data source would keep content and schema consistent."
+    }
+  ]
+}

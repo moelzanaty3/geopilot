@@ -1,0 +1,57 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Make the Dentist JSON-LD more complete (address, url, hours, geo, logo, sameAs)",
+      "verdict": "useful",
+      "why": "The schema has only name and telephone while the address and details are visible on the page, so adding them helps machines understand the business."
+    },
+    {
+      "idea": "Add named clinician profiles with credentials and specialties on /team",
+      "verdict": "useful",
+      "why": "The team page has no names or qualifications, so concrete profiles give people and machines something real to read."
+    },
+    {
+      "idea": "Add a fallback or require descriptions in the template",
+      "verdict": "generic",
+      "why": "This restates the known empty /team description problem as a template-level safeguard."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "generic",
+      "why": "This is accurate because none exist, but it applies to almost any site and mainly affects social previews."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance terms",
+      "verdict": "wrong",
+      "why": "It reverses a deliberate choice that the brief says is fine."
+    },
+    {
+      "idea": "Replace 'trusted by thousands' and 'decades of experience' with verifiable evidence",
+      "verdict": "useful",
+      "why": "Both claims really appear on the pages as unsupported statements, and specific evidence is more credible to readers and AI systems."
+    },
+    {
+      "idea": "Expand thin content with treatment details, pricing, hours, emergency process and dedicated treatment pages",
+      "verdict": "useful",
+      "why": "The services page is just a four-item list that says prices are 'simple and clear' without giving any, so concrete detail would help."
+    },
+    {
+      "idea": "Include FAQs on the pages",
+      "verdict": "wrong",
+      "why": "Recommending FAQs as a standard addition is folklore and not tied to anything missing from this site."
+    },
+    {
+      "idea": "Wire geo.config.json origin and policy into the build, or remove it",
+      "verdict": "useful",
+      "why": "The config is not used by the Eleventy build, and using its origin for canonicals would fix the hardcoded host."
+    },
+    {
+      "idea": "Make the robots.txt AI crawler policy explicit",
+      "verdict": "generic",
+      "why": "Allow: / already permits all crawlers, including AI ones, which matches the configured policy, so explicit rules add little."
+    }
+  ]
+}

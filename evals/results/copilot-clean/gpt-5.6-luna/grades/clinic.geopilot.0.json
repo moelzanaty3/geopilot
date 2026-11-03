@@ -1,0 +1,13 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 0,
+  "found": [
+    "canonical-staging-host",
+    "dentist-jsonld-invalid",
+    "services-noindex",
+    "team-no-description"
+  ],
+  "flagged": [],
+  "extraIssues": 0
+}

@@ -28,6 +28,22 @@ export default function Page() {
       </div>
       <p>On the six projects used for tuning (18 runs each), the plain prompt and geopilot had 0.67 and 0 false alarms, 6.0 and 5.2 useful ideas, and 2.3 and 0.7 wrong ideas.</p>
       <p>A false alarm means telling someone to change something that was fine, such as a deliberate <code>noindex</code> on a private page. An idea is any other recommendation, judged by a blind grader that could read the project&rsquo;s files. It&rsquo;s <em>useful</em> if it&rsquo;s specific, accurate and could plausibly help, <em>generic</em> if it would fit almost any site, and <em>wrong</em> if it&rsquo;s false, reverses a deliberate choice or relies on folklore such as word counts.</p>
+      <h2>On GitHub Copilot, and on a lighter model</h2>
+      <p>We repeated the test on Copilot CLI on the same three projects, with its default model and a lightweight one. Cells show the plain prompt, then geopilot. Copilot doesn&rsquo;t report a price per run, so cost isn&rsquo;t compared.</p>
+      <div className="table-wrap">
+        <table>
+          <thead><tr><th>Measure (9 runs each)</th><th>Claude Sonnet 5.5</th><th>GPT-5.6 Luna</th></tr></thead>
+          <tbody>
+            <tr><td>Planted bugs found</td><td>100% / 100%</td><td><strong>100% / 90%</strong></td></tr>
+            <tr><td>Same bugs found between runs</td><td>1.00 / 1.00</td><td><strong>1.00 / 0.87</strong></td></tr>
+            <tr><td>False alarms per report</td><td>2.0 / 0</td><td>2.33 / 0</td></tr>
+            <tr><td>Useful ideas per report</td><td>5.8 / 5.0</td><td>4.0 / 4.1</td></tr>
+            <tr><td>Wrong ideas per report</td><td>3.9 / 1.0</td><td>3.6 / 0.8</td></tr>
+            <tr><td>Time per run</td><td>31s / 51s</td><td>69s / 80s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>On a lightweight model, geopilot can miss real bugs.</strong> On Luna it missed a missing <code>lang</code> attribute in 2 of 3 runs on one project and a button-only link once, and the plain prompt found both every time. By the rule we set in advance, that means geopilot hasn&rsquo;t shown a win on Luna, even with no false alarms. For an audit, use your host&rsquo;s default or a stronger model if you can.</p>
       <h2>Why a plain prompt has more ideas, and why that&rsquo;s not all good</h2>
       <p>A plain prompt raises about 15 ideas per report against geopilot&rsquo;s 11, so it has more to choose from and much more to filter. <strong>About 54% of geopilot&rsquo;s ideas were useful, against 42% for the plain prompt, and the plain prompt raised more than 5 times as many wrong ones.</strong> Sorting the useful ideas by kind shows what&rsquo;s behind the gap of 0.8 per report. The sorting is rough and the samples are small.</p>
       <ul>
@@ -57,7 +73,7 @@ export default function Page() {
         <li><strong>Held out doesn&rsquo;t mean independent.</strong> The same author wrote those three projects and knows what geopilot looks for, and three small projects can&rsquo;t settle this. Geopilot was tuned repeatedly on the other six. <a href={`${EVALS_URL}/results`}>Every earlier run is published</a>, and each change is listed in the pre-registration.</li>
         <li><strong>A model judged the ideas.</strong> We defined the three classes ourselves, and the grader sometimes gave the same suggestion different verdicts in different reports. Treat small differences in idea counts as noise.</li>
         <li><strong>One measure didn&rsquo;t work.</strong> &ldquo;Invalid file references&rdquo; also counted files a report suggested creating, so we don&rsquo;t report it.</li>
-        <li><strong>One model, one moment.</strong> This used Claude Sonnet on Claude Code in November 2026.</li>
+        <li><strong>A few models, one moment.</strong> This used Claude Sonnet on Claude Code, and Claude Sonnet 5.5 and GPT-5.6 Luna on Copilot, in November 2026. Other hosts and models weren&rsquo;t tested.</li>
       </ul>
       <p>This measures audit quality only. It says nothing about whether fixes lead to more citations or traffic.</p>
       <h2>Run it yourself</h2>

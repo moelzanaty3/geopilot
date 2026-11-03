@@ -1,0 +1,14 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 1,
+  "found": [
+    "bingbot-blocked",
+    "robots-no-sitemap-line",
+    "changelog-client-rendered",
+    "features-not-a-link",
+    "pricing-no-own-meta"
+  ],
+  "flagged": [],
+  "extraIssues": 0
+}

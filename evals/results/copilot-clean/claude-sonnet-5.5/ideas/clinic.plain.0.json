@@ -1,0 +1,67 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add full Dentist/LocalBusiness schema (address, hours, url, image, sameAs, etc.) plus sitewide WebSite/Organization and Person markup",
+      "verdict": "useful",
+      "why": "The contact schema only has name and telephone, and the address is on the page, so richer markup helps machines understand the practice."
+    },
+    {
+      "idea": "Add concrete content: named practitioners with credentials, real prices, service descriptions, hours, and review evidence",
+      "verdict": "useful",
+      "why": "The team, services and home pages make vague unsupported claims, and the report ties each one to specific lines."
+    },
+    {
+      "idea": "Add FAQPage markup and a short FAQ",
+      "verdict": "wrong",
+      "why": "Mandatory FAQs and FAQ schema are folklore, and nothing in the files shows a need for them."
+    },
+    {
+      "idea": "Remove data-nosnippet on insurance text",
+      "verdict": "wrong",
+      "why": "data-nosnippet on the insurance terms is a deliberate scoped choice that the brief says is fine."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata",
+      "verdict": "useful",
+      "why": "base.njk has no social tags, so shared links render poorly, and the fix is concrete."
+    },
+    {
+      "idea": "Missing image: /img/reception.jpg has no src/img and no passthrough copy, so it 404s; add the file, a passthrough and width/height",
+      "verdict": "useful",
+      "why": "This is accurate: .eleventy.js copies only robots.txt and sitemap.xml and there is no img directory, so the image breaks."
+    },
+    {
+      "idea": "Name AI crawlers explicitly in robots.txt",
+      "verdict": "generic",
+      "why": "Allow: / for * already permits them and matches the allow policy, so explicit blocks add almost nothing."
+    },
+    {
+      "idea": "Add lastmod to the sitemap and generate it from collections to avoid drift from noindex flags",
+      "verdict": "useful",
+      "why": "The sitemap is hand-maintained and already conflicts with the noindex flag on /services, so generating it prevents that drift."
+    },
+    {
+      "idea": "Add llms.txt with a passthrough",
+      "verdict": "wrong",
+      "why": "The brief says having no llms.txt is not a problem, and it is folklore as a way to be found."
+    },
+    {
+      "idea": "Lengthen or add keywords to short page titles such as Contact",
+      "verdict": "generic",
+      "why": "This is a common tweak that applies to almost any site and has little effect."
+    },
+    {
+      "idea": "Guard the meta description tag in base.njk with {% if description %}",
+      "verdict": "useful",
+      "why": "The template emits an empty content attribute whenever a page lacks a description, so the guard stops that."
+    },
+    {
+      "idea": "Use a shared site-data variable for the origin in the canonical",
+      "verdict": "useful",
+      "why": "It points to the site's origin in geo.config.json and prevents the hardcoded host from recurring."
+    }
+  ]
+}

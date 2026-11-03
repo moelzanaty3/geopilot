@@ -1,0 +1,52 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add Bakery/LocalBusiness JSON-LD with name, town, URL",
+      "verdict": "generic",
+      "why": "Accurate, but the user said missing JSON-LD isn't a required fix and the benefit is speculative."
+    },
+    {
+      "idea": "Add address, opening hours and contact details to pages",
+      "verdict": "useful",
+      "why": "No page states where or when to visit, and a local bakery's visitors and machines need that."
+    },
+    {
+      "idea": "Explain how pre-ordering works (how, deadline, price)",
+      "verdict": "useful",
+      "why": "The home page mentions pre-order with no details, so adding them is a concrete content gap fix."
+    },
+    {
+      "idea": "List all the loaves with descriptions or individual pages",
+      "verdict": "useful",
+      "why": "breads.html claims over twenty loaves but names only two, so listing them adds real content."
+    },
+    {
+      "idea": "Add class dates, prices, group size and booking link (Event data if fixed dates)",
+      "verdict": "useful",
+      "why": "classes.html has no practical details, so adding them is a specific content gap fix."
+    },
+    {
+      "idea": "Link between breads and classes pages in body text",
+      "verdict": "generic",
+      "why": "The nav already links the pages, so extra in-body links have little effect."
+    },
+    {
+      "idea": "Add lastmod to sitemap",
+      "verdict": "generic",
+      "why": "Accurate and cheap, but it applies to almost any site and has small effect on a three-page sitemap."
+    },
+    {
+      "idea": "Add Open Graph social tags (og:title, og:description, og:image)",
+      "verdict": "generic",
+      "why": "Accurate since none exist, but it is standard advice that mainly affects link previews."
+    },
+    {
+      "idea": "Confirm /img/loaves.jpg exists since it isn't in the repo",
+      "verdict": "useful",
+      "why": "The image is referenced but missing from the files, and a broken image would lose that content."
+    }
+  ]
+}

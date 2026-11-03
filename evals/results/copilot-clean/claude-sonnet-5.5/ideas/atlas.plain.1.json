@@ -1,0 +1,67 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add groups for the other training crawlers (CCBot, Google-Extended, ClaudeBot, etc.) to match trainingCrawlers: block, and keep AI search bots allowed",
+      "verdict": "useful",
+      "why": "geo.config.json declares trainingCrawlers: block but robots.txt only blocks GPTBot, so the policy is only partly enforced."
+    },
+    {
+      "idea": "Make the root.tsx site-wide description more specific and have every route set its own",
+      "verdict": "generic",
+      "why": "The root description is only a fallback, and most routes already set their own, so the effect is small."
+    },
+    {
+      "idea": "Add Features and Home links to the nav and use <Link> instead of plain <a>",
+      "verdict": "useful",
+      "why": "The nav in root.tsx really has no Features link, which would give crawlers a real path to /features. The <Link> part is minor."
+    },
+    {
+      "idea": "Name the specific integrations in the home page copy instead of 'all the tools you already use'",
+      "verdict": "useful",
+      "why": "The home page line is vague, and naming integrations would give people and AI systems concrete facts to read and cite."
+    },
+    {
+      "idea": "Expand the thin Features page into h2 sections that answer specific questions",
+      "verdict": "useful",
+      "why": "features.tsx is a single sentence, so adding real content would help people and machines understand the product."
+    },
+    {
+      "idea": "Put real plan and price details on the pricing page",
+      "verdict": "useful",
+      "why": "pricing.tsx says only 'Talk to us for a quote', so there is nothing concrete to read or cite."
+    },
+    {
+      "idea": "Add JSON-LD for Organization, SoftwareApplication and Product/Offer",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it goes against that choice."
+    },
+    {
+      "idea": "Remove the Disallow for /dashboard so the noindex can be seen",
+      "verdict": "wrong",
+      "why": "The brief calls the noindex plus disallow on /dashboard correct for a private page, and the report itself says it is harmless."
+    },
+    {
+      "idea": "Add <lastmod> values to the sitemap",
+      "verdict": "generic",
+      "why": "This is accurate, but lastmod is optional and gives little benefit on a four-URL sitemap."
+    },
+    {
+      "idea": "Add Open Graph, Twitter and og:image tags",
+      "verdict": "generic",
+      "why": "This applies to nearly any site and mainly affects social link previews, not discovery."
+    },
+    {
+      "idea": "Read the origin from one shared constant instead of hard-coding canonicals",
+      "verdict": "generic",
+      "why": "This is a maintainability tidy-up with no effect on how the site is found or read."
+    },
+    {
+      "idea": "Add an llms.txt so AI crawlers can find key pages",
+      "verdict": "wrong",
+      "why": "The brief says having no llms.txt is not a problem, and llms.txt does not help crawlers find pages."
+    }
+  ]
+}

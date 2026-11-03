@@ -13,7 +13,10 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const EVALS = join(ROOT, 'evals');
-const RESULTS = join(EVALS, 'results');
+// --grade-only <dir> grades reports already in <dir>/reports, such as those from another host.
+const gradeOnlyFlag = process.argv.indexOf('--grade-only');
+const GRADE_ONLY = gradeOnlyFlag !== -1;
+const RESULTS = GRADE_ONLY ? process.argv[gradeOnlyFlag + 1] : join(EVALS, 'results');
 const REPORTS = join(RESULTS, 'reports');
 const TRUTH = JSON.parse(readFileSync(join(EVALS, 'truth.json'), 'utf8'));
 const MODEL = 'sonnet';
@@ -272,7 +275,8 @@ mkdirSync(REPORTS, { recursive: true });
 mkdirSync(join(RESULTS, 'grades'), { recursive: true });
 mkdirSync(join(RESULTS, 'ideas'), { recursive: true });
 const jobs = Object.keys(TRUTH).filter((fixture) => !(TUNING_ONLY && TRUTH[fixture].heldOut)).flatMap((fixture) => Object.keys(ARMS).flatMap((arm) => Array.from({ length: RUNS }, (_, run) => ({ fixture, arm, run }))));
-await pool(jobs, runReport);
-await pool(jobs, gradeReport);
-await pool(jobs, gradeIdeas);
-summarize(jobs);
+const graded = GRADE_ONLY ? jobs.filter((job) => existsSync(join(REPORTS, `${job.fixture}.${job.arm}.${job.run}.json`))) : jobs;
+if (!GRADE_ONLY) await pool(jobs, runReport);
+await pool(graded, gradeReport);
+await pool(graded, gradeIdeas);
+summarize(graded);

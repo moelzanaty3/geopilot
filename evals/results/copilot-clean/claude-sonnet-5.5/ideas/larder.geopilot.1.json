@@ -1,0 +1,47 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add LocalBusiness/Bakery JSON-LD with address, hours, phone",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix, and the address, hours and phone aren't in the repo."
+    },
+    {
+      "idea": "List every bread on breads.html with descriptions, and consider a page per loaf",
+      "verdict": "useful",
+      "why": "The page claims over twenty loaves but names only two, so listing them gives crawlers and readers real content."
+    },
+    {
+      "idea": "Add dates, price, length and booking link to classes page",
+      "verdict": "useful",
+      "why": "classes.html says to book early but has no booking details, so this adds concrete text people and machines can use."
+    },
+    {
+      "idea": "Explain how to pre-order with a link or steps on the home page",
+      "verdict": "useful",
+      "why": "index.html says 'Pre-order for weekend collection' with no way to do it."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries",
+      "verdict": "generic",
+      "why": "Accurate, since the entries have no lastmod, but it has little effect on a three-page site and would apply to almost any site."
+    },
+    {
+      "idea": "Add og:title, og:description and og:image social tags",
+      "verdict": "generic",
+      "why": "Accurate, since no og tags exist, but it is standard advice that does little for search or AI discovery."
+    },
+    {
+      "idea": "Add in-body links between breads and classes pages",
+      "verdict": "generic",
+      "why": "Every page already has a site-wide nav linking all pages, so extra body links add little."
+    },
+    {
+      "idea": "Drop the Disallow for /members/ so noindex can be read",
+      "verdict": "wrong",
+      "why": "It reverses the deliberate choice to disallow and noindex the private members page, and the report itself calls the current setup fine."
+    }
+  ]
+}

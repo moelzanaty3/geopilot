@@ -1,0 +1,42 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Explain/substantiate the 'thousands of local patients' claim with evidence",
+      "verdict": "generic",
+      "why": "Content-quality advice that applies to any site and is not a technical discoverability fix."
+    },
+    {
+      "idea": "Publish actual prices on the services page or link to a price list",
+      "verdict": "useful",
+      "why": "services.njk says 'Our prices are simple and clear' but lists no prices, so users and machines cannot find them."
+    },
+    {
+      "idea": "Add dentist names, credentials and expertise profiles to the team page",
+      "verdict": "useful",
+      "why": "team.njk has only a vague line about 'decades of experience', so named profiles would add real, extractable content."
+    },
+    {
+      "idea": "Describe emergency care with hours, eligibility and booking instructions",
+      "verdict": "useful",
+      "why": "The homepage only says 'Emergency appointments available' with no details, and emergency care is a key service."
+    },
+    {
+      "idea": "Give important treatments dedicated pages linked from services",
+      "verdict": "useful",
+      "why": "Services is a bare four-item list with no detail pages, so dedicated pages would give each treatment a findable URL and content."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata to base.njk",
+      "verdict": "generic",
+      "why": "Accurate, since base.njk has no such tags, but it only affects share previews and would apply to almost any site."
+    },
+    {
+      "idea": "Add address and contact details to valid Dentist JSON-LD on contact page",
+      "verdict": "useful",
+      "why": "The visible address '12 Park Row, Leeds' is missing from the Dentist JSON-LD, which only has name and telephone."
+    }
+  ]
+}
