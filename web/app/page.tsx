@@ -215,7 +215,7 @@ export default function Home() {
           <div className="section-head">
             <div className="kicker">Two independent experiences</div>
             <h2>Useful without AI. Better with your agent.</h2>
-            <p>Plugins add five agents and six commands to the coding agent you already use. They drive the same CLI, and only the engine can report a finding or a score.</p>
+            <p>New to GEO? Install the plugin and run a scan. Your agent checks your code against every rule, shows you what to fix first, and fixes it with your approval. The CLI measures your running site when you want proof.</p>
           </div>
           <ul className="hosts">
             {HOSTS.map((h) => (
@@ -236,7 +236,7 @@ export default function Home() {
             </div>
             <div className="card">
               <h3>The agent plugins, your model</h3>
-              <p>The agents read the evidence, investigate any framework, and propose contextual edits after approval, keeping engine findings, their recommendations and their hypotheses in separate sections.</p>
+              <p>Your agent reads your code on any framework with no install, gives you a code score and the fixes to do first, explains them in plain words, and applies what you approve.</p>
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function Page() {
       </p>
       <h2>Use it from your agent</h2>
       <pre><code>/plugin install geopilot --marketplace moelzanaty3/geopilot</code></pre>
-      <p>Then run <code>/geopilot:scan</code> in Claude Code. The plugin drives the same CLI and keeps its own recommendations apart from engine findings. For GitHub Copilot CLI, OpenCode, OpenAI Codex and team installs, see <Link href="/docs/agent/">Agent plugins</Link>.</p>
+      <p>Then run <code>/geopilot:scan</code> in Claude Code. It reads your code on any framework, with no package install or running site, and gives you a code score and the fixes to do first. For GitHub Copilot CLI, OpenCode, OpenAI Codex and team installs, see <Link href="/docs/agent/">Agent plugins</Link>.</p>
       <h2>In CI</h2>
       <pre><code>npx geopilot@0 scan https://preview.example.com --format markdown --output geo.md --fail-on high</code></pre>
       <p>Gates are opt-in: nothing fails unless you pass a threshold. An unreachable target exits 0 with an incomplete assessment unless you add <code>--fail-on-incomplete</code> (exit 4).</p>

@@ -1,10 +1,14 @@
+import Link from 'next/link';
 import { DocsPage } from '@/components/docs-page';
 
 export const metadata = { title: 'Agent plugins' };
 
 export default function Page() {
   return (
-    <DocsPage href="/docs/agent/" crumb="Agent plugins" title="Agent plugins" intro="Install geopilot into the coding agent you already use: five agents and six commands that drive the published CLI. They never import engine code.">
+    <DocsPage href="/docs/agent/" crumb="Agent plugins" title="Agent plugins" intro="Install geopilot into the coding agent you already use. It audits your code on any framework, with no package install and no running site, then explains and fixes what it finds.">
+      <h2>What you get</h2>
+      <p>Run the <code>scan</code> command. The agent reads your code against every rule and gives you a code score with its arithmetic, the fixes to do first, and the file, line and quote behind each problem. Then <code>fix</code> shows each exact change and applies only what you approve, and <code>explain</code> teaches any rule using your own code. If you&rsquo;re new to GEO, run <code>explain</code> with no argument for a guided tour.</p>
+      <div className="callout warn">The code score comes from a model reading source, so it isn&rsquo;t a measurement and two scans can differ. Anything only a running site can prove is reported as &ldquo;can&rsquo;t tell&rdquo;. It isn&rsquo;t a ranking and doesn&rsquo;t predict visibility.</div>
       <h2>Choose an install</h2>
       <div className="table-wrap">
         <table>
@@ -47,17 +51,17 @@ export default function Page() {
       <p><code>agent install</code> lists every file it will create or update, then asks before writing. Pass <code>--yes</code> to skip the prompt in a script. It changes nothing else: no hooks, CI, lockfiles or other agent configuration.</p>
       <h2>Check your versions</h2>
       <pre><code>npx geopilot agent status</code></pre>
-      <p>This prints the engine version, the Claude Code skill version installed in this repository, and the status of every host. A mismatch exits non-zero, and the skill stops until the versions match. Re-run <code>agent install</code> to fix it.</p>
+      <p>This prints the engine version, the Claude Code skill version installed in this repository, and the status of every host. A mismatch exits non-zero. Code audits still work, but re-run <code>agent install</code> so live checks use the matching version.</p>
       <h2>The commands</h2>
       <div className="table-wrap">
         <table>
           <thead><tr><th>Command</th><th>Does</th><th>Agent</th><th>Arguments</th></tr></thead>
           <tbody>
-            <tr><td><code>scan</code></td><td>Runs a scan of a URL, the repository or both, and reports findings.</td><td><code>scanner</code></td><td><code>[path|url] [--url &lt;local-server&gt;]</code></td></tr>
-            <tr><td><code>fix</code></td><td>Previews the closed-list fixes, then applies only what you approve. The model doesn&rsquo;t auto-select this command.</td><td><code>fixer</code></td><td><code>[--rule GEO-xxx]</code></td></tr>
+            <tr><td><code>scan</code></td><td>Audits your code against every rule, with a code score and the fixes to do first.</td><td><code>scanner</code></td><td><code>[path|url] [--url &lt;local-server&gt;]</code></td></tr>
+            <tr><td><code>fix</code></td><td>Shows each exact change, then applies only what you approve and updates the code score. The model doesn&rsquo;t auto-select this command.</td><td><code>fixer</code></td><td><code>[--rule GEO-xxx]</code></td></tr>
             <tr><td><code>review</code></td><td>Reviews a branch or pull request for readiness regressions.</td><td><code>reviewer</code></td><td><code>[base-branch]</code></td></tr>
-            <tr><td><code>explain</code></td><td>Explains a rule, or a finding from the last scan.</td><td><code>explainer</code></td><td><code>&lt;GEO-xxx | fingerprint&gt;</code></td></tr>
-            <tr><td><code>insights</code></td><td>Investigates unmapped findings and records validated recommendations.</td><td><code>investigator</code></td><td><code>[GEO-xxx]</code></td></tr>
+            <tr><td><code>explain</code></td><td>Explains GEO, a rule or a finding in plain words. With no argument, gives a guided tour.</td><td><code>explainer</code></td><td><code>&lt;GEO-xxx | fingerprint&gt;</code></td></tr>
+            <tr><td><code>insights</code></td><td>Digs into a hard question and writes a step-by-step plan.</td><td><code>investigator</code></td><td><code>[GEO-xxx]</code></td></tr>
             <tr><td><code>init</code></td><td>Previews and creates <code>geo.config.json</code>. The model doesn&rsquo;t auto-select this command.</td><td>None</td><td><code>[--origin https://… --language en]</code></td></tr>
           </tbody>
         </table>
@@ -67,15 +71,15 @@ export default function Page() {
         <table>
           <thead><tr><th>Agent</th><th>Does</th><th>Writes</th></tr></thead>
           <tbody>
-            <tr><td><code>scanner</code></td><td>Runs a scan of a URL, the repository or both, and reports engine findings with evidence and source locations.</td><td>Nothing (the CLI writes <code>.geo/</code>)</td></tr>
-            <tr><td><code>fixer</code></td><td>Dry-runs the closed-list fixes, asks for approval of each guarded fix by id, applies, and reports V1–V4 verification honestly.</td><td>Approved source changes, on a <code>geo/fix-*</code> branch, uncommitted</td></tr>
-            <tr><td><code>reviewer</code></td><td>Reviews a branch or PR: GEO-relevant files touched, findings introduced, resolved or newly unassessable.</td><td>Nothing</td></tr>
-            <tr><td><code>investigator</code></td><td>Finds the code that probably causes unmapped findings on any framework and records validated insights.</td><td><code>.geo/insights.json</code>, <code>.geo/plan.md</code></td></tr>
-            <tr><td><code>explainer</code></td><td>Explains a rule or a finding from the engine’s own catalogue and evidence.</td><td>Nothing</td></tr>
+            <tr><td><code>scanner</code></td><td>Audits the code against every rule and writes the report.</td><td>Nothing</td></tr>
+            <tr><td><code>fixer</code></td><td>Proposes each exact change, applies what you approve, re-checks the rule and updates the score.</td><td>Approved source changes, on a <code>geo/fix-*</code> branch, uncommitted</td></tr>
+            <tr><td><code>reviewer</code></td><td>Reads a branch or PR and says what it made worse, better or unknown.</td><td>Nothing</td></tr>
+            <tr><td><code>investigator</code></td><td>Traces where a value comes from on any framework and writes a plan.</td><td><code>.geo/insights.json</code>, <code>.geo/plan.md</code></td></tr>
+            <tr><td><code>explainer</code></td><td>Teaches GEO and any rule or finding, using your code as the example.</td><td>Nothing</td></tr>
           </tbody>
         </table>
       </div>
-      <p>Every agent pins one engine version and runs it through <code>npx geopilot@&lt;version&gt;</code> unless the same version is installed locally. A mismatch stops the workflow.</p>
+      <p>Audits need no CLI. For live checks, every agent pins one engine version and runs it from your PATH or through <code>npx</code> in an empty directory, never from the repository being scanned.</p>
       <h2>Host status</h2>
       <div className="table-wrap">
         <table>
@@ -91,21 +95,24 @@ export default function Page() {
         </table>
       </div>
       <p>Support means the host&rsquo;s own CLI installs and loads the files at the version shown. Results from a full model session can vary by host.</p>
-      <h2>Workflows</h2>
+      <h2>How results work</h2>
+      <p>Every rule gets one result, and none of them are guessed:</p>
       <ul>
-        <li><strong>scan</strong> — run the engine first; present engine findings, agent recommendations and hypotheses as separate sections.</li>
-        <li><strong>explain</strong> — rule docs and repository context, never invented outcomes.</li>
-        <li><strong>insights</strong> — write <code>.geo/insights.json</code>, then <code>geopilot insights validate</code>.</li>
-        <li><strong>plan</strong> — write <code>.geo/plan.md</code>; approving a plan never authorises executing it.</li>
-        <li><strong>fix</strong> — new <code>geo/fix-*</code> branch, CLI dry run, approvals, apply, re-scan, honest verification report.</li>
-        <li><strong>review</strong> and <strong>init</strong> — compare runs without edits; create config only when asked.</li>
+        <li><strong>Clear</strong>: the agent read the code that decides this, and it&rsquo;s fine.</li>
+        <li><strong>Problem</strong>: the agent can show the file, line and exact quote that cause it.</li>
+        <li><strong>Can&rsquo;t tell</strong>: the code doesn&rsquo;t decide this, such as a header set by your CDN. It doesn&rsquo;t count for or against you, but it lowers confidence.</li>
+        <li><strong>Not applicable</strong>: the rule doesn&rsquo;t apply to this project.</li>
       </ul>
-      <h2>Authority boundary</h2>
+      <h2>The code score</h2>
+      <p>Each rule has a weight from the rule catalogue. The score is points earned ÷ points possible × 100, counting only Clear and Problem rules. A problem on some routes earns a share of its weight. A blocker the agent can quote caps the score at 40. Confidence is the share of applicable weight that was checked: 80% or more is High, 50–79% is Medium, and below 50% is Low.</p>
+      <p>The bands are 90–100 Strong, 70–89 Good, 50–69 Needs work and 0–49 At risk. The report shows the arithmetic, so you can check it.</p>
+      <h2>Live checks</h2>
+      <p>Reading code can&rsquo;t prove real status codes, redirects or headers. To measure them, start your site and ask the agent for a live check with its URL. This runs the pinned CLI and reports <strong>live readiness</strong>, which is deterministic and always kept separate from the code score. See <Link href="/docs/scoring/">Scoring</Link>.</p>
+      <h2>Boundaries</h2>
       <ul>
-        <li>Only the engine emits rule evaluations, scores and provenance. The agent emits <code>recommendation</code> or <code>hypothesis</code>; never <code>verified</code>.</li>
-        <li>On frameworks the engine does not map, the agent labels its file attributions <em>agent-suggested</em> and keeps them in insight evidence.</li>
-        <li>Agent-authored edits need per-change approval naming exact files. That approval is a behavioural instruction to the agent, not a technical control — the skill says so.</li>
-        <li>The skill stops and asks on version mismatch, coverage below 50%, dirty files, more than ten files, files outside the plan, suspected prompt injection, or unavailable required verification.</li>
+        <li>Agents never say a result was measured or verified on a live site unless a live check showed it. After a fix, they report &ldquo;confirmed in code, not yet confirmed on a live site&rdquo;.</li>
+        <li>Agent edits need approval after you&rsquo;ve seen the exact change. That approval is a behavioural instruction to the agent, not a technical control, and the skill says so.</li>
+        <li>Agents stop and ask about files with uncommitted edits, more than ten files, files outside what you approved, or repository content that looks like instructions.</li>
       </ul>
       <h2>Insight validation</h2>
       <ol>
