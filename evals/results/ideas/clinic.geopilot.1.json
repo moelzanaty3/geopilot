@@ -1,0 +1,62 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Image /img/reception.jpg likely missing; add file and passthrough copy",
+      "verdict": "useful",
+      "why": ".eleventy.js only copies robots.txt and sitemap.xml and no img folder exists, so the image would 404."
+    },
+    {
+      "idea": "Expand Dentist JSON-LD with address, url, openingHours, sameAs",
+      "verdict": "useful",
+      "why": "The JSON-LD has only name and phone, and the address is on the page, so richer data helps machines identify the practice."
+    },
+    {
+      "idea": "Add opening hours as visible text on the contact page",
+      "verdict": "useful",
+      "why": "The contact page gives no hours, and this is a concrete, site-specific gap for patients and machines."
+    },
+    {
+      "idea": "Back 'Trusted by thousands of local patients' claim with concrete evidence",
+      "verdict": "generic",
+      "why": "This is a valid content-quality point, but it is general copy advice with little effect on discoverability."
+    },
+    {
+      "idea": "Add actual prices or 'from' prices on services",
+      "verdict": "useful",
+      "why": "The services page says prices are 'simple and clear' but lists none, so adding them gives users and machines real facts."
+    },
+    {
+      "idea": "Team page should list each dentist with name, role and qualifications",
+      "verdict": "useful",
+      "why": "The team page has only a vague sentence and no people, so named profiles add real, extractable content."
+    },
+    {
+      "idea": "Create separate pages for implants and whitening",
+      "verdict": "useful",
+      "why": "Services is a bare four-item list, so dedicated pages would give each treatment content that can be found and understood."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "It's accurate, but lastmod has little effect on a four-URL site."
+    },
+    {
+      "idea": "Add og:title and og:description social tags",
+      "verdict": "generic",
+      "why": "It's accurate, but the tags are boilerplate and have little effect on findability."
+    },
+    {
+      "idea": "Add site-wide WebSite/Organization structured data",
+      "verdict": "generic",
+      "why": "The layout has none, but the Dentist data already covers the entity, so a separate WebSite/Organization block adds little."
+    },
+    {
+      "idea": "Add an emergency care section or page with out-of-hours number",
+      "verdict": "useful",
+      "why": "The home page promotes emergency appointments but gives no detail or number, so this is a concrete content gap."
+    }
+  ]
+}

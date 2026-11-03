@@ -20,6 +20,8 @@ const MODEL = 'sonnet';
 const CONCURRENCY = 5;
 const runsFlag = process.argv.indexOf('--runs');
 const RUNS = runsFlag === -1 ? 3 : Number(process.argv[runsFlag + 1]);
+// --tuning leaves out the held-out projects, so they stay unseen while a prompt is being changed.
+const TUNING_ONLY = process.argv.includes('--tuning');
 
 const PLAIN_PROMPT = "Audit this repository for SEO and AI search readiness (GEO). Tell me what's wrong and what to fix, with the file and line for each problem.";
 const TOOLS = 'Read Grep Glob Agent Task Bash(git:*) Bash(ls:*) Bash(cat:*) Bash(find:*) Bash(grep:*)';
@@ -220,11 +222,13 @@ function summarize(jobs) {
     return { ...job, grade, report, ideas, refs: fileReferences(report.text, job.fixture) };
   });
   const summary = {};
-  for (const arm of Object.keys(ARMS)) {
-    const mine = rows.filter((row) => row.arm === arm);
+  const groups = [['', () => true], ['tuning', (row) => !TRUTH[row.fixture].heldOut], ['heldOut', (row) => TRUTH[row.fixture].heldOut]];
+  for (const [group, inGroup] of groups) for (const arm of Object.keys(ARMS)) {
+    const mine = rows.filter((row) => row.arm === arm && inGroup(row));
+    if (mine.length === 0) continue;
     const plantedTotal = mine.reduce((total, row) => total + TRUTH[row.fixture].planted.length, 0);
     const pairs = [];
-    for (const fixture of Object.keys(TRUTH)) {
+    for (const fixture of new Set(mine.map((row) => row.fixture))) {
       if (TRUTH[fixture].planted.length === 0) continue;
       const same = mine.filter((row) => row.fixture === fixture);
       for (let i = 0; i < same.length; i++) for (let j = i + 1; j < same.length; j++) pairs.push(jaccard(same[i].grade.found, same[j].grade.found));
@@ -234,7 +238,7 @@ function summarize(jobs) {
     for (const row of mine) for (const item of TRUTH[row.fixture].planted) if (!row.grade.found.includes(item.id)) missed[`${row.fixture}/${item.id}`] = (missed[`${row.fixture}/${item.id}`] ?? 0) + 1;
     const flagged = {};
     for (const row of mine) for (const id of row.grade.flagged) flagged[`${row.fixture}/${id}`] = (flagged[`${row.fixture}/${id}`] ?? 0) + 1;
-    summary[arm] = {
+    summary[group ? `${arm}:${group}` : arm] = {
       reports: mine.length,
       recall: mine.reduce((total, row) => total + row.grade.found.length, 0) / plantedTotal,
       falseAlarmsPerReport: mean(mine.map((row) => row.grade.flagged.length)),
@@ -248,7 +252,7 @@ function summarize(jobs) {
       costPerRun: mean(mine.map((row) => row.report.cost)),
       secondsPerRun: mean(mine.map((row) => row.report.durationMs / 1000)),
       runsThatChangedFiles: mine.filter((row) => row.report.changedFiles > 0).length,
-      controlFalseAlarmsPerReport: mean(mine.filter((row) => row.fixture === 'orchard').map((row) => row.grade.flagged.length)),
+      controlFalseAlarmsPerReport: mean(mine.filter((row) => TRUTH[row.fixture].planted.length === 0).map((row) => row.grade.flagged.length)),
       missed,
       flagged,
     };
@@ -267,7 +271,7 @@ async function pool(jobs, work) {
 mkdirSync(REPORTS, { recursive: true });
 mkdirSync(join(RESULTS, 'grades'), { recursive: true });
 mkdirSync(join(RESULTS, 'ideas'), { recursive: true });
-const jobs = Object.keys(TRUTH).flatMap((fixture) => Object.keys(ARMS).flatMap((arm) => Array.from({ length: RUNS }, (_, run) => ({ fixture, arm, run }))));
+const jobs = Object.keys(TRUTH).filter((fixture) => !(TUNING_ONLY && TRUTH[fixture].heldOut)).flatMap((fixture) => Object.keys(ARMS).flatMap((arm) => Array.from({ length: RUNS }, (_, run) => ({ fixture, arm, run }))));
 await pool(jobs, runReport);
 await pool(jobs, gradeReport);
 await pool(jobs, gradeIdeas);

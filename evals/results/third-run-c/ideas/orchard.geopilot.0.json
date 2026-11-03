@@ -1,0 +1,32 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add address and directions text to the Visit page, since its meta description promises directions",
+      "verdict": "useful",
+      "why": "The description says 'Opening times and directions' but the page body has only opening months, so this is a real, file-backed content gap."
+    },
+    {
+      "idea": "Add LocalBusiness JSON-LD for hours and location on the Visit page",
+      "verdict": "generic",
+      "why": "It is accurate, but the brief says having no JSON-LD is not a required fix, and the payoff is modest."
+    },
+    {
+      "idea": "List all forty-plus varieties and create a page per variety, such as /varieties/ashmeads-kernel",
+      "verdict": "useful",
+      "why": "The varieties page names only two of 'over forty' varieties, so per-variety pages would give people and machines real content to find."
+    },
+    {
+      "idea": "Add in-text links from the home page to Varieties and Visit",
+      "verdict": "generic",
+      "why": "The home page does only have the nav links, but the nav already links to both pages, so extra in-text links change little."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml entries",
+      "verdict": "generic",
+      "why": "This is accurate because no lastmod exists, but it is standard sitemap advice with small effect on a three-URL site."
+    }
+  ]
+}

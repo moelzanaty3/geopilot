@@ -4,44 +4,54 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Remove noindex from Pricing or drop it from sitemap/nav (second Pricing note)",
+      "idea": "Give each blog post its own page and link to it from the list, with a short summary",
       "verdict": "useful",
-      "why": "Duplicates a known problem only in framing, but the 'canonical points at itself' remark is harmless; this is the known pricing issue."
+      "why": "Blog items are plain text titles with no URLs, so there is nothing specific for crawlers or readers to reach."
     },
     {
-      "idea": "Blog fetches /api/posts but no such route exists in the repo",
+      "idea": "Add a server layout for /blog with its own title and description",
       "verdict": "useful",
-      "why": "Accurate: no api route in the files, and the report hedges that it may be served elsewhere, so the blog could render empty."
+      "why": "Blog has no metadata and inherits the home title; as a client component it can't export metadata, so this is accurate and concrete."
     },
     {
-      "idea": "Add a text list of plans and prices to Pricing to match its description",
+      "idea": "Expand Docs with actual setup steps as text, and link onward to Pricing",
       "verdict": "useful",
-      "why": "The page only says 'Free for up to three people' while the description promises plans, so concrete text helps readers and machines."
+      "why": "Docs is one sentence while its description promises 'How to set up Ledger', so the content doesn't match."
     },
     {
-      "idea": "Expand Docs with written setup steps",
+      "idea": "List plans and prices as text on Pricing and optionally add Product/Offer structured data",
       "verdict": "useful",
-      "why": "Docs is a single sentence, so real steps would give users and machines something to read and quote."
+      "why": "Pricing says only 'Free for up to three people' while its description promises plans for every team size."
     },
     {
-      "idea": "Give each blog post its own URL and list it in the sitemap",
-      "verdict": "useful",
-      "why": "Posts are only titles on one client-rendered page, so individual addresses would make them discoverable."
-    },
-    {
-      "idea": "Add Organization/SoftwareApplication JSON-LD to the home page once real details exist",
+      "idea": "Add Organization and WebSite JSON-LD using the name and URL from layout",
       "verdict": "generic",
-      "why": "Accurate and appropriately caveated, but it is standard advice with little effect on its own."
+      "why": "Accurate since no JSON-LD exists, but it's a standard suggestion that applies to nearly any site and has little effect."
     },
     {
-      "idea": "Add openGraph social-share tags",
+      "idea": "Add openGraph metadata for social previews",
       "verdict": "generic",
-      "why": "True that none are set, but the report itself says it only helps if pages are shared."
+      "why": "Accurate that none is set, but it applies to almost any site and does little for search or AI discovery."
     },
     {
-      "idea": "Move /blog out of the client component so it can export server metadata (part of canonical item)",
+      "idea": "Add lastmod dates to the sitemap, or generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "Valid but low-impact for a four-URL site, and the report itself says to add dates only once real ones exist."
+    },
+    {
+      "idea": "Link home page features to Docs and link Pricing from the home page body",
       "verdict": "useful",
-      "why": "Accurate: a 'use client' file cannot export metadata, and this is the concrete step the canonical fix needs."
+      "why": "The home page body has no links, so internal linking only comes from the nav; this is accurate and specific."
+    },
+    {
+      "idea": "If Pricing should be private, drop it from the sitemap and the canonical",
+      "verdict": "generic",
+      "why": "It's the conditional half of the known pricing noindex conflict, so it adds nothing new."
+    },
+    {
+      "idea": "Add a canonical to Blog via a small server layout",
+      "verdict": "generic",
+      "why": "It repeats the known missing-canonical problem, with the Blog angle already covered by the blog layout idea."
     }
   ]
 }

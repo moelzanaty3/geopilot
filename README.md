@@ -41,18 +41,18 @@ The code score comes from reading your source, so it can't prove what only a run
 
 ## Why not just ask your agent?
 
-You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopilot/docs/benchmark/) on six sample projects with known answers, 18 runs each:
+You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopilot/docs/benchmark/) on sample projects with known answers. These are the three projects kept back during tuning, 9 runs each:
 
 | | Plain prompt | geopilot |
 | --- | --- | --- |
 | Planted bugs found | 100% | 100% |
-| **False alarms per report** | **0.67** | **0** |
-| Useful ideas per report | 6.0 | 4.2 |
-| Wrong ideas per report | 2.3 | 0.6 |
+| **False alarms per report** | **1.56** | **0** |
+| Useful ideas per report | 6.6 | 5.8 |
+| Wrong ideas per report | 3.8 | 0.7 |
 | Cost per run | $0.07 | $0.14 |
-| Time per run | 32s | 44s |
+| Time per run | 32s | 42s |
 
-geopilot's advantage is advice you can act on: no false alarms in this test, far fewer wrong ideas, every problem tied to a quote, and ideas kept apart from problems and the score. A plain prompt is cheaper, faster and still raises more useful ideas, along with more noise. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
+geopilot's advantage is advice you can act on: no false alarms in this test, far fewer wrong ideas, every problem tied to a quote, and ideas kept apart from problems and the score. A plain prompt is cheaper, faster and raises slightly more useful ideas, along with more noise. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
 
 ## Live checks with the CLI
 

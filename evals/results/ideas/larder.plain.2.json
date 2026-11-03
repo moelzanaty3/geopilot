@@ -1,0 +1,72 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups for other training crawlers (Google-Extended, CCBot, ClaudeBot, etc.) while leaving search bots allowed",
+      "verdict": "useful",
+      "why": "robots.txt blocks only GPTBot while geo.config.json says to block training crawlers, so the gap is real and the fix is concrete."
+    },
+    {
+      "idea": "Add Bakery/LocalBusiness JSON-LD on home, Course/Event on classes, ItemList/Product on breads",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add concrete visible facts: address, hours, pre-order details, bread list with ingredients and prices, class price, duration, dates and booking link",
+      "verdict": "useful",
+      "why": "The pages are vague (\"a wide range of loaves\", \"Book early\" with no link), so specific text would help people and machines."
+    },
+    {
+      "idea": "Add a short FAQ to pages",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no FAQ is not a problem, so pushing one is folklore."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice",
+      "verdict": "wrong",
+      "why": "The deliberate choices accept data-nosnippet on the allergen notice as a scoped choice."
+    },
+    {
+      "idea": "Rewrite the homepage title to include \"Bakery\" (\"Millstone Bakery | Sourdough Bakery in York\")",
+      "verdict": "generic",
+      "why": "The existing title already has the brand and \"sourdough in York\", so the change has little effect."
+    },
+    {
+      "idea": "Make sure /img/loaves.jpg exists and has descriptive alt text",
+      "verdict": "generic",
+      "why": "The alt text is already descriptive, and the file may simply be deployed separately, so this is a check rather than a fix."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata to public pages",
+      "verdict": "generic",
+      "why": "This is accurate because the tags are missing, but it is standard advice for any site and affects share previews more than discovery."
+    },
+    {
+      "idea": "Add contextual internal links (home to classes, breads to classes, classes to booking)",
+      "verdict": "useful",
+      "why": "The pages only link through the nav, and the home page links to breads but not classes, so contextual links are a concrete improvement."
+    },
+    {
+      "idea": "Drop the robots Disallow on /members/ and rely on noindex, or put it behind a login",
+      "verdict": "wrong",
+      "why": "The deliberate choices say /members being noindex and disallowed is correct, and this reverses it."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries",
+      "verdict": "generic",
+      "why": "This is accurate since lastmod is absent, but it is standard sitemap advice with little effect on a 3-page site."
+    },
+    {
+      "idea": "Add an llms.txt summarizing the business",
+      "verdict": "wrong",
+      "why": "The deliberate choices say no llms.txt is not a problem, and it is presented as a way to help AI tools find the site."
+    },
+    {
+      "idea": "Choose one URL form (.html or extensionless) and use it consistently across canonicals, sitemap and nav",
+      "verdict": "generic",
+      "why": "The site is already consistent in using .html URLs everywhere, so the advice has no effect here."
+    }
+  ]
+}

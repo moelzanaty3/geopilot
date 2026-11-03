@@ -4,59 +4,54 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Add Organization/LocalBusiness structured data for phone and address on contact page",
+      "idea": "Render FAQ answers as visible page text, not only in JSON-LD",
       "verdict": "useful",
-      "why": "Contact page has a phone number as plain text only, so schema would give machines the details directly."
+      "why": "index.astro emits the FAQ only inside the script tag, so the answers aren't visible on the page."
     },
     {
-      "idea": "Add structured data (Offer) for the £40 a night price on moorings",
+      "idea": "Add LocalBusiness/Organization structured data on contact page (and Product/Offer for pricing)",
       "verdict": "useful",
-      "why": "The price appears as a single line of text and structured data would help machines quote it accurately."
+      "why": "The contact page has a phone number and location, and the moorings page has a price, but neither has any structured data."
     },
     {
-      "idea": "Show FAQ answers as visible text on the home page",
+      "idea": "Add a table of mooring sizes and seasonal rates to moorings page",
       "verdict": "useful",
-      "why": "The FAQ answers exist only in JSON-LD, which doesn't match visible content, and the report is accurate about this."
+      "why": "The description promises sizes and seasonal prices, but the page has only one price line."
     },
     {
-      "idea": "Make the home page an overview linking to /moorings to resolve topic overlap",
+      "idea": "Add in-text links from home page to /moorings and /contact",
       "verdict": "generic",
-      "why": "The overlap between the two pages is modest and the advice is broadly applicable with little effect."
+      "why": "The nav already links these pages, so in-text links add little."
     },
     {
-      "idea": "Use one spelling of Harbor/harbour across title and content",
+      "idea": "Set `site` in Astro config and use @astrojs/sitemap instead of hand-kept sitemap",
       "verdict": "useful",
-      "why": "The index title says 'Harbor' while content and the contact page use 'harbour', which is a real inconsistency affecting matching."
-    },
-    {
-      "idea": "Add charset and viewport meta tags and a <main> element to the layout",
-      "verdict": "useful",
-      "why": "Base.astro really lacks charset, viewport and main, and adding them is concrete and cheap."
+      "why": "There is no astro.config, and a `site` value is needed for correct absolute canonicals and keeps the sitemap in sync."
     },
     {
       "idea": "Add <lastmod> to the sitemap",
       "verdict": "generic",
-      "why": "Accurate, but lastmod on a three-URL sitemap has very little effect."
+      "why": "It is accurate but has little effect on a three-URL site."
     },
     {
-      "idea": "Add a site setting in astro.config (site: https://harbor.example)",
-      "verdict": "useful",
-      "why": "There is no astro config, and the site setting is needed to build per-page absolute canonicals from Astro.url."
-    },
-    {
-      "idea": "Add missing Article properties such as author and date to the Article JSON-LD",
+      "idea": "Add charset, viewport and Open Graph tags to the layout",
       "verdict": "generic",
-      "why": "Accurate but optional properties on a block whose main problem is that it doesn't parse; low effect."
+      "why": "The head really lacks them, but this is standard boilerplate that applies to nearly any site."
     },
     {
-      "idea": "Layout should list robots defaults explicitly because the prop overwrites the whole value",
+      "idea": "Wrap slot in <main>",
       "verdict": "generic",
-      "why": "The report itself says this is fine today, so it has little effect."
+      "why": "It is a standard semantic landmark that would apply to nearly any site and has little effect."
     },
     {
-      "idea": "Page for moorings should give sizes and seasonal prices as promised by title and description",
+      "idea": "Make the contact page title name Falmouth/the harbour",
       "verdict": "useful",
-      "why": "The moorings page only has one line of price text while its title and description promise sizes and seasonal prices."
+      "why": "The title \"Contact the harbour office\" really omits the place, and naming it helps identify the page."
+    },
+    {
+      "idea": "Fix the mixed Harbor/harbour spelling in the home title",
+      "verdict": "useful",
+      "why": "The home title uses \"Harbor\" while the page text uses \"harbour\", so the site name is inconsistent for searchers and machines."
     }
   ]
 }

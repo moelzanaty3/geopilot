@@ -1,0 +1,67 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Expand thin content on home, varieties and visit pages so they can be cited or ranked",
+      "verdict": "wrong",
+      "why": "Rests on word-count folklore; the deliberate choices say short pages are not a problem."
+    },
+    {
+      "idea": "Create per-variety pages at /varieties/[slug] with flavour, use, pollination group and season, and add them to the sitemap",
+      "verdict": "useful",
+      "why": "The varieties page names over forty varieties with no detail pages, so individual pages give concrete findable facts."
+    },
+    {
+      "idea": "Add Organization/LocalBusiness, Product and openingHoursSpecification JSON-LD",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add address, hours of day, directions, parking and contact details to the Visit page, since its description promises opening times and directions",
+      "verdict": "useful",
+      "why": "The description says 'Opening times and directions' but the body lacks them, which is a real mismatch in this repo."
+    },
+    {
+      "idea": "Add a title template and default title, openGraph, twitter card and default image in layout metadata",
+      "verdict": "generic",
+      "why": "The layout only sets metadataBase, but these defaults are standard advice with modest effect on discoverability."
+    },
+    {
+      "idea": "Add anthropic-ai, Google-Extended, Applebot-Extended, CCBot and Bytespider as Disallow groups in robots.txt",
+      "verdict": "useful",
+      "why": "The policy is trainingCrawlers: block, yet only GPTBot and ClaudeBot are blocked, so other training crawlers are still allowed."
+    },
+    {
+      "idea": "Add explicit Allow groups for OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User and PerplexityBot",
+      "verdict": "generic",
+      "why": "They are already allowed through the wildcard, so explicit groups only guard against future edits."
+    },
+    {
+      "idea": "Replace the static sitemap with app/sitemap.ts that includes lastmod",
+      "verdict": "generic",
+      "why": "With three static URLs, lastmod has little effect, and generating from variety data only matters if the variety pages are added."
+    },
+    {
+      "idea": "Use a distinctive brand name and sameAs links because 'Orchard' is generic",
+      "verdict": "generic",
+      "why": "Entity-resolution advice that is plausible but speculative, and sameAs depends on JSON-LD that is not required."
+    },
+    {
+      "idea": "Remove the /account robots Disallow so crawlers can read the noindex if it is ever linked",
+      "verdict": "wrong",
+      "why": "The deliberate choices say noindex plus Disallow on /account is correct for a private page."
+    },
+    {
+      "idea": "Use next/link instead of plain <a> tags in the nav",
+      "verdict": "generic",
+      "why": "The report itself says this is not an SEO issue, and it only affects client-side navigation."
+    },
+    {
+      "idea": "Make canonical URLs relative since metadataBase is set",
+      "verdict": "generic",
+      "why": "This is a minor code-tidiness change with no effect on discovery."
+    }
+  ]
+}

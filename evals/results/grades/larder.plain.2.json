@@ -1,0 +1,12 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 2,
+  "found": [],
+  "flagged": [
+    "data-nosnippet",
+    "no-json-ld",
+    "no-faq-or-word-count"
+  ],
+  "extraIssues": 7
+}

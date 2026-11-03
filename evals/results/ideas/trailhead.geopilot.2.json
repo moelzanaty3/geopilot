@@ -4,34 +4,59 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Add absolute canonical URLs on each page (Absolute canonical rule: 0 of 2 routes)",
-      "verdict": "useful",
-      "why": "No canonical exists anywhere in the code, and adding one per route is a concrete, repo-specific fix."
-    },
-    {
-      "idea": "List actual routes as text on the guides page, ideally each with its own page and address",
-      "verdict": "useful",
-      "why": "guides.vue promises graded routes but lists none, so adding real content and URLs gives readers and crawlers something to index and quote."
-    },
-    {
-      "idea": "Add more descriptive text on the home page about who the site is for and what it covers",
-      "verdict": "useful",
-      "why": "index.vue has only an h1 and a button, so a short description helps people and machines understand the site."
-    },
-    {
-      "idea": "Set a site URL in nuxt.config (e.g. via a Nuxt site module) to generate correct absolute canonicals and sitemap URLs",
-      "verdict": "useful",
-      "why": "The config has no site URL, and sitemap.xml uses a placeholder domain, so this supports absolute URLs."
-    },
-    {
-      "idea": "Make sure the placeholder domain trailhead.example in sitemap.xml is the real origin and matches canonicals and the Sitemap line",
-      "verdict": "useful",
-      "why": "sitemap.xml really uses https://trailhead.example/, and the origin must be consistent across canonicals, the sitemap and robots.txt."
-    },
-    {
-      "idea": "Use the Nitro middleware noindex caveat: on a static host the header may not run, so check with a live scan",
+      "idea": "Give each page its own title and description via useHead (e.g. guides.vue)",
       "verdict": "generic",
-      "why": "It is a check of the deployment outside the code, and the noindex removal already covers the actual fix."
+      "why": "This is the known shared-title problem restated, but the per-page fix is accurate; it duplicates a known problem so it is only weakly additive."
+    },
+    {
+      "idea": "Set site URL in Nuxt config (site.url) so canonicals and sitemap URLs derive from it",
+      "verdict": "useful",
+      "why": "No origin is declared anywhere and the sitemap uses a placeholder domain, so declaring it is a concrete, repo-specific fix."
+    },
+    {
+      "idea": "Add an absolute canonical link per page",
+      "verdict": "useful",
+      "why": "No canonical is set anywhere in the repo, and adding one is a concrete action that helps search engines pick the right URL."
+    },
+    {
+      "idea": "Replace placeholder domain trailhead.example in sitemap with the real origin",
+      "verdict": "useful",
+      "why": "The sitemap really lists trailhead.example URLs, which would point crawlers at the wrong domain."
+    },
+    {
+      "idea": "Resolve sitemap listing the noindex /guides page (remove header or drop URL)",
+      "verdict": "generic",
+      "why": "This is the same noindex-on-/guides problem already listed as known."
+    },
+    {
+      "idea": "Fill out thin guides page with actual route listings, one page per route",
+      "verdict": "useful",
+      "why": "guides.vue only has a heading and one sentence promising routes that are not listed, so real content would help people and machines."
+    },
+    {
+      "idea": "Add a short intro and links to featured walks on the home page",
+      "verdict": "useful",
+      "why": "index.vue contains only an h1 and a button, so intro text and real links give crawlers and readers more to understand and follow."
+    },
+    {
+      "idea": "Add WebSite or Organization JSON-LD",
+      "verdict": "generic",
+      "why": "Accurate and harmless, but it would apply to almost any site and has little effect on a small site like this."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "Accurate since no dates exist, but it has marginal effect on a two-URL sitemap."
+    },
+    {
+      "idea": "Generate the sitemap with a Nuxt sitemap module",
+      "verdict": "generic",
+      "why": "The sitemap is hand-kept, but with two routes the benefit is small and the advice applies to any Nuxt site."
+    },
+    {
+      "idea": "Remove the redundant /admin noindex",
+      "verdict": "wrong",
+      "why": "It suggests reversing a deliberate choice, though the report itself then says to leave it as is."
     }
   ]
 }

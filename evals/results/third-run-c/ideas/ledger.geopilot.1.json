@@ -1,0 +1,42 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add canonical to /blog (and metadata/title/description for blog page)",
+      "verdict": "useful",
+      "why": "/blog has no metadata at all, so adding title, description and canonical is accurate and concrete."
+    },
+    {
+      "idea": "Remove noindex from Pricing or drop it from the sitemap (resolve mixed signals)",
+      "verdict": "useful",
+      "why": "It is accurate for this repo, but it duplicates the known pricing noindex problem."
+    },
+    {
+      "idea": "Give each blog post its own page/URL",
+      "verdict": "useful",
+      "why": "Posts render only a title with no URL, so they can't be linked, shared or added to the sitemap."
+    },
+    {
+      "idea": "Write out plan costs/paid tiers as text on Pricing",
+      "verdict": "useful",
+      "why": "The Pricing page has only one sentence of content, so listing plans in text helps readers and machines understand it."
+    },
+    {
+      "idea": "Expand the Docs page beyond the first step",
+      "verdict": "generic",
+      "why": "The Docs page is thin, but 'write more content' is vague and applies to almost any site."
+    },
+    {
+      "idea": "Add Organization/SoftwareApplication JSON-LD",
+      "verdict": "generic",
+      "why": "This is standard advice for any site, and structured data has a modest effect on being understood."
+    },
+    {
+      "idea": "Note that /api/posts route doesn't exist in the repository",
+      "verdict": "useful",
+      "why": "This is accurate: the blog fetches from a route that isn't in the repo, so the posts' source is unclear."
+    }
+  ]
+}

@@ -4,49 +4,49 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Make the moorings page deliver sizes and seasonal prices as text, matching its description",
+      "idea": "Add LocalBusiness/Organization JSON-LD with name and phone on the contact page",
       "verdict": "useful",
-      "why": "The description promises sizes and seasonal prices but the page only says 'Prices start at £40 a night', so adding real content helps readers and machines."
+      "why": "The contact page has a phone number and no entity markup, so this gives machines a concrete, specific identity signal."
     },
     {
-      "idea": "Show the FAQ answers as visible text on the home page",
+      "idea": "Add a table of mooring sizes and seasonal prices as real text on /moorings",
       "verdict": "useful",
-      "why": "The FAQ answers exist only inside JSON-LD in index.astro, and structured data should match visible content."
+      "why": "The page description promises sizes and seasonal prices but the body gives only one figure, so adding them is accurate and helps readers and machines."
     },
     {
-      "idea": "Add LocalBusiness/Organization markup with phone number to the contact page",
+      "idea": "Show the FAQ Q&A as visible text on the home page",
       "verdict": "useful",
-      "why": "The contact page has a phone number in plain text and no markup, so this is a concrete, repo-specific improvement."
+      "why": "The FAQ answers exist only in JSON-LD on index.astro, so visible text matches the markup and helps readers."
     },
     {
-      "idea": "Add meta charset and viewport to the head",
+      "idea": "Add lastmod dates to the sitemap",
       "verdict": "generic",
-      "why": "Base.astro lacks both, which is accurate, but it's standard boilerplate that applies to nearly any site."
+      "why": "This is accurate but conditional on knowing the dates and has little effect on a three-URL sitemap."
     },
     {
-      "idea": "Wrap page content in <main>",
+      "idea": "Generate the sitemap with @astrojs/sitemap and set site in astro.config",
       "verdict": "generic",
-      "why": "Accurate since Base.astro has a bare slot in body, but it's a universal semantic-HTML tip with little discoverability effect."
+      "why": "It is accurate, but a hand-written three-URL sitemap works and the benefit is mostly maintainability."
     },
     {
-      "idea": "Set `site` in an Astro config and generate canonicals and sitemap from it",
+      "idea": "Add charset, viewport and Open Graph tags to the head",
+      "verdict": "generic",
+      "why": "The layout does lack them, but this is standard advice for any site."
+    },
+    {
+      "idea": "Wrap the slot in a <main> element",
+      "verdict": "generic",
+      "why": "This is accurate but a minor, boilerplate semantic improvement with little effect."
+    },
+    {
+      "idea": "Make the home page description and spelling consistent (Harbor/Harbour, Cornwall/Falmouth) and say who the harbour office is",
       "verdict": "useful",
-      "why": "There is no astro.config, harbor.example is hardcoded in the layout, robots.txt and sitemap, and a single source of truth would also fix the canonical problem."
+      "why": "The title uses 'Harbor' and 'Cornwall' while the heading and description use 'Falmouth' and 'harbour', so the inconsistency is real and the fix helps clarity."
     },
     {
-      "idea": "Add <lastmod> to the sitemap",
+      "idea": "Add inline links from the home page body to /moorings and /contact",
       "verdict": "generic",
-      "why": "The sitemap has no dates, but this is a common optional enhancement with little effect on a three-page site."
-    },
-    {
-      "idea": "Link from home page body text to /moorings",
-      "verdict": "generic",
-      "why": "The home page links to moorings only via nav, but in-content links are a broadly applicable tip with small impact here."
-    },
-    {
-      "idea": "Give the newsletter form an action",
-      "verdict": "generic",
-      "why": "The form has no action, which is accurate, but it's a functional matter rather than something that affects finding or understanding the site."
+      "why": "The home page body has no links, but the nav already links both pages, so the effect is small."
     }
   ]
 }

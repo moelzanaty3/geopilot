@@ -4,29 +4,44 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Add address, directions and hours as visible text on the Visit page, since the description promises directions",
+      "idea": "Add Organization/LocalBusiness JSON-LD to the home page",
+      "verdict": "wrong",
+      "why": "Contradicts the deliberate choice that having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add address, hours and directions as text on /visit, with LocalBusiness openingHoursSpecification markup",
       "verdict": "useful",
-      "why": "The visit page says 'Opening times and directions' but the body has no directions, so this is a real content gap in the repo."
+      "why": "The page's description promises directions but its body has only one line of hours, so adding the details as text helps people and machines; the markup part is optional."
     },
     {
-      "idea": "Add LocalBusiness structured data to the Visit page once the details are visible",
-      "verdict": "generic",
-      "why": "It is optional and hedged, and JSON-LD is explicitly not a required fix."
-    },
-    {
-      "idea": "Expand the Varieties page with a list and a separate page and URL for each variety",
+      "idea": "Give each variety its own page, such as /varieties/ashmeads-kernel, and list them on the index",
       "verdict": "useful",
-      "why": "The page names only two of 'over forty' varieties, so per-variety pages would add real content and crawlable URLs."
+      "why": "The page claims over forty varieties but names only two, so separate pages would give each variety its own address and content."
     },
     {
-      "idea": "Add lastmod dates to the sitemap if real update dates exist",
+      "idea": "Add lastmod to the sitemap entries",
       "verdict": "generic",
-      "why": "It is accurate, because the sitemap has no lastmod, but it is standard advice with little effect on a three-URL sitemap."
+      "why": "This applies to almost any sitemap, has little effect, and the report itself hedges with 'might help'."
     },
     {
-      "idea": "Link to Varieties and Visit from the home page body, not just the nav",
+      "idea": "Add openGraph title, description and image metadata",
       "verdict": "generic",
-      "why": "It is accurate, but the nav already links every page on a three-page site, so the effect is small."
+      "why": "Accurate because no openGraph is set, but it is standard advice for any site and mainly affects link previews."
+    },
+    {
+      "idea": "Add a viewport and canonical to every page",
+      "verdict": "wrong",
+      "why": "The public pages already have canonicals, Next.js already supplies the viewport, and the account page is deliberately private, so the item is self-contradictory."
+    },
+    {
+      "idea": "Link between related pages, such as from varieties to visit",
+      "verdict": "useful",
+      "why": "The pages have no in-content links to each other, so a contextual link on /varieties pointing to /visit is a small, concrete improvement."
+    },
+    {
+      "idea": "Make titles name the orchard and Herefordshire",
+      "verdict": "useful",
+      "why": "The /varieties and /visit titles don't name the orchard or place, so adding them makes the pages clearer in results and tabs."
     }
   ]
 }

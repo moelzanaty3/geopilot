@@ -1,0 +1,32 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Give each mug its own page and URL (/mugs/<id>) with links, possibly Product structured data",
+      "verdict": "useful",
+      "why": "Catalogue renders mugs as plain <p> text with no links, so individual products can't be found or linked."
+    },
+    {
+      "idea": "Add a viewport meta tag to index.html",
+      "verdict": "generic",
+      "why": "Accurate since the viewport tag is missing, but it's a standard item with little effect on being found."
+    },
+    {
+      "idea": "Add prices, sizes, materials and shipping details as text on the pages",
+      "verdict": "useful",
+      "why": "Home contains only one sentence of text and no product details, so adding them gives machines and visitors real content."
+    },
+    {
+      "idea": "Give each page its own title and description via a head manager",
+      "verdict": "useful",
+      "why": "Both routes share the single 'Vite App' title, so per-route titles need a head manager in this SPA."
+    },
+    {
+      "idea": "Declare the site's domain and add an absolute canonical link",
+      "verdict": "generic",
+      "why": "Valid but depends on an unknown domain and is standard advice for almost any site."
+    }
+  ]
+}

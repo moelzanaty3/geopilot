@@ -4,29 +4,54 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Add a description to the noindex /account page",
-      "verdict": "generic",
-      "why": "Accurate that it's missing, but a noindex private page gains almost nothing from a description."
-    },
-    {
-      "idea": "Add LocalBusiness JSON-LD for opening times (with visible address)",
-      "verdict": "generic",
-      "why": "Plausible but the page has no address, JSON-LD isn't required, and it's speculative with hedged wording."
-    },
-    {
-      "idea": "Give each variety its own page, linked from the varieties page",
+      "idea": "Add address, directions and opening hours text to the Visit page so it matches its description",
       "verdict": "useful",
-      "why": "The page claims forty varieties but names two, so per-variety pages would add real, findable content."
+      "why": "The visit page description promises directions but the body only gives a brief line on opening days."
     },
     {
-      "idea": "Add links in the home page body to Varieties and Visit",
+      "idea": "List all the 40+ varieties on the Varieties page rather than naming two",
+      "verdict": "useful",
+      "why": "The page claims over forty varieties but names only two, so the content doesn't back up the claim."
+    },
+    {
+      "idea": "Give each variety its own page and add it to the sitemap",
+      "verdict": "useful",
+      "why": "Individual addressable pages for each variety would give crawlers and users specific URLs to find and link to."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data in the layout",
+      "verdict": "wrong",
+      "why": "The deliberate choices state that having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Label the Visit details with LocalBusiness structured data",
+      "verdict": "wrong",
+      "why": "It relies on adding JSON-LD, which is explicitly not a required fix."
+    },
+    {
+      "idea": "Add a site-wide default title and description in the layout",
       "verdict": "generic",
-      "why": "Accurate, but the nav already links these pages so the effect is small."
+      "why": "All current pages set their own metadata, so this is only a safety net against future mistakes."
     },
     {
       "idea": "Add lastmod dates to the sitemap",
       "verdict": "generic",
-      "why": "Accurate that lastmod is absent, but it is a common, low-impact tweak for a three-URL site."
+      "why": "This is accurate but standard advice with a small effect on a 3-URL site."
+    },
+    {
+      "idea": "Add internal links between home, Varieties and Visit in page content",
+      "verdict": "generic",
+      "why": "The nav already links all three pages, so in-body links add little."
+    },
+    {
+      "idea": "Keep the site URL in a single shared constant",
+      "verdict": "generic",
+      "why": "This is a maintainability tip that doesn't change how people or machines find the site."
+    },
+    {
+      "idea": "Make descriptions more specific by mentioning the Herefordshire orchard",
+      "verdict": "useful",
+      "why": "The Varieties and Visit descriptions don't say who the site is or where, which the home page does."
     }
   ]
 }

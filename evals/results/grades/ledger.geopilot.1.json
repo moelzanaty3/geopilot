@@ -3,12 +3,12 @@
   "arm": "geopilot",
   "run": 1,
   "found": [
-    "pricing-noindex",
-    "robots-no-sitemap-line",
     "no-html-lang",
+    "robots-no-sitemap-line",
+    "pricing-noindex",
     "docs-missing-canonical",
     "blog-client-rendered"
   ],
   "flagged": [],
-  "extraIssues": 2
+  "extraIssues": 3
 }

@@ -4,59 +4,49 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Change robots.txt to `Allow: /` (item 1)",
-      "verdict": "wrong",
-      "why": "This duplicates the known robots.txt block, and the report's wording on the fix is muddled."
-    },
-    {
-      "idea": "Add an absolute Sitemap line to robots.txt",
-      "verdict": "wrong",
-      "why": "This is the known missing-sitemap problem, so it is already graded."
-    },
-    {
-      "idea": "Prerender or server-render routes so content is in the HTML (item 2)",
-      "verdict": "wrong",
-      "why": "This duplicates the known client-only rendering problem."
-    },
-    {
-      "idea": "Give the Catalogue list its content in server HTML instead of a runtime fetch in useEffect",
+      "idea": "Render catalogue contents (mug names from /api/mugs) on the server or at build time",
       "verdict": "useful",
-      "why": "Catalogue.jsx fetches /api/mugs only in the browser, so the mug names are missing from the initial HTML and need build-time or server data."
+      "why": "Catalogue.jsx fetches in useEffect, so mug names are absent from initial HTML."
     },
     {
-      "idea": "Set a unique title and description per route",
+      "idea": "Give each mug its own page (/catalogue/:id) with description, price and photo",
       "verdict": "useful",
-      "why": "Both routes share one static title in index.html, and nothing sets per-route titles, so the pages can't be told apart."
+      "why": "Catalogue only renders bare names in <p> tags, so there's nothing detailed for people or machines to read."
     },
     {
-      "idea": "Describe the mugs in text (prices, sizes, materials, shipping)",
+      "idea": "Back up the 'shipped worldwide' claim with where, how long and cost",
       "verdict": "useful",
-      "why": "Home.jsx has one sentence and the Catalogue shows only names, so there is little text for machines or people to read."
+      "why": "Home.jsx makes the claim with no supporting detail, and concrete shipping facts help users and machines."
     },
     {
-      "idea": "Give each mug its own linked page",
+      "idea": "Add Organization/LocalBusiness JSON-LD for the Bristol business",
       "verdict": "useful",
-      "why": "Catalogue items are plain <p> text with no links, so individual mugs can't be reached or shared."
+      "why": "There is no structured data, and Home.jsx states location and craft that could be machine-readable."
     },
     {
-      "idea": "Add Product JSON-LD for price and availability on mug pages",
+      "idea": "Add viewport meta and Open Graph tags (og:title, og:image)",
       "verdict": "useful",
-      "why": "There is no structured data now, and it would apply once mug pages exist with real product details."
+      "why": "index.html has only charset and title, so there's no viewport or social metadata."
     },
     {
-      "idea": "Add a viewport meta tag",
-      "verdict": "useful",
-      "why": "index.html has no viewport tag, which is true and affects mobile rendering."
-    },
-    {
-      "idea": "Add Open Graph tags for share previews",
+      "idea": "Include <lastmod> dates in the sitemap once created",
       "verdict": "generic",
-      "why": "This is accurate but is standard advice for any site and has little effect on being found."
+      "why": "It's accurate but has small effect and applies to any sitemap."
     },
     {
-      "idea": "Add a canonical link on your own domain",
+      "idea": "Link from the home page body into the catalogue",
+      "verdict": "useful",
+      "why": "Home.jsx has no link to the catalogue, though the nav has a link-less button."
+    },
+    {
+      "idea": "Make the catalogue h1 more descriptive (e.g. 'Handmade ceramic mugs, catalogue')",
       "verdict": "generic",
-      "why": "The report could not check this because no domain is declared, so it is standard advice with little to act on."
+      "why": "The h1 'Catalogue' is vague, but the change has little effect."
+    },
+    {
+      "idea": "Use a head helper like react-helmet for per-page titles",
+      "verdict": "useful",
+      "why": "Both routes share one static title in index.html, so per-route titles need a head manager."
     }
   ]
 }

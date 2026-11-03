@@ -4,44 +4,39 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Pre-render or enable SSR so server HTML contains content (remove ssr:false)",
-      "verdict": "wrong",
-      "why": "This is the known ssr:false problem, already graded separately, so it should not be counted as a new idea."
-    },
-    {
-      "idea": "Make the robots.txt Sitemap line an absolute URL",
-      "verdict": "wrong",
-      "why": "This duplicates the known relative-Sitemap problem."
-    },
-    {
-      "idea": "Replace the button with NuxtLink to /guides",
-      "verdict": "wrong",
-      "why": "This duplicates the known button/router.push problem."
-    },
-    {
-      "idea": "Remove the noindex X-Robots-Tag on /guides",
-      "verdict": "wrong",
-      "why": "This duplicates the known noindex-on-/guides problem."
-    },
-    {
-      "idea": "List actual routes as text on the guides page, ideally one page each with its own URL",
+      "idea": "Add the actual routes with grades as text on the guides page, ideally each on its own page/URL",
       "verdict": "useful",
-      "why": "guides.vue only promises routes without listing any, so adding crawlable per-route pages gives real content to index and quote."
+      "why": "guides.vue only has a promise sentence and no route content, so adding real content and URLs gives crawlers and readers something to find."
     },
     {
-      "idea": "Add a short text description and onward links to the home page",
+      "idea": "Add more descriptive text to the home page and link to specific walks",
       "verdict": "useful",
-      "why": "index.vue has only an h1 and one button, so descriptive text and links would help visitors and machines understand the site."
+      "why": "index.vue has only an h1 and a button, so a short description and real links would help understanding and discovery."
     },
     {
-      "idea": "Give each page its own title and description via useHead/useSeoMeta",
+      "idea": "Declare site domain and add canonical link on each page",
+      "verdict": "useful",
+      "why": "No canonical or site URL is set anywhere in the config, and the sitemap uses a placeholder host."
+    },
+    {
+      "idea": "Add WebSite/Organization JSON-LD with site name and URL",
+      "verdict": "generic",
+      "why": "Accurate since there is no JSON-LD, but it would have little effect on a small site like this."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries or use @nuxtjs/sitemap generator",
+      "verdict": "generic",
+      "why": "It's accurate, but with two URLs lastmod has little effect, and the report itself says to add dates only once real update dates exist."
+    },
+    {
+      "idea": "Replace placeholder sitemap host trailhead.example with the real domain",
+      "verdict": "useful",
+      "why": "sitemap.xml uses https://trailhead.example/, which would point crawlers at a non-existent host."
+    },
+    {
+      "idea": "Remove the sitemap/noindex contradiction by removing the header rule for /guides",
       "verdict": "wrong",
-      "why": "This duplicates the known single-title/description problem."
-    },
-    {
-      "idea": "Declare the real site origin and add an absolute canonical link per page",
-      "verdict": "useful",
-      "why": "No canonical or site URL exists anywhere in the config, and the sitemap uses the placeholder trailhead.example, so declaring the origin enables correct canonicals."
+      "why": "This is the known noindex header problem restated, so it's excluded as already graded, but flagged as a duplicate."
     }
   ]
 }

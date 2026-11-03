@@ -1,0 +1,32 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add address, directions and hours as visible text on the Visit page, since the description promises directions",
+      "verdict": "useful",
+      "why": "The visit page says 'Opening times and directions' but the body has no directions, so this is a real content gap in the repo."
+    },
+    {
+      "idea": "Add LocalBusiness structured data to the Visit page once the details are visible",
+      "verdict": "generic",
+      "why": "It is optional and hedged, and JSON-LD is explicitly not a required fix."
+    },
+    {
+      "idea": "Expand the Varieties page with a list and a separate page and URL for each variety",
+      "verdict": "useful",
+      "why": "The page names only two of 'over forty' varieties, so per-variety pages would add real content and crawlable URLs."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap if real update dates exist",
+      "verdict": "generic",
+      "why": "It is accurate, because the sitemap has no lastmod, but it is standard advice with little effect on a three-URL sitemap."
+    },
+    {
+      "idea": "Link to Varieties and Visit from the home page body, not just the nav",
+      "verdict": "generic",
+      "why": "It is accurate, but the nav already links every page on a three-page site, so the effect is small."
+    }
+  ]
+}

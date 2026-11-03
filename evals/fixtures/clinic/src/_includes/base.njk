@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }} | Brightside Dental</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="https://staging.brightside-dental.example{{ page.url }}">
+{% if noindex %}<meta name="robots" content="noindex">{% endif %}
+</head>
+<body>
+<nav><a href="/">Home</a> <a href="/services/">Services</a> <a href="/team/">Team</a> <a href="/contact/">Contact</a></nav>
+<main>{{ content | safe }}</main>
+</body>
+</html>

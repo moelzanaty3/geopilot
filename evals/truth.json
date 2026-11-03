@@ -218,5 +218,120 @@
         "description": "Having no llms.txt is not a problem"
       }
     ]
+  },
+  "clinic": {
+    "stack": "Eleventy",
+    "heldOut": true,
+    "planted": [
+      {
+        "id": "services-noindex",
+        "description": "/services is noindex while listed in the sitemap and linked from the navigation"
+      },
+      {
+        "id": "canonical-staging-host",
+        "description": "base.njk hardcodes canonicals to the staging host instead of the site's origin"
+      },
+      {
+        "id": "no-html-lang",
+        "description": "<html> in base.njk has no lang attribute"
+      },
+      {
+        "id": "team-no-description",
+        "description": "/team has no description, so its meta description renders empty"
+      },
+      {
+        "id": "dentist-jsonld-invalid",
+        "description": "The Dentist JSON-LD on /contact has a trailing comma, so it doesn't parse"
+      }
+    ],
+    "decoys": [
+      {
+        "id": "thanks-noindex",
+        "description": "/thanks is noindex and isn't in the sitemap or navigation, which is correct"
+      },
+      {
+        "id": "data-nosnippet",
+        "description": "data-nosnippet on the insurance terms is a scoped choice and fine"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      }
+    ]
+  },
+  "atlas": {
+    "stack": "Remix",
+    "heldOut": true,
+    "planted": [
+      {
+        "id": "bingbot-blocked",
+        "description": "robots.txt blocks Bingbot from the whole site"
+      },
+      {
+        "id": "robots-no-sitemap-line",
+        "description": "robots.txt has no Sitemap line even though public/sitemap.xml exists"
+      },
+      {
+        "id": "changelog-client-rendered",
+        "description": "/changelog loads its entries in useEffect, so the content isn't in server HTML"
+      },
+      {
+        "id": "features-not-a-link",
+        "description": "/features is reached from the home page only by a div with onClick and navigate, not a real link"
+      },
+      {
+        "id": "pricing-no-own-meta",
+        "description": "/pricing has no meta export, so it has no canonical and no title or description of its own"
+      }
+    ],
+    "decoys": [
+      {
+        "id": "gptbot-blocked",
+        "description": "GPTBot is blocked. geo.config.json declares trainingCrawlers: block, so this is deliberate"
+      },
+      {
+        "id": "dashboard-noindex-disallow",
+        "description": "/dashboard is noindex and disallowed, which is correct for a private page"
+      },
+      {
+        "id": "no-json-ld",
+        "description": "Having no JSON-LD is not a required fix"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      }
+    ]
+  },
+  "larder": {
+    "stack": "Static HTML (healthy control)",
+    "heldOut": true,
+    "planted": [],
+    "decoys": [
+      {
+        "id": "gptbot-blocked",
+        "description": "GPTBot is blocked. geo.config.json declares trainingCrawlers: block, so this is deliberate"
+      },
+      {
+        "id": "members-noindex-disallow",
+        "description": "/members is noindex and disallowed, which is correct for a private page"
+      },
+      {
+        "id": "data-nosnippet",
+        "description": "data-nosnippet on the allergen notice is a scoped choice and fine"
+      },
+      {
+        "id": "no-json-ld",
+        "description": "Having no JSON-LD is not a required fix"
+      },
+      {
+        "id": "no-llms-txt",
+        "description": "Having no llms.txt is not a problem"
+      },
+      {
+        "id": "no-faq-or-word-count",
+        "description": "Short pages and having no FAQ are not problems"
+      }
+    ]
   }
 }

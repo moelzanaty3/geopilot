@@ -4,59 +4,59 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Add a Sitemap line to robots.txt (Note 1)",
-      "verdict": "useful",
-      "why": "This repeats a known problem, so it should be excluded; it is accurate but already graded."
-    },
-    {
-      "idea": "Add lang=\"en\" to <html> (Note 2)",
-      "verdict": "useful",
-      "why": "This repeats a known problem and is already graded."
-    },
-    {
-      "idea": "Give /blog server-side metadata through a server wrapper, because it inherits the home page title and description",
-      "verdict": "useful",
-      "why": "It is accurate: the client component can't export metadata, so /blog shows the home page title and description, and a server wrapper fixes that."
-    },
-    {
-      "idea": "Add a canonical to /blog",
-      "verdict": "useful",
-      "why": "/blog has no metadata or canonical, which is accurate and specific, and the known problem only covers /docs."
-    },
-    {
-      "idea": "Expand /docs with real setup steps in text, since the page is one sentence but its description promises setup instructions",
-      "verdict": "useful",
-      "why": "The page is one sentence while the description says 'How to set up Ledger', so the content doesn't deliver on it."
-    },
-    {
-      "idea": "Give each blog post its own URL and link to it",
-      "verdict": "useful",
-      "why": "Posts are only titles in articles with no links or pages, so individual posts can't be found or linked."
-    },
-    {
-      "idea": "List paid plans and prices on /pricing",
-      "verdict": "useful",
-      "why": "The page only says 'Free for up to three people' while the description promises plans for every team size, so adding the plans is specific and accurate."
-    },
-    {
-      "idea": "Add Organization JSON-LD",
+      "idea": "Make /pricing indexable / keep canonical consistent (or remove from sitemap if deliberate)",
       "verdict": "generic",
-      "why": "It would apply to almost any site and has little effect for this one."
+      "why": "This is the known pricing noindex problem restated, though the canonical note adds little."
     },
     {
-      "idea": "Add <lastmod> to sitemap entries once real dates exist",
-      "verdict": "generic",
-      "why": "This is generic advice, conditional on dates the site doesn't have yet, and has little effect."
-    },
-    {
-      "idea": "Add Open Graph tags",
-      "verdict": "generic",
-      "why": "This is accurate, since no Open Graph tags exist, but it is standard advice that mainly affects how shared links look."
-    },
-    {
-      "idea": "Remove noindex from /pricing or drop it from the sitemap",
+      "idea": "Blog fetches /api/posts but no app/api route exists in the repo",
       "verdict": "useful",
-      "why": "This repeats a known problem and is already graded."
+      "why": "Accurate per the files: no API route is present, so the blog may render empty, and the fix is concrete."
+    },
+    {
+      "idea": "Give each blog post its own /blog/<slug> page listed in the sitemap",
+      "verdict": "useful",
+      "why": "The blog has only a list of titles, so individual post pages would make posts findable and quotable."
+    },
+    {
+      "idea": "Expand pricing page copy with plans, prices and limits to match its description",
+      "verdict": "useful",
+      "why": "The page has one sentence while the description promises plans for every team size."
+    },
+    {
+      "idea": "Expand docs content with setup steps, supported banks and import details",
+      "verdict": "useful",
+      "why": "The docs page is a single sentence despite its 'How to set up Ledger' description."
+    },
+    {
+      "idea": "Link from the home page to /docs or feature pages",
+      "verdict": "generic",
+      "why": "Accurate, but the nav already links to all pages, so the effect is small."
+    },
+    {
+      "idea": "Use a title template so Docs and Pricing titles name the site",
+      "verdict": "useful",
+      "why": "Titles are bare 'Docs' and 'Pricing', and a template in layout.tsx fixes that concretely."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD",
+      "verdict": "generic",
+      "why": "Valid but standard advice for any site, with modest benefit."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries",
+      "verdict": "generic",
+      "why": "Accurate but applies to almost any site and has little effect."
+    },
+    {
+      "idea": "Generate the sitemap with app/sitemap.ts instead of a hand-written file",
+      "verdict": "generic",
+      "why": "Reasonable, but with four static pages it is a minor maintenance convenience."
+    },
+    {
+      "idea": "Add a canonical to /blog (and fix /pricing canonical)",
+      "verdict": "useful",
+      "why": "/blog has no canonical in the files, and the known problem only names /docs."
     }
   ]
 }

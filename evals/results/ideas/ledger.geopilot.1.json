@@ -4,39 +4,49 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Add canonical to /blog (and metadata/title/description for blog page)",
+      "idea": "Give /blog its own title/description by splitting into a server component with metadata and a client child",
       "verdict": "useful",
-      "why": "/blog has no metadata at all, so adding title, description and canonical is accurate and concrete."
+      "why": "blog/page.tsx is 'use client' so it cannot export metadata and falls back to the layout defaults."
     },
     {
-      "idea": "Remove noindex from Pricing or drop it from the sitemap (resolve mixed signals)",
+      "idea": "Create /blog/[slug] pages for individual posts, link them and add to sitemap",
       "verdict": "useful",
-      "why": "It is accurate for this repo, but it duplicates the known pricing noindex problem."
+      "why": "Posts render only a title with no URL, so individual posts can't be found or cited."
     },
     {
-      "idea": "Give each blog post its own page/URL",
+      "idea": "Add paid tiers and prices as text on /pricing",
       "verdict": "useful",
-      "why": "Posts render only a title with no URL, so they can't be linked, shared or added to the sitemap."
+      "why": "The page says only 'Free for up to three people' while the description promises plans for every team size."
     },
     {
-      "idea": "Write out plan costs/paid tiers as text on Pricing",
+      "idea": "Expand the Docs page with setup steps and links onward",
       "verdict": "useful",
-      "why": "The Pricing page has only one sentence of content, so listing plans in text helps readers and machines understand it."
+      "why": "Docs is a single sentence, so it gives readers and machines little to understand."
     },
     {
-      "idea": "Expand the Docs page beyond the first step",
+      "idea": "Add canonicals to /docs and /blog, ideally via a layout default",
       "verdict": "generic",
-      "why": "The Docs page is thin, but 'write more content' is vague and applies to almost any site."
+      "why": "The /docs canonical is already a known problem, and the report folds /blog into it."
     },
     {
-      "idea": "Add Organization/SoftwareApplication JSON-LD",
+      "idea": "Add Organization/WebSite JSON-LD",
       "verdict": "generic",
-      "why": "This is standard advice for any site, and structured data has a modest effect on being understood."
+      "why": "It is accurate since there is no JSON-LD, but it is boilerplate advice with little effect for a site this small."
     },
     {
-      "idea": "Note that /api/posts route doesn't exist in the repository",
-      "verdict": "useful",
-      "why": "This is accurate: the blog fetches from a route that isn't in the repo, so the posts' source is unclear."
+      "idea": "Add lastmod to the sitemap or generate it from app/sitemap.ts",
+      "verdict": "generic",
+      "why": "This is accurate, but the sitemap is 4 URLs and the effect is small."
+    },
+    {
+      "idea": "Make the home page say more, linking each feature to a detail page",
+      "verdict": "generic",
+      "why": "It is vague advice that would fit almost any site, though the home page is thin."
+    },
+    {
+      "idea": "Resolve the contradiction by dropping /pricing from sitemap and navigation if noindex is deliberate",
+      "verdict": "generic",
+      "why": "This is the known /pricing noindex problem restated as a branch of the same fix."
     }
   ]
 }

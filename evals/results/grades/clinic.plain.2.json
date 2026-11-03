@@ -1,0 +1,16 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 2,
+  "found": [
+    "canonical-staging-host",
+    "services-noindex",
+    "dentist-jsonld-invalid",
+    "team-no-description",
+    "no-html-lang"
+  ],
+  "flagged": [
+    "data-nosnippet"
+  ],
+  "extraIssues": 9
+}

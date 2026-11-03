@@ -1,0 +1,52 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add alt text to hero image (Home.jsx)",
+      "verdict": "generic",
+      "why": "This duplicates the known missing-alt problem, so it adds nothing new."
+    },
+    {
+      "idea": "Give catalogue items richer content, such as a page per mug with price, size and material, plus Product structured data",
+      "verdict": "useful",
+      "why": "Catalogue.jsx renders only bare names in paragraphs, so per-product pages and structured data would give machines real content."
+    },
+    {
+      "idea": "Add a meta viewport tag to index.html",
+      "verdict": "generic",
+      "why": "index.html does lack a viewport tag, but this applies to almost any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Link from the home page to the catalogue",
+      "verdict": "useful",
+      "why": "Home.jsx has no links, so a crawlable link from Home to /catalogue gives crawlers and visitors a path."
+    },
+    {
+      "idea": "Give each page its own title and description once prerendered",
+      "verdict": "useful",
+      "why": "All routes share the single 'Vite App' title in index.html, so per-route titles and descriptions would help."
+    },
+    {
+      "idea": "Make pages readable without JavaScript via prerendering, and the catalogue data too",
+      "verdict": "generic",
+      "why": "This repeats the known client-side rendering problem, though it adds that the catalogue data loads via fetch."
+    },
+    {
+      "idea": "Declare the site domain and add an absolute canonical tag",
+      "verdict": "useful",
+      "why": "No canonical tag or domain exists in the repo, so declaring both is a concrete, accurate step."
+    },
+    {
+      "idea": "Use a Link instead of the navigate() button for Catalogue",
+      "verdict": "generic",
+      "why": "This is the known button-not-link problem restated."
+    },
+    {
+      "idea": "Stop blocking crawlers in robots.txt",
+      "verdict": "generic",
+      "why": "This is the known Disallow: / problem restated."
+    }
+  ]
+}

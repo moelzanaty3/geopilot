@@ -4,29 +4,54 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Add address and directions text to the Visit page, since its meta description promises directions",
+      "idea": "Drop the Disallow: /account line so the noindex can be seen by crawlers",
+      "verdict": "wrong",
+      "why": "The report's own reasoning is sound in general, but /account being noindex and disallowed is a stated deliberate choice, so recommending removal reverses it."
+    },
+    {
+      "idea": "Add address, postcode and directions as text on /visit, since the description promises directions",
       "verdict": "useful",
-      "why": "The description says 'Opening times and directions' but the page body has only opening months, so this is a real, file-backed content gap."
+      "why": "The description says 'Opening times and directions' but the page has only opening months and days, so the mismatch is real and fixable."
     },
     {
-      "idea": "Add LocalBusiness JSON-LD for hours and location on the Visit page",
+      "idea": "Add LocalBusiness structured data for hours and address on /visit",
+      "verdict": "wrong",
+      "why": "The user said having no JSON-LD is not a required fix, and this is a structured-data push."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD for site identity",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is declared as not a required fix."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
       "verdict": "generic",
-      "why": "It is accurate, but the brief says having no JSON-LD is not a required fix, and the payoff is modest."
+      "why": "Accurate, as the sitemap has no lastmod, but it has little effect on a three-page site."
     },
     {
-      "idea": "List all forty-plus varieties and create a page per variety, such as /varieties/ashmeads-kernel",
+      "idea": "Give each variety its own page at /varieties/<name> and link to it",
       "verdict": "useful",
-      "why": "The varieties page names only two of 'over forty' varieties, so per-variety pages would give people and machines real content to find."
+      "why": "The varieties page names only two of over forty varieties and has no per-variety URLs, so individual pages would give crawlers and people something specific to find."
     },
     {
-      "idea": "Add in-text links from the home page to Varieties and Visit",
-      "verdict": "generic",
-      "why": "The home page does only have the nav links, but the nav already links to both pages, so extra in-text links change little."
+      "idea": "Back up 'since 1952' and 'over forty' with a history section and a full variety list",
+      "verdict": "useful",
+      "why": "These claims appear in the page text without support, and a full list adds real content for readers and machines to read."
     },
     {
-      "idea": "Add lastmod dates to sitemap.xml entries",
+      "idea": "Add contextual body links from the home page to /varieties and /visit",
       "verdict": "generic",
-      "why": "This is accurate because no lastmod exists, but it is standard sitemap advice with small effect on a three-URL site."
+      "why": "The home page body has no links, but the nav already links to both pages, so the gain is small."
+    },
+    {
+      "idea": "Add openGraph tags (title, description, image)",
+      "verdict": "generic",
+      "why": "No page sets openGraph, so this is accurate, but it applies to almost any site and mostly affects link previews."
+    },
+    {
+      "idea": "Generate the sitemap with app/sitemap.ts instead of hand-editing public/sitemap.xml",
+      "verdict": "generic",
+      "why": "Accurate, but with three static pages the benefit is minimal."
     }
   ]
 }

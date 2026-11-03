@@ -88,3 +88,20 @@ Every target is reported whether it's met or not.
 **Changed after the first full run of this comparison, and the last change on these fixtures:** that run missed targets 1 and 4 and is kept in `results/third-run/`. Two of the five added kinds of idea were removed because they conflicted with deliberate choices, one of them causing a false alarm on the healthy site. An idea had also been promoted into "Do these first", which is now forbidden. The limit rose from 7 to 10 ideas, and the guidance now asks for the whole list to be checked. The targets didn't change. The plain arm's reports were kept and only geopilot's arm was rerun. Whatever this run shows gets published, and further tuning would need fixtures it hasn't seen.
 
 **Changed because of a real repository, not these fixtures:** that run's reports are kept in `results/third-run-b/`. An informal scan of a private production repository stopped early and said it hadn't read the navigation, so a step was added that makes the scan check it finished reading before it scores. It doesn't touch the ideas guidance. geopilot's arm was rerun only so the published numbers describe the prompt that ships.
+
+## Fourth run: held-out projects
+
+Written before this run, and before the prompt changes it tests. The third run missed its targets for useful ideas, cost and time, and tuning further on the same six projects couldn't show real improvement. So three new projects were added, with their answer key, before any prompt change: `clinic` (Eleventy), `atlas` (Remix) and `larder` (a healthy static site). They're marked `heldOut` in `truth.json`.
+
+**Method:** geopilot may be tuned only on the original six projects. The new projects are run once it's final, and their results are reported separately. If the held-out result is worse than the tuning result, the held-out result is the one that counts.
+
+**Targets on the held-out projects, against the plain arm:**
+
+1. Useful ideas per report at least equal.
+2. Wrong ideas per report lower, and false alarms at most half.
+3. Recall not lower by more than 5 points, and consistency not lower by more than 0.05.
+4. Cost per run lower than the third run's $0.14.
+
+**Limits:** the same author wrote the new projects and knows what geopilot looks for. Three small projects can't settle this, and the ideas grader remains inconsistent.
+
+**Result on the held-out projects, plain against geopilot:** useful ideas 6.56 and 5.78, so target 1 was missed. Wrong ideas 3.78 and 0.67, and false alarms 1.56 and 0, so target 2 was met. Recall 100% and consistency 1.00 for both, so target 3 was met. Cost per run was $0.14, the same as the third run, so target 4 was missed. These projects have now been seen, so further tuning needs new ones.
