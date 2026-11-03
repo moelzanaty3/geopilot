@@ -20,6 +20,7 @@ export function SiteFooter() {
               <li><Link href="/docs/getting-started/">Getting started</Link></li>
               <li><Link href="/docs/rules/">Rules</Link></li>
               <li><Link href="/docs/cli/">CLI</Link></li>
+              <li><Link href="/docs/agent/">Agent plugins</Link></li>
               <li><Link href="/docs/scoring/">Scoring</Link></li>
             </ul>
           </div>

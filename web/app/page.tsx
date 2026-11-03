@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { RULES } from 'geopilot/catalogue';
 import { Command } from '@/components/copy-button';
+import { Contours } from '@/components/contours';
 import { DISCLAIMER, GITHUB_URL, LICENSE_NAME, NPM_URL } from '@/lib/site';
 import { engineVersion } from '@/lib/data';
 
@@ -47,6 +48,13 @@ const LOOP = [
   { step: '05', title: 'Prove', body: 'Re-check the rule condition, not the fingerprint. V4 counts only on a server GEO started after the write.' },
 ];
 
+const HOSTS = [
+  { name: 'Claude Code', command: '/plugin install geopilot --marketplace moelzanaty3/geopilot', status: 'Supported' },
+  { name: 'GitHub Copilot CLI', command: 'copilot plugin marketplace add moelzanaty3/geopilot', status: 'Supported' },
+  { name: 'OpenCode', command: 'npx geopilot agent install --host opencode', status: 'Supported' },
+  { name: 'OpenAI Codex', command: 'codex plugin marketplace add moelzanaty3/geopilot', status: 'Supported' },
+];
+
 const OUTPUTS = [
   { num: 'Readiness', body: 'Weighted prevalence of failures in direct evidence. Inferred and agent observations never enter it.' },
   { num: 'Coverage', body: 'How much of what applies was assessed directly. Below 50%, no readiness number is shown.' },
@@ -67,8 +75,9 @@ export default function Home() {
   return (
     <main id="content" tabIndex={-1}>
       <section className="hero">
-        <div className="container hero-grid">
-          <div>
+        <Contours />
+        <div className="container">
+          <div className="hero-copy">
             <div className="eyebrow">
               <span className="pill accent">GEO technical readiness</span>
               <span className="pill">CLI + agent skill</span>
@@ -80,6 +89,9 @@ export default function Home() {
               </span>
               <span className="b">Prove the fix.</span>
             </h1>
+          </div>
+          <div className="hero-grid">
+            <div className="hero-side">
             <p className="lead">
               geopilot audits any website for the technical conditions crawlers and AI search systems document — robots, sitemaps, indexability, canonicals, metadata, structured data — shows the evidence, maps it to the line that caused it, and verifies the change it proposes.
             </p>
@@ -102,6 +114,7 @@ export default function Home() {
             </div>
           </div>
           <Terminal />
+          </div>
         </div>
       </section>
 
@@ -202,15 +215,28 @@ export default function Home() {
           <div className="section-head">
             <div className="kicker">Two independent experiences</div>
             <h2>Useful without AI. Better with your agent.</h2>
+            <p>Plugins add five agents and six commands to the coding agent you already use. They drive the same CLI, and only the engine can report a finding or a score.</p>
           </div>
+          <ul className="hosts">
+            {HOSTS.map((h) => (
+              <li key={h.name}>
+                <span className="host-name">{h.name}</span>
+                <Command text={h.command} />
+                <span className={h.status === 'Supported' ? 'pill accent' : 'pill'}>{h.status}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="hosts-more">
+            <Link href="/docs/agent/">Read the plugin guide →</Link>
+          </p>
           <div className="grid cols-2">
             <div className="card">
               <h3>The CLI, no model involved</h3>
               <p>Crawl any site, run deterministic rules, explain them, trace source on supported frameworks, apply approved fixes, verify outcomes, cache runs. It never calls an LLM, ships no provider SDK and needs no API key.</p>
             </div>
             <div className="card">
-              <h3>The agent skill, your model</h3>
-              <p>One portable skill drives the published CLI from Claude Code. It reads the evidence, investigates any framework, and proposes contextual edits after approval — keeping engine findings, its recommendations and its hypotheses in separate sections.</p>
+              <h3>The agent plugins, your model</h3>
+              <p>The agents read the evidence, investigate any framework, and propose contextual edits after approval, keeping engine findings, their recommendations and their hypotheses in separate sections.</p>
             </div>
           </div>
         </div>

@@ -5,6 +5,22 @@ export const metadata = { title: 'Agent plugins' };
 export default function Page() {
   return (
     <DocsPage href="/docs/agent/" crumb="Agent plugins" title="Agent plugins" intro="Install geopilot into the coding agent you already use: five agents and six commands that drive the published CLI. They never import engine code.">
+      <h2>Choose an install</h2>
+      <div className="table-wrap">
+        <table>
+          <thead><tr><th>Host</th><th>How it installs</th><th>Commands run as</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Claude Code</td><td>Plugin, from the marketplace</td><td><code>/geopilot:scan</code></td><td>Supported</td></tr>
+            <tr><td>Claude Code</td><td>Files committed to one repository</td><td>Through the agents and skill</td><td>Supported</td></tr>
+            <tr><td>GitHub Copilot CLI</td><td>Plugin, from the marketplace</td><td>Skills and agents from the shared plugin</td><td>Supported</td></tr>
+            <tr><td>OpenCode</td><td>Files committed to one repository</td><td><code>/geopilot-scan</code></td><td>Supported</td></tr>
+            <tr><td>OpenAI Codex</td><td>Plugin, from the marketplace</td><td><code>$geopilot:scan</code></td><td>Supported</td></tr>
+            <tr><td>OpenAI Codex</td><td>Files committed to one repository</td><td><code>$geopilot-scan</code></td><td>Supported</td></tr>
+            <tr><td>Hosts that read <code>AGENTS.md</code></td><td>A section in <code>AGENTS.md</code></td><td>None</td><td>Provisional</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Use the plugin for yourself, across every repository. Commit the files when the whole team should get the agents from the repository without installing anything.</p>
       <h2>Claude Code</h2>
       <pre><code>/plugin install geopilot --marketplace moelzanaty3/geopilot</code></pre>
       <p>On older versions: <code>/plugin marketplace add moelzanaty3/geopilot</code>, then <code>/plugin install geopilot@geopilot</code>. Commands appear as <code>/geopilot:scan</code>, <code>/geopilot:fix</code>, <code>/geopilot:review</code>, <code>/geopilot:explain</code>, <code>/geopilot:insights</code> and <code>/geopilot:init</code>; agents as <code>geopilot:scanner</code> and so on.</p>
@@ -12,13 +28,40 @@ export default function Page() {
       <pre><code>npx geopilot agent install --host claude-code</code></pre>
       <h2>GitHub Copilot CLI</h2>
       <pre><code>copilot plugin marketplace add moelzanaty3/geopilot{'\n'}copilot plugin install geopilot@geopilot</code></pre>
-      <p>Copilot CLI reads the same plugin directory. Provisional until it has been exercised in Copilot itself.</p>
+      <p>Copilot CLI reads the same plugin directory as Claude Code, so it gets all five agents and the same skills.</p>
       <h2>OpenCode</h2>
       <pre><code>npx geopilot agent install --host opencode</code></pre>
-      <p>Writes <code>.opencode/agents/geopilot-*.md</code>, <code>.opencode/commands/geopilot-*.md</code> (run as <code>/geopilot-scan</code> etc.) and <code>.opencode/skills/geo/</code>. Read-only agents get <code>edit: deny</code>; the fixer gets <code>edit: ask</code>. Provisional.</p>
+      <p>Writes <code>.opencode/agents/geopilot-*.md</code>, <code>.opencode/commands/geopilot-*.md</code> (run as <code>/geopilot-scan</code> etc.) and <code>.opencode/skills/geo/</code>. Read-only agents get <code>edit: deny</code>; the fixer gets <code>edit: ask</code>.</p>
+      <h2>OpenAI Codex</h2>
+      <pre><code>codex plugin marketplace add moelzanaty3/geopilot{'\n'}codex plugin add geopilot@geopilot</code></pre>
+      <p>Skills run as <code>$geopilot:scan</code>, <code>$geopilot:fix</code> and so on. Codex plugins can&rsquo;t carry custom agents, so each skill includes its agent&rsquo;s instructions.</p>
+      <p>To get real subagents, and to share them with your team, install into the repository instead:</p>
+      <pre><code>npx geopilot agent install --host codex</code></pre>
+      <p>This writes <code>.codex/agents/geopilot-*.toml</code> and <code>.agents/skills/</code>, with skills run as <code>$geopilot-scan</code>.</p>
+      <div className="callout warn">Codex loads <code>.codex/agents/</code> only in a project you have trusted, so the agents don&rsquo;t appear until then. Codex also can&rsquo;t give one agent its own sandbox: read-only agents rely on their instructions, so use a read-only session if you need it enforced.</div>
+      <p><code>$geopilot:fix</code> and <code>$geopilot:init</code> run only when you name them. Codex won&rsquo;t pick them from a prompt.</p>
       <h2>Anything else</h2>
       <pre><code>npx geopilot agent install --host agents-md --write-agents-md</code></pre>
       <p>Adds a short section to <code>AGENTS.md</code> for hosts that read it.</p>
+      <h2>Project installs</h2>
+      <p><code>agent install</code> lists every file it will create or update, then asks before writing. Pass <code>--yes</code> to skip the prompt in a script. It changes nothing else: no hooks, CI, lockfiles or other agent configuration.</p>
+      <h2>Check your versions</h2>
+      <pre><code>npx geopilot agent status</code></pre>
+      <p>This prints the engine version, the Claude Code skill version installed in this repository, and the status of every host. A mismatch exits non-zero, and the skill stops until the versions match. Re-run <code>agent install</code> to fix it.</p>
+      <h2>The commands</h2>
+      <div className="table-wrap">
+        <table>
+          <thead><tr><th>Command</th><th>Does</th><th>Agent</th><th>Arguments</th></tr></thead>
+          <tbody>
+            <tr><td><code>scan</code></td><td>Runs a scan of a URL, the repository or both, and reports findings.</td><td><code>scanner</code></td><td><code>[path|url] [--url &lt;local-server&gt;]</code></td></tr>
+            <tr><td><code>fix</code></td><td>Previews the closed-list fixes, then applies only what you approve. You start it yourself; a model can&rsquo;t.</td><td><code>fixer</code></td><td><code>[--rule GEO-xxx]</code></td></tr>
+            <tr><td><code>review</code></td><td>Reviews a branch or pull request for readiness regressions.</td><td><code>reviewer</code></td><td><code>[base-branch]</code></td></tr>
+            <tr><td><code>explain</code></td><td>Explains a rule, or a finding from the last scan.</td><td><code>explainer</code></td><td><code>&lt;GEO-xxx | fingerprint&gt;</code></td></tr>
+            <tr><td><code>insights</code></td><td>Investigates unmapped findings and records validated recommendations.</td><td><code>investigator</code></td><td><code>[GEO-xxx]</code></td></tr>
+            <tr><td><code>init</code></td><td>Previews and creates <code>geo.config.json</code>. You start it yourself; a model can&rsquo;t.</td><td>None</td><td><code>[--origin https://… --language en]</code></td></tr>
+          </tbody>
+        </table>
+      </div>
       <h2>The agents</h2>
       <div className="table-wrap">
         <table>
@@ -38,14 +81,16 @@ export default function Page() {
         <table>
           <thead><tr><th>Host</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>Claude Code</td><td>supported: plugin and marketplace validated, install tested</td></tr>
-            <tr><td>GitHub Copilot CLI</td><td>provisional: shared plugin via the marketplace</td></tr>
-            <tr><td>OpenCode</td><td>provisional: layout from OpenCode’s docs, not yet run in OpenCode</td></tr>
-            <tr><td><code>AGENTS.md</code> section</td><td>provisional fallback</td></tr>
-            <tr><td>Cursor, OpenAI Codex</td><td>not packaged yet</td></tr>
+            <tr><td>Claude Code</td><td>Supported. Plugin and marketplace pass <code>claude plugin validate</code>.</td></tr>
+            <tr><td>GitHub Copilot CLI</td><td>Supported. Copilot CLI 1.0.105 installs the plugin from the marketplace with all skills and agents.</td></tr>
+            <tr><td>OpenCode</td><td>Supported. OpenCode 1.1.25 loads every agent, command and skill.</td></tr>
+            <tr><td>OpenAI Codex</td><td>Supported. Codex CLI 0.166.0 installs the plugin and loads the project skills and agents.</td></tr>
+            <tr><td><code>AGENTS.md</code> section</td><td>Provisional fallback</td></tr>
+            <tr><td>Cursor</td><td>Not packaged yet</td></tr>
           </tbody>
         </table>
       </div>
+      <p>Support means the host&rsquo;s own CLI installs and loads the files at the version shown. Results from a full model session can vary by host.</p>
       <h2>Workflows</h2>
       <ul>
         <li><strong>scan</strong> — run the engine first; present engine findings, agent recommendations and hypotheses as separate sections.</li>

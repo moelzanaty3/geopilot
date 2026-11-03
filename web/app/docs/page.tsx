@@ -41,14 +41,14 @@ export default function Page() {
         <li>Next.js App Router and static HTML source mapping (T2) with the five closed-list fixes (T3): S1, S2, G1, G2, G3.</li>
         <li>Readiness, coverage, confidence and assessment scope, computed exactly as the worked examples show.</li>
         <li>V1–V4 verification, including the GEO-started serve process that is the only way source freshness is ever “confirmed”.</li>
-        <li>The Claude Code skill, insight validation (L1/L2) and report merging.</li>
+        <li><Link href="/docs/agent/">Agent plugins</Link> for Claude Code, GitHub Copilot CLI, OpenCode and OpenAI Codex; insight validation (L1/L2) and report merging.</li>
       </ul>
       <h2>Not in this release</h2>
       <ul>
         <li>A browser renderer: GEO-003 and GEO-002 report <code>not_evaluated</code> (renderer_unavailable), never a failure.</li>
         <li>Diff-aware <code>review</code>, baselines, pre-push hooks, SARIF and the GitHub Action (Phase 3).</li>
         <li>Crawler-specific robots fixes (G5) and app-link file creation (G4), which need the Phase 2 equivalence proof.</li>
-        <li>Agent hosts other than Claude Code; the <code>AGENTS.md</code> section is a provisional fallback.</li>
+        <li>A package for Cursor; the <code>AGENTS.md</code> section is a provisional fallback.</li>
       </ul>
       <p>
         Start with <Link href="/docs/getting-started/">Getting started</Link>.
