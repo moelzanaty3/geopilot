@@ -33,7 +33,7 @@ The person you're helping may never have heard of GEO, so explain each term the 
 
 The CLI measures a running site, which code can't prove: real status codes, redirects and headers. Use it only when the user asks for a live check or gives you a URL.
 
-- Run `geopilot --version`. If it prints `0.0.2`, invoke `geopilot …`. Otherwise invoke `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.2 …`, which runs exactly that version. Never use `@latest`.
+- Run `geopilot --version`. If it prints `0.0.3`, invoke `geopilot …`. Otherwise invoke `npx --yes --prefix "$(mktemp -d)" geopilot@0.0.3 …`, which runs exactly that version. Never use `@latest`.
 - Local URLs are fetched only because the user named them. Never start a server yourself. Ask the user to start it.
 - Read the JSON report. Its `summary` holds the live score and each rule's result, so copy those numbers and never recalculate them. If `blocked` is set, the live check read nothing from the site: report it as blocked, and don't count anything from it.
 - If a permission policy, or anything else, stops the command, say exactly why and give the user the command to run themselves. Never work around a denied command, and never fetch the URL another way.
