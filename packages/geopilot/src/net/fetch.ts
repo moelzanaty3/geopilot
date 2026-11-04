@@ -43,6 +43,7 @@ export type FetchErrorCode =
   | 'body_too_large'
   | 'unsupported_protocol'
   | 'network_error'
+  | 'blocked_by_bot_protection'
   | 'decode_error';
 
 export interface FetchResult {
@@ -78,6 +79,7 @@ const KEPT_HEADERS = [
   'last-modified',
   'etag',
   'vary',
+  'cf-mitigated',
 ];
 
 const defaultLookup = (host: string): Promise<readonly LookupAddress[]> =>

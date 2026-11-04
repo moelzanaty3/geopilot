@@ -1,0 +1,42 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Explain the integrations claim on home page by listing supported integrations or linking an integrations page",
+      "verdict": "useful",
+      "why": "The home page line 'Integrates with all the tools you already use.' is vague, and naming real integrations gives readers and machines concrete facts."
+    },
+    {
+      "idea": "Add pricing details or a contact/demo link on the pricing page",
+      "verdict": "useful",
+      "why": "The pricing page only says 'Talk to us for a quote' and gives no plan facts, so adding them would help people and machines understand the offer."
+    },
+    {
+      "idea": "Expand feature descriptions or add dedicated feature pages",
+      "verdict": "useful",
+      "why": "The features page is a single thin sentence, so more specific content would help readers and machines understand the product."
+    },
+    {
+      "idea": "Add release dates and authors to changelog entries",
+      "verdict": "useful",
+      "why": "Changelog entries render as bare strings with no dates, so dates are a real clarity gain when the data exists."
+    },
+    {
+      "idea": "Add lastmod values to sitemap.xml",
+      "verdict": "generic",
+      "why": "The sitemap has no lastmod, but this advice fits nearly any site and has modest effect."
+    },
+    {
+      "idea": "Add explicit charset, viewport and social preview metadata to root head",
+      "verdict": "generic",
+      "why": "This is standard boilerplate advice for any site and is not specific to this repository's problems."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD for site identity",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is a stated acceptable choice, so recommending it as a fix goes against that."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Name the integrations on the home page instead of the vague 'all the tools' claim",
+      "verdict": "useful",
+      "why": "The home page line is vague and naming integrations gives readers and machines concrete content."
+    },
+    {
+      "idea": "Explain pricing more fully with plan structure and contact path",
+      "verdict": "useful",
+      "why": "The pricing page has only a one-line placeholder, so more detail would help people and machines understand it."
+    },
+    {
+      "idea": "Add route-aware Open Graph and Twitter metadata",
+      "verdict": "generic",
+      "why": "Social share tags are accurate but apply to almost any site and do little for discovery or understanding."
+    },
+    {
+      "idea": "Confirm charset and viewport meta are emitted",
+      "verdict": "generic",
+      "why": "This is boilerplate advice for any site and Remix's default document setup may already cover it."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD structured data",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it contradicts that."
+    },
+    {
+      "idea": "Add lastmod values to sitemap.xml",
+      "verdict": "generic",
+      "why": "This is accurate since no lastmod exists, but it applies to nearly any sitemap and has little effect."
+    },
+    {
+      "idea": "Link Features from the shared navigation in root.tsx as a server-rendered link",
+      "verdict": "useful",
+      "why": "The root nav lists only Pricing and Changelog, so a real Features link fixes discovery site-wide."
+    }
+  ]
+}

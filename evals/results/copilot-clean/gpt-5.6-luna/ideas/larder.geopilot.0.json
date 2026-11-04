@@ -1,0 +1,67 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Confirm deployed routes and crawler responses live (item 1)",
+      "verdict": "generic",
+      "why": "This is a check outside the code, so it isn't a code recommendation, and it applies to any site."
+    },
+    {
+      "idea": "Add concrete booking details (dates, price, location, booking route) to classes page",
+      "verdict": "useful",
+      "why": "classes.html only says 'Book early' with no dates, price or booking route, so the page lacks the facts people ask about."
+    },
+    {
+      "idea": "Add address, hours and collection instructions to the homepage",
+      "verdict": "useful",
+      "why": "index.html mentions weekend collection but gives no address, hours or deadline."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is a stated non-problem and not a required fix."
+    },
+    {
+      "idea": "Add Open Graph/Twitter social preview metadata",
+      "verdict": "generic",
+      "why": "It is accurate because index.html has no such tags, but it is standard advice that mainly affects link previews."
+    },
+    {
+      "idea": "List the actual breads with varieties, availability and prices on breads.html",
+      "verdict": "useful",
+      "why": "breads.html claims over twenty loaves but names only two, so the content is thin."
+    },
+    {
+      "idea": "Provide allergen information or a linked details page",
+      "verdict": "useful",
+      "why": "The allergen notice only says 'Ask us about allergens', so adding real information is a concrete improvement; data-nosnippet itself is fine."
+    },
+    {
+      "idea": "Add class specifics: duration, dates, price, venue, booking link",
+      "verdict": "useful",
+      "why": "This is accurate for classes.html but duplicates the earlier booking-details note."
+    },
+    {
+      "idea": "State collection address, hours and ordering deadline",
+      "verdict": "useful",
+      "why": "This is accurate for index.html but duplicates the earlier address/hours note."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap",
+      "verdict": "generic",
+      "why": "It is accurate because the sitemap has no lastmod, but it is a small effect on a three-URL site."
+    },
+    {
+      "idea": "Link related content (booking, availability, breads) from the classes page",
+      "verdict": "useful",
+      "why": "classes.html has only the global nav and no contextual links to breads or booking."
+    },
+    {
+      "idea": "Run the tool's fix command to apply item 1",
+      "verdict": "generic",
+      "why": "Item 1 is just a confirmation step, so there is nothing for the command to change."
+    }
+  ]
+}

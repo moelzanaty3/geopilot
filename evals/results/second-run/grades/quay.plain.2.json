@@ -1,0 +1,16 @@
+{
+  "fixture": "quay",
+  "arm": "plain",
+  "run": 2,
+  "found": [
+    "ssr-disabled",
+    "googlebot-blocked",
+    "product-jsonld-incomplete",
+    "empty-description-shop",
+    "no-html-lang"
+  ],
+  "flagged": [
+    "data-nosnippet"
+  ],
+  "extraIssues": 12
+}

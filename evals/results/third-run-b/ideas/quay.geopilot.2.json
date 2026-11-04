@@ -1,0 +1,37 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Remove or fix the Product JSON-LD on /shop because 'Bilge pump' doesn't match any single product on the page",
+      "verdict": "useful",
+      "why": "The JSON-LD in shop/+page.svelte names a product the page doesn't show, so it's a real mismatch. It's a separate point from the known missing offers/review/aggregateRating."
+    },
+    {
+      "idea": "Put the delivery terms in normal page text instead of data-nosnippet, or state what 'next day' depends on",
+      "verdict": "wrong",
+      "why": "data-nosnippet on the delivery notice is a deliberate choice, and the report itself says to leave it if deliberate."
+    },
+    {
+      "idea": "Give each product its own page, linked and listed in the sitemap",
+      "verdict": "useful",
+      "why": "/shop only has a sentence listing bilge pumps, cleats and rope with nothing to click, so separate linkable pages would give crawlers and users something to find."
+    },
+    {
+      "idea": "Add a viewport meta tag to src/app.html",
+      "verdict": "generic",
+      "why": "The tag is missing as stated, but it's a standard mobile fix that applies to almost any site and has little effect on discovery."
+    },
+    {
+      "idea": "Wrap content in a <main> landmark instead of a bare <div>",
+      "verdict": "generic",
+      "why": "It's accurate, since app.html uses a bare div, but it's a standard structural tweak with little effect on how the site is found."
+    },
+    {
+      "idea": "Add a description to /search or leave it as is",
+      "verdict": "generic",
+      "why": "The report itself says no change is needed because /search is deliberately noindex."
+    }
+  ]
+}

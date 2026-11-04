@@ -1,0 +1,42 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add booking instructions, dates or a server-rendered booking link on classes page",
+      "verdict": "useful",
+      "why": "classes.html says to book early but offers no way to book, so a concrete content gap."
+    },
+    {
+      "idea": "Add ordering route, collection address and times to the home page",
+      "verdict": "useful",
+      "why": "index.html mentions pre-order for weekend collection with no details on how or where."
+    },
+    {
+      "idea": "Link each major loaf to ingredients, availability and allergen info on breads page",
+      "verdict": "useful",
+      "why": "breads.html is a thin single paragraph with no per-loaf information to read or cite."
+    },
+    {
+      "idea": "Add business contact details (address, opening hours, contact method)",
+      "verdict": "useful",
+      "why": "No page gives an address, hours or contact method for a local bakery, which is accurate and helpful."
+    },
+    {
+      "idea": "Add Open Graph / Twitter social preview metadata",
+      "verdict": "generic",
+      "why": "Accurate that it's missing, but it's standard advice for any site with modest effect."
+    },
+    {
+      "idea": "Add JSON-LD Organization/WebSite identity object",
+      "verdict": "wrong",
+      "why": "Recommends JSON-LD, which the deliberate choices say is not a required fix."
+    },
+    {
+      "idea": "Add sitemap lastmod dates when available",
+      "verdict": "generic",
+      "why": "True of the sitemap but a common, low-impact suggestion for any small site."
+    }
+  ]
+}

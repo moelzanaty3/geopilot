@@ -1,0 +1,62 @@
+{
+  "fixture": "ledger",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Make blog a server component, load posts server-side, export metadata, add per-post routes with Article JSON-LD",
+      "verdict": "useful",
+      "why": "Blog is a client component with useEffect fetch; server rendering and per-post pages with metadata make content visible to crawlers."
+    },
+    {
+      "idea": "Remove /blog from sitemap until real posts exist",
+      "verdict": "generic",
+      "why": "Minor housekeeping that depends on whether posts exist, with limited effect."
+    },
+    {
+      "idea": "Add explicit Disallow groups for other training crawlers (Google-Extended, CCBot, ClaudeBot, anthropic-ai, Applebot-Extended, Bytespider, meta-externalagent)",
+      "verdict": "useful",
+      "why": "geo.config.json declares trainingCrawlers: block but robots.txt only blocks GPTBot, so the policy isn't fully enforced."
+    },
+    {
+      "idea": "Add explicit Allow groups for AI search bots (OAI-SearchBot, ChatGPT-User, Claude-SearchBot, PerplexityBot)",
+      "verdict": "generic",
+      "why": "They are already allowed via `*`, so explicit groups add very little."
+    },
+    {
+      "idea": "Add JSON-LD Organization/WebSite in layout and SoftwareApplication with Offer on home and pricing",
+      "verdict": "useful",
+      "why": "There is no structured data in the repo, and this describes what Ledger is and its free tier to machines."
+    },
+    {
+      "idea": "Expand thin page content: features, plan table with prices, who it's for, FAQ, h2 sections, real docs setup steps",
+      "verdict": "wrong",
+      "why": "Pages are thin, but the advice pushes a mandatory FAQ and padding as a citation tactic, which is folklore."
+    },
+    {
+      "idea": "Use a title template and more descriptive page titles/descriptions, and stop repeating the same generic description",
+      "verdict": "useful",
+      "why": "Docs and Pricing titles are bare, and layout and home share an identical description."
+    },
+    {
+      "idea": "Set canonical via alternates in layout metadata ('./') as the way to fix docs canonical",
+      "verdict": "wrong",
+      "why": "A layout-level relative canonical is inherited by all child pages and would give every page the same canonical, which is risky."
+    },
+    {
+      "idea": "Add Open Graph and Twitter metadata",
+      "verdict": "generic",
+      "why": "Applies to nearly any site and mostly affects social previews."
+    },
+    {
+      "idea": "Add lastmod to sitemap and generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "Reasonable but common advice with small effect for a four-URL sitemap."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "The user said no llms.txt is not a problem, and it is folklore as a way to be found."
+    }
+  ]
+}

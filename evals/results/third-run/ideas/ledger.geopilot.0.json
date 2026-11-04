@@ -1,0 +1,32 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add groups to robots.txt for other training crawlers (e.g. ClaudeBot) to fully apply the trainingCrawlers: block policy",
+      "verdict": "useful",
+      "why": "geo.config.json declares trainingCrawlers: block but robots.txt only blocks GPTBot, so the stated policy is only partly applied."
+    },
+    {
+      "idea": "Give each blog post its own page/URL linked from the blog list",
+      "verdict": "useful",
+      "why": "Blog posts are only titles fetched client-side with no per-post pages, so crawlers have nothing individual to find or quote."
+    },
+    {
+      "idea": "Write the pricing plans and prices as text on /pricing",
+      "verdict": "useful",
+      "why": "The page has a single sentence while its description promises plans for every team size, so more text would help readers and machines."
+    },
+    {
+      "idea": "Add actual setup steps to /docs",
+      "verdict": "useful",
+      "why": "The docs page is one sentence despite the description 'How to set up Ledger', so adding steps would match the promise."
+    },
+    {
+      "idea": "Add a canonical to /blog (and a metadata export for it)",
+      "verdict": "useful",
+      "why": "/blog has no metadata at all, so it has no title, description or canonical. This extends beyond the known /docs canonical issue."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add real visit details (address, directions, hours) as text on the Visit page",
+      "verdict": "useful",
+      "why": "The description promises directions but the page body only has one line of opening times, so the gap is specific and fixable."
+    },
+    {
+      "idea": "Add LocalBusiness structured data to the Visit page once details are visible",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix, so this reverses that choice."
+    },
+    {
+      "idea": "List all the varieties on the Varieties page, with optional per-variety pages",
+      "verdict": "useful",
+      "why": "The page says over forty varieties but names only two, so listing them would give people and machines the content the claim refers to."
+    },
+    {
+      "idea": "Link to Varieties and Visit from the home page body text",
+      "verdict": "generic",
+      "why": "The shared nav already links all three pages with plain anchors, so in-body links add very little."
+    },
+    {
+      "idea": "Name more training crawlers in robots.txt to apply the trainingCrawlers block policy fully",
+      "verdict": "useful",
+      "why": "Only GPTBot and ClaudeBot are disallowed while the config blocks all training crawlers, so other training bots (e.g. CCBot, Google-Extended) are still allowed."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "This is accurate because no lastmod is present, but it is standard advice with small effect on a 3-URL site."
+    },
+    {
+      "idea": "Add a description to /account",
+      "verdict": "generic",
+      "why": "The page is private, noindex and disallowed, so a description has no practical effect."
+    },
+    {
+      "idea": "Tidy the /account rule, since robots.txt Disallow hides the noindex from crawlers",
+      "verdict": "wrong",
+      "why": "The deliberate choices say /account being noindex and disallowed is correct, and the report itself says it is harmless."
+    }
+  ]
+}

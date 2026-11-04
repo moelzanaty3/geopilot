@@ -1,0 +1,77 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add Organization/WebSite/LocalBusiness/Product JSON-LD",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is explicitly not a required fix."
+    },
+    {
+      "idea": "Expand thin page content: list all varieties with headings and attributes, each linked to its own page",
+      "verdict": "useful",
+      "why": "The varieties page claims over forty but names only two, so listing them gives readers and machines real content."
+    },
+    {
+      "idea": "Add address, directions, exact hours and contact details as plain text on the visit page",
+      "verdict": "useful",
+      "why": "The visit page has only a vague season and days, so concrete details help users and answer engines."
+    },
+    {
+      "idea": "Home page should state what is sold, how to buy, delivery areas and prices",
+      "verdict": "generic",
+      "why": "It is a content suggestion that assumes things the repo doesn't show, such as a shop with delivery and prices."
+    },
+    {
+      "idea": "Add Google-Extended, CCBot, Applebot-Extended, anthropic-ai, Meta-ExternalAgent and Bytespider to the robots.txt block",
+      "verdict": "useful",
+      "why": "geo.config.json says trainingCrawlers: block but robots.txt only blocks GPTBot and ClaudeBot."
+    },
+    {
+      "idea": "Name search/retrieval agents explicitly in robots.txt",
+      "verdict": "generic",
+      "why": "They are already allowed under the wildcard, so naming them only makes the intent clearer."
+    },
+    {
+      "idea": "Add title template, default description, openGraph and twitter metadata in layout",
+      "verdict": "generic",
+      "why": "This is standard metadata advice, and each page already sets its own title and description."
+    },
+    {
+      "idea": "Add a favicon",
+      "verdict": "generic",
+      "why": "This applies to almost any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Lengthen meta descriptions to 120–160 characters with keywords",
+      "verdict": "generic",
+      "why": "This is character-count folklore, though the visit description is short."
+    },
+    {
+      "idea": "Generate the sitemap with app/sitemap.ts and lastModified",
+      "verdict": "generic",
+      "why": "The three-page sitemap is accurate, so this only helps maintenance and freshness signals."
+    },
+    {
+      "idea": "Resolve the robots.txt Disallow combined with noindex on /account, and prefer removing the Disallow",
+      "verdict": "wrong",
+      "why": "The /account noindex and disallow is a deliberate choice that is correct for a private page."
+    },
+    {
+      "idea": "Use next/link instead of plain anchors in the nav",
+      "verdict": "generic",
+      "why": "The report itself says this affects performance, not discoverability."
+    },
+    {
+      "idea": "Add public/llms.txt",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is not a problem, and it doesn't help sites get found."
+    },
+    {
+      "idea": "Generate robots.txt from geo.config.json or add a drift check",
+      "verdict": "useful",
+      "why": "Nothing reads geo.config.json, and it already disagrees with robots.txt."
+    }
+  ]
+}

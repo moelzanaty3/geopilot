@@ -1,0 +1,47 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Give /blog its own metadata (title/description) instead of inheriting the layout defaults",
+      "verdict": "useful",
+      "why": "app/blog/page.tsx has no metadata export, so it shows the home page's title and description."
+    },
+    {
+      "idea": "Add an absolute canonical to /blog (the /docs canonical is a known problem)",
+      "verdict": "useful",
+      "why": "The blog page has no canonical or metadata export, and adding one is a concrete fix."
+    },
+    {
+      "idea": "Remove the noindex from /pricing, or drop it from the sitemap and nav so the signals agree",
+      "verdict": "generic",
+      "why": "This restates the known /pricing noindex problem."
+    },
+    {
+      "idea": "The /pricing canonical points to a noindex page and resolves once noindex is removed",
+      "verdict": "generic",
+      "why": "This is a consequence of the known pricing noindex problem and gives no separate action."
+    },
+    {
+      "idea": "List actual plans and prices in text on /pricing to back up the description",
+      "verdict": "useful",
+      "why": "The page says only 'Free for up to three people', and the description promises plans for every team size."
+    },
+    {
+      "idea": "Expand /docs beyond a single sentence with written setup steps",
+      "verdict": "useful",
+      "why": "The docs page has one sentence, which doesn't cover its stated purpose of explaining how to set up Ledger."
+    },
+    {
+      "idea": "Give each blog post its own page and link to it",
+      "verdict": "useful",
+      "why": "Posts are bare titles with no URLs, so they can't be found or cited individually."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries if real dates exist",
+      "verdict": "generic",
+      "why": "It applies to almost any sitemap and has little effect, and the report itself hedges with 'might help'."
+    }
+  ]
+}

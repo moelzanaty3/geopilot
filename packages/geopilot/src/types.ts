@@ -1,6 +1,8 @@
 // The report contract (spec 8). Everything the engine emits is one of these
 // shapes; the JSON schemas in schemas/ are written against this file.
 
+import type { ScoreSummary } from './scoring/summary.ts';
+
 export type RuleId =
   | 'GEO-002'
   | 'GEO-003'
@@ -95,6 +97,7 @@ export type StatusReason =
   | 'not_in_scope'
   | 'auth_walled'
   | 'unreachable'
+  | 'blocked'
   | 'dynamic_source'
   | 'entry_route'
   | 'rule_disabled'
@@ -181,6 +184,10 @@ export interface Report {
   readonly assessmentScope: AssessmentScope;
   readonly suppressed: readonly SuppressedFinding[];
   readonly notices: readonly string[];
+  /** Set when bot protection or a firewall answered instead of the site. */
+  readonly blocked?: { readonly url: string; readonly status: number; readonly protection: string | null };
+  /** One result per rule and a score range, using the same formula as the agents. */
+  readonly summary: ScoreSummary;
   readonly baseline: null;
   readonly disclaimer: string;
 }

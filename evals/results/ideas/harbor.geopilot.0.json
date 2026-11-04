@@ -1,0 +1,47 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Show FAQ questions and answers as visible text on the home page, not only in JSON-LD",
+      "verdict": "useful",
+      "why": "index.astro only injects the FAQ via a script, so visitors and text-only readers never see the answers."
+    },
+    {
+      "idea": "Add a table of mooring sizes and seasonal prices to /moorings",
+      "verdict": "useful",
+      "why": "The description promises sizes and seasonal prices but the page body only says prices start at £40 a night."
+    },
+    {
+      "idea": "Add Organization/LocalBusiness structured data with name, Falmouth address and phone",
+      "verdict": "useful",
+      "why": "No such data exists and the contact details are in the contact page, so this is concrete and specific."
+    },
+    {
+      "idea": "Add charset, viewport and og tags, and wrap content in <main>",
+      "verdict": "generic",
+      "why": "Accurate (they are missing from Base.astro) but standard boilerplate with little effect on discoverability."
+    },
+    {
+      "idea": "Set site in astro config and use @astrojs/sitemap instead of a static sitemap",
+      "verdict": "generic",
+      "why": "Reasonable, but the static three-page sitemap is fine and the canonical fix doesn't need it."
+    },
+    {
+      "idea": "Link 'Seasonal and visitor moorings' on the home page to /moorings",
+      "verdict": "useful",
+      "why": "The home page text mentions moorings with no in-content link, so a contextual link adds a useful path."
+    },
+    {
+      "idea": "Add Falmouth and the harbour name to the /moorings title",
+      "verdict": "useful",
+      "why": "The title 'Moorings and prices' doesn't say where or whose, while the home page title does."
+    },
+    {
+      "idea": "Change the default robots value to 'index, follow'",
+      "verdict": "generic",
+      "why": "This is the known max-snippet:0 problem restated as a fix, and 'index, follow' is the default behaviour anyway."
+    }
+  ]
+}

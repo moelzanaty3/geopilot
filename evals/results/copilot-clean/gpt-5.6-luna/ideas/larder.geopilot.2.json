@@ -1,0 +1,47 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add concrete details (dates, prices, duration, location, booking) to the classes page",
+      "verdict": "useful",
+      "why": "classes.html only says 'Book early', so adding specifics gives people and machines actionable information."
+    },
+    {
+      "idea": "Add Organization/LocalBusiness structured data",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it contradicts that."
+    },
+    {
+      "idea": "Add opening hours and collection details on the home page",
+      "verdict": "useful",
+      "why": "index.html promises weekend pre-order collection but gives no where or when."
+    },
+    {
+      "idea": "List breads individually with names, availability and details",
+      "verdict": "useful",
+      "why": "breads.html mentions 'over twenty loaves' but names only two, so a per-loaf list adds real content."
+    },
+    {
+      "idea": "Put actual allergen information and a contact route in text",
+      "verdict": "wrong",
+      "why": "The data-nosnippet on the allergen notice is a deliberate scoped choice, and this asks to rework that notice."
+    },
+    {
+      "idea": "Add Open Graph/Twitter social preview metadata",
+      "verdict": "generic",
+      "why": "It is accurate because these tags are absent, but it applies to nearly any site and does little for discovery."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap entries",
+      "verdict": "generic",
+      "why": "It is accurate and mildly helpful, but it is standard advice for any sitemap."
+    },
+    {
+      "idea": "Consider a labeled entry point to /members for authenticated users",
+      "verdict": "generic",
+      "why": "It is conditional ('only if intended') and not tied to any finding in the files."
+    }
+  ]
+}

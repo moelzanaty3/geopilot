@@ -1,0 +1,102 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Broken image: /img/reception.jpg missing and no passthrough copy for images; add file and passthrough",
+      "verdict": "useful",
+      "why": "No src/img exists and .eleventy.js copies only robots.txt and sitemap.xml, so the home image likely 404s."
+    },
+    {
+      "idea": "Add width and height attributes to the image",
+      "verdict": "generic",
+      "why": "Standard layout-shift advice that applies to any site and has little effect here."
+    },
+    {
+      "idea": "Make layout omit meta description tag when description is unset",
+      "verdict": "useful",
+      "why": "base.njk renders an empty content attribute for pages like /team, so a conditional is a concrete layout fix."
+    },
+    {
+      "idea": "Add Open Graph and Twitter tags to layout",
+      "verdict": "generic",
+      "why": "This is standard social-sharing markup that has little effect on search or AI understanding."
+    },
+    {
+      "idea": "Replace vague claims (thousands of patients, decades of experience, simple prices) with concrete facts such as named dentists, qualifications, prices and year established",
+      "verdict": "useful",
+      "why": "The quoted claims are in the files and are vague, so specifics would give people and machines something to cite."
+    },
+    {
+      "idea": "Add Dentist/LocalBusiness and WebSite JSON-LD site-wide in the layout",
+      "verdict": "useful",
+      "why": "Structured data exists only on /contact, so putting it in the layout is specific and plausible."
+    },
+    {
+      "idea": "Add Person/Physician markup on /team and Service/MedicalProcedure markup on /services",
+      "verdict": "useful",
+      "why": "These pages have no structured data and the markup matches their content."
+    },
+    {
+      "idea": "Add FAQPage markup if Q&A content is added",
+      "verdict": "wrong",
+      "why": "FAQ markup is folklore here, since the site has no Q&A content and FAQs are not required."
+    },
+    {
+      "idea": "Add address, openingHours, url, image and sameAs to the contact JSON-LD",
+      "verdict": "useful",
+      "why": "The existing Dentist block has only a name and telephone, and the address 12 Park Row, Leeds is on the page."
+    },
+    {
+      "idea": "Reconsider data-nosnippet on the insurance terms, or remove it",
+      "verdict": "wrong",
+      "why": "The scoped data-nosnippet is a deliberate choice, and the report asks to reverse it."
+    },
+    {
+      "idea": "Add breadcrumbs to every page",
+      "verdict": "generic",
+      "why": "A four-page flat site gains almost nothing from breadcrumbs."
+    },
+    {
+      "idea": "Add a footer with address, phone and opening hours (NAP) on every page",
+      "verdict": "useful",
+      "why": "The layout has no footer, and the contact details appear only on /contact."
+    },
+    {
+      "idea": "Add explicit robots.txt groups for GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot and Google-Extended",
+      "verdict": "generic",
+      "why": "User-agent: * with Allow: / already allows them, so named groups change nothing."
+    },
+    {
+      "idea": "Generate sitemap from Eleventy collections with lastmod",
+      "verdict": "generic",
+      "why": "A four-URL static sitemap is accurate, and lastmod and generation add little."
+    },
+    {
+      "idea": "Add a 404 page and a favicon",
+      "verdict": "generic",
+      "why": "This is standard hygiene that applies to nearly any site."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "The report calls it cheap to add, but the brief says having none is fine and llms.txt does not help a site get found."
+    },
+    {
+      "idea": "Add nofollow to /thanks and use 'noindex, follow' in the layout",
+      "verdict": "wrong",
+      "why": "It contradicts itself and fiddles with a deliberate noindex that is already correct."
+    },
+    {
+      "idea": "Add 'Leeds' to the contact page title",
+      "verdict": "useful",
+      "why": "The title 'Contact' has no location while the page is the local NAP page, so adding it is a small, specific improvement."
+    },
+    {
+      "idea": "Put the origin in src/_data/site.json and use it everywhere",
+      "verdict": "useful",
+      "why": "The origin is hardcoded in several places, and a single data file would prevent the staging-host mistake."
+    }
+  ]
+}

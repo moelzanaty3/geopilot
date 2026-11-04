@@ -1,0 +1,27 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Turn on server rendering / prerender (ssr: false)",
+      "verdict": "wrong",
+      "why": "This is a known problem already graded separately, so it should not be listed again."
+    },
+    {
+      "idea": "Resolve the robots.txt Disallow /admin vs the page's noindex by keeping only one of them",
+      "verdict": "wrong",
+      "why": "/admin being noindex and disallowed is a deliberate choice, and this advice reverses it."
+    },
+    {
+      "idea": "Make the guides page richer with individual route pages, each with its own address",
+      "verdict": "useful",
+      "why": "guides.vue lists no routes, so separate route pages would give crawlers and readers real content to find."
+    },
+    {
+      "idea": "Add the site URL to the Nuxt config so canonical URLs can be generated",
+      "verdict": "useful",
+      "why": "The config has no site URL and no canonicals exist, while the sitemap already uses https://trailhead.example/."
+    }
+  ]
+}

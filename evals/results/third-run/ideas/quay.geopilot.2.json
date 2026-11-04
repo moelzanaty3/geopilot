@@ -1,0 +1,47 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Remove the Product JSON-LD from /shop or put one Product per product page, since the listing page is not a single product",
+      "verdict": "useful",
+      "why": "The Product markup on the listing page is mislabelled, and the fix is specific to this file. It differs from the known issue about missing offers or reviews."
+    },
+    {
+      "idea": "Give each part its own page with price and description, listed in the sitemap",
+      "verdict": "useful",
+      "why": "/shop is a single page with one line of text, so individual product pages would give crawlers and people specific pages to find."
+    },
+    {
+      "idea": "Show delivery terms in normal visible text, because the delivery notice is data-nosnippet",
+      "verdict": "wrong",
+      "why": "The report itself calls data-nosnippet a deliberate scoped choice, so this advice conflicts with that choice."
+    },
+    {
+      "idea": "Add a viewport meta tag to app.html",
+      "verdict": "useful",
+      "why": "app.html has no viewport tag, so this is a real gap that affects mobile rendering."
+    },
+    {
+      "idea": "Wrap the content in a <main> landmark instead of a bare div",
+      "verdict": "useful",
+      "why": "app.html wraps the body in a plain div with no landmark, so screen readers and parsers lack a main region."
+    },
+    {
+      "idea": "Add content and links on the home page about what is sold and link to categories",
+      "verdict": "useful",
+      "why": "The home page has only an h1, so it gives no description of the products and no onward links."
+    },
+    {
+      "idea": "Give /search a description or a reason to exist for machines",
+      "verdict": "wrong",
+      "why": "/search is deliberately noindex, and the report says no change is needed, so any push to add machine-facing content there conflicts with that."
+    },
+    {
+      "idea": "Prerender the static pages with prerender = true as an alternative to removing ssr = false",
+      "verdict": "useful",
+      "why": "The site has only a few static routes, so prerendering fits and addresses the client-side rendering problem."
+    }
+  ]
+}

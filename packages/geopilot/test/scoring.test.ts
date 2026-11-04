@@ -7,6 +7,7 @@ import { compareReports } from '../src/scoring/compare.ts';
 import { SCORED_RULES } from '../src/rules/catalogue.ts';
 import type { Evaluation, Report, RuleId, Status } from '../src/types.ts';
 import { FIXTURES, rng, toEvaluation } from './helpers.ts';
+import { summarize } from '../src/scoring/summary.ts';
 
 const DIR = join(FIXTURES, 'scoring');
 const close = (a: number | null, b: number | null): boolean => (a === null || b === null ? a === b : Math.abs(a - b) < 1e-9);
@@ -144,6 +145,7 @@ function report(evals: Evaluation[]): Report {
     assessmentScope: s.assessmentScope,
     suppressed: [],
     notices: [],
+    summary: summarize(evals, s.readiness),
     baseline: null,
     disclaimer: '',
   };
@@ -153,5 +155,56 @@ describe('weights come from the catalogue', () => {
   it('web-profile weights sum to 25 (spec 10.2 example B)', () => {
     const web: RuleId[] = ['GEO-013', 'GEO-009', 'GEO-014', 'GEO-015', 'GEO-003', 'GEO-004', 'GEO-011', 'GEO-012', 'GEO-016', 'GEO-017', 'GEO-002'];
     assert.equal(SCORED_RULES.filter((r) => web.includes(r.id)).reduce((n, r) => n + r.weight, 0), 25);
+  });
+});
+
+describe('the shared score range', () => {
+  const run = (ruleId: RuleId, status: Evaluation['status'], route: string): Evaluation => ({ ruleId, subject: { kind: 'routeGroup', route }, status, evidenceQuality: 'direct', subChecks: [], findings: [] });
+  const unknown: readonly RuleId[] = ['GEO-009', 'GEO-015', 'GEO-003', 'GEO-004', 'GEO-016', 'GEO-017', 'GEO-002'];
+  const example: Evaluation[] = [
+    run('GEO-013', 'pass', '/'),
+    run('GEO-014', 'pass', '/'),
+    run('GEO-014', 'fail', '/a'),
+    run('GEO-014', 'fail', '/b'),
+    run('GEO-011', 'fail', '/'),
+    run('GEO-012', 'pass', '/'),
+    ...unknown.map((id) => run(id, 'not_evaluated', '/')),
+  ];
+
+  it('matches the worked example the agents are given in skill/geo/references/scoring.md', () => {
+    const guide = readFileSync(new URL('../../../skill/geo/references/scoring.md', import.meta.url), 'utf8');
+    const s = summarize(example, { capReason: null });
+    assert.equal(s.earned.toFixed(2), '6.00');
+    assert.match(guide, /GEO-014 has a Problem on 1 of 3 routes \(3 × 2\/3 = 2 of 3\)/);
+    const clearTwoOfThree = summarize([...example.filter((e) => !(e.ruleId === 'GEO-014' && e.subject.kind === 'routeGroup' && e.subject.route === '/b')), run('GEO-014', 'pass', '/b')], { capReason: null });
+    assert.equal(clearTwoOfThree.earned, 7);
+    assert.equal(clearTwoOfThree.checked, 10);
+    assert.equal(clearTwoOfThree.applicable, 25);
+    assert.equal(clearTwoOfThree.low, 28);
+    assert.equal(clearTwoOfThree.high, 88);
+    assert.equal(clearTwoOfThree.confidence, 'Low');
+    assert.equal(clearTwoOfThree.band, null);
+    assert.match(guide, /The score is \*\*28–88, Unconfirmed\*\*/);
+  });
+
+  it('caps both ends on a blocker, and has no score when nothing was checked', () => {
+    const capped = summarize([run('GEO-013', 'pass', '/'), run('GEO-012', 'pass', '/')], { capReason: 'robots.txt answered 5xx' });
+    assert.equal(capped.low, 40);
+    assert.equal(capped.high, 40);
+    const none = summarize(unknown.map((id) => run(id, 'not_evaluated', '/')), { capReason: null });
+    assert.equal(none.low, null);
+    assert.equal(none.confidence, null);
+  });
+
+  it('never counts inferred evidence as checked', () => {
+    const s = summarize([{ ...run('GEO-003', 'fail', '/'), evidenceQuality: 'inferred' }], { capReason: null });
+    assert.equal(s.rules.find((r) => r.ruleId === 'GEO-003')?.result, 'cant_tell');
+  });
+
+  it('a rule is Clear on code when only its live checks are waiting, as the agents are told', () => {
+    const waiting: Evaluation = { ...run('GEO-011', 'not_evaluated', '/'), statusReason: 'incomplete_subchecks', subChecks: [{ id: 'sitemap_valid', scope: 'both', status: 'pass' }, { id: 'listed_accessible', scope: 'url', status: 'not_run' }] };
+    assert.equal(summarize([waiting], { capReason: null }).rules.find((r) => r.ruleId === 'GEO-011')?.result, 'clear');
+    const codeUnread: Evaluation = { ...waiting, subChecks: [{ id: 'sitemap_valid', scope: 'both', status: 'not_run' }, { id: 'listed_accessible', scope: 'url', status: 'not_run' }] };
+    assert.equal(summarize([codeUnread], { capReason: null }).rules.find((r) => r.ruleId === 'GEO-011')?.result, 'cant_tell');
   });
 });

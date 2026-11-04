@@ -6,6 +6,8 @@ import type { AddressInfo } from 'node:net';
 import { classifyAddress, classifyV6, expandV6, isLoopbackUrl } from '../src/net/address.ts';
 import { guardedFetch, LIMITS } from '../src/net/fetch.ts';
 import { fixtureServer } from './helpers.ts';
+import { botProtection } from '../src/net/bot-protection.ts';
+import type { FetchResult } from '../src/net/fetch.ts';
 
 describe('address classification', () => {
   const cases: [string, string][] = [
@@ -145,5 +147,30 @@ describe('guarded fetch', () => {
     assert.equal(r.status, 200);
     assert.match(r.body, /User-agent/);
     assert.equal(r.headers['set-cookie'], undefined);
+  });
+});
+
+describe('bot protection detection', () => {
+  const response = (status: number, body: string, headers: Record<string, string> = {}): FetchResult => ({ url: 'https://a.test/', finalUrl: 'https://a.test/', status, headers, body, bytes: body.length, redirects: [], error: null, address: '203.0.113.1' });
+
+  it('identifies a challenge from its header or its markers', () => {
+    assert.equal(botProtection(response(403, '', { 'cf-mitigated': 'challenge' })), 'Cloudflare');
+    assert.equal(botProtection(response(403, '<title>Just a moment...</title>')), 'Cloudflare');
+    assert.equal(botProtection(response(503, '<script src="/cdn-cgi/challenge-platform/x"></script>')), 'Cloudflare');
+    assert.equal(botProtection(response(403, '<script src="https://geo.captcha-delivery.com/x"></script>')), 'DataDome');
+  });
+
+  it('ignores weak matches, healthy pages and markers beyond the first 64 KiB', () => {
+    assert.equal(botProtection(response(503, '<title>Just a moment</title> datadome')), null);
+    assert.equal(botProtection(response(403, 'We compared datadome with other products')), null);
+    assert.equal(botProtection(response(200, '<title>Just a moment</title>')), null);
+    assert.equal(botProtection(response(403, `${' '.repeat(70 * 1024)}cf-chl-marker`)), null);
+  });
+
+  it('stays fast on a large hostile body', () => {
+    const body = '<title>access denied</title>'.repeat(180_000);
+    const start = performance.now();
+    assert.equal(botProtection(response(403, body)), null);
+    assert.ok(performance.now() - start < 200);
   });
 });

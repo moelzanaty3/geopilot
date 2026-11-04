@@ -1,0 +1,42 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Support the 'thousands of patients' claim with verifiable evidence such as a review source",
+      "verdict": "generic",
+      "why": "Accurate to index.njk, but trust-content advice that applies to almost any business site and has little technical effect."
+    },
+    {
+      "idea": "Add dentist names, roles, registrations and specialties on the team page",
+      "verdict": "useful",
+      "why": "The team page is vague, and named, credentialed people make the clinic's expertise readable to users and machines."
+    },
+    {
+      "idea": "Add real price ranges, treatment details and appointment links on the services page",
+      "verdict": "useful",
+      "why": "The services page only has a bare list and the line 'prices are simple and clear', so concrete details would help people and machines understand the offering."
+    },
+    {
+      "idea": "Add address and other business details to the Dentist JSON-LD on /contact",
+      "verdict": "useful",
+      "why": "The JSON-LD has only name and telephone while the page text has an address, so adding it gives machines the clinic's location."
+    },
+    {
+      "idea": "Add Open Graph and Twitter social preview metadata in base.njk",
+      "verdict": "generic",
+      "why": "The tags are indeed missing, but this is standard advice for any site and has little effect on finding or understanding it."
+    },
+    {
+      "idea": "Link each service to a dedicated treatment page",
+      "verdict": "useful",
+      "why": "The services are plain list items, so dedicated linked pages would give crawlers and readers more depth and routes."
+    },
+    {
+      "idea": "Add opening hours in visible text on the contact page",
+      "verdict": "useful",
+      "why": "The contact page has no hours, which matter for a dental clinic and could also be added to the structured data."
+    }
+  ]
+}

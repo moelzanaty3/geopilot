@@ -1,0 +1,37 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Support the 'trusted by thousands' claim with evidence",
+      "verdict": "generic",
+      "why": "Accurate that the claim is unsupported, but it's general copy advice with little effect on discoverability."
+    },
+    {
+      "idea": "Add actual prices or a pricing explanation on services page",
+      "verdict": "useful",
+      "why": "The services page says 'prices are simple and clear' with no figures, so adding them gives readers and machines real content."
+    },
+    {
+      "idea": "Add team member names, qualifications and specialties",
+      "verdict": "useful",
+      "why": "The team page has only a vague sentence, so named dentists with credentials add concrete, understandable content."
+    },
+    {
+      "idea": "Add opening hours and emergency appointment guidance on contact page",
+      "verdict": "useful",
+      "why": "The contact page lacks hours, and the home page promises emergency appointments without explaining how they work."
+    },
+    {
+      "idea": "Expand Dentist JSON-LD with address and other business details",
+      "verdict": "useful",
+      "why": "The JSON-LD has only name and phone while the page visibly states an address, so adding it helps machines understand the practice."
+    },
+    {
+      "idea": "Add site-wide Organization/WebSite/Dentist structured data in the base layout",
+      "verdict": "generic",
+      "why": "Reasonable, but it's standard advice, and the Dentist data on the contact page already covers the practice identity."
+    }
+  ]
+}

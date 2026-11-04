@@ -1,0 +1,82 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups for other training crawlers (CCBot, Google-Extended, ClaudeBot, etc.)",
+      "verdict": "useful",
+      "why": "Config says trainingCrawlers: block but robots.txt only blocks GPTBot, so the stated policy is mostly unenforced."
+    },
+    {
+      "idea": "Add explicit Allow groups for AI search crawlers",
+      "verdict": "generic",
+      "why": "They are already allowed via the * group, so explicit groups add little beyond clarity."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Bakery, Product, Course) to pages",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is explicitly not a required fix."
+    },
+    {
+      "idea": "Add concrete facts (bread names, prices, hours, class schedule, cost) to pages",
+      "verdict": "useful",
+      "why": "Pages say 'over twenty loaves' and list two, and classes lack dates, prices and booking details, so concrete content helps readers and machines."
+    },
+    {
+      "idea": "Add an FAQ",
+      "verdict": "wrong",
+      "why": "FAQs are not required and no FAQ is explicitly not a problem."
+    },
+    {
+      "idea": "Treat the content as too thin",
+      "verdict": "wrong",
+      "why": "Short pages are explicitly not a problem, though the specific missing facts are a separate valid point."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "generic",
+      "why": "Accurate, but applies to nearly any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Fix the missing /img/loaves.jpg and add width/height",
+      "verdict": "generic",
+      "why": "No img directory is in the provided files, but the image may exist in deployment, and width/height is a generic improvement."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice",
+      "verdict": "wrong",
+      "why": "The data-nosnippet is a deliberate scoped choice."
+    },
+    {
+      "idea": "Add contact, address, phone and hours information and a contact/about page",
+      "verdict": "useful",
+      "why": "No page gives location or contact details, which is a real gap for a local bakery."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries",
+      "verdict": "generic",
+      "why": "Accurate, but lastmod is of minor value for a three-page site."
+    },
+    {
+      "idea": "Resolve /members/ being both disallowed and noindexed (use noindex alone)",
+      "verdict": "wrong",
+      "why": "The members page being noindex and disallowed is a deliberate, correct choice for a private page."
+    },
+    {
+      "idea": "Switch to extensionless clean URLs with redirects",
+      "verdict": "generic",
+      "why": "Canonicals and sitemap are consistent, so this is cosmetic with little effect."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is not a problem, and it does not help with being found."
+    },
+    {
+      "idea": "Make the home page title and H1 more distinctive",
+      "verdict": "generic",
+      "why": "The title and H1 already mention sourdough and York, so this is vague advice that applies to any site."
+    }
+  ]
+}

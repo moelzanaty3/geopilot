@@ -1,0 +1,13 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 1,
+  "found": [],
+  "flagged": [
+    "gptbot-blocked",
+    "no-json-ld",
+    "data-nosnippet",
+    "no-faq-or-word-count"
+  ],
+  "extraIssues": 6
+}

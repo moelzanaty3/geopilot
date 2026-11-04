@@ -1,0 +1,57 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Make /shop list real products with their own pages and links",
+      "verdict": "useful",
+      "why": "The shop page only has one sentence naming three categories, so individual product pages would give crawlers and readers real content."
+    },
+    {
+      "idea": "Move Product data to individual product pages with offers, and drop it from the list page",
+      "verdict": "useful",
+      "why": "The Product markup sits on a category-style page and has only a name, so this fits the repo."
+    },
+    {
+      "idea": "Add ordinary visible delivery terms or a delivery page linked from the nav",
+      "verdict": "useful",
+      "why": "Delivery information exists only in a data-nosnippet div, so no readable page answers delivery questions, and the report leaves the nosnippet choice alone."
+    },
+    {
+      "idea": "Support the 'shipped next day' claim with cutoff, countries and carrier details",
+      "verdict": "useful",
+      "why": "The home h1 makes the claim and nothing in the files backs it up."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data with business name and contact details",
+      "verdict": "useful",
+      "why": "No entity markup exists, though the report admits the site shows no name or contact details to base it on."
+    },
+    {
+      "idea": "Add a viewport meta tag and a <main> element in app.html",
+      "verdict": "useful",
+      "why": "app.html has no viewport meta and wraps the body in a plain div, so both are accurate and concrete."
+    },
+    {
+      "idea": "Link the home page onward to /shop and categories in the body",
+      "verdict": "useful",
+      "why": "The home page has only an h1, and the nav is the only link path to the shop."
+    },
+    {
+      "idea": "Make the /shop title more descriptive and branded",
+      "verdict": "useful",
+      "why": "'Shop all parts' lacks the brand and category terms that the home title has."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap or generate it from routes",
+      "verdict": "generic",
+      "why": "This is accurate, but a two-URL sitemap gains little from lastmod."
+    },
+    {
+      "idea": "Define the base URL in one place instead of hardcoding it",
+      "verdict": "generic",
+      "why": "It is accurate, but it is a maintainability tip that would apply to nearly any site."
+    }
+  ]
+}

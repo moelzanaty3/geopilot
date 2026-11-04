@@ -1,0 +1,92 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups in robots.txt for other training crawlers (CCBot, Google-Extended, Applebot-Extended, ClaudeBot, etc.)",
+      "verdict": "useful",
+      "why": "The config says trainingCrawlers: block but robots.txt only blocks GPTBot, so this brings the file in line with the declared policy."
+    },
+    {
+      "idea": "Add explicit Allow groups for AI search bots (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, etc.) and repeat the /members/ Disallow",
+      "verdict": "generic",
+      "why": "The wildcard group already allows these bots, so explicit groups change almost nothing."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Bakery/LocalBusiness, Product/Menu, Course/Event)",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add visible NAP (address, phone) and opening hours to the home page",
+      "verdict": "useful",
+      "why": "The site has no address, phone or hours anywhere, and a local bakery needs these to be found and used."
+    },
+    {
+      "idea": "List every loaf on breads.html with ingredients, price and days available",
+      "verdict": "useful",
+      "why": "The page claims over twenty loaves but names only two, so listing them gives readers and machines real content."
+    },
+    {
+      "idea": "Add dates, duration, price, group size and a booking link to classes.html",
+      "verdict": "useful",
+      "why": "The page says 'Book early' but gives no way to book and no class details."
+    },
+    {
+      "idea": "Add a link or instructions for pre-ordering on the home page",
+      "verdict": "useful",
+      "why": "The page mentions pre-order for weekend collection but gives no way to do it."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen text and move allergen details into the main content",
+      "verdict": "wrong",
+      "why": "The data-nosnippet attribute is a deliberate, scoped choice and is fine."
+    },
+    {
+      "idea": "Fix the missing /img/loaves.jpg and add width/height attributes",
+      "verdict": "useful",
+      "why": "The referenced image file isn't in the repo, so the page has a broken image."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "generic",
+      "why": "This applies to almost any site and mainly affects social previews."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "This is a standard sitemap improvement with modest effect on a 3-URL site."
+    },
+    {
+      "idea": "Remove the robots.txt Disallow for /members/ so the noindex is read",
+      "verdict": "wrong",
+      "why": "The report's own deliberate-choices list says noindex plus disallow on /members is correct for a private page."
+    },
+    {
+      "idea": "Add a footer, a contact or location page, and breadcrumbs",
+      "verdict": "generic",
+      "why": "This is generic navigation advice, and breadcrumbs add little on a 4-page site."
+    },
+    {
+      "idea": "Make the home and breads meta descriptions more specific",
+      "verdict": "generic",
+      "why": "The descriptions are already accurate, so the effect of rewording them is small."
+    },
+    {
+      "idea": "Add /llms.txt",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no llms.txt is not a problem, and it is folklore as a way to be found."
+    },
+    {
+      "idea": "Add a favicon, custom 404 page and hreflang/alternate links",
+      "verdict": "generic",
+      "why": "This is boilerplate advice that applies to nearly any site, and hreflang isn't needed for a single-language site."
+    },
+    {
+      "idea": "Keep geo.config.json in sync with robots.txt",
+      "verdict": "generic",
+      "why": "This is a reasonable maintenance reminder but is not a concrete change to the site."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 1,
+  "found": [],
+  "flagged": [
+    "no-json-ld"
+  ],
+  "extraIssues": 6
+}

@@ -1,0 +1,47 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Render the FAQ questions and answers as visible text on the page",
+      "verdict": "wrong",
+      "why": "The report says the FAQ script is in moorings.astro, but it is in index.astro, and a visible FAQ is not required."
+    },
+    {
+      "idea": "Add a sizes and prices table to back up the moorings description",
+      "verdict": "useful",
+      "why": "The moorings description promises sizes and prices, but the page only says prices start at £40 a night."
+    },
+    {
+      "idea": "Add the email address to the contact page, or fix its description",
+      "verdict": "useful",
+      "why": "The contact description mentions email but the body only has a phone number."
+    },
+    {
+      "idea": "Add LocalBusiness structured data for phone and location",
+      "verdict": "useful",
+      "why": "The contact page has a phone number and the pages name Falmouth, so this fits the repo."
+    },
+    {
+      "idea": "Add charset and viewport meta tags and a main element",
+      "verdict": "useful",
+      "why": "Base.astro has no charset or viewport meta, and the body has no main element."
+    },
+    {
+      "idea": "Use one spelling of Harbor or harbour",
+      "verdict": "useful",
+      "why": "The files mix 'Harbor' and 'harbour', and people search with one spelling."
+    },
+    {
+      "idea": "Set the site option in an astro config file",
+      "verdict": "generic",
+      "why": "This is accurate, but the canonical and sitemap are hardcoded, so setting site changes little here."
+    },
+    {
+      "idea": "Remove the max-snippet:0 default or use index, follow as the default",
+      "verdict": "generic",
+      "why": "This is the known max-snippet problem restated."
+    }
+  ]
+}

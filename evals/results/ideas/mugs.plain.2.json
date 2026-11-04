@@ -1,0 +1,82 @@
+{
+  "fixture": "mugs",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Prerender/SSR Catalogue so product data is in initial HTML instead of client fetch",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs in useEffect, so non-JS crawlers see no products."
+    },
+    {
+      "idea": "Add error handling to the Catalogue fetch",
+      "verdict": "generic",
+      "why": "Accurate, but it has little effect on discoverability."
+    },
+    {
+      "idea": "Per-route unique titles and head management (React 19 native tags or helmet)",
+      "verdict": "useful",
+      "why": "Both routes share one placeholder title and need distinct per-route head tags."
+    },
+    {
+      "idea": "Add viewport meta tag",
+      "verdict": "useful",
+      "why": "index.html has no viewport meta, which affects mobile rendering and indexing."
+    },
+    {
+      "idea": "Add canonical, Open Graph and Twitter tags",
+      "verdict": "generic",
+      "why": "Valid but standard boilerplate with modest effect for this small site."
+    },
+    {
+      "idea": "Add JSON-LD Organization/WebSite on Home and ItemList/Product on Catalogue",
+      "verdict": "useful",
+      "why": "This is a product catalogue, so Product structured data suits it, though the markup would need prerendering to be visible to crawlers."
+    },
+    {
+      "idea": "Add width/height and fetchpriority to hero image",
+      "verdict": "generic",
+      "why": "Accurate for the hero img, but a minor performance tweak."
+    },
+    {
+      "idea": "Add substantive content to Home (materials, care, shipping, maker story)",
+      "verdict": "useful",
+      "why": "Home has only one H1 and one sentence, so facts like materials and shipping would give crawlers and people more to read."
+    },
+    {
+      "idea": "Add an FAQ to Home",
+      "verdict": "wrong",
+      "why": "A mandatory FAQ is folklore and not a real requirement."
+    },
+    {
+      "idea": "Give each mug its own product route/URL with links, images, prices, in a ul/li list",
+      "verdict": "useful",
+      "why": "Catalogue renders bare <p> names with no per-product pages to find or cite."
+    },
+    {
+      "idea": "Make the Catalogue H1 more descriptive",
+      "verdict": "generic",
+      "why": "Accurate but very small effect."
+    },
+    {
+      "idea": "Add a 404 catch-all route and real 404 status",
+      "verdict": "useful",
+      "why": "The router has no wildcard route, so unknown URLs render only the nav, and an SPA host would likely serve them as 200."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt is folklore as a way to be found."
+    },
+    {
+      "idea": "Add favicon and og:image asset",
+      "verdict": "generic",
+      "why": "Applies to almost any site and has little discoverability impact."
+    },
+    {
+      "idea": "Add SEO/prerender tooling and sitemap generator to package.json",
+      "verdict": "generic",
+      "why": "This is a restatement of the prerender and sitemap fixes with no further specifics."
+    }
+  ]
+}

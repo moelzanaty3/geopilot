@@ -1,0 +1,52 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Make the moorings page deliver sizes and seasonal prices as text, matching its description",
+      "verdict": "useful",
+      "why": "The description promises sizes and seasonal prices but the page only says 'Prices start at £40 a night', so adding real content helps readers and machines."
+    },
+    {
+      "idea": "Show the FAQ answers as visible text on the home page",
+      "verdict": "useful",
+      "why": "The FAQ answers exist only inside JSON-LD in index.astro, and structured data should match visible content."
+    },
+    {
+      "idea": "Add LocalBusiness/Organization markup with phone number to the contact page",
+      "verdict": "useful",
+      "why": "The contact page has a phone number in plain text and no markup, so this is a concrete, repo-specific improvement."
+    },
+    {
+      "idea": "Add meta charset and viewport to the head",
+      "verdict": "generic",
+      "why": "Base.astro lacks both, which is accurate, but it's standard boilerplate that applies to nearly any site."
+    },
+    {
+      "idea": "Wrap page content in <main>",
+      "verdict": "generic",
+      "why": "Accurate since Base.astro has a bare slot in body, but it's a universal semantic-HTML tip with little discoverability effect."
+    },
+    {
+      "idea": "Set `site` in an Astro config and generate canonicals and sitemap from it",
+      "verdict": "useful",
+      "why": "There is no astro.config, harbor.example is hardcoded in the layout, robots.txt and sitemap, and a single source of truth would also fix the canonical problem."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "The sitemap has no dates, but this is a common optional enhancement with little effect on a three-page site."
+    },
+    {
+      "idea": "Link from home page body text to /moorings",
+      "verdict": "generic",
+      "why": "The home page links to moorings only via nav, but in-content links are a broadly applicable tip with small impact here."
+    },
+    {
+      "idea": "Give the newsletter form an action",
+      "verdict": "generic",
+      "why": "The form has no action, which is accurate, but it's a functional matter rather than something that affects finding or understanding the site."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+---
+import Base from "../layouts/Base.astro";
+import Newsletter from "../components/Newsletter.jsx";
+---
+<Base title="Moorings and prices" description="Mooring sizes and seasonal prices.">
+  <h1>Moorings and prices</h1>
+  <p>Prices start at £40 a night.</p>
+  <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "Article", "headline": "Moorings and prices", }
+  </script>
+  <Newsletter client:load />
+</Base>

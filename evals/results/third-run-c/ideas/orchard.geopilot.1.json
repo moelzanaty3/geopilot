@@ -1,0 +1,32 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add a description to the noindex /account page",
+      "verdict": "generic",
+      "why": "Accurate that it's missing, but a noindex private page gains almost nothing from a description."
+    },
+    {
+      "idea": "Add LocalBusiness JSON-LD for opening times (with visible address)",
+      "verdict": "generic",
+      "why": "Plausible but the page has no address, JSON-LD isn't required, and it's speculative with hedged wording."
+    },
+    {
+      "idea": "Give each variety its own page, linked from the varieties page",
+      "verdict": "useful",
+      "why": "The page claims forty varieties but names two, so per-variety pages would add real, findable content."
+    },
+    {
+      "idea": "Add links in the home page body to Varieties and Visit",
+      "verdict": "generic",
+      "why": "Accurate, but the nav already links these pages so the effect is small."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "Accurate that lastmod is absent, but it is a common, low-impact tweak for a three-URL site."
+    }
+  ]
+}

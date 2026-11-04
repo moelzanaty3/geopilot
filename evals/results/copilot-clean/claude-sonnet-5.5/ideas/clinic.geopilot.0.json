@@ -1,0 +1,62 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Use one host everywhere (canonical vs sitemap host disagree)",
+      "verdict": "generic",
+      "why": "Restates the known staging canonical problem."
+    },
+    {
+      "idea": "Remove noindex from services or remove it from the sitemap",
+      "verdict": "generic",
+      "why": "Restates the known services noindex/sitemap conflict."
+    },
+    {
+      "idea": "Back up 'thousands of patients' claim with a real figure, reviews or source",
+      "verdict": "useful",
+      "why": "The index.njk claim is unsupported and verifiable evidence helps readers and machines trust it."
+    },
+    {
+      "idea": "Show actual prices on the services page",
+      "verdict": "useful",
+      "why": "services.njk says prices are 'simple and clear' but lists none, so the content is missing."
+    },
+    {
+      "idea": "Name the dentists with qualifications and years on the team page",
+      "verdict": "useful",
+      "why": "team.njk has only a vague 'decades of experience' line with no names or credentials."
+    },
+    {
+      "idea": "Give each service its own page with its own address",
+      "verdict": "useful",
+      "why": "Services are a bare four-item list with no detail, so separate pages would add findable content."
+    },
+    {
+      "idea": "Complete Dentist JSON-LD with address, opening hours, url and image",
+      "verdict": "useful",
+      "why": "The existing block has only name and telephone, while the address is already on the page."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap entries",
+      "verdict": "generic",
+      "why": "Accurate, but it has little effect on a four-page site."
+    },
+    {
+      "idea": "Add Open Graph tags (og:title, og:description, og:image)",
+      "verdict": "generic",
+      "why": "Accurate, as base.njk has none, but it applies to almost any site and mainly affects link previews."
+    },
+    {
+      "idea": "Link Team and Services pages to Contact with a booking call to action",
+      "verdict": "generic",
+      "why": "Contact is already in the global nav, so the extra links add little."
+    },
+    {
+      "idea": "Add WebSite or Organization JSON-LD in base.njk for site identity",
+      "verdict": "generic",
+      "why": "No site-level identity markup exists, but on a single-location practice it adds little beyond the Dentist block."
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { guardedFetch, HostScheduler, type BodyKind, type FetchResult, type NetPolicy } from '../net/fetch.ts';
 import { isLoopbackUrl } from '../net/address.ts';
+import { asBlocked, botProtection, isRefusal } from '../net/bot-protection.ts';
 import { headFacts, parseHtml, type Document, type HeadFacts } from '../html/parse.ts';
 import { evaluate, parseRobots, type ParsedRobots } from '../robots/robots.ts';
 import { parseSitemap, type ParsedSitemap } from '../sitemap/sitemap.ts';
@@ -16,8 +17,16 @@ export interface PageObservation {
   readonly isHtml: boolean;
 }
 
+export interface BlockedEvidence {
+  readonly url: string;
+  readonly status: number;
+  readonly protection: string | null;
+}
+
 export interface UrlEvidence {
   readonly origin: string;
+  /** Set when bot protection or a firewall answered instead of the site. */
+  readonly blocked: BlockedEvidence | null;
   readonly targets: readonly string[];
   readonly robots: { readonly url: string; readonly result: FetchResult; readonly parsed: ParsedRobots | null };
   readonly sitemaps: readonly { readonly url: string; readonly result: FetchResult; readonly parsed: ParsedSitemap | null; readonly via: 'robots' | 'default' | 'index' }[];
@@ -87,10 +96,28 @@ export async function crawl(opts: CrawlOptions): Promise<UrlEvidence> {
   const first = new URL(opts.targets[0]!);
   const origin = new URL(first.origin);
   const notes: string[] = [];
-  const f = opts.fetcher;
-
+  const block: { evidence: BlockedEvidence | null } = { evidence: null };
+  const markBlocked = (result: FetchResult, protection: string | null): FetchResult => {
+    block.evidence ??= { url: result.url, status: result.status!, protection };
+    return asBlocked(result, protection);
+  };
   const robotsUrl = new URL('/robots.txt', origin).href;
-  const robotsResult = await f(robotsUrl, 'robots');
+  // Only robots.txt and the entry page speak for the whole site. A challenge on any
+  // other URL is that URL's failure, and the rest of the evidence stays valid.
+  const f: Fetcher = async (url, kind) => {
+    const result = await opts.fetcher(url, kind);
+    const protection = botProtection(result);
+    if (!protection) return result;
+    return url === robotsUrl || url === first.href ? markBlocked(result, protection) : asBlocked(result, protection);
+  };
+
+  let robotsResult = await f(robotsUrl, 'robots');
+  // RFC 9309 reads a 4xx robots.txt as "no rules". If the entry page refuses us too,
+  // the 4xx is the firewall talking, so it says nothing about the site's rules.
+  if (isRefusal(robotsResult)) {
+    const entry = await f(first.href, 'html');
+    if (block.evidence || isRefusal(entry)) robotsResult = markBlocked(robotsResult, null);
+  }
   const robotsParsed = robotsResult.status !== null && robotsResult.status >= 200 && robotsResult.status < 300 ? parseRobots(robotsResult.body) : null;
   if (robotsParsed) {
     const delay = robotsParsed.groups.find((g) => g.agents.includes(GEO_UA_TOKEN) || g.agents.includes('*'))?.crawlDelay;
@@ -100,6 +127,7 @@ export async function crawl(opts: CrawlOptions): Promise<UrlEvidence> {
   const robotsUnreachable = robotsResult.error !== null;
 
   const mayFetch = (url: string): boolean => {
+    if (block.evidence) return false;
     if (opts.ignoreRobots) return true;
     // RFC 9309 2.3.1.4: an unreachable or 5xx robots.txt means assume complete disallow.
     if (robotsServerError || robotsUnreachable) return false;
@@ -174,7 +202,7 @@ export async function crawl(opts: CrawlOptions): Promise<UrlEvidence> {
     );
   }
   if (queue.length > 0) notes.push(`page budget of ${opts.maxPages} reached; ${queue.length} discovered URLs were not fetched`);
-  if (skippedByRobots.length > 0) notes.push(`${skippedByRobots.length} URLs were not fetched because robots.txt disallows ${GEO_UA_TOKEN}`);
+  if (!block.evidence && skippedByRobots.length > 0) notes.push(`${skippedByRobots.length} URLs were not fetched because robots.txt disallows ${GEO_UA_TOKEN}`);
 
   const extras = new Map<string, FetchResult>();
   for (const path of opts.extraPaths) {
@@ -195,6 +223,7 @@ export async function crawl(opts: CrawlOptions): Promise<UrlEvidence> {
   }
 
   return {
+    blocked: block.evidence,
     origin: origin.origin,
     targets: opts.targets,
     robots: { url: robotsUrl, result: robotsResult, parsed: robotsParsed },

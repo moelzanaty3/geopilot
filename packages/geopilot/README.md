@@ -30,7 +30,7 @@ To commit the agents into a repository for your whole team, run `npx geopilot ag
 
 | Command | What you get |
 | --- | --- |
-| `scan` | A code score with its arithmetic, every rule checked, and the fixes to do first, each with its file, line and quote |
+| `scan` | A code score range with its arithmetic, every rule checked, and the fixes to do first, each with its file, line and quote |
 | `fix` | Each exact change and why it matters. It applies only what you approve, then updates the score |
 | `explain` | GEO, or any rule, in plain words, using your own code as the example. With no argument, a guided tour |
 | `review` | Whether a branch makes your site harder or easier to find |
@@ -38,6 +38,21 @@ To commit the agents into a repository for your whole team, run `npx geopilot ag
 | `init` | A `geo.config.json`, when you want to declare your domain and policy |
 
 The code score comes from reading your source, so it can't prove what only a running site shows, such as real status codes and headers. Those rules are reported as "can't tell", never guessed. Scans come from a model reading code, so results can vary between runs.
+
+## Why not just ask your agent?
+
+You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopilot/docs/benchmark/) on sample projects with known answers. These are the three projects kept back during tuning, 9 runs each:
+
+| | Plain prompt | geopilot |
+| --- | --- | --- |
+| Planted bugs found | 100% | 100% |
+| **False alarms per report** | **1.56** | **0** |
+| Useful ideas per report | 6.6 | 5.8 |
+| Wrong ideas per report | 3.8 | 0.7 |
+| Cost per run | $0.07 | $0.14 |
+| Time per run | 32s | 42s |
+
+geopilot's advantage is advice you can act on: no false alarms in this test, far fewer wrong ideas, every problem tied to a quote, and ideas kept apart from problems and the score. A plain prompt is cheaper, faster and raises slightly more useful ideas, along with more noise. On a lightweight model (GPT-5.6 Luna on Copilot), geopilot found only 90% of the planted bugs, so use your host's default or a stronger model for an audit. We wrote the projects and the answer key ourselves, and they're small, so [read the caveats](https://moelzanaty3.github.io/geopilot/docs/benchmark/).
 
 ## Live checks with the CLI
 
@@ -49,11 +64,24 @@ npx geopilot scan . --url http://127.0.0.1:3000  # your code and your running si
 npx geopilot fix                                 # preview closed-list fixes; nothing is written
 ```
 
-Its live readiness number is reported separately from the code score. Apply a guarded fix by its id, then verify it on a server geopilot starts after the write:
+It uses the same results and score formula as your agent, on different evidence. If bot protection answers instead of your site, it reports the scan as blocked rather than guessing. Apply a guarded fix by its id, then verify it on a server geopilot starts after the write:
 
 ```bash
 npx geopilot fix --apply --approve <fixId> --serve
 ```
+
+## Prove it with real evidence
+
+A scan can't show what real crawlers receive, so these commands read the places that can. They add no dependencies, and tokens are read only from the environment.
+
+```bash
+geopilot logs access.log                                 # which real crawlers got through, checked against their published addresses
+geopilot cloudflare --zone <id>                          # crawler requests and blocks (CLOUDFLARE_API_TOKEN)
+geopilot inspect https://example.com/a --site <property> # Google's index status (GOOGLE_ACCESS_TOKEN)
+geopilot citations "your question" --domain example.com  # does Perplexity cite you? (PERPLEXITY_API_KEY, paid)
+```
+
+`citations` is a sample of one question on one engine, with a confidence range. It isn't a measure of your overall visibility, and it doesn't prove a fix caused a change.
 
 ## What you get
 

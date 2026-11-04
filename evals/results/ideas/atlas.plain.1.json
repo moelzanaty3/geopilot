@@ -1,0 +1,67 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add concrete pricing tiers and prices as HTML text on /pricing",
+      "verdict": "useful",
+      "why": "The page only says 'Talk to us for a quote', so there is nothing for people or answer engines to read or quote."
+    },
+    {
+      "idea": "Add Product/Offer JSON-LD on pricing",
+      "verdict": "generic",
+      "why": "JSON-LD is not required here, and it adds little without real pricing content."
+    },
+    {
+      "idea": "Add Disallow groups for the other training crawlers (ClaudeBot, Google-Extended, CCBot and others)",
+      "verdict": "useful",
+      "why": "geo.config.json says to block training crawlers, but robots.txt only blocks GPTBot."
+    },
+    {
+      "idea": "Add explicit Allow groups for search and retrieval crawlers",
+      "verdict": "generic",
+      "why": "These crawlers are already allowed by the * group, so the groups only guard against future changes."
+    },
+    {
+      "idea": "Add viewport, Open Graph and Twitter meta defaults in root meta",
+      "verdict": "generic",
+      "why": "This is standard advice for any site, and it has little effect on search or AI discovery."
+    },
+    {
+      "idea": "Add Organization, WebSite, SoftwareApplication and FAQPage JSON-LD",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is not a required fix, and FAQPage markup is pushed even though no FAQ exists."
+    },
+    {
+      "idea": "Add Features and Home links to the root nav",
+      "verdict": "useful",
+      "why": "The nav only links Pricing and Changelog, so real links in the nav would give crawlers and users a path to /features."
+    },
+    {
+      "idea": "Replace the vague 'Integrates with all the tools' claim with named integrations",
+      "verdict": "useful",
+      "why": "The home page claim names nothing, so there is nothing specific to cite or understand."
+    },
+    {
+      "idea": "Expand /features with an h2 and a short description for each feature",
+      "verdict": "useful",
+      "why": "The page is a single sentence under the h1, so it has almost nothing to read or cite."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries and generate the sitemap from routes",
+      "verdict": "generic",
+      "why": "This is a common sitemap improvement with a small effect on a four-URL site."
+    },
+    {
+      "idea": "Remove the /dashboard Disallow and rely on noindex alone",
+      "verdict": "wrong",
+      "why": "The Disallow and noindex on a private page are a deliberate choice, and removing the Disallow would let crawlers fetch it."
+    },
+    {
+      "idea": "Add an llms.txt file",
+      "verdict": "wrong",
+      "why": "A missing llms.txt is not a problem, and the file is not a way to be found."
+    }
+  ]
+}

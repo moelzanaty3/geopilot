@@ -1,0 +1,32 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "List the actual routes with their grades as text on the guides page, ideally each on its own page",
+      "verdict": "useful",
+      "why": "guides.vue promises graded routes but lists none, so there is no content to read or quote."
+    },
+    {
+      "idea": "Add a short text intro to the home page describing what the site covers",
+      "verdict": "generic",
+      "why": "The home page has only an h1 and a button, but a generic 'add an intro' suggestion has little specific effect."
+    },
+    {
+      "idea": "Keep only one of robots.txt Disallow or noindex for /admin",
+      "verdict": "wrong",
+      "why": "/admin being both disallowed and noindex is a deliberate, correct choice, and the report itself allows leaving it as is."
+    },
+    {
+      "idea": "Declare the real domain and add an absolute canonical link per page",
+      "verdict": "useful",
+      "why": "No canonical exists anywhere and the only domain is in the sitemap, so per-page canonicals are a concrete missing item."
+    },
+    {
+      "idea": "Resolve the sitemap/noindex conflict by removing /guides from the sitemap if the noindex is deliberate",
+      "verdict": "generic",
+      "why": "This restates the known noindex-on-/guides problem and only adds a conditional alternative."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 2,
+  "found": [],
+  "flagged": [],
+  "extraIssues": 5
+}

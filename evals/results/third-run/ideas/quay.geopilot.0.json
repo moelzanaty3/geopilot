@@ -1,0 +1,37 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Give each product its own page, URL and sitemap entry, and add offers/price to the Product JSON-LD",
+      "verdict": "useful",
+      "why": "/shop only names products in a sentence without listing them, so separate crawlable product pages would give people and machines something to find and quote."
+    },
+    {
+      "idea": "Add a short plain-text delivery page, since the home page claims next-day shipping but shows no delivery details",
+      "verdict": "useful",
+      "why": "The only delivery text is the data-nosnippet notice, and the home page gives no details behind its shipping claim."
+    },
+    {
+      "idea": "Add links from the home page to /shop sections, categories or products",
+      "verdict": "generic",
+      "why": "The home page is thin, but the nav already links to /shop, so extra links would have a small effect."
+    },
+    {
+      "idea": "Add a viewport meta tag in app.html",
+      "verdict": "generic",
+      "why": "It is accurate, since app.html has no viewport tag, but it is standard advice and has little effect on discovery."
+    },
+    {
+      "idea": "Wrap the body content in a <main> element instead of a plain div",
+      "verdict": "generic",
+      "why": "It is accurate, but this is a standard semantic-HTML tip that does little for finding or understanding this site."
+    },
+    {
+      "idea": "Give /search a meta description",
+      "verdict": "generic",
+      "why": "The page is deliberately noindex, so a description would have almost no effect, as the report itself admits."
+    }
+  ]
+}

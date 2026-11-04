@@ -1,0 +1,87 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups for more training crawlers (Google-Extended, Applebot-Extended, CCBot, Bytespider, meta-externalagent, anthropic-ai, cohere-ai)",
+      "verdict": "useful",
+      "why": "geo.config.json blocks training crawlers but robots.txt only names GPTBot and ClaudeBot, so the policy is only partly enforced."
+    },
+    {
+      "idea": "Add explicit allow groups for AI search crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User, Applebot) that repeat Disallow: /account",
+      "verdict": "generic",
+      "why": "They are already allowed through the * group, so explicit groups change little and add maintenance."
+    },
+    {
+      "idea": "Add JSON-LD (Organization/LocalBusiness, Place with opening hours, BreadcrumbList)",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add address, map, parking and phone details to the visit page, since the description promises directions",
+      "verdict": "useful",
+      "why": "The visit page lacks the directions its own description promises, and concrete facts help people and answer engines."
+    },
+    {
+      "idea": "List the varieties on the varieties page with per-variety details, since it claims over forty but shows two",
+      "verdict": "useful",
+      "why": "This matches the actual page, which names only two varieties, and gives real content to find and quote."
+    },
+    {
+      "idea": "Expand the home page with what is sold, how to buy, and the location",
+      "verdict": "generic",
+      "why": "It is accurate, but it is mostly a 'thin page' complaint, which is not a problem here."
+    },
+    {
+      "idea": "Add site-wide metadata defaults (title.template, default title and description) in the layout",
+      "verdict": "generic",
+      "why": "Every page already sets its own title and description, so a template has very little effect."
+    },
+    {
+      "idea": "Add openGraph and twitter card metadata, including an image",
+      "verdict": "generic",
+      "why": "This is standard advice for any site and mainly affects link previews."
+    },
+    {
+      "idea": "Resolve the /account conflict between robots.txt Disallow and noindex by dropping the Disallow",
+      "verdict": "wrong",
+      "why": "The deliberate choices say noindex plus Disallow on /account is correct, and the report itself rates the risk as low."
+    },
+    {
+      "idea": "Add a description to the /account page",
+      "verdict": "wrong",
+      "why": "It is a private noindex page, so a description has no value."
+    },
+    {
+      "idea": "Add lastmod to the sitemap and generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "This is accurate, but with three static URLs the effect is small."
+    },
+    {
+      "idea": "Use next/link instead of plain <a> tags in the nav",
+      "verdict": "generic",
+      "why": "It improves navigation speed, but crawlers follow plain links fine, so it does little for discoverability."
+    },
+    {
+      "idea": "Add aria-label to the nav and wrap the page in header/footer landmarks",
+      "verdict": "generic",
+      "why": "This is minor accessibility and semantics advice that applies to almost any site."
+    },
+    {
+      "idea": "Add 'Herefordshire' to the home page title",
+      "verdict": "useful",
+      "why": "The title omits the location, which the description and content do mention, so this helps with local relevance."
+    },
+    {
+      "idea": "Don't spread data-nosnippet to real content",
+      "verdict": "generic",
+      "why": "The report itself calls the current use fine, and the caution is generic."
+    },
+    {
+      "idea": "Add llms.txt as an optional extra",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no llms.txt is not a problem, and it is folklore as a way to be found."
+    }
+  ]
+}

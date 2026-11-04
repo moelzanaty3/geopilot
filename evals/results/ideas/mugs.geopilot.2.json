@@ -1,0 +1,47 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Give each mug its own page/URL with price and description",
+      "verdict": "useful",
+      "why": "Catalogue renders only names in paragraphs, so individual product pages would give crawlers and AI distinct, quotable content."
+    },
+    {
+      "idea": "Add more buyer-facing text on the home page (price range, shipping, returns, how to order)",
+      "verdict": "useful",
+      "why": "Home.jsx contains a single sentence, so more substantive content would help people and machines understand the offer."
+    },
+    {
+      "idea": "Add Organization/Product JSON-LD",
+      "verdict": "useful",
+      "why": "The site has no structured data and sells identifiable products from a named location, so JSON-LD could clarify what it is."
+    },
+    {
+      "idea": "Declare the site origin and add a canonical tag per page",
+      "verdict": "useful",
+      "why": "No canonical or domain is set in index.html, and absolute canonicals help consolidate URLs."
+    },
+    {
+      "idea": "Add viewport meta and Open Graph tags",
+      "verdict": "generic",
+      "why": "index.html lacks them, but this is standard head hygiene with modest effect on discoverability."
+    },
+    {
+      "idea": "Add a 404/catch-all route",
+      "verdict": "useful",
+      "why": "Routes define only / and /catalogue, so unknown URLs on a static host would return the app shell with 200 (soft 404s)."
+    },
+    {
+      "idea": "Give each route its own title via React 19 <title>/<meta> elements",
+      "verdict": "generic",
+      "why": "Per-route titles are sound, but without prerendering client-set tags are not visible to non-JS crawlers; it mostly overlaps the known title issue."
+    },
+    {
+      "idea": "Link onward to the catalogue from the Home page body",
+      "verdict": "useful",
+      "why": "Home.jsx has no link to /catalogue, so a body link adds a crawlable path to the product listing."
+    }
+  ]
+}

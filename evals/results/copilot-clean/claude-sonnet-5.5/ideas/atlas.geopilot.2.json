@@ -1,0 +1,67 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Use a real <Link to=\"/features\"> instead of the clickable div on the home page, and add it to the nav",
+      "verdict": "useful",
+      "why": "This restates the known /features link problem; it is accurate but already graded, so it adds nothing new."
+    },
+    {
+      "idea": "Keep only one of robots.txt disallow or noindex for /dashboard",
+      "verdict": "wrong",
+      "why": "The report itself notes /dashboard is deliberate, and the Disallow plus noindex combination is a deliberate choice; the advice to drop one is of marginal value and partly undermines the private page setup."
+    },
+    {
+      "idea": "Give pricing its own title, description and canonical",
+      "verdict": "useful",
+      "why": "This duplicates the known pricing meta problem, so it is already graded."
+    },
+    {
+      "idea": "Name the actual integrations on the home page instead of 'all the tools you already use'",
+      "verdict": "useful",
+      "why": "The home page claim at _index.tsx:8 names no tool, and listing real ones gives readers and machines concrete content."
+    },
+    {
+      "idea": "Add concrete plan names and contents to the pricing page",
+      "verdict": "useful",
+      "why": "pricing.tsx says only 'Talk to us for a quote', so there is nothing concrete to read or cite."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries using changelog release dates",
+      "verdict": "generic",
+      "why": "Valid but low effect; the sitemap has no lastmod, but only the changelog has dates and its entries are not even in server HTML."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD to root.tsx",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is declared not a required fix."
+    },
+    {
+      "idea": "Add charset and viewport meta tags in root.tsx",
+      "verdict": "generic",
+      "why": "Applies to nearly any site and the Remix defaults are easy to add, with little effect on discoverability."
+    },
+    {
+      "idea": "Cross-link features, pricing and changelog pages to each other",
+      "verdict": "useful",
+      "why": "These pages have no links between them, and only the root nav links to pricing and changelog, so internal links would help crawlers and readers reach features."
+    },
+    {
+      "idea": "Give each changelog entry its own page/URL",
+      "verdict": "useful",
+      "why": "Entries are bare <li> items on one page, so separate addresses would make each release findable and citable."
+    },
+    {
+      "idea": "Use a consistent title pattern across pages",
+      "verdict": "generic",
+      "why": "Real inconsistency exists between the home title and the '| Atlas' pattern, but the effect is small."
+    },
+    {
+      "idea": "Replace the root default title 'Atlas' with a descriptive one",
+      "verdict": "useful",
+      "why": "root.tsx:2 gives only 'Atlas', which is what pricing inherits, so a descriptive default would help the page that lacks its own meta."
+    }
+  ]
+}

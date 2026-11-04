@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import faq from "../data/faq.json";
+---
+<Base title="Harbor moorings in Cornwall" description="Book a mooring in Falmouth harbour.">
+  <h1>Moorings in Falmouth</h1>
+  <p>Seasonal and visitor moorings, with a water taxi.</p>
+  <script type="application/ld+json" set:html={JSON.stringify(faq)}></script>
+</Base>

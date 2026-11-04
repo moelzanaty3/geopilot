@@ -1,0 +1,72 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add Open Graph/Twitter metadata and default share image site-wide and on main pages",
+      "verdict": "generic",
+      "why": "Accurate that they're missing, but social tags are standard advice with little effect on search or AI discovery."
+    },
+    {
+      "idea": "Add a favicon/theme tags in root",
+      "verdict": "generic",
+      "why": "Applies to almost any site and has minimal effect on discoverability."
+    },
+    {
+      "idea": "Add homepage and Features links to the main nav in root.tsx",
+      "verdict": "useful",
+      "why": "Nav only has Pricing and Changelog, so adding a real /features link gives crawlers a path to a page otherwise reached only via a div."
+    },
+    {
+      "idea": "Server-render changelog via a Remix loader (instead of useEffect)",
+      "verdict": "useful",
+      "why": "It is the same as a known problem, but the loader fix is concrete; however it duplicates the known issue."
+    },
+    {
+      "idea": "Replace the clickable div with an anchor for See all features",
+      "verdict": "generic",
+      "why": "This is the same as the known /features link problem."
+    },
+    {
+      "idea": "Thin, generic page content on home/features/pricing; add concrete sections, use cases, integrations, pricing details",
+      "verdict": "useful",
+      "why": "Home says 'Integrates with all the tools you already use' with no specifics, and pricing just says 'Talk to us', so concrete content would help people and AI understand the product."
+    },
+    {
+      "idea": "Add FAQs to pages",
+      "verdict": "wrong",
+      "why": "Mandatory FAQs are folklore and not warranted by the files."
+    },
+    {
+      "idea": "Add JSON-LD structured data (SoftwareApplication, Organization, Product, etc.) to pages",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is declared as not a required fix."
+    },
+    {
+      "idea": "Add visible company/about/contact info and Organization JSON-LD with sameAs",
+      "verdict": "generic",
+      "why": "Entity-identity advice would apply to almost any site, and the JSON-LD part is not required."
+    },
+    {
+      "idea": "Add lastmod to the sitemap and generate it from routes",
+      "verdict": "generic",
+      "why": "Valid but with little effect on a four-URL sitemap."
+    },
+    {
+      "idea": "Allow GPTBot and search crawlers to reconcile robots.txt with geo.config.json",
+      "verdict": "wrong",
+      "why": "GPTBot is deliberately blocked as a training crawler, so reversing that contradicts the config."
+    },
+    {
+      "idea": "Add directives for Google-Extended, ClaudeBot and CCBot",
+      "verdict": "generic",
+      "why": "It's optional and not tied to repo-specific evidence, though it matches the training-block policy."
+    },
+    {
+      "idea": "Dashboard robots block prevents seeing noindex; allow crawling or drop reliance on noindex",
+      "verdict": "wrong",
+      "why": "Dashboard noindex plus disallow is deliberate and correct for a private page."
+    }
+  ]
+}

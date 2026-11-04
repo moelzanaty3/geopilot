@@ -1,0 +1,17 @@
+{
+  "fixture": "harbor",
+  "arm": "plain",
+  "run": 0,
+  "found": [
+    "max-snippet-zero",
+    "canonical-hardcoded",
+    "ai-search-crawlers-blocked",
+    "faq-jsonld-bad-key",
+    "article-jsonld-invalid",
+    "contact-noindex-in-sitemap"
+  ],
+  "flagged": [
+    "newsletter-client-load"
+  ],
+  "extraIssues": 8
+}

@@ -1,0 +1,72 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "List the actual breads with headings and descriptions on /breads.html",
+      "verdict": "useful",
+      "why": "The page names only two of twenty-plus loaves, so naming them gives readers and machines specific content to quote."
+    },
+    {
+      "idea": "Add class details (dates, price, size, duration, booking link) to /classes.html",
+      "verdict": "useful",
+      "why": "The page has no concrete details, and adding them gives people and machines the facts they need."
+    },
+    {
+      "idea": "Image /img/loaves.jpg may be missing from the repo",
+      "verdict": "useful",
+      "why": "No img folder exists in the files, so the image may 404 and the report hedges this correctly."
+    },
+    {
+      "idea": "Back up 'wide range' on the home page by naming grains or loaves",
+      "verdict": "useful",
+      "why": "The claim is vague in index.html, and naming specifics gives readers something concrete."
+    },
+    {
+      "idea": "Explain how to pre-order, with cut-off and collection times",
+      "verdict": "useful",
+      "why": "index.html says 'Pre-order for weekend collection' with no method, so the instructions are missing."
+    },
+    {
+      "idea": "Add address and opening hours as text, possibly with Bakery structured data",
+      "verdict": "useful",
+      "why": "No page states the address or hours, and a local bakery benefits from having them in plain text."
+    },
+    {
+      "idea": "Link the home page to Classes in body text",
+      "verdict": "useful",
+      "why": "The home body links only to Breads, though the nav does link to Classes, so this is a real but modest internal-linking improvement."
+    },
+    {
+      "idea": "Confirm crawlers get through the host or CDN",
+      "verdict": "generic",
+      "why": "It is a check outside the code that applies to any site, and the task says to leave such items out."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data for site identity",
+      "verdict": "wrong",
+      "why": "It contradicts the stated choice that having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add <lastmod> dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "It is accurate since the sitemap has no lastmod, but it applies to almost any site and has little effect."
+    },
+    {
+      "idea": "Add og:title, og:description and og:image social tags",
+      "verdict": "generic",
+      "why": "The tags are missing, but this is standard advice for any site and mainly affects social previews."
+    },
+    {
+      "idea": "Make the home title more specific with street or area",
+      "verdict": "generic",
+      "why": "The report itself calls the title fine, so the change would have very little effect."
+    },
+    {
+      "idea": "Create a page per loaf later",
+      "verdict": "generic",
+      "why": "It is speculative and could apply to any site that sells products."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /members/
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://www.millstonebakery.example/sitemap.xml

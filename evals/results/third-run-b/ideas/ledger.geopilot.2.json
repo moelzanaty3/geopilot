@@ -1,0 +1,42 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Fetch blog posts in a server component and give each post its own page/URL",
+      "verdict": "useful",
+      "why": "The blog only renders titles client-side from /api/posts, so server rendering and per-post pages would put real content in HTML and give crawlers separate addresses."
+    },
+    {
+      "idea": "Expand docs with real setup steps in text",
+      "verdict": "useful",
+      "why": "docs/page.tsx has a single sentence under a 'How to set up Ledger' description, so real steps would give people and machines something to read and quote."
+    },
+    {
+      "idea": "Spell out pricing plans in text, then label them with JSON-LD",
+      "verdict": "useful",
+      "why": "The pricing page only says 'Free for up to three people' and has no structured data, so stating the plans first gives something concrete to mark up."
+    },
+    {
+      "idea": "Add short paragraphs on invoices, expenses and reports on the home page, linking to docs",
+      "verdict": "useful",
+      "why": "The home page is one sentence and has no in-body links, so this would explain the product and add internal links."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries once real dates exist",
+      "verdict": "generic",
+      "why": "This is accurate, but it applies to almost any sitemap and has little effect, and the report itself says to add dates only once they are available."
+    },
+    {
+      "idea": "If pricing is meant to be found, remove noindex; otherwise drop it from the sitemap and keep the nav link",
+      "verdict": "generic",
+      "why": "This repeats the known pricing noindex problem instead of adding a new recommendation."
+    },
+    {
+      "idea": "Put the blog's canonical in a server layout.tsx, since it is a client component",
+      "verdict": "useful",
+      "why": "The blog has no metadata export and a client component can't export metadata, so the layout workaround is specific and correct."
+    }
+  ]
+}

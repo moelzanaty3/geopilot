@@ -1,0 +1,15 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 0,
+  "found": [
+    "faq-jsonld-bad-key",
+    "article-jsonld-invalid",
+    "canonical-hardcoded",
+    "max-snippet-zero",
+    "ai-search-crawlers-blocked",
+    "contact-noindex-in-sitemap"
+  ],
+  "flagged": [],
+  "extraIssues": 1
+}

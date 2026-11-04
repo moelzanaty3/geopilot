@@ -1,0 +1,77 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add complete Dentist/LocalBusiness JSON-LD (address, URL, hours, geo, sameAs) and emit it sitewide",
+      "verdict": "useful",
+      "why": "The existing schema has only name and telephone and appears only on /contact, so fuller entity data would help machines understand the business."
+    },
+    {
+      "idea": "Add detailed team profiles with names, qualifications, registration details and Person schema",
+      "verdict": "useful",
+      "why": "team.njk has only a vague 'decades of experience' line with no named clinicians or credentials."
+    },
+    {
+      "idea": "Replace unsupported claims ('Trusted by thousands', 'decades of experience') with verifiable evidence",
+      "verdict": "useful",
+      "why": "Both claims appear in index.njk and team.njk with no supporting evidence."
+    },
+    {
+      "idea": "Expand the services content with treatment-specific detail, pricing, process and dedicated treatment pages",
+      "verdict": "useful",
+      "why": "services.njk is only a four-item list with 'Our prices are simple and clear' and no actual information."
+    },
+    {
+      "idea": "Wire geo.config.json into the Eleventy build (canonicals, robots, sitemap) or remove it",
+      "verdict": "useful",
+      "why": "The config file is not read by .eleventy.js, so its origin and crawler policy have no effect."
+    },
+    {
+      "idea": "Add a sitewide footer with consistent name, address, phone and opening hours",
+      "verdict": "useful",
+      "why": "base.njk has no footer, so the address and phone appear only on /contact."
+    },
+    {
+      "idea": "Add descriptive internal links to individual treatments, pricing and practitioner pages",
+      "verdict": "generic",
+      "why": "This depends on pages that don't exist yet and is standard advice for any site."
+    },
+    {
+      "idea": "Require or fall back on a description for every page, or omit the tag when it's empty",
+      "verdict": "useful",
+      "why": "base.njk always emits the description tag, so a missing description gives an empty tag, and a build-time check or conditional would prevent that."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance terms",
+      "verdict": "wrong",
+      "why": "The data-nosnippet attribute is a deliberate scoped choice and the report asks to reverse it."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata",
+      "verdict": "generic",
+      "why": "This is standard advice for any site and is mainly about social previews, not ranking."
+    },
+    {
+      "idea": "Add /llms.txt as a supplementary aid",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is explicitly not a problem."
+    },
+    {
+      "idea": "Generate the sitemap from Eleventy collections with lastmod values",
+      "verdict": "generic",
+      "why": "This is accurate, but a four-URL static sitemap has little to gain from it."
+    },
+    {
+      "idea": "Add concise answer-first sections and FAQs to the content",
+      "verdict": "wrong",
+      "why": "Mandatory FAQs and answer-first formatting for AI answers are folklore, not a requirement."
+    },
+    {
+      "idea": "Validate the JSON-LD with Google's Rich Results Test after fixing it",
+      "verdict": "generic",
+      "why": "This is validation advice that applies to any site with structured data."
+    }
+  ]
+}

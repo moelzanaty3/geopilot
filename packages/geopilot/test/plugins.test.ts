@@ -87,12 +87,46 @@ describe('generated host plugins', () => {
 
   it('the scanner reports a code score with its arithmetic, and keeps live readiness apart', () => {
     const scanner = read('geopilot', 'agents', 'scanner.agent.md');
-    assert.match(scanner, /points earned ÷ points possible × 100/);
+    assert.match(scanner, /\*\*High\*\* = \(earned \+ unknown\) ÷ applicable × 100/);
     assert.match(scanner, /How it's calculated:/);
     assert.match(scanner, /New to GEO\?/);
-    assert.match(scanner, /Never merge it with the CLI's live readiness number/);
+    assert.match(scanner, /never average them/);
+    assert.match(scanner, /If `blocked` is set, the live check read nothing from the site/);
+    assert.match(scanner, /Never work around a denied command/);
+    assert.match(scanner, /\(live only\)/);
+    assert.match(scanner, /## Other problems found/);
+    assert.match(scanner, /Can't tell never means you didn't look/);
+    assert.match(scanner, /find and check every JSON-LD file/);
+    assert.match(scanner, /Before you score, check that you finished reading/);
+    assert.match(scanner, /\*\*Bot protection:\*\* code can't show whether a CDN or firewall lets real crawlers through/);
+    assert.match(scanner, /the Problem with the most points lost always takes one of the three places/);
     assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /confirmed in code, not yet confirmed on a live site/);
     assert.match(read('geopilot', 'agents', 'fixer.agent.md'), /show the code score before and after/);
+  });
+
+  it('scan runs in the session and writes its report once, except where only an agent can enforce read-only', () => {
+    for (const skill of [read('geopilot', 'skills', 'scan', 'SKILL.md'), read('claude-project', '.claude', 'skills', 'geopilot-scan', 'SKILL.md'), read('codex-project', '.agents', 'skills', 'geopilot-scan', 'SKILL.md'), read('codex', 'skills', 'scan', 'SKILL.md')]) {
+      assert.match(skill, /You are the geopilot \*\*scanner\*\*/);
+      assert.match(skill, /Don't start a subagent/);
+    }
+    assert.match(front(read('opencode', '.opencode', 'commands', 'geopilot-scan.md')), /^agent: "geopilot-scanner"$/m);
+  });
+
+  it('the scan prompt leaves fix steps and sources to fix and explain, and they keep them', () => {
+    const scan = read('geopilot', 'skills', 'scan', 'SKILL.md');
+    assert.doesNotMatch(scan, /\*\*Official sources:\*\*|\*\*How to fix:\*\*/);
+    for (const a of ['fixer', 'explainer']) assert.match(read('geopilot', 'agents', `${a}.agent.md`), /\*\*Official sources:\*\*[\s\S]*\*\*How to fix:\*\*|\*\*How to fix:\*\*[\s\S]*\*\*Official sources:\*\*/);
+  });
+
+  it('ideas are separate from problems and the score, tied to the code, and keep folklore out', () => {
+    const scan = read('geopilot', 'skills', 'scan', 'SKILL.md');
+    assert.match(scan, /## Worth considering/);
+    assert.match(scan, /They aren't problems, and they don't change the score/);
+    assert.match(scan, /Each idea must rest on something you read in this project/);
+    assert.match(scan, /`llms\.txt`, word counts, longer content for its own sake/);
+    assert.match(scan, /reversing or extending a choice that looks deliberate/);
+    assert.match(scan, /never move an idea into "Do these first"/);
+    assert.match(scan, /say "might help", never "will"/);
   });
 
   it('every placeholder is rendered and every agent pins one engine version', () => {

@@ -11,6 +11,7 @@ import { fixCommand } from './commands/fix.ts';
 import { initCommand } from './commands/init.ts';
 import { agentCommand } from './commands/agent.ts';
 import { insightsCommand, reportCommand } from './commands/insights.ts';
+import { citationsCommand, cloudflareCommand, inspectCommand, logsCommand } from './commands/evidence.ts';
 
 import { COMMANDS } from './commands-list.ts';
 
@@ -50,13 +51,14 @@ export interface RunDeps {
   readonly cwd?: string;
   readonly env?: NodeJS.ProcessEnv;
   readonly fetcher?: Deps['fetcher'];
+  readonly http?: Deps['http'];
   readonly now?: () => Date;
 }
 
 export async function run(argv: readonly string[], d: RunDeps = {}): Promise<number> {
   const env = d.env ?? process.env;
   const io = d.io ?? processIo({ nonInteractive: argv.includes('--non-interactive'), noColor: argv.includes('--no-color') }, env);
-  const deps: Deps = { io, cwd: d.cwd ?? process.cwd(), env, ...(d.fetcher ? { fetcher: d.fetcher } : {}), ...(d.now ? { now: d.now } : {}) };
+  const deps: Deps = { io, cwd: d.cwd ?? process.cwd(), env, ...(d.fetcher ? { fetcher: d.fetcher } : {}), ...(d.http ? { http: d.http } : {}), ...(d.now ? { now: d.now } : {}) };
   const [command, ...rest] = argv;
   try {
     if (command === undefined || command === '--help' || command === '-h' || command === 'help') {
@@ -92,6 +94,14 @@ export async function run(argv: readonly string[], d: RunDeps = {}): Promise<num
         return await insightsCommand(rest, deps);
       case 'report':
         return await reportCommand(rest, deps);
+      case 'logs':
+        return await logsCommand(rest, deps);
+      case 'cloudflare':
+        return await cloudflareCommand(rest, deps);
+      case 'inspect':
+        return await inspectCommand(rest, deps);
+      case 'citations':
+        return await citationsCommand(rest, deps);
       case 'review':
       case 'baseline':
       case 'hook':

@@ -1,0 +1,82 @@
+{
+  "fixture": "mugs",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Load catalogue data at build/server time (route loader) so product list is in HTML",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs in useEffect, so even prerendered HTML would be empty."
+    },
+    {
+      "idea": "Give each route a unique title",
+      "verdict": "useful",
+      "why": "All routes share the 'Vite App' title and per-route titles are concrete and feasible with React 19."
+    },
+    {
+      "idea": "Add per-route meta description and canonical link",
+      "verdict": "useful",
+      "why": "index.html has none, and canonical/description per route help search snippets and duplicate handling."
+    },
+    {
+      "idea": "Add viewport meta tag",
+      "verdict": "useful",
+      "why": "index.html lacks a viewport meta, which affects mobile rendering and mobile-first indexing."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Organization, Product, ItemList)",
+      "verdict": "useful",
+      "why": "Site has no structured data and it is a mugs shop in Bristol, so Organization/Product markup fits."
+    },
+    {
+      "idea": "Create product detail pages with own URLs, headings, price/description/image, linked from the list",
+      "verdict": "useful",
+      "why": "Catalogue renders bare <p> names with no links, giving crawlers nothing to index per product."
+    },
+    {
+      "idea": "Add width/height, fetchpriority and modern formats to hero image",
+      "verdict": "generic",
+      "why": "Accurate performance advice for the hero img but small effect and applicable to any site."
+    },
+    {
+      "idea": "hero.jpg is missing from public/ so image 404s",
+      "verdict": "wrong",
+      "why": "The provided file list only shows some files and cannot establish that hero.jpg is absent; the claim is unverifiable and likely based on an incomplete listing."
+    },
+    {
+      "idea": "Expand Home content with materials, care, shipping, returns, and FAQs",
+      "verdict": "generic",
+      "why": "Thin content is true, but the mandatory FAQ framing is folklore-ish and the advice is not tied to repo specifics."
+    },
+    {
+      "idea": "Add About/contact page with real address and email for E-E-A-T",
+      "verdict": "generic",
+      "why": "Reasonable trust advice that would apply to nearly any business site."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "useful",
+      "why": "index.html has none, and link previews for a shop are a concrete benefit."
+    },
+    {
+      "idea": "Add error handling/fallback message to the catalogue fetch",
+      "verdict": "generic",
+      "why": "Valid robustness fix but minimal effect on discoverability."
+    },
+    {
+      "idea": "Add favicon and theme-color meta",
+      "verdict": "generic",
+      "why": "Applies to almost any site with very little SEO effect."
+    },
+    {
+      "idea": "Add a catch-all 404 route and return real HTTP 404 status",
+      "verdict": "useful",
+      "why": "main.jsx has no * route so unknown URLs render only the nav, creating soft 404s."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt is folklore as a way to be found, though the report itself hedges it."
+    }
+  ]
+}

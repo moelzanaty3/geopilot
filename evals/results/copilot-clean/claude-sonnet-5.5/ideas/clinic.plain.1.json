@@ -1,0 +1,102 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add address, url, openingHours, image, priceRange and sameAs to the Dentist JSON-LD on /contact",
+      "verdict": "useful",
+      "why": "The address is only in visible text, so richer LocalBusiness data helps machines understand the practice."
+    },
+    {
+      "idea": "Add a fallback default description in the layout",
+      "verdict": "useful",
+      "why": "base.njk renders {{ description }} directly, so any page without one gets an empty meta tag."
+    },
+    {
+      "idea": "Replace vague claims on the team page with named dentists, credentials, bios and Person schema",
+      "verdict": "useful",
+      "why": "team.njk has only a generic sentence, and named, verifiable clinicians matter for a health site."
+    },
+    {
+      "idea": "Replace 'Trusted by thousands' on the homepage with specific, verifiable claims",
+      "verdict": "useful",
+      "why": "index.njk makes an unsupported vague claim that could be backed with concrete facts."
+    },
+    {
+      "idea": "Expand services into per-treatment sections or pages with descriptions and real prices, plus FAQPage markup",
+      "verdict": "wrong",
+      "why": "The service detail and prices are useful, but the mandatory FAQ and FAQPage markup is folklore, so the item as a whole is mixed and leans wrong."
+    },
+    {
+      "idea": "Add Open Graph and Twitter tags to the layout",
+      "verdict": "generic",
+      "why": "This is standard advice for almost any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Add site-wide Organization/WebSite JSON-LD in the layout",
+      "verdict": "generic",
+      "why": "This is accurate but applies to nearly any site, and the Dentist markup on /contact already covers the entity."
+    },
+    {
+      "idea": "Fix the missing /img/reception.jpg: no passthrough copy for img, so the image 404s",
+      "verdict": "useful",
+      "why": "The .eleventy.js config only copies robots.txt and sitemap.xml, so the referenced image will not be published."
+    },
+    {
+      "idea": "Add width, height and loading attributes to the image",
+      "verdict": "generic",
+      "why": "This is a standard performance tweak with minimal effect on how the site is found or understood."
+    },
+    {
+      "idea": "Generate the sitemap from Eleventy collections with lastmod instead of hand-writing it",
+      "verdict": "useful",
+      "why": "The sitemap is hand-written, has no lastmod, and can drift from the real pages."
+    },
+    {
+      "idea": "Add explicit robots.txt groups for AI search bots to match the aiSearchCrawlers: allow policy",
+      "verdict": "generic",
+      "why": "User-agent: * with Allow: / already permits those crawlers, so named groups add nothing."
+    },
+    {
+      "idea": "Add Disallow: /thanks/ to robots.txt",
+      "verdict": "wrong",
+      "why": "Blocking crawling would stop crawlers from seeing the noindex tag, undermining the deliberate noindex choice."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance terms",
+      "verdict": "wrong",
+      "why": "This reverses a deliberate, scoped choice that was stated as fine."
+    },
+    {
+      "idea": "Add llms.txt and passthrough copy it",
+      "verdict": "wrong",
+      "why": "The brief says having no llms.txt is not a problem, and it is not a way to be found."
+    },
+    {
+      "idea": "Use a more targeted homepage title",
+      "verdict": "generic",
+      "why": "The current title already includes the service and city, so the change would have very little effect."
+    },
+    {
+      "idea": "Reformat .eleventy.js and move the origin into shared global data used by canonical, sitemap and robots",
+      "verdict": "useful",
+      "why": "The origin is duplicated across base.njk, the sitemap and robots.txt, which is how the staging canonical happened."
+    },
+    {
+      "idea": "Add a 404 page",
+      "verdict": "generic",
+      "why": "This applies to almost any site and has little effect on discovery."
+    },
+    {
+      "idea": "Add a favicon",
+      "verdict": "generic",
+      "why": "This is standard advice with negligible effect on discovery or understanding."
+    },
+    {
+      "idea": "Add a footer with NAP and opening hours on every page",
+      "verdict": "useful",
+      "why": "The layout has no footer and the address and phone appear only on /contact, so a local business benefits from showing them site-wide."
+    }
+  ]
+}

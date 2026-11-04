@@ -1,0 +1,87 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Remove the Bingbot block from robots.txt",
+      "verdict": "wrong",
+      "why": "This is a known problem, but it is also listed as item 1 and so should not be counted; it is excluded."
+    },
+    {
+      "idea": "Use a Remix loader for changelog entries",
+      "verdict": "wrong",
+      "why": "Known problem (client-only changelog); excluded."
+    },
+    {
+      "idea": "Add a pricing meta export with title, description and canonical",
+      "verdict": "wrong",
+      "why": "Known problem; excluded."
+    },
+    {
+      "idea": "Add concrete plan names and prices to the pricing copy, plus Product/Offer JSON-LD",
+      "verdict": "useful",
+      "why": "Pricing says only 'Talk to us for a quote', so concrete plans give something to cite; the JSON-LD part is optional but the copy fix is specific."
+    },
+    {
+      "idea": "Add Disallow for ClaudeBot, anthropic-ai, Google-Extended, CCBot, Applebot-Extended and Bytespider to match the trainingCrawlers: block policy",
+      "verdict": "useful",
+      "why": "The config says to block training crawlers but robots.txt covers only GPTBot, so the policy isn't enforced."
+    },
+    {
+      "idea": "Keep search and retrieval crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot) unblocked",
+      "verdict": "useful",
+      "why": "This matches the aiSearchCrawlers: allow policy and keeps the training-bot blocks from catching search bots."
+    },
+    {
+      "idea": "Explicitly list search crawlers with Allow: / in robots.txt",
+      "verdict": "generic",
+      "why": "The * rule already allows them, so explicit entries only make the policy visible and change nothing."
+    },
+    {
+      "idea": "Replace the div onClick with a Link to /features",
+      "verdict": "wrong",
+      "why": "Known problem (/features reached only by a div onClick); excluded."
+    },
+    {
+      "idea": "Add Home and Features to the root nav and use Link",
+      "verdict": "useful",
+      "why": "The nav in root.tsx really lists only Pricing and Changelog, so adding /features gives it a crawlable link on every page."
+    },
+    {
+      "idea": "Name specific integrations on the home page and expand the features copy with h2 sections",
+      "verdict": "useful",
+      "why": "The home page says 'all the tools you already use' without naming any, and features.tsx has one generic sentence."
+    },
+    {
+      "idea": "Add FAQ content with FAQPage JSON-LD",
+      "verdict": "wrong",
+      "why": "This relies on the mandatory-FAQ folklore, and the user said JSON-LD isn't a required fix."
+    },
+    {
+      "idea": "Add Organization, WebSite and SoftwareApplication JSON-LD",
+      "verdict": "wrong",
+      "why": "The user said having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add lastmod values to sitemap.xml",
+      "verdict": "generic",
+      "why": "This is accurate since none are present, but it applies to almost any site and has little effect."
+    },
+    {
+      "idea": "Add og:* and twitter:* tags to each page's meta",
+      "verdict": "generic",
+      "why": "This is accurate and standard for any site, but it does little for crawler discovery or understanding."
+    },
+    {
+      "idea": "Add a viewport meta tag and a charset tag in head",
+      "verdict": "generic",
+      "why": "Root.tsx has neither, which is true, but this advice applies to almost any site."
+    },
+    {
+      "idea": "Improve the root default title and description beyond 'Atlas'",
+      "verdict": "generic",
+      "why": "The pages with their own meta override it, so it has little effect."
+    }
+  ]
+}

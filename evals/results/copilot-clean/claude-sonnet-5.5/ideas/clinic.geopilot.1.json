@@ -1,0 +1,52 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add address, url and openingHours to the Dentist JSON-LD",
+      "verdict": "useful",
+      "why": "The contact page JSON-LD has only name and telephone, while the address is already in the page text, so labelling it helps machines read the business details."
+    },
+    {
+      "idea": "Back up the 'thousands of patients' claim with a real number or review",
+      "verdict": "generic",
+      "why": "This is a general trust-and-content tip with little effect on how the site is found or read."
+    },
+    {
+      "idea": "Show actual prices on the services page",
+      "verdict": "useful",
+      "why": "The page says 'prices are simple and clear' but lists none, so people and machines get no pricing information."
+    },
+    {
+      "idea": "Name the dentists with qualifications on the team page",
+      "verdict": "useful",
+      "why": "The team page has only a vague 'decades of experience' line and names nobody."
+    },
+    {
+      "idea": "Give each service its own page",
+      "verdict": "useful",
+      "why": "The four services are bare list items with no URLs, so none can be found or described on its own."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "This is valid but low-impact on a four-URL sitemap."
+    },
+    {
+      "idea": "Check that the hero image /img/reception.jpg exists",
+      "verdict": "useful",
+      "why": "No image file is in the repository and .eleventy.js passes through only robots.txt and sitemap.xml, so the image would 404."
+    },
+    {
+      "idea": "Add og:title and og:description social tags",
+      "verdict": "generic",
+      "why": "base.njk has none, but this is standard advice for almost any site and only affects link previews."
+    },
+    {
+      "idea": "Add internal links from the team and contact pages to services or contact",
+      "verdict": "generic",
+      "why": "The nav already links every page, so extra links add little."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add a short descriptive text on the home page about what the shop sells and where it ships",
+      "verdict": "useful",
+      "why": "The home page has only an h1, so added descriptive text gives readers and machines real context."
+    },
+    {
+      "idea": "Give each product category/item its own page so Product data describes a real item",
+      "verdict": "useful",
+      "why": "/shop is a single page with a bare Product entry and no per-item pages, so separate pages would give crawlers distinct things to index."
+    },
+    {
+      "idea": "Add a viewport meta tag in src/app.html",
+      "verdict": "useful",
+      "why": "app.html has no viewport meta, which is true and affects mobile rendering."
+    },
+    {
+      "idea": "Wrap page content in a <main> landmark instead of a bare div",
+      "verdict": "generic",
+      "why": "It is accurate (app.html uses a plain div), but it is a common best practice with little effect on discoverability."
+    },
+    {
+      "idea": "Add supporting detail for the 'shipped next day' claim",
+      "verdict": "generic",
+      "why": "The claim is accurate, but the advice is vague and mostly content advice that would fit any shop."
+    },
+    {
+      "idea": "Fix the Product JSON-LD being injected via {@html} so it appears in served HTML (by re-enabling SSR) and add offers",
+      "verdict": "generic",
+      "why": "This restates the known ssr=false and missing-offers problems rather than adding a new issue."
+    }
+  ]
+}

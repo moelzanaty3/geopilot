@@ -1,0 +1,52 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Back up the 'thousands of patients' claim with a real figure or reviews",
+      "verdict": "generic",
+      "why": "Accurate that the claim is unsupported, but this is general content advice with little technical effect on discoverability."
+    },
+    {
+      "idea": "Name the individual dentists on /team with qualifications and add Person structured data",
+      "verdict": "useful",
+      "why": "team.njk only says 'decades of experience' with no names, so listing dentists would give readers and machines concrete entities."
+    },
+    {
+      "idea": "Show actual prices on /services or link to a pricing page",
+      "verdict": "useful",
+      "why": "services.njk says 'prices are simple and clear' but shows none, so adding them gives users and machines a real answer."
+    },
+    {
+      "idea": "Give each service (implants, whitening) its own page",
+      "verdict": "useful",
+      "why": "Services are bare list items in services.njk, so dedicated pages could answer specific queries."
+    },
+    {
+      "idea": "Add address and openingHours to the Dentist JSON-LD",
+      "verdict": "wrong",
+      "why": "The report claims contact.njk gives the address, but it only has the address in page text and the JSON-LD lacks it, while the cited line 7 is not the address and no opening hours exist anywhere to add."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "True that there are no dates, but lastmod has little effect on a four-URL site."
+    },
+    {
+      "idea": "Add og:title and og:description social tags in base.njk",
+      "verdict": "generic",
+      "why": "Accurate, but it is a standard recommendation that applies to almost any site."
+    },
+    {
+      "idea": "Add Organization or WebSite structured data on the home page",
+      "verdict": "useful",
+      "why": "The only JSON-LD is on /contact, so the home page has no identity data and base.njk could carry it."
+    },
+    {
+      "idea": "Add a footer with phone and address to the base layout",
+      "verdict": "useful",
+      "why": "base.njk has no footer, so contact details appear only on /contact, and a shared footer would expose them on every page."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add explicit Allow groups for AI search bots (OAI-SearchBot, PerplexityBot, Claude-SearchBot and others) with Disallow /dashboard",
+      "verdict": "generic",
+      "why": "The * group already allows these bots and disallows /dashboard, so the extra groups change almost nothing."
+    },
+    {
+      "idea": "Add Disallow groups in robots.txt for other training crawlers (CCBot, ClaudeBot, Google-Extended, Applebot-Extended, Bytespider, meta-externalagent)",
+      "verdict": "useful",
+      "why": "geo.config.json sets trainingCrawlers to block, but robots.txt only blocks GPTBot, so the other training crawlers are still allowed."
+    },
+    {
+      "idea": "Replace the pricing page's 'Talk to us for a quote' with real plans, prices and tiers",
+      "verdict": "useful",
+      "why": "pricing.tsx has only one vague sentence, so there is nothing concrete for people or AI answers to quote."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Organization, WebSite, SoftwareApplication, Offer)",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is a stated acceptable choice and not a required fix."
+    },
+    {
+      "idea": "Add a public/llms.txt",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is explicitly not a problem, and it isn't a way to be found."
+    },
+    {
+      "idea": "Improve the root default title and description, and add og:/twitter: tags, viewport and charSet",
+      "verdict": "generic",
+      "why": "This is standard advice for any site, and most routes override the root title and description anyway."
+    },
+    {
+      "idea": "Generate canonicals in one place from geo.config.json's site.origin instead of hard-coding the origin in each route",
+      "verdict": "useful",
+      "why": "_index, changelog and features each hard-code the production origin, and the config already holds that origin."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap URLs",
+      "verdict": "generic",
+      "why": "This is accurate, but lastmod has little effect on a four-URL site."
+    },
+    {
+      "idea": "Replace 'Integrates with all the tools you already use' with named integrations",
+      "verdict": "useful",
+      "why": "The home page claim is vague and names nothing specific for readers or AI engines to cite."
+    },
+    {
+      "idea": "Expand the features page with h2 sections for timelines, sharing and status updates",
+      "verdict": "useful",
+      "why": "features.tsx is a single sentence under one h1, so it gives little to read or cite."
+    },
+    {
+      "idea": "Add Home and Features links to the root nav",
+      "verdict": "useful",
+      "why": "The nav in root.tsx links only to Pricing and Changelog, so /features gets no real link from the main nav."
+    },
+    {
+      "idea": "Add aria-label to the nav",
+      "verdict": "generic",
+      "why": "This is a minor accessibility tweak that applies to almost any site and does little for discovery."
+    }
+  ]
+}

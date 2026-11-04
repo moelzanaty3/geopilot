@@ -1,0 +1,77 @@
+{
+  "fixture": "ledger",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Make /blog a server component that fetches posts and exports metadata (also notes missing /api/posts route)",
+      "verdict": "useful",
+      "why": "This is a specific fix that follows from the blog's client-only rendering, and the report's note that no /api/posts route exists in the repo is accurate."
+    },
+    {
+      "idea": "Add per-post routes like app/blog/[slug]/page.tsx and list them in the sitemap",
+      "verdict": "useful",
+      "why": "The blog has no per-post URLs, so individual posts can't be indexed or cited."
+    },
+    {
+      "idea": "Add Disallow groups for other training crawlers (CCBot, Google-Extended, Applebot-Extended, ClaudeBot, anthropic-ai, Bytespider, Meta-ExternalAgent) in robots.txt",
+      "verdict": "useful",
+      "why": "geo.config.json sets trainingCrawlers: block, but robots.txt only blocks GPTBot, so the policy is only partly enforced."
+    },
+    {
+      "idea": "Keep the search and retrieval bots allowed through the * group and don't block them",
+      "verdict": "generic",
+      "why": "It only confirms the current setup, which already matches aiSearchCrawlers: allow; the list also contains a typo ('ChatchatGPT-User')."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Organization, WebSite, SoftwareApplication, Offer, TechArticle, Article)",
+      "verdict": "generic",
+      "why": "This is standard advice for any site; it is accurate because no JSON-LD exists, but the effect on discovery is modest."
+    },
+    {
+      "idea": "Add FAQPage markup/FAQs to pricing",
+      "verdict": "wrong",
+      "why": "Mandatory FAQs are folklore, and the report only suggests it conditionally, but FAQPage markup is not a useful recommendation here."
+    },
+    {
+      "idea": "Expand thin page content (home, pricing, docs) with concrete facts, plan tiers, setup steps and an FAQ",
+      "verdict": "useful",
+      "why": "The pages really are one-sentence pages, and concrete facts like tiers and setup steps help people and machines understand the product; the FAQ part is folklore."
+    },
+    {
+      "idea": "Use descriptive titles for docs and pricing (e.g. 'Ledger Docs: set up bank feeds')",
+      "verdict": "useful",
+      "why": "The titles 'Docs' and 'Pricing' are bare and specific to these files, and better titles help users and search results."
+    },
+    {
+      "idea": "Add canonical to the blog and set a default canonical in the layout",
+      "verdict": "generic",
+      "why": "The blog canonical overlaps with the known docs-canonical problem, and a layout-level default canonical is risky because it would point every page at the same URL."
+    },
+    {
+      "idea": "Add openGraph/twitter metadata and a share image",
+      "verdict": "generic",
+      "why": "This is accurate since none exists, but it is standard advice that mainly affects link previews."
+    },
+    {
+      "idea": "Add lastmod to the sitemap or generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "This is accurate but has little effect on a four-URL site; the dynamic generation could help once blog posts exist."
+    },
+    {
+      "idea": "Use next/link instead of plain <a> tags in the nav",
+      "verdict": "generic",
+      "why": "It improves client-side navigation and prefetching but has almost no effect on SEO, as the report itself says."
+    },
+    {
+      "idea": "Optionally add /llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt is folklore as a way to be found, and the brief says having none is not a problem."
+    },
+    {
+      "idea": "Don't block /thank-you in robots.txt so crawlers can see the noindex",
+      "verdict": "generic",
+      "why": "It is correct, but it only affirms the existing setup and asks for no change."
+    }
+  ]
+}

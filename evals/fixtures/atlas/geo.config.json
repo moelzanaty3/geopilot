@@ -1,0 +1,1 @@
+{ "site": { "origin": "https://atlasroadmaps.example" }, "policy": { "aiSearchCrawlers": "allow", "trainingCrawlers": "block" } }

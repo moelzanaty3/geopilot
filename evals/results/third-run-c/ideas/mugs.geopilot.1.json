@@ -1,0 +1,62 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Change robots.txt to `Allow: /` (item 1)",
+      "verdict": "wrong",
+      "why": "This duplicates the known robots.txt block, and the report's wording on the fix is muddled."
+    },
+    {
+      "idea": "Add an absolute Sitemap line to robots.txt",
+      "verdict": "wrong",
+      "why": "This is the known missing-sitemap problem, so it is already graded."
+    },
+    {
+      "idea": "Prerender or server-render routes so content is in the HTML (item 2)",
+      "verdict": "wrong",
+      "why": "This duplicates the known client-only rendering problem."
+    },
+    {
+      "idea": "Give the Catalogue list its content in server HTML instead of a runtime fetch in useEffect",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs only in the browser, so the mug names are missing from the initial HTML and need build-time or server data."
+    },
+    {
+      "idea": "Set a unique title and description per route",
+      "verdict": "useful",
+      "why": "Both routes share one static title in index.html, and nothing sets per-route titles, so the pages can't be told apart."
+    },
+    {
+      "idea": "Describe the mugs in text (prices, sizes, materials, shipping)",
+      "verdict": "useful",
+      "why": "Home.jsx has one sentence and the Catalogue shows only names, so there is little text for machines or people to read."
+    },
+    {
+      "idea": "Give each mug its own linked page",
+      "verdict": "useful",
+      "why": "Catalogue items are plain <p> text with no links, so individual mugs can't be reached or shared."
+    },
+    {
+      "idea": "Add Product JSON-LD for price and availability on mug pages",
+      "verdict": "useful",
+      "why": "There is no structured data now, and it would apply once mug pages exist with real product details."
+    },
+    {
+      "idea": "Add a viewport meta tag",
+      "verdict": "useful",
+      "why": "index.html has no viewport tag, which is true and affects mobile rendering."
+    },
+    {
+      "idea": "Add Open Graph tags for share previews",
+      "verdict": "generic",
+      "why": "This is accurate but is standard advice for any site and has little effect on being found."
+    },
+    {
+      "idea": "Add a canonical link on your own domain",
+      "verdict": "generic",
+      "why": "The report could not check this because no domain is declared, so it is standard advice with little to act on."
+    }
+  ]
+}

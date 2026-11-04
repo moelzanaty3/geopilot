@@ -1,0 +1,47 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Show FAQ answers as visible text on the home page, not only in JSON-LD",
+      "verdict": "useful",
+      "why": "index.astro only emits the FAQ in JSON-LD, so answers like the May–September water taxi season aren't readable on the page."
+    },
+    {
+      "idea": "Add visible mooring sizes and seasonal prices table on /moorings",
+      "verdict": "useful",
+      "why": "The meta description promises sizes and seasonal prices but the page has only one price line."
+    },
+    {
+      "idea": "Add LocalBusiness markup for phone, address and hours on contact page",
+      "verdict": "generic",
+      "why": "The page is noindex and has no address or hours yet, so the markup would add little."
+    },
+    {
+      "idea": "Add meta charset and viewport tags and a <main> element",
+      "verdict": "useful",
+      "why": "Base.astro lacks charset and viewport tags and no page has <main>, which affects mobile rendering and parsing."
+    },
+    {
+      "idea": "Set the Astro `site` config and build canonicals and sitemap from it",
+      "verdict": "useful",
+      "why": "There is no astro.config and harbor.example is hardcoded, so one source of truth would fix the canonical and sitemap handling."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "With three pages it has little effect, and the report itself says to add it only if real dates exist."
+    },
+    {
+      "idea": "Link in body text from the home page to /moorings",
+      "verdict": "useful",
+      "why": "index.astro mentions moorings with no in-content link, so only the nav leads to /moorings."
+    },
+    {
+      "idea": "Add author and date to the Article JSON-LD",
+      "verdict": "generic",
+      "why": "This is a standard schema suggestion with little effect on a prices page."
+    }
+  ]
+}

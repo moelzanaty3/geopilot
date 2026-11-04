@@ -1,0 +1,42 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Give each route its own title (and description) beyond the index.html defaults",
+      "verdict": "generic",
+      "why": "Largely overlaps the known title/description problem, with per-route titles being a standard add-on."
+    },
+    {
+      "idea": "Prerender or server-render the catalogue list so mug names are in the HTML instead of fetched client-side",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs in useEffect, so mug names are absent from the initial HTML; this is specific and accurate."
+    },
+    {
+      "idea": "Create per-mug pages like /catalogue/<id> with description and price",
+      "verdict": "useful",
+      "why": "Catalogue.jsx renders each mug only as a name in a <p>, so there is no individual URL to find or link."
+    },
+    {
+      "idea": "Expand home page content with materials, sizes, prices, shipping details",
+      "verdict": "useful",
+      "why": "Home.jsx has a single sentence describing the shop, so more factual content would help readers and machines."
+    },
+    {
+      "idea": "Add Product structured data (JSON-LD) for the mug facts",
+      "verdict": "useful",
+      "why": "The repo has no JSON-LD and sells products, so Product markup fits and is concrete."
+    },
+    {
+      "idea": "Add a <meta name=\"viewport\"> tag to index.html",
+      "verdict": "generic",
+      "why": "Accurate, since index.html has none, but it's a standard item for any site."
+    },
+    {
+      "idea": "Add an absolute canonical link on each page (needs domain)",
+      "verdict": "generic",
+      "why": "Accurate that none exists, but it's standard advice that depends on an unknown domain."
+    }
+  ]
+}

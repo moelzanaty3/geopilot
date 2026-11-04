@@ -1,0 +1,15 @@
+---
+const { title, description, robots } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://harbor.example/" />
+    <meta name="robots" content={robots ?? "max-snippet:0"} />
+  </head>
+  <body>
+    <nav><a href="/">Home</a> <a href="/moorings">Moorings</a> <a href="/contact">Contact</a></nav>
+    <slot />
+  </body>
+</html>

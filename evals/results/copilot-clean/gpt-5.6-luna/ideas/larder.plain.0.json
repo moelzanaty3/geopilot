@@ -1,0 +1,62 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Align robots.txt with geo policy by allowing AI search crawlers (OAI-SearchBot, PerplexityBot) and blocking training crawlers",
+      "verdict": "wrong",
+      "why": "The config already declares search allow and training block, and robots.txt allows all by default; the GPTBot block is deliberate, so this misreads it as a conflict."
+    },
+    {
+      "idea": "Block additional training crawlers explicitly in robots.txt, since only GPTBot is blocked and a config file isn't a crawler mechanism",
+      "verdict": "useful",
+      "why": "trainingCrawlers: block is only enforced for GPTBot in robots.txt, so adding other training user agents (e.g. CCBot, Google-Extended) would actually enforce the declared policy."
+    },
+    {
+      "idea": "Add JSON-LD (Bakery/LocalBusiness, Product, Course, Offer) to pages",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is explicitly not a required fix."
+    },
+    {
+      "idea": "Add address, opening hours, phone, ordering link and collection details to the homepage",
+      "verdict": "useful",
+      "why": "The homepage mentions York and pre-order but has no address, hours or ordering link, so these facts are missing for people and machines."
+    },
+    {
+      "idea": "Add class details (dates, duration, price, location) and a booking link to classes.html, with matching structured data",
+      "verdict": "useful",
+      "why": "The page says 'Book early' but offers no way to book or any specifics."
+    },
+    {
+      "idea": "Give breads.html a structured catalogue with names, descriptions, prices and availability, plus Product/Offer markup",
+      "verdict": "useful",
+      "why": "The page only says 'over twenty loaves' and names two, so the catalogue content is thin and unspecific."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice",
+      "verdict": "wrong",
+      "why": "The scoped data-nosnippet on the allergen notice is a deliberate, acceptable choice."
+    },
+    {
+      "idea": "Provide fuller allergen policy and item-level allergen info",
+      "verdict": "useful",
+      "why": "The allergen text is only 'Contains gluten. Ask us about allergens.', so fuller allergen information would help users."
+    },
+    {
+      "idea": "Add Open Graph and Twitter metadata to pages",
+      "verdict": "generic",
+      "why": "This applies to nearly any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Remove the robots.txt disallow for /members/ and keep noindex, or protect it with authentication",
+      "verdict": "wrong",
+      "why": "The noindex plus disallow on the private members page is a deliberate choice, and the disallow is correct."
+    },
+    {
+      "idea": "Add thin-content expansion: sourcing, process, FAQs, testimonials, class policy",
+      "verdict": "wrong",
+      "why": "It rests on thin-page and no-FAQ folklore, which the brief rules out as problems."
+    }
+  ]
+}

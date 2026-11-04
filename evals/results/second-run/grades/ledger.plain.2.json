@@ -1,0 +1,16 @@
+{
+  "fixture": "ledger",
+  "arm": "plain",
+  "run": 2,
+  "found": [
+    "pricing-noindex",
+    "robots-no-sitemap-line",
+    "no-html-lang",
+    "docs-missing-canonical",
+    "blog-client-rendered"
+  ],
+  "flagged": [
+    "gptbot-blocked"
+  ],
+  "extraIssues": 6
+}

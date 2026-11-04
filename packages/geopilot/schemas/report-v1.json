@@ -813,6 +813,115 @@
     },
     "disclaimer": {
       "type": "string"
+    },
+    "blocked": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "status",
+        "protection"
+      ],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "protection": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "low",
+        "high",
+        "band",
+        "earned",
+        "checked",
+        "applicable",
+        "confidence",
+        "rules"
+      ],
+      "properties": {
+        "low": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "high": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "band": {
+          "enum": [
+            "Strong",
+            "Good",
+            "Needs work",
+            "At risk",
+            null
+          ]
+        },
+        "earned": {
+          "type": "number"
+        },
+        "checked": {
+          "type": "number"
+        },
+        "applicable": {
+          "type": "number"
+        },
+        "confidence": {
+          "enum": [
+            "High",
+            "Medium",
+            "Low",
+            null
+          ]
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ruleId",
+              "result",
+              "weight",
+              "earned"
+            ],
+            "properties": {
+              "ruleId": {
+                "type": "string"
+              },
+              "result": {
+                "enum": [
+                  "clear",
+                  "problem",
+                  "cant_tell",
+                  "not_applicable"
+                ]
+              },
+              "weight": {
+                "type": "number"
+              },
+              "earned": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "additionalProperties": false,
@@ -830,6 +939,7 @@
     "assessmentScope",
     "suppressed",
     "notices",
+    "summary",
     "baseline",
     "disclaimer"
   ]

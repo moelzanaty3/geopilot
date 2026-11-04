@@ -1,0 +1,67 @@
+{
+  "fixture": "ledger",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups for other training crawlers (Google-Extended, CCBot, ClaudeBot, anthropic-ai, etc.) and keep search crawlers allowed",
+      "verdict": "useful",
+      "why": "robots.txt only blocks GPTBot while geo.config.json says trainingCrawlers: block, so the policy is only partly enforced."
+    },
+    {
+      "idea": "Add a metadata export and per-post URLs (app/blog/[slug]) with sitemap entries for the blog",
+      "verdict": "useful",
+      "why": "The blog page has no metadata and no individual post pages, so posts can't be found or linked individually."
+    },
+    {
+      "idea": "Note that /api/posts does not exist in the repo",
+      "verdict": "useful",
+      "why": "The route is indeed absent, so the blog list would fail even in a browser."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Organization, WebSite, SoftwareApplication, Article, BreadcrumbList)",
+      "verdict": "generic",
+      "why": "This is standard advice for any site and has little proven effect, and BreadcrumbList on a single docs page adds almost nothing."
+    },
+    {
+      "idea": "Set a default self-referencing canonical in the layout metadata via alternates canonical './'",
+      "verdict": "useful",
+      "why": "It gives /docs and /blog a canonical with a one-line change; the report presents it as a fix for the missing canonicals, so it overlaps the known /docs problem and is concrete here."
+    },
+    {
+      "idea": "Improve the titles and descriptions of /docs and /pricing and use a title template with the brand name",
+      "verdict": "useful",
+      "why": "The titles 'Docs' and 'Pricing' don't name the brand and the descriptions are vague, so a template and specific wording would help."
+    },
+    {
+      "idea": "Expand thin page content with features, a pricing table, docs steps and an FAQ",
+      "verdict": "generic",
+      "why": "Pages with one sentence do need more content, but the advice is vague, and the FAQ is folklore."
+    },
+    {
+      "idea": "Add Open Graph and Twitter metadata with an image",
+      "verdict": "generic",
+      "why": "Standard advice for any site that affects link previews, not discoverability."
+    },
+    {
+      "idea": "Add lastmod to the sitemap or generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "Minor benefit for a four-URL sitemap, though generating it would help once blog posts exist."
+    },
+    {
+      "idea": "Use next/link instead of plain <a> tags in the nav",
+      "verdict": "generic",
+      "why": "Affects navigation performance, not discoverability; plain anchors are fully crawlable."
+    },
+    {
+      "idea": "Add llms.txt as an optional cheap extra",
+      "verdict": "wrong",
+      "why": "The user has said having no llms.txt is not a problem, and llms.txt is not a way to be found."
+    },
+    {
+      "idea": "Remove the noindex on pricing, or remove its sitemap entry and canonical if the noindex is intentional",
+      "verdict": "generic",
+      "why": "This restates the known pricing noindex problem, so it's not a distinct new recommendation."
+    }
+  ]
+}

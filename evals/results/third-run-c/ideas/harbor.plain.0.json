@@ -1,0 +1,92 @@
+{
+  "fixture": "harbor",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Change the default robots meta to index, follow, max-snippet:-1, max-image-preview:large",
+      "verdict": "useful",
+      "why": "This is the same as the known max-snippet:0 problem, but the suggested replacement values are specific to Base.astro and would help."
+    },
+    {
+      "idea": "Consider allowing GPTBot, ClaudeBot, Google-Extended and anthropic-ai (training crawlers) as a policy choice",
+      "verdict": "generic",
+      "why": "The robots.txt already allows everything under User-agent: *, so this is a policy note that applies to any site."
+    },
+    {
+      "idea": "Add acceptedAnswer/author/datePublished/dateModified/publisher to the Article JSON-LD",
+      "verdict": "generic",
+      "why": "Adding author and date properties to Article is standard advice. It would barely change how this pricing page is found or understood."
+    },
+    {
+      "idea": "Change Article to Service/Offer/LocalBusiness on the pricing page",
+      "verdict": "useful",
+      "why": "The moorings page is about prices and a service, so a different schema type would describe it more accurately."
+    },
+    {
+      "idea": "Render the FAQ questions and answers visibly in the page body, matching the FAQPage JSON-LD",
+      "verdict": "useful",
+      "why": "index.astro emits FAQ JSON-LD with no visible FAQ text, and marked-up content should be visible to users and machines."
+    },
+    {
+      "idea": "Escape '<' in the JSON-LD serialized with set:html",
+      "verdict": "generic",
+      "why": "This is good practice, but the FAQ data is static and trusted, so it has almost no effect here."
+    },
+    {
+      "idea": "Add astro.config.mjs with site and register the preact integration (plus the preact dependency)",
+      "verdict": "useful",
+      "why": "There is no config file, @astrojs/preact is never registered, and Astro.site is needed for the canonical fix, so the Newsletter island would fail to build."
+    },
+    {
+      "idea": "Replace the hand-written sitemap with @astrojs/sitemap and add lastmod",
+      "verdict": "generic",
+      "why": "The hand-written sitemap works, and a generator with lastmod is a common suggestion that makes little difference for three pages."
+    },
+    {
+      "idea": "Add meta charset and viewport to the head",
+      "verdict": "useful",
+      "why": "Base.astro has neither, and a viewport tag is needed for mobile rendering."
+    },
+    {
+      "idea": "Add Open Graph and Twitter tags",
+      "verdict": "generic",
+      "why": "This is standard advice for any site and has little effect on search or AI discovery."
+    },
+    {
+      "idea": "Add a favicon",
+      "verdict": "generic",
+      "why": "A favicon applies to any site and barely affects discoverability."
+    },
+    {
+      "idea": "Add Organization/LocalBusiness JSON-LD with address, phone and hours",
+      "verdict": "useful",
+      "why": "This is a local harbour business with a phone number on the contact page and no entity markup anywhere, so the markup would help local and entity understanding."
+    },
+    {
+      "idea": "Fix the 'Harbor' vs 'harbour' spelling inconsistency in the title",
+      "verdict": "useful",
+      "why": "The index title says 'Harbor' while the copy and queries use 'harbour', and the fix is a concrete, specific change."
+    },
+    {
+      "idea": "Expand the one-sentence pages with a table of mooring sizes, seasons and prices",
+      "verdict": "useful",
+      "why": "The moorings page has only one price sentence, so a structured table would give people and machines something concrete to read and quote."
+    },
+    {
+      "idea": "Add address, hours and email to the contact page",
+      "verdict": "useful",
+      "why": "The contact page only has a phone number, so these details would help users and assistants."
+    },
+    {
+      "idea": "Add internal links beyond the navigation",
+      "verdict": "generic",
+      "why": "With three pages already linked from the nav, extra internal links would add very little."
+    },
+    {
+      "idea": "Add type to the Newsletter button and an action or handler to the form",
+      "verdict": "generic",
+      "why": "This is a form-quality fix that does nothing for discoverability or understanding."
+    }
+  ]
+}

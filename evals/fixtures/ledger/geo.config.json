@@ -1,0 +1,10 @@
+{
+  "site": {
+    "origin": "https://www.ledger.example",
+    "language": "en"
+  },
+  "policy": {
+    "aiSearchCrawlers": "allow",
+    "trainingCrawlers": "block"
+  }
+}

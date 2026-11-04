@@ -1,0 +1,42 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add robots.txt groups for other training crawlers (CCBot, Google-Extended, Applebot-Extended) to complete the block",
+      "verdict": "useful",
+      "why": "The config says trainingCrawlers: block but robots.txt names only GPTBot and ClaudeBot, so this extends the stated policy rather than reversing it."
+    },
+    {
+      "idea": "Reconsider /account being both Disallowed in robots.txt and noindex, since crawlers can't see the noindex",
+      "verdict": "generic",
+      "why": "The point is technically accurate, but /account is a deliberate private page and the report itself says the current setup is fine."
+    },
+    {
+      "idea": "Add LocalBusiness JSON-LD and an address to the visit page",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is not a required fix, and the report offers it with a hedge ('might help'), so it is weak structured-data advice."
+    },
+    {
+      "idea": "Add real directions or an address to the visit page, since the description promises directions",
+      "verdict": "useful",
+      "why": "The visit page's description says 'Opening times and directions' but the body has only opening hours, so text and metadata disagree."
+    },
+    {
+      "idea": "Give each variety its own page",
+      "verdict": "useful",
+      "why": "The varieties page claims over forty varieties but names only two, so separate pages would give each variety content that can be found and quoted."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries",
+      "verdict": "generic",
+      "why": "This is accurate because the sitemap has no lastmod, but it is standard advice for any sitemap and has little effect."
+    },
+    {
+      "idea": "Add Open Graph/social tags to pages",
+      "verdict": "generic",
+      "why": "It is accurate because no OG tags exist, but it applies to almost any site and mainly affects share previews."
+    }
+  ]
+}

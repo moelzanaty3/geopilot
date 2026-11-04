@@ -1,0 +1,52 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Back up the 'Integrates with all the tools' claim by naming the actual integrations",
+      "verdict": "useful",
+      "why": "The home page makes a vague claim at _index.tsx:8, and naming the integrations gives readers and machines something concrete to understand."
+    },
+    {
+      "idea": "Show plan names, tiers or price ranges as text on the pricing page",
+      "verdict": "useful",
+      "why": "pricing.tsx only says 'Talk to us for a quote', so the page has no content a visitor or machine can read about pricing."
+    },
+    {
+      "idea": "Link Features from the main navigation",
+      "verdict": "useful",
+      "why": "root.tsx nav lists only Pricing and Changelog, and a real nav link would give crawlers a crawlable path to /features."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "The sitemap has no lastmod, but this is a minor improvement that applies to almost any site."
+    },
+    {
+      "idea": "Date the changelog entries and give each its own page",
+      "verdict": "useful",
+      "why": "Changelog entries are bare <li> strings with no dates or URLs, so adding dates and per-entry pages would make them easier to read and cite."
+    },
+    {
+      "idea": "Add Organization or WebSite JSON-LD",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add charset and viewport meta tags in root.tsx",
+      "verdict": "generic",
+      "why": "root.tsx doesn't set them, but this is standard boilerplate for any site and has little effect here."
+    },
+    {
+      "idea": "Expand the Features page with a short section on each feature",
+      "verdict": "useful",
+      "why": "features.tsx has a single sentence, and more content per feature would give readers and machines something to understand and quote."
+    },
+    {
+      "idea": "Use <Link to=\"/features\"> instead of the onClick div",
+      "verdict": "wrong",
+      "why": "This is the same as the known problem about /features being reached only by a div with onClick."
+    }
+  ]
+}

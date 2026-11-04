@@ -1,0 +1,42 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add an absolute canonical link on / and /guides",
+      "verdict": "useful",
+      "why": "No canonical is set anywhere in the files, and adding one on a real domain helps consolidate signals."
+    },
+    {
+      "idea": "Replace the placeholder trailhead.example domain with the real origin in sitemap, canonicals and Sitemap line",
+      "verdict": "useful",
+      "why": "The sitemap uses a placeholder domain, so the real origin must be chosen for absolute URLs."
+    },
+    {
+      "idea": "List actual routes as text on the guides page, each on its own page/URL",
+      "verdict": "useful",
+      "why": "guides.vue claims graded routes but lists none, so adding crawlable route content gives readers and machines something to find."
+    },
+    {
+      "idea": "Expand the home page with a text description of the walks and links to individual guides",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and a button, so descriptive text and links add content and crawl paths."
+    },
+    {
+      "idea": "Delete the noindex middleware or drop /guides from the sitemap (remove the header)",
+      "verdict": "generic",
+      "why": "This restates the known noindex-on-/guides problem."
+    },
+    {
+      "idea": "Blocking /admin in robots.txt hides its noindex (conditional, fine if only private)",
+      "verdict": "generic",
+      "why": "The report itself says this is fine for a private page, so it is a harmless note about a deliberate choice."
+    },
+    {
+      "idea": "Use useHead or useSeoMeta for a distinct title and description on /guides and new pages",
+      "verdict": "generic",
+      "why": "This repeats the known problem of one shared title and description."
+    }
+  ]
+}

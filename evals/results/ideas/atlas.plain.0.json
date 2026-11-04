@@ -1,0 +1,72 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups for other training crawlers (ClaudeBot, Google-Extended, CCBot, etc.)",
+      "verdict": "useful",
+      "why": "geo.config.json says trainingCrawlers: block, but robots.txt only blocks GPTBot, so the other training bots are allowed by the * rule."
+    },
+    {
+      "idea": "Add explicit Allow groups for AI search bots (OAI-SearchBot, PerplexityBot, etc.)",
+      "verdict": "generic",
+      "why": "The * rule already allows them, so explicit groups change almost nothing."
+    },
+    {
+      "idea": "/api/changelog route doesn't exist, so the fetch would 404",
+      "verdict": "useful",
+      "why": "No API route appears in the repo files, so this is accurate and specific to the changelog page."
+    },
+    {
+      "idea": "Add concrete plan names, prices and inclusions to the pricing copy",
+      "verdict": "useful",
+      "why": "Pricing says only 'Talk to us for a quote', so there is nothing specific for people or AI answers to quote."
+    },
+    {
+      "idea": "Make the root fallback title and description descriptive and generate canonicals per route",
+      "verdict": "generic",
+      "why": "The root title 'Atlas' is thin, but the advice is broad and the routes that matter already have their own meta."
+    },
+    {
+      "idea": "Add Features and Home links to the root nav",
+      "verdict": "useful",
+      "why": "The root nav links only to Pricing and Changelog, so a real crawlable link to /features is missing."
+    },
+    {
+      "idea": "Name the specific integrations instead of 'all the tools you already use'",
+      "verdict": "useful",
+      "why": "The home page copy is vague, and naming integrations gives readers and AI engines extractable facts."
+    },
+    {
+      "idea": "Expand the features page with one h2 section per feature",
+      "verdict": "useful",
+      "why": "features.tsx has a single thin sentence, so more structured content would help readers and machines understand it."
+    },
+    {
+      "idea": "Add JSON-LD (Organization, WebSite, SoftwareApplication, FAQPage)",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is a deliberate choice that isn't required, and the FAQPage suggestion is folklore."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap URLs, especially the changelog",
+      "verdict": "useful",
+      "why": "The sitemap has no lastmod, and a frequently updated changelog benefits from freshness signals."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "generic",
+      "why": "This applies to almost any site and has little effect on search or AI discovery."
+    },
+    {
+      "idea": "Add llms.txt to give AI tools a site summary",
+      "verdict": "wrong",
+      "why": "The report itself calls it optional, and having no llms.txt is explicitly not a problem."
+    },
+    {
+      "idea": "Add meta charset and viewport to the root head",
+      "verdict": "useful",
+      "why": "root.tsx's head has only Meta and Links with no charset or viewport, which is a real gap for rendering and mobile."
+    }
+  ]
+}

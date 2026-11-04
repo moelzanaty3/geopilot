@@ -1,0 +1,37 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Give each mug its own detail page (/catalogue/:id) with links, price and details",
+      "verdict": "useful",
+      "why": "Catalogue.jsx renders mugs as plain unlinked text, so individual products have no crawlable URL."
+    },
+    {
+      "idea": "Add visible shipping, price and returns facts to the page text, possibly with structured data",
+      "verdict": "generic",
+      "why": "Home.jsx has only one sentence of text, but the advice is speculative and would apply to any shop."
+    },
+    {
+      "idea": "Add a viewport meta tag to index.html",
+      "verdict": "useful",
+      "why": "index.html has no viewport tag, which is a real, concrete omission affecting mobile rendering."
+    },
+    {
+      "idea": "Prerender or server-render content, including the fetched catalogue list (Vite SSG, Next.js, Remix)",
+      "verdict": "generic",
+      "why": "This restates the known client-only rendering problem, with the catalogue fetch as a minor addition."
+    },
+    {
+      "idea": "Add per-route titles and descriptions using a head helper (react-helmet or React 19 tags)",
+      "verdict": "useful",
+      "why": "Both routes share one static title, so per-route metadata needs a router-level mechanism beyond editing index.html."
+    },
+    {
+      "idea": "Declare an absolute canonical link once the real domain is known",
+      "verdict": "generic",
+      "why": "Canonical tags are standard advice, and the report notes it can't be made specific without a domain."
+    }
+  ]
+}

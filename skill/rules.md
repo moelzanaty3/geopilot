@@ -42,16 +42,16 @@ scripts/build-plugins.mjs merges the two and fails if a rule is missing here.
 ## GEO-004
 **In plain words:** structured data (JSON-LD) is a label that tells machines what a page is, such as a product or an article. A broken label gets ignored. Not having one is fine.
 
-**Check in code:** search for `application/ld+json` and for objects with `@context` and `@type`. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
+**Check in code:** search for `application/ld+json`, for objects with `@context` and `@type`, and for JSON files with those keys. Check every one you find, including each entry in a list: a blank or misspelled key counts as a missing property. Literal JSON must be valid, and known types need their documented required properties. If there's no JSON-LD at all, the rule is not applicable, so don't count it against the user.
 
 **Can't tell from code:** values built at runtime or loaded from a CMS.
 
 ## GEO-011
 **In plain words:** a sitemap is the list of pages you want found. `robots.txt` should point to it so crawlers can find that list.
 
-**Check in code:** find `sitemap.xml`, `app/sitemap.ts`, or a sitemap plugin or generator. Check that it's a valid sitemap and that `robots.txt` has an absolute `Sitemap:` line. A public site with no sitemap at all is a problem.
+**Check in code:** find `sitemap.xml`, `app/sitemap.ts`, or a sitemap plugin or generator. Check that it's a valid sitemap and that `robots.txt` has an absolute `Sitemap:` line. A public site with no sitemap at all is a problem. If the code serves a sitemap through a route or library and `robots.txt` points to it, the rule is Clear, even when the URLs in it are built at runtime.
 
-**Can't tell from code:** whether listed URLs really answer 200, or the contents of a sitemap generated at build time or by a CMS.
+**Can't tell from code:** whether listed URLs really answer 200, or what a runtime-built sitemap contains. List those under "Can't tell from code". They don't change the result.
 
 ## GEO-012
 **In plain words:** the title and description are what people and machines read first about a page. The `lang` attribute tells them which language it's in.
@@ -63,7 +63,7 @@ scripts/build-plugins.mjs merges the two and fails if a rule is missing here.
 ## GEO-016
 **In plain words:** crawlers find pages by following normal links. If a page can only be reached by a button or script, they may never find it.
 
-**Check in code:** look at navigation, footers and page content. Good links are `<a href>` or framework links that render one, such as `Link` or `RouterLink`. It's a problem if an important page is reached only through `onClick` with `navigate()`, or only appears after login or in a client-only menu. The home page doesn't need a link to it.
+**Check in code:** look at navigation, footers and page content. Good links are `<a href>` or framework links that render one, such as `Link` or `RouterLink`. It's a problem if an important page is reached only through `onClick` with `navigate()`, or only appears after login or in a client-only menu. The home page doesn't need a link to it. Leave out dynamic routes whose real URLs you can't list; mention them under "Can't tell from code".
 
 **Can't tell from code:** whether links are in the served HTML when the app renders only in the browser. That's covered by GEO-003, so mention it there.
 

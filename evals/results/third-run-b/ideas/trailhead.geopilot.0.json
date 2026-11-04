@@ -1,0 +1,42 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Remove the noindex header on /guides or drop it from the sitemap",
+      "verdict": "useful",
+      "why": "The middleware and sitemap files conflict, so fixing it directly affects indexing."
+    },
+    {
+      "idea": "Replace the placeholder trailhead.example domain in sitemap.xml with the real origin",
+      "verdict": "useful",
+      "why": "The sitemap does use https://trailhead.example/, and a placeholder domain keeps the listed URLs from being valid for the real site."
+    },
+    {
+      "idea": "List actual routes as text on the guides page, each with its own page",
+      "verdict": "useful",
+      "why": "guides.vue promises graded routes but lists none, so adding them gives readers and crawlers real content."
+    },
+    {
+      "idea": "Add a short intro describing the walks on the home page",
+      "verdict": "useful",
+      "why": "index.vue has only a heading and a button, so it has almost no descriptive text."
+    },
+    {
+      "idea": "Declare the site URL in nuxt.config.ts as a single source for canonicals and the sitemap",
+      "verdict": "useful",
+      "why": "No site URL or canonical exists, and the domain is currently only a placeholder in the sitemap."
+    },
+    {
+      "idea": "Note that /admin is blocked by robots.txt and also noindexed, so crawlers never see the noindex",
+      "verdict": "generic",
+      "why": "The report itself says this is deliberate, and it has no real effect on the site."
+    },
+    {
+      "idea": "Add canonical links to pages once the real domain is known",
+      "verdict": "useful",
+      "why": "No page has a canonical link, and adding one with an absolute URL helps consolidate indexing."
+    }
+  ]
+}

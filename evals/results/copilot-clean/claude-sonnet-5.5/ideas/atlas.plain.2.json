@@ -1,0 +1,97 @@
+{
+  "fixture": "atlas",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add robots.txt disallows for other training crawlers (CCBot, ClaudeBot, Google-Extended, etc.) to enforce trainingCrawlers: block",
+      "verdict": "useful",
+      "why": "The config says block training crawlers but robots.txt only blocks GPTBot, so the wildcard allows the rest."
+    },
+    {
+      "idea": "Add explicit Allow entries for AI search crawlers (OAI-SearchBot, PerplexityBot, etc.)",
+      "verdict": "generic",
+      "why": "The wildcard already allows them, so explicit entries have very little effect."
+    },
+    {
+      "idea": "Remove the Bingbot block because it contradicts aiSearchCrawlers allow (the claim that ChatGPT search, Copilot and DuckDuckGo depend on Bing's index)",
+      "verdict": "generic",
+      "why": "This restates the known Bingbot problem."
+    },
+    {
+      "idea": "Use a Remix loader instead of useEffect for changelog entries, and confirm /api/changelog exists",
+      "verdict": "generic",
+      "why": "This is the known changelog client-rendering problem; the loader fix is part of it."
+    },
+    {
+      "idea": "Publish plan names and prices as real text on the pricing page",
+      "verdict": "useful",
+      "why": "pricing.tsx only says 'Talk to us for a quote', so there are no facts for people or AI answers to cite."
+    },
+    {
+      "idea": "Add Offer/Product JSON-LD to pricing page",
+      "verdict": "wrong",
+      "why": "JSON-LD is explicitly not a required fix, and this is a deliberate choice."
+    },
+    {
+      "idea": "Add Organization/SoftwareApplication/WebSite/FAQPage JSON-LD site-wide",
+      "verdict": "wrong",
+      "why": "Having no JSON-LD is a deliberate choice, and FAQPage leans on the mandatory-FAQ folklore."
+    },
+    {
+      "idea": "Improve root meta: more specific title and add og:/twitter: tags and a canonical link",
+      "verdict": "generic",
+      "why": "This is accurate, but social tags are standard advice for any site, and the root canonical would be the same on every route."
+    },
+    {
+      "idea": "Add concrete content to the home and features pages: named integrations and feature descriptions",
+      "verdict": "useful",
+      "why": "The home page says 'all the tools you already use' without naming any, and features is one sentence."
+    },
+    {
+      "idea": "Add a short FAQ or 'what is Atlas' paragraph",
+      "verdict": "generic",
+      "why": "A 'what is Atlas' paragraph is fine, but the FAQ part is the mandatory-FAQ folklore and it adds little here."
+    },
+    {
+      "idea": "Replace the div onClick with a Link and add Features to the nav",
+      "verdict": "useful",
+      "why": "This is a concrete fix, since the nav in root.tsx lacks Features and the home page link is a div."
+    },
+    {
+      "idea": "Make the div onClick keyboard-accessible",
+      "verdict": "generic",
+      "why": "It is accurate, but it is covered by replacing the div with a real link and is a standard accessibility point."
+    },
+    {
+      "idea": "Add header/aria-label to the nav",
+      "verdict": "generic",
+      "why": "A standard accessibility tweak with little effect on discoverability."
+    },
+    {
+      "idea": "Add lastmod to sitemap entries",
+      "verdict": "generic",
+      "why": "This is accurate but has a small effect on a four-URL site."
+    },
+    {
+      "idea": "Add a favicon via links in root.tsx",
+      "verdict": "generic",
+      "why": "This is standard advice that applies to any site."
+    },
+    {
+      "idea": "Add a short llms.txt",
+      "verdict": "wrong",
+      "why": "Having no llms.txt is not a problem, and recommending it as a way to be found is folklore."
+    },
+    {
+      "idea": "Expand meta descriptions to 120–160 characters",
+      "verdict": "wrong",
+      "why": "This relies on length-count folklore, and the existing descriptions are adequate."
+    },
+    {
+      "idea": "Keep only one of noindex or robots.txt Disallow for /dashboard, preferring noindex alone",
+      "verdict": "wrong",
+      "why": "The report's own caveat is true in general, but it reverses the deliberate choice to noindex and disallow /dashboard."
+    }
+  ]
+}

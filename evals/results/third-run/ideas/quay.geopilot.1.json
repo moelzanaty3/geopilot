@@ -1,0 +1,47 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Give each product its own page with Product data (price, availability) matching visible content",
+      "verdict": "useful",
+      "why": "/shop is a single page listing several part types, so per-item URLs and matching Product data would give machines specific entities to find."
+    },
+    {
+      "idea": "Make the Product JSON-LD describe what the page shows rather than a single 'Bilge pump'",
+      "verdict": "useful",
+      "why": "The JSON-LD names only 'Bilge pump' while the page text lists pumps, cleats and rope, so the markup doesn't match the page."
+    },
+    {
+      "idea": "Put delivery terms in quotable page text instead of only in the data-nosnippet block",
+      "verdict": "wrong",
+      "why": "The data-nosnippet on the delivery notice is a deliberate scoped choice, and this advice reverses it."
+    },
+    {
+      "idea": "Add a viewport meta tag in src/app.html",
+      "verdict": "useful",
+      "why": "app.html has charset but no viewport, which is a real gap that affects mobile rendering."
+    },
+    {
+      "idea": "Add a <main> landmark to the pages",
+      "verdict": "generic",
+      "why": "The pages have no <main>, but adding one is standard advice with little effect on discoverability."
+    },
+    {
+      "idea": "Add a description for /search",
+      "verdict": "wrong",
+      "why": "/search is deliberately noindex, so a description has no value, and the report itself says it matters less."
+    },
+    {
+      "idea": "Enable prerender if the site is fully static",
+      "verdict": "useful",
+      "why": "All three routes are static, so prerendering would fix the browser-only rendering and is an option that fits this app."
+    },
+    {
+      "idea": "Update the canonicals, sitemap and robots Sitemap line if quay.example is a placeholder",
+      "verdict": "generic",
+      "why": "This is accurate, but it only matters if the domain differs, and the report can't tell from the code."
+    }
+  ]
+}

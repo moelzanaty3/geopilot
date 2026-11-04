@@ -1,0 +1,10 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 0,
+  "found": [],
+  "flagged": [
+    "training-crawlers-blocked"
+  ],
+  "extraIssues": 4
+}

@@ -1,0 +1,32 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add a concrete integrations list or supporting links for the 'Integrates with all the tools' claim",
+      "verdict": "useful",
+      "why": "The home page makes a vague claim in app/routes/_index.tsx that gives readers and machines nothing specific to understand."
+    },
+    {
+      "idea": "Add a visible contact or sales link on pricing for 'Talk to us for a quote'",
+      "verdict": "useful",
+      "why": "The pricing page tells visitors to talk to the team but offers no link or way to do it."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD for site identity",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it goes against that."
+    },
+    {
+      "idea": "Explicitly add charset, viewport and social-sharing metadata to the head",
+      "verdict": "generic",
+      "why": "This applies to almost any site and the report only says to 'confirm or add' it."
+    },
+    {
+      "idea": "Add related-content links on features and changelog pages",
+      "verdict": "generic",
+      "why": "The advice is vague, and it does not name the pages to link to."
+    }
+  ]
+}
