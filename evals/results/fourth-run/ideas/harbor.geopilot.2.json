@@ -1,0 +1,52 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add LocalBusiness/Organization JSON-LD with name and phone on the contact page",
+      "verdict": "useful",
+      "why": "The contact page has a phone number and no entity markup, so this gives machines a concrete, specific identity signal."
+    },
+    {
+      "idea": "Add a table of mooring sizes and seasonal prices as real text on /moorings",
+      "verdict": "useful",
+      "why": "The page description promises sizes and seasonal prices but the body gives only one figure, so adding them is accurate and helps readers and machines."
+    },
+    {
+      "idea": "Show the FAQ Q&A as visible text on the home page",
+      "verdict": "useful",
+      "why": "The FAQ answers exist only in JSON-LD on index.astro, so visible text matches the markup and helps readers."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "This is accurate but conditional on knowing the dates and has little effect on a three-URL sitemap."
+    },
+    {
+      "idea": "Generate the sitemap with @astrojs/sitemap and set site in astro.config",
+      "verdict": "generic",
+      "why": "It is accurate, but a hand-written three-URL sitemap works and the benefit is mostly maintainability."
+    },
+    {
+      "idea": "Add charset, viewport and Open Graph tags to the head",
+      "verdict": "generic",
+      "why": "The layout does lack them, but this is standard advice for any site."
+    },
+    {
+      "idea": "Wrap the slot in a <main> element",
+      "verdict": "generic",
+      "why": "This is accurate but a minor, boilerplate semantic improvement with little effect."
+    },
+    {
+      "idea": "Make the home page description and spelling consistent (Harbor/Harbour, Cornwall/Falmouth) and say who the harbour office is",
+      "verdict": "useful",
+      "why": "The title uses 'Harbor' and 'Cornwall' while the heading and description use 'Falmouth' and 'harbour', so the inconsistency is real and the fix helps clarity."
+    },
+    {
+      "idea": "Add inline links from the home page body to /moorings and /contact",
+      "verdict": "generic",
+      "why": "The home page body has no links, but the nav already links both pages, so the effect is small."
+    }
+  ]
+}

@@ -4,54 +4,74 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Render FAQ answers as visible page text, not only in JSON-LD",
+      "idea": "Decide whether to unblock the AI search crawlers (item 1)",
       "verdict": "useful",
-      "why": "index.astro emits the FAQ only inside the script tag, so the answers aren't visible on the page."
+      "why": "This is already a known problem, but the report's framing is accurate; however it duplicates the known robots.txt issue."
     },
     {
-      "idea": "Add LocalBusiness/Organization structured data on contact page (and Product/Offer for pricing)",
+      "idea": "Repair the two broken structured data blocks (item 2)",
       "verdict": "useful",
-      "why": "The contact page has a phone number and location, and the moorings page has a price, but neither has any structured data."
+      "why": "This duplicates the known FAQ and Article JSON-LD problems."
     },
     {
-      "idea": "Add a table of mooring sizes and seasonal rates to moorings page",
+      "idea": "Give each page its own canonical address using Astro.url.pathname and a site setting (item 3)",
       "verdict": "useful",
-      "why": "The description promises sizes and seasonal prices, but the page has only one price line."
+      "why": "This duplicates the known hardcoded canonical problem."
     },
     {
-      "idea": "Add in-text links from home page to /moorings and /contact",
+      "idea": "Remove /contact from the sitemap or drop the noindex",
+      "verdict": "useful",
+      "why": "This duplicates the known sitemap/noindex problem."
+    },
+    {
+      "idea": "Change the max-snippet:0 fallback to \"index, follow\"",
+      "verdict": "useful",
+      "why": "This duplicates the known max-snippet problem."
+    },
+    {
+      "idea": "Add LocalBusiness/Organization JSON-LD on the contact page",
       "verdict": "generic",
-      "why": "The nav already links these pages, so in-text links add little."
+      "why": "The page is noindex, so the markup would have little effect, as the report itself notes."
     },
     {
-      "idea": "Set `site` in Astro config and use @astrojs/sitemap instead of hand-kept sitemap",
+      "idea": "Flesh out the moorings page with the sizes and seasonal prices its description promises",
       "verdict": "useful",
-      "why": "There is no astro.config, and a `site` value is needed for correct absolute canonicals and keeps the sitemap in sync."
+      "why": "The page body is one line while its description promises sizes and seasonal prices, so the content is thin and mismatched."
     },
     {
-      "idea": "Add <lastmod> to the sitemap",
-      "verdict": "generic",
-      "why": "It is accurate but has little effect on a three-URL site."
-    },
-    {
-      "idea": "Add charset, viewport and Open Graph tags to the layout",
-      "verdict": "generic",
-      "why": "The head really lacks them, but this is standard boilerplate that applies to nearly any site."
-    },
-    {
-      "idea": "Wrap slot in <main>",
-      "verdict": "generic",
-      "why": "It is a standard semantic landmark that would apply to nearly any site and has little effect."
-    },
-    {
-      "idea": "Make the contact page title name Falmouth/the harbour",
+      "idea": "Show the FAQ Q&As as visible text on the home page",
       "verdict": "useful",
-      "why": "The title \"Contact the harbour office\" really omits the place, and naming it helps identify the page."
+      "why": "index.astro emits the FAQ only as JSON-LD, so the answers aren't visible to users or crawlers reading the page text."
     },
     {
-      "idea": "Fix the mixed Harbor/harbour spelling in the home title",
+      "idea": "Mark up the price with Offer/Product structured data",
+      "verdict": "generic",
+      "why": "A single 'from £40' line gives little to mark up, and Product/Offer doesn't clearly fit a mooring page."
+    },
+    {
+      "idea": "Link 'moorings' in the home page body to /moorings",
       "verdict": "useful",
-      "why": "The home title uses \"Harbor\" while the page text uses \"harbour\", so the site name is inconsistent for searchers and machines."
+      "why": "The home page body has no in-content link to the moorings page, only the nav, so a contextual link is a concrete improvement."
+    },
+    {
+      "idea": "Add charset, viewport and Open Graph tags, and a <main> element",
+      "verdict": "generic",
+      "why": "These are standard head and markup basics that apply to nearly any site."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "This is a standard sitemap tweak with small effect on a three-URL site."
+    },
+    {
+      "idea": "Set `site` in an Astro config so Astro can generate the sitemap and canonicals",
+      "verdict": "useful",
+      "why": "There is no astro.config, the sitemap is hand-kept and URLs are hardcoded, so setting `site` fits this repo."
+    },
+    {
+      "idea": "Name the harbour (Falmouth) in the home page title, since the H1 says Falmouth",
+      "verdict": "useful",
+      "why": "The title says 'Harbor moorings in Cornwall' while the H1 says Falmouth, so naming the town is accurate and specific."
     }
   ]
 }

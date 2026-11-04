@@ -4,49 +4,54 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Back up the 'thousands of patients' claim on the home page with concrete evidence (years open, review count, source)",
+      "idea": "Add the missing reception.jpg image file and an Eleventy passthrough copy for /img",
       "verdict": "useful",
-      "why": "The claim is vague and unsupported in index.njk, and concrete facts help readers and machines understand the practice."
+      "why": "No img folder exists and .eleventy.js copies only robots.txt and sitemap.xml, so the homepage image likely 404s."
     },
     {
-      "idea": "Show actual prices on the Services page instead of 'Our prices are simple and clear'",
+      "idea": "Back up the 'Trusted by thousands' claim with a real figure, review count or years in practice",
       "verdict": "useful",
-      "why": "services.njk lists no prices despite claiming clarity, so concrete fees would give real, findable information."
+      "why": "The homepage makes an unsupported claim at index.njk:7, and a concrete figure helps readers and machines trust it."
     },
     {
-      "idea": "Give each treatment its own page (e.g. /services/implants/)",
+      "idea": "Show real prices or starting prices on the services page",
       "verdict": "useful",
-      "why": "Services is currently a bare four-item list, and dedicated pages could answer specific cost, process and recovery queries."
+      "why": "services.njk says 'Our prices are simple and clear' but lists no prices."
     },
     {
-      "idea": "Name the dentists with roles and qualifications on the Team page",
+      "idea": "Name the dentists with qualifications and registration numbers, and add Dentist or Person structured data",
       "verdict": "useful",
-      "why": "team.njk only says 'experienced dentists' with no names, so the page doesn't deliver what it promises."
+      "why": "team.njk is vague and has no names, so adding them gives people and machines real entities to understand."
     },
     {
-      "idea": "Enrich the Dentist JSON-LD with address, openingHours and url, and show opening hours as visible text",
+      "idea": "Give each service its own page, such as /services/implants/",
       "verdict": "useful",
-      "why": "The contact JSON-LD has only name and telephone while the address appears only in visible text, and no hours exist anywhere."
+      "why": "services.njk is a bare four-item list, and separate pages could each be found and linked on their own."
     },
     {
-      "idea": "Add Organization or WebSite JSON-LD with name and URL in the base layout",
+      "idea": "Complete the Dentist JSON-LD with address, url, openingHours and image",
+      "verdict": "useful",
+      "why": "The JSON-LD has only name and telephone, while the page shows an address that the markup omits."
+    },
+    {
+      "idea": "Add opening hours and emergency contact details",
+      "verdict": "useful",
+      "why": "The homepage promises emergency appointments, but contact.njk gives no hours or emergency number."
+    },
+    {
+      "idea": "Add Open Graph tags (og:title, og:description, og:image) to the layout",
       "verdict": "generic",
-      "why": "This is standard site-identity markup that fits almost any site and has modest effect here, since a Dentist entity is already planned."
+      "why": "base.njk has none, but this is standard advice for any site and has little effect on search or AI discovery."
     },
     {
-      "idea": "Add og:title, og:description and og:image social tags",
+      "idea": "Add lastmod dates to the sitemap",
       "verdict": "generic",
-      "why": "The tags are absent, but this is boilerplate advice for any site and mainly affects link previews."
+      "why": "This is accurate but applies to almost any site and has modest effect on a four-URL sitemap."
     },
     {
-      "idea": "Add <lastmod> to the sitemap, possibly generating it with Eleventy",
+      "idea": "Link onward to booking or contact from the services and team pages",
       "verdict": "generic",
-      "why": "This is accurate for a four-URL hand-kept sitemap, but lastmod has little effect on a site this small."
-    },
-    {
-      "idea": "Link from Services to Contact with a booking link",
-      "verdict": "generic",
-      "why": "The page has no onward link, but the nav already reaches Contact, so the effect on discovery is small."
+      "why": "This is accurate, but the nav already links to Contact, so the effect is small."
     }
   ]
 }

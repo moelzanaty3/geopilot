@@ -4,49 +4,49 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Add Bakery/LocalBusiness JSON-LD to the home page",
-      "verdict": "generic",
-      "why": "Accurate that none exists, but the site's no-JSON-LD choice is not a required fix and the benefit is modest."
-    },
-    {
-      "idea": "State address, opening hours and how to pre-order as text on the home page",
+      "idea": "List all loaves on the breads page (or page per loaf)",
       "verdict": "useful",
-      "why": "The home page mentions pre-ordering but gives no address, hours or method, so people and machines can't find this."
+      "why": "The page claims over twenty loaves but names only two, so listing them gives readers and machines concrete text."
     },
     {
-      "idea": "List all loaves on the breads page with days and prices, optionally individual pages",
+      "idea": "Add class details (dates, price, group size, booking) as text",
       "verdict": "useful",
-      "why": "The page claims over twenty loaves but names only two, so listing them gives readers and crawlers real content."
+      "why": "classes.html has no concrete details or booking route, which is accurate and helps users and machines understand the offering."
     },
     {
-      "idea": "Add concrete class details (dates, price, size, booking route), optionally Event markup",
+      "idea": "Add address, opening hours and pre-order info, optionally with Bakery/LocalBusiness JSON-LD",
       "verdict": "useful",
-      "why": "The classes page says to book early but gives no dates, price or booking route."
+      "why": "No page gives address or hours for a local bakery, and the text-first advice is accurate and specific."
     },
     {
-      "idea": "Add in-content links between Breads, Classes and ordering",
+      "idea": "Add Organization or WebSite structured data",
       "verdict": "generic",
-      "why": "Nav links already reach every page, so extra in-content links add little."
+      "why": "Missing JSON-LD is explicitly not a required fix, and this is a boilerplate suggestion that adds little here."
     },
     {
-      "idea": "Add lastmod dates to sitemap.xml",
+      "idea": "Add lastmod to sitemap entries",
       "verdict": "generic",
-      "why": "Accurate since lastmod is missing, but the effect on a three-URL site is minimal."
+      "why": "Accurate that there are no dates, but lastmod is a minor, near-universal suggestion with little effect on a 3-URL site."
     },
     {
-      "idea": "Add Open Graph tags (og:title, og:description, og:image)",
-      "verdict": "generic",
-      "why": "They're missing, but this applies to almost any site and mainly affects link previews."
-    },
-    {
-      "idea": "Add 'York' to the breads and classes page titles",
+      "idea": "Link between pages from the content (breads to classes or pre-order)",
       "verdict": "useful",
-      "why": "Those titles omit the location the home page includes, and local relevance matters for a York bakery."
+      "why": "Content on breads and classes has no onward links, so contextual links would help readers and crawler discovery, though nav already links everything."
     },
     {
-      "idea": "Remove the redundant noindex plus robots disallow on /members/",
-      "verdict": "wrong",
-      "why": "The report itself calls it harmless and deliberate, and the brief says /members being noindex and disallowed is correct."
+      "idea": "Add Open Graph social tags",
+      "verdict": "generic",
+      "why": "Accurate that og tags are missing, but this applies to nearly any site and doesn't affect finding or understanding."
+    },
+    {
+      "idea": "Check that /img/loaves.jpg exists",
+      "verdict": "useful",
+      "why": "The index references /img/loaves.jpg but no img folder is in the repo, so the image may be broken."
+    },
+    {
+      "idea": "Name the heritage grains in the homepage copy",
+      "verdict": "useful",
+      "why": "index.html says 'heritage grains' without naming them, so naming them adds specific, quotable content."
     }
   ]
 }

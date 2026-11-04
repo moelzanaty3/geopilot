@@ -4,59 +4,44 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Give each page its own title and description via useHead (e.g. guides.vue)",
-      "verdict": "generic",
-      "why": "This is the known shared-title problem restated, but the per-page fix is accurate; it duplicates a known problem so it is only weakly additive."
-    },
-    {
-      "idea": "Set site URL in Nuxt config (site.url) so canonicals and sitemap URLs derive from it",
+      "idea": "Make /guides real content: list routes with grade, distance and time, each on its own /guides/<slug> page",
       "verdict": "useful",
-      "why": "No origin is declared anywhere and the sitemap uses a placeholder domain, so declaring it is a concrete, repo-specific fix."
+      "why": "guides.vue promises graded routes but lists none, so adding real content gives crawlers and readers something to understand."
     },
     {
-      "idea": "Add an absolute canonical link per page",
+      "idea": "Add substance to the home page: intro, featured walks, location",
       "verdict": "useful",
-      "why": "No canonical is set anywhere in the repo, and adding one is a concrete action that helps search engines pick the right URL."
+      "why": "index.vue has only an h1 and a button, so there is little text to explain the site."
     },
     {
-      "idea": "Replace placeholder domain trailhead.example in sitemap with the real origin",
+      "idea": "Add canonical URLs once the real domain is known",
       "verdict": "useful",
-      "why": "The sitemap really lists trailhead.example URLs, which would point crawlers at the wrong domain."
+      "why": "No canonical exists anywhere and the sitemap uses a placeholder domain, so declaring one would help consolidate URLs."
     },
     {
-      "idea": "Resolve sitemap listing the noindex /guides page (remove header or drop URL)",
-      "verdict": "generic",
-      "why": "This is the same noindex-on-/guides problem already listed as known."
-    },
-    {
-      "idea": "Fill out thin guides page with actual route listings, one page per route",
+      "idea": "Replace the placeholder trailhead.example domain in the sitemap with the real domain",
       "verdict": "useful",
-      "why": "guides.vue only has a heading and one sentence promising routes that are not listed, so real content would help people and machines."
+      "why": "The sitemap's loc entries use a placeholder domain that would point crawlers to wrong URLs."
     },
     {
-      "idea": "Add a short intro and links to featured walks on the home page",
-      "verdict": "useful",
-      "why": "index.vue contains only an h1 and a button, so intro text and real links give crawlers and readers more to understand and follow."
-    },
-    {
-      "idea": "Add WebSite or Organization JSON-LD",
+      "idea": "Add WebSite/Organization JSON-LD for site identity",
       "verdict": "generic",
-      "why": "Accurate and harmless, but it would apply to almost any site and has little effect on a small site like this."
+      "why": "It is accurate but applies to almost any site and is likely to have little effect on a two-page site."
     },
     {
-      "idea": "Add <lastmod> to the sitemap",
+      "idea": "Add lastmod dates to the sitemap",
       "verdict": "generic",
-      "why": "Accurate since no dates exist, but it has marginal effect on a two-URL sitemap."
+      "why": "It is accurate but of marginal value for a tiny sitemap, and the report itself hedges it."
     },
     {
-      "idea": "Generate the sitemap with a Nuxt sitemap module",
+      "idea": "Generate the sitemap with a Nuxt sitemap module instead of by hand",
       "verdict": "generic",
-      "why": "The sitemap is hand-kept, but with two routes the benefit is small and the advice applies to any Nuxt site."
+      "why": "It is sensible but of little effect for a two-route site and applies to any Nuxt project."
     },
     {
-      "idea": "Remove the redundant /admin noindex",
+      "idea": "Remove the noindex header from /guides or restrict it to /admin, and fix the sitemap listing a noindex page",
       "verdict": "wrong",
-      "why": "It suggests reversing a deliberate choice, though the report itself then says to leave it as is."
+      "why": "It repeats the known noindex-on-/guides problem, so it isn't a separate recommendation."
     }
   ]
 }

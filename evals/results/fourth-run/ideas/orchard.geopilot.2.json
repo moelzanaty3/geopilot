@@ -1,0 +1,47 @@
+{
+  "fixture": "orchard",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Add Organization/LocalBusiness JSON-LD to the home page",
+      "verdict": "wrong",
+      "why": "Contradicts the deliberate choice that having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add address, hours and directions as text on /visit, with LocalBusiness openingHoursSpecification markup",
+      "verdict": "useful",
+      "why": "The page's description promises directions but its body has only one line of hours, so adding the details as text helps people and machines; the markup part is optional."
+    },
+    {
+      "idea": "Give each variety its own page, such as /varieties/ashmeads-kernel, and list them on the index",
+      "verdict": "useful",
+      "why": "The page claims over forty varieties but names only two, so separate pages would give each variety its own address and content."
+    },
+    {
+      "idea": "Add lastmod to the sitemap entries",
+      "verdict": "generic",
+      "why": "This applies to almost any sitemap, has little effect, and the report itself hedges with 'might help'."
+    },
+    {
+      "idea": "Add openGraph title, description and image metadata",
+      "verdict": "generic",
+      "why": "Accurate because no openGraph is set, but it is standard advice for any site and mainly affects link previews."
+    },
+    {
+      "idea": "Add a viewport and canonical to every page",
+      "verdict": "wrong",
+      "why": "The public pages already have canonicals, Next.js already supplies the viewport, and the account page is deliberately private, so the item is self-contradictory."
+    },
+    {
+      "idea": "Link between related pages, such as from varieties to visit",
+      "verdict": "useful",
+      "why": "The pages have no in-content links to each other, so a contextual link on /varieties pointing to /visit is a small, concrete improvement."
+    },
+    {
+      "idea": "Make titles name the orchard and Herefordshire",
+      "verdict": "useful",
+      "why": "The /varieties and /visit titles don't name the orchard or place, so adding them makes the pages clearer in results and tabs."
+    }
+  ]
+}

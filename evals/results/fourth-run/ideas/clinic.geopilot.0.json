@@ -1,0 +1,67 @@
+{
+  "fixture": "clinic",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Remove noindex from /services or drop it from sitemap (note in report)",
+      "verdict": "useful",
+      "why": "This duplicates the known noindex/sitemap problem, but it is accurate; however it is already graded so it is not a new idea."
+    },
+    {
+      "idea": "Fix missing image: /img/reception.jpg has no src/img and no passthrough copy",
+      "verdict": "useful",
+      "why": "Accurate: no img directory exists and .eleventy.js copies only robots.txt and sitemap.xml, so the image would 404."
+    },
+    {
+      "idea": "Back up 'Trusted by thousands' with a real number, reviews or testimonial",
+      "verdict": "useful",
+      "why": "The unsupported claim is on the homepage and evidence would help readers and machines trust it."
+    },
+    {
+      "idea": "Name the dentists on the team page with role and qualifications, possibly individual pages",
+      "verdict": "useful",
+      "why": "The team page has only a vague sentence and no names, so concrete names and qualifications add real content."
+    },
+    {
+      "idea": "Show prices or link to them on services page",
+      "verdict": "useful",
+      "why": "The page claims clear prices but shows none, so this is accurate and specific."
+    },
+    {
+      "idea": "Describe each service with a paragraph or page",
+      "verdict": "useful",
+      "why": "Services is a bare list of four items, so descriptions would answer visitor questions."
+    },
+    {
+      "idea": "Add address, openingHours and url to the Dentist JSON-LD",
+      "verdict": "useful",
+      "why": "The schema has only name and telephone while the address is already on the page."
+    },
+    {
+      "idea": "Add lastmod to the sitemap",
+      "verdict": "generic",
+      "why": "It is valid but has little effect on a four-page site."
+    },
+    {
+      "idea": "Add og: tags and WebSite/Organization structured data",
+      "verdict": "generic",
+      "why": "Accurate, but it is boilerplate advice with little effect here, and the Dentist data already names the clinic."
+    },
+    {
+      "idea": "Link the emergency appointments promise to contact details",
+      "verdict": "useful",
+      "why": "The homepage mentions emergency care without any route to contact info, so the link is concrete and helpful."
+    },
+    {
+      "idea": "Add a 404 page",
+      "verdict": "generic",
+      "why": "It applies to almost any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Add Leeds to page titles such as Contact",
+      "verdict": "generic",
+      "why": "Minor tweak; the location is already in the description and content, so the effect is small."
+    }
+  ]
+}

@@ -4,39 +4,49 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Add the actual routes with grades as text on the guides page, ideally each on its own page/URL",
+      "idea": "Give each page its own title and description via useHead/useSeoMeta",
       "verdict": "useful",
-      "why": "guides.vue only has a promise sentence and no route content, so adding real content and URLs gives crawlers and readers something to find."
+      "why": "Only app.vue sets a title, so pages share identical metadata; per-page values are concrete and repo-specific."
     },
     {
-      "idea": "Add more descriptive text to the home page and link to specific walks",
+      "idea": "Remove the /guides noindex middleware rule because the sitemap lists the page",
       "verdict": "useful",
-      "why": "index.vue has only an h1 and a button, so a short description and real links would help understanding and discovery."
+      "why": "The middleware header contradicts the sitemap entry and the guides page is public content."
     },
     {
-      "idea": "Declare site domain and add canonical link on each page",
+      "idea": "Flesh out guides page with actual routes (grade, distance, area), each on its own /guides/<route> page",
       "verdict": "useful",
-      "why": "No canonical or site URL is set anywhere in the config, and the sitemap uses a placeholder host."
+      "why": "guides.vue has only a heading and a one-line sentence with no routes, so real content would give crawlers and readers something to understand."
     },
     {
-      "idea": "Add WebSite/Organization JSON-LD with site name and URL",
+      "idea": "Add intro text and links to guides on the home page",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and a button, so text and real links add content and a crawlable path."
+    },
+    {
+      "idea": "Add a canonical link on each page",
+      "verdict": "useful",
+      "why": "No canonical exists anywhere in the code; a concrete fix once the domain is known."
+    },
+    {
+      "idea": "Add WebSite and Organization JSON-LD structured data",
       "verdict": "generic",
-      "why": "Accurate since there is no JSON-LD, but it would have little effect on a small site like this."
+      "why": "No JSON-LD exists, but this advice would fit almost any site and has little effect on a small site."
     },
     {
-      "idea": "Add lastmod to sitemap entries or use @nuxtjs/sitemap generator",
+      "idea": "Add <lastmod> dates to the sitemap and/or use a Nuxt sitemap module to generate it",
       "verdict": "generic",
-      "why": "It's accurate, but with two URLs lastmod has little effect, and the report itself says to add dates only once real update dates exist."
+      "why": "Accurate, as the sitemap has no dates, but it has small effect for a two-URL sitemap."
     },
     {
-      "idea": "Replace placeholder sitemap host trailhead.example with the real domain",
+      "idea": "Replace the placeholder trailhead.example domain with the real domain in the sitemap and robots.txt",
       "verdict": "useful",
-      "why": "sitemap.xml uses https://trailhead.example/, which would point crawlers at a non-existent host."
+      "why": "The sitemap uses a .example placeholder domain, so real URLs are needed for it to work."
     },
     {
-      "idea": "Remove the sitemap/noindex contradiction by removing the header rule for /guides",
-      "verdict": "wrong",
-      "why": "This is the known noindex header problem restated, so it's excluded as already graded, but flagged as a duplicate."
+      "idea": "Set a site URL in the Nuxt config",
+      "verdict": "useful",
+      "why": "nuxt.config.ts has no site URL, which canonical and sitemap generation need."
     }
   ]
 }

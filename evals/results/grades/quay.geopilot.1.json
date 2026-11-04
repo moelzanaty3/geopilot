@@ -5,10 +5,10 @@
   "found": [
     "googlebot-blocked",
     "ssr-disabled",
-    "product-jsonld-incomplete",
+    "no-html-lang",
     "empty-description-shop",
-    "no-html-lang"
+    "product-jsonld-incomplete"
   ],
   "flagged": [],
-  "extraIssues": 3
+  "extraIssues": 1
 }

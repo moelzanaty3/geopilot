@@ -47,8 +47,8 @@ You can, and it's cheaper. We [tested both](https://moelzanaty3.github.io/geopil
 | --- | --- | --- |
 | Planted bugs found | 100% | 100% |
 | **False alarms per report** | **1.56** | **0** |
-| Useful ideas per report | 6.6 | 5.8 |
-| Wrong ideas per report | 3.8 | 0.7 |
+| Useful ideas per report | 6.6 | 5.4 |
+| Wrong ideas per report | 3.8 | 0.3 |
 | Cost per run | $0.07 | $0.14 |
 | Time per run | 32s | 42s |
 

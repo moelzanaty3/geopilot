@@ -1,0 +1,52 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Render catalogue contents (mug names from /api/mugs) on the server or at build time",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches in useEffect, so mug names are absent from initial HTML."
+    },
+    {
+      "idea": "Give each mug its own page (/catalogue/:id) with description, price and photo",
+      "verdict": "useful",
+      "why": "Catalogue only renders bare names in <p> tags, so there's nothing detailed for people or machines to read."
+    },
+    {
+      "idea": "Back up the 'shipped worldwide' claim with where, how long and cost",
+      "verdict": "useful",
+      "why": "Home.jsx makes the claim with no supporting detail, and concrete shipping facts help users and machines."
+    },
+    {
+      "idea": "Add Organization/LocalBusiness JSON-LD for the Bristol business",
+      "verdict": "useful",
+      "why": "There is no structured data, and Home.jsx states location and craft that could be machine-readable."
+    },
+    {
+      "idea": "Add viewport meta and Open Graph tags (og:title, og:image)",
+      "verdict": "useful",
+      "why": "index.html has only charset and title, so there's no viewport or social metadata."
+    },
+    {
+      "idea": "Include <lastmod> dates in the sitemap once created",
+      "verdict": "generic",
+      "why": "It's accurate but has small effect and applies to any sitemap."
+    },
+    {
+      "idea": "Link from the home page body into the catalogue",
+      "verdict": "useful",
+      "why": "Home.jsx has no link to the catalogue, though the nav has a link-less button."
+    },
+    {
+      "idea": "Make the catalogue h1 more descriptive (e.g. 'Handmade ceramic mugs, catalogue')",
+      "verdict": "generic",
+      "why": "The h1 'Catalogue' is vague, but the change has little effect."
+    },
+    {
+      "idea": "Use a head helper like react-helmet for per-page titles",
+      "verdict": "useful",
+      "why": "Both routes share one static title in index.html, so per-route titles need a head manager."
+    }
+  ]
+}

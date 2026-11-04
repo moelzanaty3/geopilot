@@ -4,54 +4,64 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Give each product its own page/URL, linked from /shop and added to the sitemap",
-      "verdict": "useful",
-      "why": "/shop only has one line of text and a single-product JSON-LD, so separate crawlable product pages would help discovery and understanding."
-    },
-    {
-      "idea": "Add a delivery/returns page explaining terms and regions",
-      "verdict": "useful",
-      "why": "The home page claims next-day shipping and the layout mentions free delivery over £50, but no page explains terms, so a delivery page would answer real questions."
-    },
-    {
-      "idea": "Add sitemap <lastmod> dates",
+      "idea": "Replace the placeholder quay.example domain in sitemap, robots and canonicals with the real domain, ideally from one shared setting",
       "verdict": "generic",
-      "why": "Accurate (the sitemap has no lastmod), but it only helps if the dates are real and it has little effect on a two-URL site."
+      "why": "The domain is hardcoded in several files, but the report itself can't tell whether it is a placeholder, so this is a cleanup that may not be needed."
     },
     {
-      "idea": "Add Organization/WebSite JSON-LD in the layout",
+      "idea": "Product JSON-LD on /shop is the wrong type for a category listing; use ItemList or give each product its own page with price and availability",
       "verdict": "useful",
-      "why": "The repo has no site-identity structured data, and the layout is a single place to add it for all pages."
+      "why": "/shop lists a whole category, so a single Product with only a name is a poor fit, and ItemList is a concrete alternative."
     },
     {
-      "idea": "Add the brand name to the /shop title",
+      "idea": "Give each product its own page that the shop and home page link to",
       "verdict": "useful",
-      "why": "The /shop title is 'Shop all parts' with no brand, while the home title includes 'Quay'."
+      "why": "The site has only three routes and no product-level URLs, so there is nothing for crawlers or AI tools to index or cite per product."
     },
     {
-      "idea": "Use <main> instead of the bare <div> in app.html",
+      "idea": "Publish delivery details (cutoff times, regions, cost) as text on a dedicated page, since the delivery notice is hidden from snippets",
       "verdict": "useful",
-      "why": "app.html wraps the body in a plain <div> and there is no <main> landmark anywhere, so adding one helps machines and assistive tech find the main content."
+      "why": "The 'shipped next day' claim has no supporting detail anywhere, and the only delivery text is in the nosnippet element, so a separate page would help."
     },
     {
-      "idea": "Add a viewport meta tag to app.html",
+      "idea": "Add Organization/WebSite JSON-LD with the store name and URL",
       "verdict": "useful",
-      "why": "app.html has only the charset meta, so mobile rendering lacks a viewport declaration."
+      "why": "No site-identity structured data exists and the store name only appears in the home page title, so this is specific and low-cost."
+    },
+    {
+      "idea": "Make titles say who and what, e.g. 'Shop all marine parts | Quay'",
+      "verdict": "useful",
+      "why": "The /shop title 'Shop all parts' leaves out the brand and the marine context, and the home page title already includes 'Quay'."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap URLs",
+      "verdict": "generic",
+      "why": "Accurate, since neither URL has a date, but lastmod has little effect on a two-URL sitemap."
+    },
+    {
+      "idea": "Add a viewport meta tag in app.html",
+      "verdict": "useful",
+      "why": "app.html sets only charset, so mobile rendering and mobile-friendliness are affected."
+    },
+    {
+      "idea": "Wrap page content in a <main> landmark in the layout",
+      "verdict": "useful",
+      "why": "The layout renders children with no <main>, so assistive tech and parsers can't identify the primary content."
+    },
+    {
+      "idea": "Generate the sitemap automatically instead of hand-writing it",
+      "verdict": "generic",
+      "why": "With only two static pages the hand-written file is fine, and this only matters once product pages exist."
     },
     {
       "idea": "Add a meta description to /search",
       "verdict": "wrong",
-      "why": "/search is deliberately noindex, and the report itself concedes a description is optional there."
+      "why": "/search is a deliberate noindex page, so a description would do nothing and the report shouldn't treat its absence as a problem."
     },
     {
-      "idea": "Add /search to the nav",
+      "idea": "Remove ssr=false or prerender the pages, and check for browser-only APIs",
       "verdict": "wrong",
-      "why": "The report suggests it and then says leaving it out is fine, so it is not a real recommendation. If counted, it also pushes against the deliberate noindex choice."
-    },
-    {
-      "idea": "Block or decide on GPTBot/ClaudeBot training crawlers in robots.txt",
-      "verdict": "generic",
-      "why": "It is accurate that they are not blocked, but the report treats it as unscored and offers only a policy choice, not a fix."
+      "why": "This duplicates the known ssr=false problem, so it should be left out; the only new part is the browser-API caveat, which is generic."
     }
   ]
 }

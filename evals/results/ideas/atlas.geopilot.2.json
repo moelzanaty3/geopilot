@@ -4,59 +4,54 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Replace the div onClick on the home page with a real <Link to=\"/features\"> (with a nav link to Features)",
+      "idea": "Add /features link to main nav or change the div to a Link",
       "verdict": "useful",
-      "why": "This is the same as the known /features link problem, but it is listed as a note; however it duplicates a known problem so it should be excluded. Treated here as a duplicate of the known issue."
+      "why": "Duplicates a known problem about /features being reached only via div onClick, but it is accurate; however it is already graded, so treat as known."
     },
     {
-      "idea": "Back up the 'integrates with all the tools' claim by naming the actual tools on /features or a new page",
+      "idea": "Back up the 'integrates with all the tools' claim by listing real integrations",
       "verdict": "useful",
-      "why": "The home page makes a vague claim and /features has no integration details, so naming tools gives readers and machines something concrete."
+      "why": "The home page makes the vague claim at _index.tsx:8 and names no tool, so a concrete list gives readers and machines something to quote."
     },
     {
-      "idea": "List plans and prices on /pricing, or say what a quote covers",
+      "idea": "Add plan names, contents and prices to the pricing page",
       "verdict": "useful",
-      "why": "The pricing page has only 'Talk to us for a quote', so it gives users and AI answers no pricing content."
+      "why": "pricing.tsx has only a vague sentence and no plan information, so concrete content helps users and machines understand the page."
     },
     {
-      "idea": "Add Product/Offer structured data for pricing",
+      "idea": "Flesh out the Features page with a section per feature",
+      "verdict": "useful",
+      "why": "features.tsx names three features and describes none, so more content would help readers and machines."
+    },
+    {
+      "idea": "Give the changelog dated entries and version headings, maybe a page per release",
+      "verdict": "useful",
+      "why": "changelog.tsx renders bare strings with no dates or headings, so structure would help readers and machines."
+    },
+    {
+      "idea": "Add <lastmod> dates to the sitemap",
+      "verdict": "generic",
+      "why": "Accurate, but lastmod on four URLs is low-impact and applies to almost any site."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data",
       "verdict": "wrong",
-      "why": "It depends on JSON-LD, which is explicitly not a required fix, and there are no prices to mark up."
+      "why": "The brief says having no JSON-LD is not a required fix, so this pushes a deliberately accepted omission."
     },
     {
-      "idea": "Add Features and Home links to the nav in root.tsx",
-      "verdict": "useful",
-      "why": "The nav in root.tsx has only Pricing and Changelog, so a real crawlable link to /features in every page would fix discovery."
-    },
-    {
-      "idea": "Add Organization/WebSite JSON-LD site identity data in root.tsx",
-      "verdict": "wrong",
-      "why": "The brief says having no JSON-LD is not a required fix, so recommending it as a gap goes against that."
-    },
-    {
-      "idea": "Add <lastmod> dates to sitemap.xml using changelog release dates",
+      "idea": "Add charset and viewport meta tags in root",
       "verdict": "generic",
-      "why": "It is accurate but has little effect, and the changelog code has no dates in the repo."
+      "why": "Accurate for root.tsx, but it is standard boilerplate that applies to nearly any site."
     },
     {
-      "idea": "Add charset, viewport and og social tags to the head in root.tsx",
+      "idea": "Add og:title, og:description and og:image social tags",
       "verdict": "generic",
-      "why": "This is standard advice for almost any site, though the root head does lack them."
+      "why": "Accurate but standard advice for any site and has little effect on being found or read by crawlers."
     },
     {
-      "idea": "Give each changelog release its own page/URL",
+      "idea": "Add links from Features to Pricing for onward navigation",
       "verdict": "generic",
-      "why": "It could help, but it is a broad suggestion with no concrete tie to the repo beyond the single list page."
-    },
-    {
-      "idea": "Make the root description more specific",
-      "verdict": "generic",
-      "why": "The root description is overridden by the home page and most routes, so the effect is small."
-    },
-    {
-      "idea": "Run the tool's fix command to apply item 1 (Bingbot block removal)",
-      "verdict": "generic",
-      "why": "It is a tool workflow step, and the Bingbot fix itself is a known problem."
+      "why": "Accurate, but pricing is already in the root nav so the effect is small and the advice fits any site."
     }
   ]
 }

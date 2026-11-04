@@ -1,0 +1,92 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups in robots.txt for other training crawlers (Google-Extended, ClaudeBot, CCBot, Applebot-Extended, etc.) while keeping search bots allowed",
+      "verdict": "useful",
+      "why": "geo.config.json says trainingCrawlers: block but robots.txt only blocks GPTBot, so the stated policy is only partly enforced."
+    },
+    {
+      "idea": "Add Bakery/LocalBusiness JSON-LD on the home page",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it as a fix goes against that."
+    },
+    {
+      "idea": "Add ItemList/Product markup on breads, Course/Event on classes, BreadcrumbList on inner pages",
+      "verdict": "wrong",
+      "why": "This is more structured-data advice, and the brief says JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Add visible address, hours, phone and contact details in a footer",
+      "verdict": "useful",
+      "why": "No page states where the bakery is or when it opens, so people and machines can't get those facts from the site."
+    },
+    {
+      "idea": "Explain how to pre-order on the home page with a link or form",
+      "verdict": "useful",
+      "why": "index.html says 'Pre-order for weekend collection' but gives no way to do it."
+    },
+    {
+      "idea": "List every loaf with grain, flavour and price on breads.html",
+      "verdict": "useful",
+      "why": "The page says 'over twenty loaves' but names only two, so the specific content is missing."
+    },
+    {
+      "idea": "Add dates, duration, price, group size and a booking link to classes.html",
+      "verdict": "useful",
+      "why": "The page says 'Book early' but gives no details or way to book."
+    },
+    {
+      "idea": "Make the home page copy specific by naming grains, fermentation time and the bakery's story",
+      "verdict": "useful",
+      "why": "The copy 'wide range of loaves from heritage grains' is vague and names nothing."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen text, or confirm it is deliberate",
+      "verdict": "wrong",
+      "why": "The data-nosnippet on the allergen notice is a deliberate scoped choice, so this pushes against it."
+    },
+    {
+      "idea": "Remove the robots.txt Disallow for /members/ and keep noindex",
+      "verdict": "wrong",
+      "why": "The brief says noindex plus disallow on the private members page is correct and deliberate."
+    },
+    {
+      "idea": "Add og:title, og:description, og:image and twitter:card tags",
+      "verdict": "generic",
+      "why": "Accurate, since none are present, but it is standard advice that applies to almost any site and mainly affects link previews."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "Accurate, but it is standard advice with a small effect on a three-URL sitemap."
+    },
+    {
+      "idea": "Check that /img/loaves.jpg exists and add width and height attributes",
+      "verdict": "generic",
+      "why": "This is standard image hygiene that applies to any site, and the width and height attributes have little effect here."
+    },
+    {
+      "idea": "Add photos of the breads to the pages",
+      "verdict": "generic",
+      "why": "This is generic content advice, though breads.html does have no images."
+    },
+    {
+      "idea": "Add a footer and breadcrumbs for navigation",
+      "verdict": "generic",
+      "why": "This is generic navigation advice, and the site has only three pages."
+    },
+    {
+      "idea": "Consider an optional llms.txt",
+      "verdict": "wrong",
+      "why": "The brief says having no llms.txt is not a problem, and llms.txt does not help a site get found."
+    },
+    {
+      "idea": "Switch to clean URLs without .html, updating canonicals and sitemap",
+      "verdict": "generic",
+      "why": "This is cosmetic advice that applies to almost any site and has very little effect on discovery."
+    }
+  ]
+}

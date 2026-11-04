@@ -4,54 +4,49 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Add LocalBusiness/Bakery structured data and put address, hours and contact details on the page",
+      "idea": "Add street address and opening hours as page text, with Bakery/LocalBusiness JSON-LD",
       "verdict": "useful",
-      "why": "The site really has no address, hours or contact details, so adding them as text is a concrete, site-specific fix, though the JSON-LD part is optional."
+      "why": "No page gives an address or hours, so people and tools can't answer where or when. Adding them as visible text is concrete. The JSON-LD part is optional but fine."
     },
     {
-      "idea": "Add the missing /img/loaves.jpg image file",
+      "idea": "Fix or add the missing hero image /img/loaves.jpg",
       "verdict": "useful",
-      "why": "index.html references /img/loaves.jpg and no img folder exists in the repo, so the image may be broken."
+      "why": "The image isn't in the repository, so it may be broken. Fixing it is a concrete step for readers."
     },
     {
-      "idea": "List all the loaves with descriptions and baking days on breads.html",
+      "idea": "List all loaves on the breads page, or give each its own page, to back up 'over twenty loaves'",
       "verdict": "useful",
-      "why": "The page says 'over twenty loaves' but names only two, so listing them gives readers and machines real content to quote."
+      "why": "The page names only two loaves while claiming twenty or more. A fuller list gives readers and machines real content."
     },
     {
-      "idea": "Give each bread its own page",
-      "verdict": "generic",
-      "why": "This is a broad restructuring suggestion that is not clearly warranted for a small site and may have little effect."
-    },
-    {
-      "idea": "Add class dates, prices, length, group size and a booking link to classes.html",
+      "idea": "Add date, price, length and booking details to the classes page",
       "verdict": "useful",
-      "why": "classes.html has none of these details, and they are the first things a prospective student would ask."
+      "why": "The classes page has no schedule, price or way to book, which are the details a visitor needs."
     },
     {
-      "idea": "Explain how pre-ordering works, including cut-off time and pickup location",
+      "idea": "Explain how pre-ordering works, including how to order and the cut-off time",
       "verdict": "useful",
-      "why": "index.html mentions pre-order for weekend collection with no process, cut-off or pickup details."
+      "why": "The home page mentions pre-order for weekend collection but gives no method or deadline."
     },
     {
-      "idea": "Add contextual links between classes and breads pages",
+      "idea": "Add Organization/WebSite structured data",
       "verdict": "generic",
-      "why": "The pages are already linked through the nav, so extra in-body links add little."
+      "why": "This is standard advice for any site. It adds little here, and the choice not to have JSON-LD was deliberate."
     },
     {
-      "idea": "Add <lastmod> dates to sitemap.xml",
+      "idea": "Add lastmod dates to sitemap entries",
       "verdict": "generic",
-      "why": "This is accurate because the sitemap has no lastmod, but it is standard advice with little effect on a 3-page site."
+      "why": "The sitemap has only loc entries, which is accurate. lastmod is a small, widely applicable improvement."
     },
     {
-      "idea": "Add Open Graph tags (og:title, og:description, og:image)",
+      "idea": "Add og:title and og:description social tags",
       "verdict": "generic",
-      "why": "The pages have none, but this is standard advice that only changes how shared links look."
+      "why": "The tags are missing, but this applies to nearly every site and has little effect on discovery."
     },
     {
-      "idea": "Add a custom 404 page",
+      "idea": "Add a 404 page",
       "verdict": "generic",
-      "why": "No 404 file exists, but this would apply to almost any site and has little effect on discoverability."
+      "why": "Generic advice with no link to this site's findability. A static site's host usually controls 404 handling."
     }
   ]
 }

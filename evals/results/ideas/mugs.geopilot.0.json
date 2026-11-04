@@ -4,59 +4,64 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Add a viewport meta tag, description and social tags (og:title, og:image) in index.html",
+      "idea": "Remove the site-wide Disallow in robots.txt (item 1)",
+      "verdict": "useful",
+      "why": "This is a known problem, but the report's own framing is accurate. It only matters if not already excluded; listed as the main note."
+    },
+    {
+      "idea": "Add prerendering or server rendering so content is in server HTML, including the catalogue fetch",
+      "verdict": "useful",
+      "why": "It is accurate to the files and it names the Catalogue fetch('/api/mugs') as client-only data, which goes beyond the known empty-root problem."
+    },
+    {
+      "idea": "Add a viewport meta tag",
       "verdict": "generic",
-      "why": "Accurate (no viewport or og tags exist), but standard head hygiene with modest effect on being found."
+      "why": "index.html lacks it, but this applies to almost any site and has little effect on discoverability."
     },
     {
-      "idea": "Give each mug its own page/route (/catalogue/:id) with links",
+      "idea": "Give each mug its own page/URL with name, price and description",
       "verdict": "useful",
-      "why": "The catalogue renders only names as plain paragraphs with no per-item URLs, so individual mugs can't be linked or indexed."
+      "why": "Catalogue.jsx renders only names in <p> tags with no per-item routes, so individual products can't be linked or found."
     },
     {
-      "idea": "Show price, material and size per mug, with Product structured data",
+      "idea": "Add Product JSON-LD once mugs have their own pages",
       "verdict": "useful",
-      "why": "Catalogue.jsx outputs only m.name, so adding product details and Product JSON-LD gives machines real information."
+      "why": "There is no structured data in the repo, and it is correctly conditioned on per-mug pages existing."
     },
     {
-      "idea": "Add a shipping/contact/about page and link it from navigation",
+      "idea": "Add shipping costs/times, care instructions and how-to-order text to the home page",
       "verdict": "useful",
-      "why": "Home claims Bristol and worldwide shipping but no page supports it and the nav has only two items."
+      "why": "Home.jsx has a single sentence about Bristol and worldwide shipping, so this adds concrete missing content."
     },
     {
-      "idea": "Add Organization/WebSite structured data with the shop name",
+      "idea": "Add Organization/WebSite JSON-LD with shop name and location",
+      "verdict": "useful",
+      "why": "Nothing in the repo states the shop identity in machine-readable form, and Home.jsx mentions Bristol."
+    },
+    {
+      "idea": "Show prices, sizes and materials in the catalogue text",
+      "verdict": "useful",
+      "why": "Catalogue.jsx shows only m.name, so adding these attributes gives readers and machines more to work with."
+    },
+    {
+      "idea": "Add a plain in-body link from the home page to the catalogue",
       "verdict": "generic",
-      "why": "No JSON-LD exists so it's accurate, but it applies to nearly any site and has small effect."
+      "why": "Accurate, but it largely duplicates the known button-versus-link problem, which fixing the nav already covers."
     },
     {
-      "idea": "Declare the site's domain once and use it for canonical tags and sitemap",
+      "idea": "Add a 404/catch-all route",
       "verdict": "useful",
-      "why": "No domain or canonical exists in the repo, and canonicals and sitemap URLs need an absolute origin."
+      "why": "main.jsx has only two Routes and no catch-all, so unknown paths render a blank page."
     },
     {
-      "idea": "Add a footer or fuller navigation with onward links from the home page to mug pages",
-      "verdict": "useful",
-      "why": "Home.jsx has no links to the catalogue or products; only the nav links, so internal linking is thin."
-    },
-    {
-      "idea": "Add <lastmod> to the sitemap once it exists",
+      "idea": "Declare an absolute canonical URL (needs the domain)",
       "verdict": "generic",
-      "why": "Accurate but minor, and depends on a sitemap that doesn't exist yet."
+      "why": "No canonical exists, but with only two routes and no duplicate URLs it has little effect and needs an unknown domain."
     },
     {
-      "idea": "Add width and height to the hero image",
+      "idea": "Per-page titles on the client need prerendering to reach crawlers",
       "verdict": "generic",
-      "why": "The img lacks dimensions, but this mainly affects layout shift and has little discoverability effect."
-    },
-    {
-      "idea": "Use per-page titles/meta via a head helper such as react-helmet or React 19 <title> tags",
-      "verdict": "useful",
-      "why": "Both routes share one static title and React 19 is in use, so per-route titles are a concrete fix."
-    },
-    {
-      "idea": "Prerender or server-render the catalogue data fetched from /api/mugs",
-      "verdict": "useful",
-      "why": "The catalogue list is fetched client-side in useEffect, so even prerendered shells would lack the mug names unless data is included at build or server time."
+      "why": "It is accurate but is a caveat to other fixes rather than a separate action."
     }
   ]
 }

@@ -1,0 +1,107 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Read the site origin from one shared data file instead of hardcoding it in the canonical",
+      "verdict": "useful",
+      "why": "It is a concrete fix for the hardcoded staging canonical that stops the host drifting again."
+    },
+    {
+      "idea": "Expand the Dentist JSON-LD with address, openingHours, url, image, sameAs and geo",
+      "verdict": "useful",
+      "why": "The existing block has only name and telephone, so the extra fields would add real local-business facts."
+    },
+    {
+      "idea": "Use international phone format +44 113 496 0000 in the schema",
+      "verdict": "useful",
+      "why": "The schema currently has the national format 0113 496 0000, and schema.org prefers international format."
+    },
+    {
+      "idea": "Make the layout omit the meta description when it is empty, or fall back to a default",
+      "verdict": "useful",
+      "why": "The layout in base.njk renders an empty content attribute for any page without a description."
+    },
+    {
+      "idea": "Add named dentists, GDC numbers, qualifications and Person schema to the team page",
+      "verdict": "useful",
+      "why": "The team page names nobody and only says 'decades of experience', so this adds real entity information."
+    },
+    {
+      "idea": "Give each treatment detail (duration, suitability, price range) and show prices, since the services page claims 'simple and clear' prices but lists none",
+      "verdict": "useful",
+      "why": "The services page is a bare four-item list and the pricing claim is unsupported."
+    },
+    {
+      "idea": "Substantiate or remove 'Trusted by thousands of local patients'",
+      "verdict": "useful",
+      "why": "The homepage makes an unverifiable claim that could be backed with reviews or figures."
+    },
+    {
+      "idea": "Add an FAQ section with FAQPage markup",
+      "verdict": "wrong",
+      "why": "A mandatory FAQ is folklore, and FAQPage rich results are largely restricted by Google."
+    },
+    {
+      "idea": "Move the Dentist/LocalBusiness JSON-LD into base.njk so it appears on every page",
+      "verdict": "generic",
+      "why": "Repeating organisation schema on every page is common boilerplate with little added effect, and the block is only broken on the contact page."
+    },
+    {
+      "idea": "Add MedicalProcedure/Service and BreadcrumbList schema",
+      "verdict": "generic",
+      "why": "This is standard schema advice that suits almost any site, and a four-page site has no breadcrumb hierarchy."
+    },
+    {
+      "idea": "Add passthrough copy for src/img so reception.jpg is published, and add width/height to the img",
+      "verdict": "useful",
+      "why": "The image isn't passed through by .eleventy.js, so it won't be published, and dimensions prevent layout shift."
+    },
+    {
+      "idea": "Add Open Graph and Twitter meta tags",
+      "verdict": "generic",
+      "why": "This is standard advice for any site and has little effect on search or AI discovery."
+    },
+    {
+      "idea": "Add a robots meta with max-snippet:-1 and max-image-preview:large",
+      "verdict": "generic",
+      "why": "These are default-like directives that most sites could add, with little effect."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance terms and put the terms on the services page",
+      "verdict": "wrong",
+      "why": "This reverses the deliberate, scoped data-nosnippet choice."
+    },
+    {
+      "idea": "Generate the sitemap from Eleventy collections with lastmod and automatic noindex exclusion",
+      "verdict": "useful",
+      "why": "The static sitemap already drifted from the noindex state of Services, and generating it would prevent that."
+    },
+    {
+      "idea": "Add explicit AI crawler User-agent blocks to robots.txt",
+      "verdict": "generic",
+      "why": "The existing 'User-agent: *' with 'Allow: /' already allows these crawlers, so the blocks add nothing."
+    },
+    {
+      "idea": "Add a /llms.txt",
+      "verdict": "wrong",
+      "why": "The brief states that having no llms.txt is not a problem, and the report itself says adoption is uneven."
+    },
+    {
+      "idea": "Make titles and descriptions more specific, such as 'Contact Brightside Dental – Dentist in Park Row, Leeds'",
+      "verdict": "useful",
+      "why": "The Contact and Thanks titles say little on their own, and a more specific title helps people and search engines."
+    },
+    {
+      "idea": "Check that descriptions are under about 160 characters",
+      "verdict": "generic",
+      "why": "All current descriptions are already short, so this has no effect here."
+    },
+    {
+      "idea": "Add a footer with NAP and opening hours, plus a header element, to the layout",
+      "verdict": "useful",
+      "why": "The layout has only a nav and main, so a footer would give consistent contact facts on every page."
+    }
+  ]
+}

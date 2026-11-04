@@ -4,44 +4,44 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Add Organization/LocalBusiness JSON-LD to the home page",
-      "verdict": "wrong",
-      "why": "Contradicts the deliberate choice that having no JSON-LD is not a required fix."
-    },
-    {
-      "idea": "Add address, hours and directions as text on /visit, with LocalBusiness openingHoursSpecification markup",
-      "verdict": "useful",
-      "why": "The page's description promises directions but its body has only one line of hours, so adding the details as text helps people and machines; the markup part is optional."
-    },
-    {
-      "idea": "Give each variety its own page, such as /varieties/ashmeads-kernel, and list them on the index",
-      "verdict": "useful",
-      "why": "The page claims over forty varieties but names only two, so separate pages would give each variety its own address and content."
-    },
-    {
-      "idea": "Add lastmod to the sitemap entries",
+      "idea": "Add <lastmod> to each sitemap entry",
       "verdict": "generic",
-      "why": "This applies to almost any sitemap, has little effect, and the report itself hedges with 'might help'."
+      "why": "Accurate for a 3-URL sitemap, but lastmod has minor effect and applies to almost any site."
     },
     {
-      "idea": "Add openGraph title, description and image metadata",
-      "verdict": "generic",
-      "why": "Accurate because no openGraph is set, but it is standard advice for any site and mainly affects link previews."
-    },
-    {
-      "idea": "Add a viewport and canonical to every page",
+      "idea": "Add Organization/LocalBusiness JSON-LD in layout",
       "verdict": "wrong",
-      "why": "The public pages already have canonicals, Next.js already supplies the viewport, and the account page is deliberately private, so the item is self-contradictory."
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it reverses that."
     },
     {
-      "idea": "Link between related pages, such as from varieties to visit",
+      "idea": "Add address, days and hours to the visit page, with LocalBusiness openingHours markup",
       "verdict": "useful",
-      "why": "The pages have no in-content links to each other, so a contextual link on /varieties pointing to /visit is a small, concrete improvement."
+      "why": "The visit page description promises opening times and directions, but the page has only one sentence and no address or directions."
     },
     {
-      "idea": "Make titles name the orchard and Herefordshire",
+      "idea": "List all varieties and add a page per variety",
       "verdict": "useful",
-      "why": "The /varieties and /visit titles don't name the orchard or place, so adding them makes the pages clearer in results and tabs."
+      "why": "The page claims over forty varieties but names only two, and per-variety pages would give each one its own address and content."
+    },
+    {
+      "idea": "Add links from the home page intro to varieties and visit",
+      "verdict": "generic",
+      "why": "The nav already links to both pages, so in-body links add little."
+    },
+    {
+      "idea": "Add a default title and description in the layout metadata",
+      "verdict": "generic",
+      "why": "All current pages set their own, so this only guards against pages added later."
+    },
+    {
+      "idea": "Add a description to the account page",
+      "verdict": "generic",
+      "why": "The page is deliberately noindexed, and the report itself calls this optional."
+    },
+    {
+      "idea": "Add city or region to the page titles, such as the visit page",
+      "verdict": "useful",
+      "why": "The visit title 'Visit the orchard' doesn't name the business or place, while the home page text mentions Herefordshire."
     }
   ]
 }

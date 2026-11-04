@@ -4,49 +4,54 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Give /blog its own title/description by splitting into a server component with metadata and a client child",
+      "idea": "Add a canonical to Blog (and Docs) using metadataBase, e.g. alternates canonical '/docs'",
       "verdict": "useful",
-      "why": "blog/page.tsx is 'use client' so it cannot export metadata and falls back to the layout defaults."
+      "why": "Docs has no canonical (known), but Blog is also missing one and metadataBase is set; the Blog half is accurate and concrete."
     },
     {
-      "idea": "Create /blog/[slug] pages for individual posts, link them and add to sitemap",
+      "idea": "Make Blog an async server component, give each post its own page and sitemap entry",
       "verdict": "useful",
-      "why": "Posts render only a title with no URL, so individual posts can't be found or cited."
+      "why": "Fixes the client-only rendering and gives posts crawlable URLs, specific to this repo."
     },
     {
-      "idea": "Add paid tiers and prices as text on /pricing",
+      "idea": "Blog fetches /api/posts but no app/api route exists in the repo, so add the route",
       "verdict": "useful",
-      "why": "The page says only 'Free for up to three people' while the description promises plans for every team size."
+      "why": "Accurate: no app/api folder is in the files, so the Blog may render nothing."
     },
     {
-      "idea": "Expand the Docs page with setup steps and links onward",
+      "idea": "Add Organization and WebSite JSON-LD in the layout",
       "verdict": "useful",
-      "why": "Docs is a single sentence, so it gives readers and machines little to understand."
+      "why": "The site has no structured data, and the name and URL could be stated for machines; it's concrete, though the benefit is modest."
     },
     {
-      "idea": "Add canonicals to /docs and /blog, ideally via a layout default",
-      "verdict": "generic",
-      "why": "The /docs canonical is already a known problem, and the report folds /blog into it."
+      "idea": "Flesh out Docs page beyond a single sentence with setup steps as text",
+      "verdict": "useful",
+      "why": "Docs has one sentence, so real setup content helps readers and machines understand the product."
     },
     {
-      "idea": "Add Organization/WebSite JSON-LD",
-      "verdict": "generic",
-      "why": "It is accurate since there is no JSON-LD, but it is boilerplate advice with little effect for a site this small."
+      "idea": "List paid plans and prices as text on Pricing",
+      "verdict": "useful",
+      "why": "The description promises plans for every team size but only the free tier appears."
     },
     {
-      "idea": "Add lastmod to the sitemap or generate it from app/sitemap.ts",
-      "verdict": "generic",
-      "why": "This is accurate, but the sitemap is 4 URLs and the effect is small."
+      "idea": "Give page titles more context, such as 'Ledger Docs: set up your account'",
+      "verdict": "useful",
+      "why": "Titles 'Docs' and 'Pricing' do not name the brand, and the layout has no title template."
     },
     {
-      "idea": "Make the home page say more, linking each feature to a detail page",
+      "idea": "Add <lastmod> to sitemap entries, possibly via app/sitemap.ts",
       "verdict": "generic",
-      "why": "It is vague advice that would fit almost any site, though the home page is thin."
+      "why": "Accurate, but it applies to almost any site and has little effect on a four-URL sitemap."
     },
     {
-      "idea": "Resolve the contradiction by dropping /pricing from sitemap and navigation if noindex is deliberate",
+      "idea": "Link from the home page body to Docs and Pricing",
       "verdict": "generic",
-      "why": "This is the known /pricing noindex problem restated as a branch of the same fix."
+      "why": "The nav already links to all four pages on every page, so an in-body link adds little."
+    },
+    {
+      "idea": "Remove Pricing from the sitemap if the noindex is deliberate (alternative to fixing the noindex)",
+      "verdict": "generic",
+      "why": "It restates the known Pricing noindex/sitemap contradiction as an alternative resolution."
     }
   ]
 }

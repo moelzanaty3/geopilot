@@ -1,0 +1,57 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Give each blog post its own page and link to it from the list, with a short summary",
+      "verdict": "useful",
+      "why": "Blog items are plain text titles with no URLs, so there is nothing specific for crawlers or readers to reach."
+    },
+    {
+      "idea": "Add a server layout for /blog with its own title and description",
+      "verdict": "useful",
+      "why": "Blog has no metadata and inherits the home title; as a client component it can't export metadata, so this is accurate and concrete."
+    },
+    {
+      "idea": "Expand Docs with actual setup steps as text, and link onward to Pricing",
+      "verdict": "useful",
+      "why": "Docs is one sentence while its description promises 'How to set up Ledger', so the content doesn't match."
+    },
+    {
+      "idea": "List plans and prices as text on Pricing and optionally add Product/Offer structured data",
+      "verdict": "useful",
+      "why": "Pricing says only 'Free for up to three people' while its description promises plans for every team size."
+    },
+    {
+      "idea": "Add Organization and WebSite JSON-LD using the name and URL from layout",
+      "verdict": "generic",
+      "why": "Accurate since no JSON-LD exists, but it's a standard suggestion that applies to nearly any site and has little effect."
+    },
+    {
+      "idea": "Add openGraph metadata for social previews",
+      "verdict": "generic",
+      "why": "Accurate that none is set, but it applies to almost any site and does little for search or AI discovery."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap, or generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "Valid but low-impact for a four-URL site, and the report itself says to add dates only once real ones exist."
+    },
+    {
+      "idea": "Link home page features to Docs and link Pricing from the home page body",
+      "verdict": "useful",
+      "why": "The home page body has no links, so internal linking only comes from the nav; this is accurate and specific."
+    },
+    {
+      "idea": "If Pricing should be private, drop it from the sitemap and the canonical",
+      "verdict": "generic",
+      "why": "It's the conditional half of the known pricing noindex conflict, so it adds nothing new."
+    },
+    {
+      "idea": "Add a canonical to Blog via a small server layout",
+      "verdict": "generic",
+      "why": "It repeats the known missing-canonical problem, with the Blog angle already covered by the blog layout idea."
+    }
+  ]
+}

@@ -3,11 +3,11 @@
   "arm": "geopilot",
   "run": 0,
   "found": [
-    "services-noindex",
     "canonical-staging-host",
     "no-html-lang",
     "team-no-description",
-    "dentist-jsonld-invalid"
+    "dentist-jsonld-invalid",
+    "services-noindex"
   ],
   "flagged": [],
   "extraIssues": 1

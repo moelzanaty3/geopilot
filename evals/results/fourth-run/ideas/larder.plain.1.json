@@ -1,0 +1,87 @@
+{
+  "fixture": "larder",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Add Disallow groups in robots.txt for other training crawlers (CCBot, Google-Extended, ClaudeBot, etc.)",
+      "verdict": "useful",
+      "why": "The config says to block training crawlers but robots.txt only blocks GPTBot, so the other training crawlers are still allowed."
+    },
+    {
+      "idea": "Keep search and user-fetch agents (OAI-SearchBot, ChatGPT-User, PerplexityBot) allowed",
+      "verdict": "generic",
+      "why": "This describes the current state and adds no new action."
+    },
+    {
+      "idea": "Add JSON-LD structured data (Bakery, Product, Course) on the public pages",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no JSON-LD is not a required fix, and the report ranks it as high priority and the 'biggest single lever'."
+    },
+    {
+      "idea": "Make content more specific: list every loaf with description and price, give class details, and add a visible address and hours block",
+      "verdict": "useful",
+      "why": "The pages are vague and have no address, hours, prices or class details, so this gives users and answer engines concrete facts."
+    },
+    {
+      "idea": "Put the answer in the first sentence of each section so it can be quoted",
+      "verdict": "generic",
+      "why": "This is general writing advice that applies to any site."
+    },
+    {
+      "idea": "Remove data-nosnippet from the allergen notice and expand the allergen information",
+      "verdict": "wrong",
+      "why": "The data-nosnippet is a deliberate scoped choice, and the report itself says to leave it if deliberate."
+    },
+    {
+      "idea": "Add the missing /img/loaves.jpg file and width/height attributes, and consider lazy loading",
+      "verdict": "useful",
+      "why": "index.html references /img/loaves.jpg, which is not in the repo, and the img tag has no dimensions."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card metadata to the public pages",
+      "verdict": "generic",
+      "why": "This is standard advice for any site, and the pages already have titles and descriptions."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "This is accurate but has little effect on a 3-URL site."
+    },
+    {
+      "idea": "Resolve the conflict between the /members/ robots.txt Disallow and the noindex",
+      "verdict": "wrong",
+      "why": "The deliberate choices say the noindex plus disallow on /members is correct for a private page."
+    },
+    {
+      "idea": "Make the homepage title format consistent with 'Page | Brand'",
+      "verdict": "generic",
+      "why": "This is a minor stylistic change with very little effect."
+    },
+    {
+      "idea": "Lengthen and differentiate the breads and classes meta descriptions to 120-155 characters",
+      "verdict": "generic",
+      "why": "The length target is folklore, and the descriptions are already adequate and specific."
+    },
+    {
+      "idea": "Add a favicon link",
+      "verdict": "generic",
+      "why": "This applies to almost any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Add contextual internal links, such as from class text to a booking page",
+      "verdict": "useful",
+      "why": "The pages are linked only through the nav, and classes.html says to book but gives no link to do so."
+    },
+    {
+      "idea": "Add an optional llms.txt",
+      "verdict": "wrong",
+      "why": "The deliberate choices say having no llms.txt is not a problem, and the report concedes the evidence for it is weak."
+    },
+    {
+      "idea": "Replace the .example placeholder domain with the real origin before launch",
+      "verdict": "generic",
+      "why": "This is true of any placeholder domain, and the .example domain is clearly a stand-in."
+    }
+  ]
+}

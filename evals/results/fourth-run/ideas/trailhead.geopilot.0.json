@@ -1,0 +1,47 @@
+{
+  "fixture": "trailhead",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Fix the sitemap listing /guides while the server sends noindex (remove header or sitemap entry)",
+      "verdict": "useful",
+      "why": "This is a specific conflict in the files, but it restates the known noindex-on-/guides problem."
+    },
+    {
+      "idea": "Add real content to the Guides page, listing each route with name, grade and length as text",
+      "verdict": "useful",
+      "why": "guides.vue only promises graded routes and lists none, so adding them gives crawlers and readers real content."
+    },
+    {
+      "idea": "Create a separate page per route (/guides/<name>) with its own title, description and sitemap entry",
+      "verdict": "useful",
+      "why": "It is concrete and conditional on the routes list, and gives each route its own indexable URL."
+    },
+    {
+      "idea": "Add descriptive text and links to guides on the home page",
+      "verdict": "useful",
+      "why": "index.vue has only an h1 and a button, so a short description with real links would help both readers and crawlers."
+    },
+    {
+      "idea": "Add an absolute canonical tag per page using the real domain",
+      "verdict": "useful",
+      "why": "No canonical or site URL is set anywhere in the repo, and the sitemap uses a placeholder domain."
+    },
+    {
+      "idea": "Add WebSite/Organization JSON-LD with the name Trailhead and its URL",
+      "verdict": "generic",
+      "why": "This is accurate but is standard advice for almost any site and has little effect on a small site."
+    },
+    {
+      "idea": "Generate the sitemap with a Nuxt sitemap module and add lastmod dates",
+      "verdict": "generic",
+      "why": "This is sound but applies to any Nuxt site, and a two-URL static sitemap works fine."
+    },
+    {
+      "idea": "Remove the redundant /admin noindex or robots disallow",
+      "verdict": "wrong",
+      "why": "The report only notes the redundancy and leaves it alone, and /admin is a deliberate choice."
+    }
+  ]
+}
