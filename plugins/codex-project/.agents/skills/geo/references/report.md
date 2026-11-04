@@ -33,7 +33,7 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 - **Where:** `<file>:<line>`
 - **What the code says:** `<exact quote>`
 - **Size:** <Small | Medium | Large>
-- **Score after this:** <recalculated range, or the two ranges for a check>
+- **Score after this:** <recalculated range, or the two ranges for a check. Always numbers, never a direction such as "moves up">
 
 <Up to three items, most points at stake first. A defect from "Other problems found" can take a place if it's more urgent than a check. Points at stake are the points a Problem has lost, or the full weight of a Can't tell rule. Ties go to the smaller change. A blocked live check counts as a top item: confirm real crawlers get through. If any Problem exists, the Problem with the most points lost always takes one of the three places, because it's something the user can fix now.>
 
@@ -43,7 +43,7 @@ How it's calculated: low = <earned> ÷ <applicable> × 100 = <low>. High = (<ear
 | --- | --- | --- | --- |
 | GEO-013 | <plain name> | Clear / Problem / Can't tell / Not applicable | `<file>:<line>` or what you read |
 
-<The Code cell holds only those exact words. Route counts and notes go in the Where column, kept short. Add a Live column only when a live check ran.>
+<The Code cell holds only those exact words, or "Not scored" for a rule that's for information only. Route counts and notes go in the Where column, kept short. Add a Live column only when a live check read the site. If it was blocked or didn't run, leave the column out.>
 
 ## Other problems found
 
@@ -91,6 +91,7 @@ Never suggest:
 ## Assumptions
 
 - <Anything you assumed, such as "you want AI search tools to find this site".>
+- <What you read, in one line, such as "12 routes, the navigation, 4 main pages and all 6 JSON-LD sources".>
 
 ## What to do next
 

@@ -79,7 +79,8 @@ The score tells someone how ready their site looks, and shows the arithmetic so 
 **How to decide:**
 
 - A **check marked "live only"** on a rule never changes its code result. List it under "Can't tell from code", but the rule can still be Clear.
-- **Can't tell never means you didn't look.** Read the navigation, shared components and every JSON-LD source before using it. If you ran out of room, say what you didn't read.
+- **Can't tell never means you didn't look.** "I didn't read it" is never a reason for this result. Read the navigation, shared components and every JSON-LD source before using it. If you truly ran out of room, say what you didn't read.
+- **A Problem must survive a check.** Code you can quote isn't proof of what crawlers receive. A config value might not be used, and the real file might be somewhere else, such as a `public/` or `static/` folder, a build step, a route or middleware. Search for those, and find what reads the value. If you'd have to add a caveat such as "I didn't read the library that serves this", keep reading. If that can't settle it, the result is Can't tell.
 - A **value decided at runtime** (CMS, API, feature flag, environment switch) is unknown for that route. If that leaves no Problem and any route unknown, the rule is Can't tell.
 - A **route with an unknown value** doesn't count in clear or problem routes.
 - A **shared template** counts once per route you sampled. Two phone routes using one template are two routes.
@@ -135,7 +136,7 @@ Weight 3, high severity. Blocker: robots.txt answered 5xx.
 
 **In plain words:** `robots.txt` is the first file crawlers ask for. If it's broken, they may treat the whole site as off limits.
 
-**Check in code:** find `public/robots.txt`, a `robots.txt` route, or a framework robots file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
+**Check in code:** search the whole repository for `robots.txt`, because it may be in `public/`, `static/` or another folder the build copies, a route, or a framework file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
 
 **Can't tell from code:** whether the server really answers 200 or 404. A problem here needs a live check, unless the code visibly generates a broken response.
 
