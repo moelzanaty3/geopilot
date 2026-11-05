@@ -78,7 +78,7 @@ Weight 3, high severity. Blocker: robots.txt answered 5xx.
 
 **In plain words:** `robots.txt` is the first file crawlers ask for. If it's broken, they may treat the whole site as off limits.
 
-**Check in code:** find `public/robots.txt`, a `robots.txt` route, or a framework robots file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
+**Check in code:** search the whole repository for `robots.txt`, because it may be in `public/`, `static/` or another folder the build copies, a route, or a framework file such as `app/robots.ts`. Check that it's plain text, under 500 KiB, and uses valid `User-agent`, `Allow`, `Disallow` and `Sitemap` lines. No robots file is clear: crawlers treat that as allowed.
 
 **Can't tell from code:** whether the server really answers 200 or 404. A problem here needs a live check, unless the code visibly generates a broken response.
 

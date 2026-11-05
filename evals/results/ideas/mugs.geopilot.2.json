@@ -4,44 +4,44 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Give each mug its own page/URL with price and description",
-      "verdict": "useful",
-      "why": "Catalogue renders only names in paragraphs, so individual product pages would give crawlers and AI distinct, quotable content."
+      "idea": "Show products as text with prices, materials, sizes and links on the Catalogue page",
+      "verdict": "generic",
+      "why": "Richer product detail is accurate but is broad content advice, and the catalogue is fetched client-side so it hinges on the rendering fix."
     },
     {
-      "idea": "Add more buyer-facing text on the home page (price range, shipping, returns, how to order)",
+      "idea": "Give each mug its own page and URL",
       "verdict": "useful",
-      "why": "Home.jsx contains a single sentence, so more substantive content would help people and machines understand the offer."
+      "why": "Catalogue.jsx lists only names with no per-item route in main.jsx, so individual mugs cannot be linked or found on their own."
     },
     {
-      "idea": "Add Organization/Product JSON-LD",
+      "idea": "Add Organization JSON-LD with name and location",
       "verdict": "useful",
-      "why": "The site has no structured data and sells identifiable products from a named location, so JSON-LD could clarify what it is."
-    },
-    {
-      "idea": "Declare the site origin and add a canonical tag per page",
-      "verdict": "useful",
-      "why": "No canonical or domain is set in index.html, and absolute canonicals help consolidate URLs."
+      "why": "Home.jsx states a Bristol handmade mug business and there is no structured data, so Organization markup would state it in a machine-readable way."
     },
     {
       "idea": "Add viewport meta and Open Graph tags",
       "verdict": "generic",
-      "why": "index.html lacks them, but this is standard head hygiene with modest effect on discoverability."
+      "why": "index.html has only charset, so the gap is real, but this is standard advice for any site and has little effect on being found."
     },
     {
-      "idea": "Add a 404/catch-all route",
-      "verdict": "useful",
-      "why": "Routes define only / and /catalogue, so unknown URLs on a static host would return the app shell with 200 (soft 404s)."
-    },
-    {
-      "idea": "Give each route its own title via React 19 <title>/<meta> elements",
+      "idea": "Add a text link to the catalogue in the Home page body",
       "verdict": "generic",
-      "why": "Per-route titles are sound, but without prerendering client-set tags are not visible to non-JS crawlers; it mostly overlaps the known title issue."
+      "why": "Home has no body link, but the nav Link fix already covers the real problem and an extra link adds little."
     },
     {
-      "idea": "Link onward to the catalogue from the Home page body",
+      "idea": "Add shipping and ordering details",
       "verdict": "useful",
-      "why": "Home.jsx has no link to /catalogue, so a body link adds a crawlable path to the product listing."
+      "why": "Home promises worldwide shipping but no page explains ordering, costs or delivery times, which people and machines would look for."
+    },
+    {
+      "idea": "Set per-route titles and descriptions with a head helper",
+      "verdict": "useful",
+      "why": "Both routes share one static title, and a head helper per route gives each page its own title and description."
+    },
+    {
+      "idea": "Declare a domain and absolute canonical URLs",
+      "verdict": "useful",
+      "why": "No canonical or declared domain exists in the code, so adding a canonical for each page is a concrete fix."
     }
   ]
 }

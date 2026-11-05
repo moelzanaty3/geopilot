@@ -4,44 +4,54 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Fix the sitemap listing /guides while the server sends noindex (remove header or sitemap entry)",
+      "idea": "Prerender / (and /guides) as alternative to removing ssr:false",
       "verdict": "useful",
-      "why": "This is a specific conflict in the files, but it restates the known noindex-on-/guides problem."
+      "why": "It is a concrete option in nuxt.config that gives crawlers real HTML while keeping the SPA config."
     },
     {
-      "idea": "Add real content to the Guides page, listing each route with name, grade and length as text",
+      "idea": "Fill in the guides page with actual routes, grades, distance and difficulty as text",
       "verdict": "useful",
-      "why": "guides.vue only promises graded routes and lists none, so adding them gives crawlers and readers real content."
+      "why": "guides.vue has only a heading and a promise sentence, so adding the routes gives the page real content."
     },
     {
-      "idea": "Create a separate page per route (/guides/<name>) with its own title, description and sitemap entry",
+      "idea": "Give each route its own page at /guides/<route> linked from /guides",
       "verdict": "useful",
-      "why": "It is concrete and conditional on the routes list, and gives each route its own indexable URL."
+      "why": "It gives each walk its own URL and title, and the site currently has no content pages."
     },
     {
-      "idea": "Add descriptive text and links to guides on the home page",
+      "idea": "Add a short intro to the home page",
       "verdict": "useful",
-      "why": "index.vue has only an h1 and a button, so a short description with real links would help both readers and crawlers."
+      "why": "index.vue has only an h1 and a button, so an intro adds real descriptive text."
     },
     {
-      "idea": "Add an absolute canonical tag per page using the real domain",
+      "idea": "Add canonical links per page using the real domain",
       "verdict": "useful",
-      "why": "No canonical or site URL is set anywhere in the repo, and the sitemap uses a placeholder domain."
+      "why": "No canonical is set anywhere, and the sitemap uses a placeholder domain."
     },
     {
-      "idea": "Add WebSite/Organization JSON-LD with the name Trailhead and its URL",
+      "idea": "Declare a site URL in config (runtimeConfig.public) shared by canonicals, sitemap and social tags",
       "verdict": "generic",
-      "why": "This is accurate but is standard advice for almost any site and has little effect on a small site."
+      "why": "It is sensible but only helps indirectly and is a general Nuxt practice."
     },
     {
-      "idea": "Generate the sitemap with a Nuxt sitemap module and add lastmod dates",
+      "idea": "Add WebSite/Organization JSON-LD with the site name and URL",
       "verdict": "generic",
-      "why": "This is sound but applies to any Nuxt site, and a two-URL static sitemap works fine."
+      "why": "It is accurate but of little effect for a tiny site, and it applies to nearly any site."
     },
     {
-      "idea": "Remove the redundant /admin noindex or robots disallow",
-      "verdict": "wrong",
-      "why": "The report only notes the redundancy and leaves it alone, and /admin is a deliberate choice."
+      "idea": "Add Open Graph tags (og:title, og:description, og:image)",
+      "verdict": "generic",
+      "why": "It improves link previews but would apply to any site and does little for being found or understood."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
+      "verdict": "generic",
+      "why": "It is a standard sitemap enhancement with little effect on a two-URL sitemap."
+    },
+    {
+      "idea": "Use a Nuxt sitemap module to generate the sitemap from routes",
+      "verdict": "generic",
+      "why": "It is reasonable as the site grows, but it is general advice and the current two-URL sitemap is valid."
     }
   ]
 }

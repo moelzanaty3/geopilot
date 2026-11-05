@@ -1,0 +1,77 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Enrich Dentist JSON-LD with url, address, openingHoursSpecification, image, areaServed, sameAs, and international phone format",
+      "verdict": "useful",
+      "why": "The schema has only name and telephone, and the address and phone are in the visible text, so these fields would help local and machine understanding."
+    },
+    {
+      "idea": "Move or replicate the Dentist schema site-wide in base.njk or the home page",
+      "verdict": "useful",
+      "why": "Schema currently appears only on /contact, and putting the business entity on the home page or in the layout is a concrete, plausible improvement."
+    },
+    {
+      "idea": "Make base.njk omit the description meta tag or fall back to a default when description is missing",
+      "verdict": "useful",
+      "why": "The template renders content=\"\" for pages without a description, so a fallback prevents empty tags on future pages."
+    },
+    {
+      "idea": "Services and team content is thin: add per-service detail and prices, named clinicians with credentials, and substantiate the 'thousands' claim",
+      "verdict": "useful",
+      "why": "The files confirm the 'prices are simple and clear' line has no prices, the team page names no one, and the claims are unsourced, so the fix is specific and concrete."
+    },
+    {
+      "idea": "Add an FAQ and put opening hours in visible text",
+      "verdict": "wrong",
+      "why": "A mandatory FAQ is folklore, though visible opening hours alone would be reasonable."
+    },
+    {
+      "idea": "Hero image /img/reception.jpg is missing, with no passthrough copy for src/img",
+      "verdict": "useful",
+      "why": ".eleventy.js only passes through robots.txt and sitemap.xml, so the image would not be copied to the output and would break."
+    },
+    {
+      "idea": "Add width/height, loading, and srcset to the hero image",
+      "verdict": "generic",
+      "why": "This is standard image advice for any site and has little effect on discoverability."
+    },
+    {
+      "idea": "Add Open Graph and Twitter meta tags",
+      "verdict": "generic",
+      "why": "This is boilerplate advice for any site and has little effect on search or AI understanding."
+    },
+    {
+      "idea": "Add a favicon and a site name",
+      "verdict": "generic",
+      "why": "This is standard advice that applies to nearly any site."
+    },
+    {
+      "idea": "Generate the sitemap from Eleventy collections with lastmod using the shared origin",
+      "verdict": "useful",
+      "why": "The sitemap is a static passthrough file with no lastmod, so generating it from collections avoids drift with a single origin value."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance line because it belongs in snippets and AI summaries",
+      "verdict": "wrong",
+      "why": "This reverses a deliberate scoped choice that was marked as fine."
+    },
+    {
+      "idea": "Add named User-agent blocks for AI search bots in robots.txt",
+      "verdict": "generic",
+      "why": "The wildcard Allow already permits those bots and matches the allow policy in geo.config.json, so named blocks add almost nothing."
+    },
+    {
+      "idea": "Add an optional /llms.txt",
+      "verdict": "wrong",
+      "why": "The brief says having no llms.txt is not a problem, and recommending one relies on folklore."
+    },
+    {
+      "idea": "Use a single shared site.origin data value for canonical, sitemap and geo.config.json",
+      "verdict": "useful",
+      "why": "The origin is repeated across several files, and sharing one value keeps the canonical and sitemap consistent."
+    }
+  ]
+}

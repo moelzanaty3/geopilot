@@ -1,0 +1,57 @@
+{
+  "fixture": "harbor",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Render FAQ answers as visible page text, not only in JSON-LD",
+      "verdict": "useful",
+      "why": "index.astro emits the FAQ only inside the script tag, so the answers aren't visible on the page."
+    },
+    {
+      "idea": "Add LocalBusiness/Organization structured data on contact page (and Product/Offer for pricing)",
+      "verdict": "useful",
+      "why": "The contact page has a phone number and location, and the moorings page has a price, but neither has any structured data."
+    },
+    {
+      "idea": "Add a table of mooring sizes and seasonal rates to moorings page",
+      "verdict": "useful",
+      "why": "The description promises sizes and seasonal prices, but the page has only one price line."
+    },
+    {
+      "idea": "Add in-text links from home page to /moorings and /contact",
+      "verdict": "generic",
+      "why": "The nav already links these pages, so in-text links add little."
+    },
+    {
+      "idea": "Set `site` in Astro config and use @astrojs/sitemap instead of hand-kept sitemap",
+      "verdict": "useful",
+      "why": "There is no astro.config, and a `site` value is needed for correct absolute canonicals and keeps the sitemap in sync."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap",
+      "verdict": "generic",
+      "why": "It is accurate but has little effect on a three-URL site."
+    },
+    {
+      "idea": "Add charset, viewport and Open Graph tags to the layout",
+      "verdict": "generic",
+      "why": "The head really lacks them, but this is standard boilerplate that applies to nearly any site."
+    },
+    {
+      "idea": "Wrap slot in <main>",
+      "verdict": "generic",
+      "why": "It is a standard semantic landmark that would apply to nearly any site and has little effect."
+    },
+    {
+      "idea": "Make the contact page title name Falmouth/the harbour",
+      "verdict": "useful",
+      "why": "The title \"Contact the harbour office\" really omits the place, and naming it helps identify the page."
+    },
+    {
+      "idea": "Fix the mixed Harbor/harbour spelling in the home title",
+      "verdict": "useful",
+      "why": "The home title uses \"Harbor\" while the page text uses \"harbour\", so the site name is inconsistent for searchers and machines."
+    }
+  ]
+}

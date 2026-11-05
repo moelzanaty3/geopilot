@@ -4,49 +4,59 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Add LocalBusiness/Organization JSON-LD with name and phone on the contact page",
+      "idea": "Remove /contact from the sitemap (noindex page listed)",
       "verdict": "useful",
-      "why": "The contact page has a phone number and no entity markup, so this gives machines a concrete, specific identity signal."
+      "why": "Hmm, this is the known problem already listed, but it is restated; skip-worthy though accurate."
     },
     {
-      "idea": "Add a table of mooring sizes and seasonal prices as real text on /moorings",
+      "idea": "Render FAQ answers as visible text on the home page, not only in JSON-LD",
       "verdict": "useful",
-      "why": "The page description promises sizes and seasonal prices but the body gives only one figure, so adding them is accurate and helps readers and machines."
+      "why": "index.astro only places the answers in the script, so visible content lacks them."
     },
     {
-      "idea": "Show the FAQ Q&A as visible text on the home page",
+      "idea": "Add a table of mooring sizes and seasonal prices to /moorings",
       "verdict": "useful",
-      "why": "The FAQ answers exist only in JSON-LD on index.astro, so visible text matches the markup and helps readers."
+      "why": "The description promises sizes and seasonal prices but the page only says prices start at £40."
     },
     {
-      "idea": "Add lastmod dates to the sitemap",
-      "verdict": "generic",
-      "why": "This is accurate but conditional on knowing the dates and has little effect on a three-URL sitemap."
-    },
-    {
-      "idea": "Generate the sitemap with @astrojs/sitemap and set site in astro.config",
-      "verdict": "generic",
-      "why": "It is accurate, but a hand-written three-URL sitemap works and the benefit is mostly maintainability."
-    },
-    {
-      "idea": "Add charset, viewport and Open Graph tags to the head",
-      "verdict": "generic",
-      "why": "The layout does lack them, but this is standard advice for any site."
-    },
-    {
-      "idea": "Wrap the slot in a <main> element",
-      "verdict": "generic",
-      "why": "This is accurate but a minor, boilerplate semantic improvement with little effect."
-    },
-    {
-      "idea": "Make the home page description and spelling consistent (Harbor/Harbour, Cornwall/Falmouth) and say who the harbour office is",
+      "idea": "Set `site` in an Astro config and derive canonicals/sitemap from it",
       "verdict": "useful",
-      "why": "The title uses 'Harbor' and 'Cornwall' while the heading and description use 'Falmouth' and 'harbour', so the inconsistency is real and the fix helps clarity."
+      "why": "No astro.config exists and the origin is hardcoded in Base.astro."
     },
     {
-      "idea": "Add inline links from the home page body to /moorings and /contact",
+      "idea": "Add charset and viewport meta tags and a <main> element",
+      "verdict": "useful",
+      "why": "Base.astro has none of these, so it is accurate and concrete, though common advice."
+    },
+    {
+      "idea": "Link to the moorings page from the home page body text",
       "verdict": "generic",
-      "why": "The home page body has no links, but the nav already links both pages, so the effect is small."
+      "why": "The nav already links to /moorings, so extra in-text links add little."
+    },
+    {
+      "idea": "Add Organization/LocalBusiness JSON-LD on the home page with name, location and phone",
+      "verdict": "useful",
+      "why": "No entity identity is declared anywhere in the markup and the phone is only on a noindex page."
+    },
+    {
+      "idea": "Make the home title mention Falmouth to match the h1",
+      "verdict": "useful",
+      "why": "The title says Cornwall while the h1 and description say Falmouth, so naming the town helps."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries once real dates exist",
+      "verdict": "generic",
+      "why": "Accurate but low-impact for a three-URL sitemap."
+    },
+    {
+      "idea": "Use `robots ?? \"index, follow\"` or omit the robots tag when unset",
+      "verdict": "generic",
+      "why": "It is just the fix for the known max-snippet problem, and \"index, follow\" is the default anyway."
+    },
+    {
+      "idea": "If the crawler block is deliberate, add policy.aiSearchCrawlers to geo.config.json",
+      "verdict": "generic",
+      "why": "It depends on the audit tool's own config and is not specific to the site's files."
     }
   ]
 }

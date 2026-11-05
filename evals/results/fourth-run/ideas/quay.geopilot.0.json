@@ -1,0 +1,62 @@
+{
+  "fixture": "quay",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Give each product its own page with price and description, with full Product data",
+      "verdict": "useful",
+      "why": "/shop only has a one-line paragraph and a bare Product schema, so per-product pages would give real content to read."
+    },
+    {
+      "idea": "Add a shipping section (cutoff time, regions) in page text, since the delivery info is only in a data-nosnippet block",
+      "verdict": "useful",
+      "why": "The next-day claim in the h1 is backed only by a data-nosnippet notice, so visible detail would support it."
+    },
+    {
+      "idea": "Add a description to the /search page",
+      "verdict": "wrong",
+      "why": "The page is deliberately noindex, so the report's own note that it only matters if noindex is removed makes this low-value advice on a deliberate choice."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data in the layout",
+      "verdict": "useful",
+      "why": "The site has no entity markup, and the store name and URL could be added once in the shared layout."
+    },
+    {
+      "idea": "Add a viewport meta tag in app.html",
+      "verdict": "useful",
+      "why": "app.html has a charset but no viewport, so mobile rendering is affected; this is accurate and a concrete fix."
+    },
+    {
+      "idea": "Add og:title/og:description social tags",
+      "verdict": "generic",
+      "why": "No page has social tags, but this is standard advice for almost any site and has small effect on being found."
+    },
+    {
+      "idea": "Wrap page content in a <main> element in the layout",
+      "verdict": "useful",
+      "why": "The layout has no main landmark, and adding one helps tools and readers locate the primary content."
+    },
+    {
+      "idea": "Add <lastmod> dates to the sitemap",
+      "verdict": "generic",
+      "why": "This is accurate but minor, applies to almost any sitemap, and the report itself hedges it on having real update dates."
+    },
+    {
+      "idea": "Generate the sitemap from routes once product pages exist",
+      "verdict": "generic",
+      "why": "With two URLs the static file is fine, and this is advice for a future state that applies to most sites."
+    },
+    {
+      "idea": "Fill the /shop meta description with text like 'Bilge pumps, cleats and rope for boats'",
+      "verdict": "generic",
+      "why": "This is the same as the known empty-description problem, so it adds only example wording."
+    },
+    {
+      "idea": "Sitemap lists /shop but robots.txt blocks Googlebot, so remove the Googlebot block",
+      "verdict": "generic",
+      "why": "This is a consequence of the known Googlebot block, so it adds nothing new."
+    }
+  ]
+}

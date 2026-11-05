@@ -4,10 +4,10 @@
   "run": 0,
   "found": [
     "ssr-disabled",
+    "guides-x-robots-noindex",
     "relative-sitemap-line",
-    "same-title-everywhere",
     "button-navigation",
-    "guides-x-robots-noindex"
+    "same-title-everywhere"
   ],
   "flagged": [],
   "extraIssues": 0

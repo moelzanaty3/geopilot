@@ -4,44 +4,44 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Show FAQ questions and answers as visible text on the home page, not only in JSON-LD",
+      "idea": "Add LocalBusiness/Organization JSON-LD with name, phone and Falmouth location on the home page",
       "verdict": "useful",
-      "why": "index.astro only injects the FAQ via a script, so visitors and text-only readers never see the answers."
+      "why": "The site has no entity markup, and the contact details exist only on the noindexed /contact page, so putting this on the home page is concrete and specific."
     },
     {
-      "idea": "Add a table of mooring sizes and seasonal prices to /moorings",
+      "idea": "Give the home page real content: what the harbour is, where it is and how to book",
       "verdict": "useful",
-      "why": "The description promises sizes and seasonal prices but the page body only says prices start at £40 a night."
+      "why": "The home page has only a heading and one sentence, so adding substance helps readers and machines understand the site."
     },
     {
-      "idea": "Add Organization/LocalBusiness structured data with name, Falmouth address and phone",
+      "idea": "Render the FAQ Q&A as visible page text, not only JSON-LD",
       "verdict": "useful",
-      "why": "No such data exists and the contact details are in the contact page, so this is concrete and specific."
+      "why": "The FAQ answers exist only in JSON-LD on index.astro and are not visible in the page body."
     },
     {
-      "idea": "Add charset, viewport and og tags, and wrap content in <main>",
+      "idea": "Expand the prices page with sizes, seasonal rates and how to book",
+      "verdict": "useful",
+      "why": "The page description promises sizes and seasonal prices but the page has only one price sentence."
+    },
+    {
+      "idea": "Add lastmod dates to the sitemap",
       "verdict": "generic",
-      "why": "Accurate (they are missing from Base.astro) but standard boilerplate with little effect on discoverability."
+      "why": "This is standard sitemap advice with little effect on a 3-URL site."
     },
     {
-      "idea": "Set site in astro config and use @astrojs/sitemap instead of a static sitemap",
-      "verdict": "generic",
-      "why": "Reasonable, but the static three-page sitemap is fine and the canonical fix doesn't need it."
-    },
-    {
-      "idea": "Link 'Seasonal and visitor moorings' on the home page to /moorings",
+      "idea": "Generate the sitemap with @astrojs/sitemap and set site in the Astro config",
       "verdict": "useful",
-      "why": "The home page text mentions moorings with no in-content link, so a contextual link adds a useful path."
+      "why": "The sitemap is hand-kept, the origin is hardcoded and there is no astro.config, and setting site would also help build per-page canonicals."
     },
     {
-      "idea": "Add Falmouth and the harbour name to the /moorings title",
-      "verdict": "useful",
-      "why": "The title 'Moorings and prices' doesn't say where or whose, while the home page title does."
-    },
-    {
-      "idea": "Change the default robots value to 'index, follow'",
+      "idea": "Add charset, viewport and social tags, and a <main> element",
       "verdict": "generic",
-      "why": "This is the known max-snippet:0 problem restated as a fix, and 'index, follow' is the default behaviour anyway."
+      "why": "This is boilerplate head and landmark advice that fits nearly any site."
+    },
+    {
+      "idea": "Link between pages, such as from the prices text to the contact page",
+      "verdict": "generic",
+      "why": "The nav already links all three pages, so an extra contextual link has little effect."
     }
   ]
 }

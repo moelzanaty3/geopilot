@@ -1,0 +1,57 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Use <Link to='/features'> instead of onClick div for the main CTA",
+      "verdict": "useful",
+      "why": "This is the known /features div/onClick issue, but this is the same fix restated; it is accurate and concrete."
+    },
+    {
+      "idea": "Add a Features link to the root nav",
+      "verdict": "useful",
+      "why": "The nav in root.tsx only lists Pricing and Changelog, so a real server-rendered link to /features on every page would help crawlers find it."
+    },
+    {
+      "idea": "List plan names, prices and inclusions on the pricing page",
+      "verdict": "useful",
+      "why": "pricing.tsx has only a vague 'talk to us' line, so there is no concrete content for readers or machines to understand."
+    },
+    {
+      "idea": "Name the integrations in text on the home page, possibly with their own pages",
+      "verdict": "useful",
+      "why": "The home page claims 'all the tools you already use' without naming any, so naming them gives readers and machines specific content."
+    },
+    {
+      "idea": "Expand the thin Features page with a section per feature",
+      "verdict": "useful",
+      "why": "features.tsx has a single sentence, so more detail would help readers and machines understand the product."
+    },
+    {
+      "idea": "Add <lastmod> dates to the sitemap, especially for /changelog",
+      "verdict": "generic",
+      "why": "It's accurate, but lastmod has little effect and applies to almost any sitemap."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD for site identity",
+      "verdict": "wrong",
+      "why": "It goes against the stated choice that having no JSON-LD is not a required fix."
+    },
+    {
+      "idea": "Generate the sitemap dynamically with a Remix resource route",
+      "verdict": "generic",
+      "why": "With only four routes, a hand-kept sitemap is fine and the advice fits any site."
+    },
+    {
+      "idea": "Add charset, viewport and og/social tags to the root head",
+      "verdict": "generic",
+      "why": "This is accurate for root.tsx, but it is standard advice for almost any site and has little effect on discovery."
+    },
+    {
+      "idea": "Give each changelog release its own URL",
+      "verdict": "generic",
+      "why": "It is plausible, but it's speculative, would need a larger redesign, and the entries aren't even in server HTML yet."
+    }
+  ]
+}

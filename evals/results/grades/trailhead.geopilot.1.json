@@ -3,12 +3,12 @@
   "arm": "geopilot",
   "run": 1,
   "found": [
+    "guides-x-robots-noindex",
     "ssr-disabled",
     "relative-sitemap-line",
-    "button-navigation",
-    "guides-x-robots-noindex",
-    "same-title-everywhere"
+    "same-title-everywhere",
+    "button-navigation"
   ],
   "flagged": [],
-  "extraIssues": 3
+  "extraIssues": 0
 }

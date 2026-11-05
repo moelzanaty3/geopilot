@@ -4,54 +4,49 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Add address, directions and opening hours text to the Visit page so it matches its description",
+      "idea": "Put address, directions and parking on /visit so the page delivers what its description promises",
       "verdict": "useful",
-      "why": "The visit page description promises directions but the body only gives a brief line on opening days."
+      "why": "The visit page has one line and no address, so the description's promise of directions is unmet."
     },
     {
-      "idea": "List all the 40+ varieties on the Varieties page rather than naming two",
-      "verdict": "useful",
-      "why": "The page claims over forty varieties but names only two, so the content doesn't back up the claim."
-    },
-    {
-      "idea": "Give each variety its own page and add it to the sitemap",
-      "verdict": "useful",
-      "why": "Individual addressable pages for each variety would give crawlers and users specific URLs to find and link to."
-    },
-    {
-      "idea": "Add Organization/WebSite structured data in the layout",
+      "idea": "Add LocalBusiness/Organization JSON-LD on the visit page",
       "verdict": "wrong",
-      "why": "The deliberate choices state that having no JSON-LD is not a required fix."
+      "why": "Having no JSON-LD is explicitly not a required fix, and this pushes it as one."
     },
     {
-      "idea": "Label the Visit details with LocalBusiness structured data",
+      "idea": "Add WebSite and Organization JSON-LD in the layout",
       "verdict": "wrong",
-      "why": "It relies on adding JSON-LD, which is explicitly not a required fix."
+      "why": "Pushes JSON-LD that the deliberate choices say is not a required fix."
     },
     {
-      "idea": "Add a site-wide default title and description in the layout",
-      "verdict": "generic",
-      "why": "All current pages set their own metadata, so this is only a safety net against future mistakes."
-    },
-    {
-      "idea": "Add lastmod dates to the sitemap",
-      "verdict": "generic",
-      "why": "This is accurate but standard advice with a small effect on a 3-URL site."
-    },
-    {
-      "idea": "Add internal links between home, Varieties and Visit in page content",
-      "verdict": "generic",
-      "why": "The nav already links all three pages, so in-body links add little."
-    },
-    {
-      "idea": "Keep the site URL in a single shared constant",
-      "verdict": "generic",
-      "why": "This is a maintainability tip that doesn't change how people or machines find the site."
-    },
-    {
-      "idea": "Make descriptions more specific by mentioning the Herefordshire orchard",
+      "idea": "List all forty-plus varieties to back up the claim",
       "verdict": "useful",
-      "why": "The Varieties and Visit descriptions don't say who the site is or where, which the home page does."
+      "why": "The varieties page names only two of the 'over forty' varieties, so there is little content to read or quote."
+    },
+    {
+      "idea": "Give each variety its own page and add them to the sitemap",
+      "verdict": "useful",
+      "why": "Individual pages would give each variety its own URL that people and machines can find and link to."
+    },
+    {
+      "idea": "Add in-body links from the home page to Varieties and Visit, and link Herefordshire to directions",
+      "verdict": "generic",
+      "why": "The nav already links all pages, so body links add only a small benefit."
+    },
+    {
+      "idea": "Add lastmod to the sitemap, or generate it with app/sitemap.ts",
+      "verdict": "generic",
+      "why": "This is accurate, but it matters little for a three-URL static sitemap."
+    },
+    {
+      "idea": "Expand the home page to say what is sold, where, and how to buy",
+      "verdict": "useful",
+      "why": "The home page has two short lines and does not say what the orchard sells or how to buy."
+    },
+    {
+      "idea": "Make titles and descriptions more specific by naming the orchard and place, e.g. 'Visit Orchard, Herefordshire'",
+      "verdict": "generic",
+      "why": "The titles are already adequate, and this is a minor tweak that would suit almost any site."
     }
   ]
 }

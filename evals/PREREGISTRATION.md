@@ -106,6 +106,12 @@ Written before this run, and before the prompt changes it tests. The third run m
 
 **Result on the held-out projects, plain against geopilot:** useful ideas 6.56 and 5.78, so target 1 was missed. Wrong ideas 3.78 and 0.67, and false alarms 1.56 and 0, so target 2 was met. Recall 100% and consistency 1.00 for both, so target 3 was met. Cost per run was $0.14, the same as the third run, so target 4 was missed. These projects have now been seen, so further tuning needs new ones.
 
+## Fifth run: reading and checking
+
+Written before this run. A real-repository scan on Copilot left code unread, missed a known bug, and reported a false Problem from an unused setting. geopilot now writes a reading checklist before it scores, and must test each Problem. This run only checks for harm: all nine projects have been seen, so it can't show improvement. Only geopilot's arm is rerun, and the fourth run's results stay in `results/fourth-run/`. Targets against the plain arm: recall and consistency not lower by more than 5 points and 0.05, and false alarms at most half. The real test is on the private repository and is informal.
+
+**Result:** the targets were met: recall and consistency were unchanged at 100% and 1.00, and false alarms stayed at 0. On the held-out projects, useful ideas were 5.44 and wrong ideas 0.33. On the private repository, moving the procedure to the end of the prompt doubled how much was read at first, but the model never wrote the required checklist, so that step became a plain check. Three runs of the final prompt gave low scores of 48, 52 and 80, and named a known bug in only one. Prompt changes alone didn't make large-repository scans consistent. The false Problem seen on Copilot didn't appear on Claude, and hasn't been retested on Copilot.
+
 ## Copilot runs
 
 Not pre-registered, and run after the prompt was frozen, on the three held-out projects. The first attempt was invalid: an installed geopilot plugin also ran in the plain arm, so it was discarded and repeated with the plugin removed. On Claude Sonnet 5.5, recall was 100% for both arms and false alarms were 2.0 and 0. On GPT-5.6 Luna, recall was 100% and 90%, consistency was 1.00 and 0.87, and false alarms were 2.33 and 0. By the criteria at the top of this file, Luna's recall and consistency are materially worse, so geopilot hasn't demonstrated value on that model. No prompt change was made for this.

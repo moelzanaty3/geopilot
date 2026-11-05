@@ -4,54 +4,49 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Give each blog post its own page and link to it from the list, with a short summary",
+      "idea": "Render Blog posts in a Server Component and give each post its own page/URL",
       "verdict": "useful",
-      "why": "Blog items are plain text titles with no URLs, so there is nothing specific for crawlers or readers to reach."
+      "why": "The blog fetches in useEffect and articles are bare titles, so the posts and any per-post links are missing from server HTML."
     },
     {
-      "idea": "Add a server layout for /blog with its own title and description",
+      "idea": "Add canonicals to Docs and Blog",
       "verdict": "useful",
-      "why": "Blog has no metadata and inherits the home title; as a client component it can't export metadata, so this is accurate and concrete."
+      "why": "The code shows no canonical on either page, and metadataBase is set, so a relative canonical resolves to an absolute URL."
     },
     {
-      "idea": "Expand Docs with actual setup steps as text, and link onward to Pricing",
+      "idea": "Add Organization and WebSite JSON-LD",
+      "verdict": "generic",
+      "why": "This is accurate because no JSON-LD exists, but it's standard advice with little proven effect for a small site."
+    },
+    {
+      "idea": "Flesh out Docs with the actual setup steps as text",
       "verdict": "useful",
-      "why": "Docs is one sentence while its description promises 'How to set up Ledger', so the content doesn't match."
+      "why": "The Docs page has a single sentence even though its description promises setup help."
     },
     {
-      "idea": "List plans and prices as text on Pricing and optionally add Product/Offer structured data",
+      "idea": "List plans and prices on Pricing and consider Product/Offer structured data",
       "verdict": "useful",
-      "why": "Pricing says only 'Free for up to three people' while its description promises plans for every team size."
+      "why": "Pricing has one sentence while its description says plans for every team size, so adding the plans and prices fills a real content gap."
     },
     {
-      "idea": "Add Organization and WebSite JSON-LD using the name and URL from layout",
+      "idea": "Expand the home page copy and link onward to Pricing and Docs from the body",
       "verdict": "generic",
-      "why": "Accurate since no JSON-LD exists, but it's a standard suggestion that applies to nearly any site and has little effect."
+      "why": "The home page is thin, but this advice would fit almost any site, and the nav already links those pages."
     },
     {
-      "idea": "Add openGraph metadata for social previews",
-      "verdict": "generic",
-      "why": "Accurate that none is set, but it applies to almost any site and does little for search or AI discovery."
-    },
-    {
-      "idea": "Add lastmod dates to the sitemap, or generate it with app/sitemap.ts",
-      "verdict": "generic",
-      "why": "Valid but low-impact for a four-URL site, and the report itself says to add dates only once real ones exist."
-    },
-    {
-      "idea": "Link home page features to Docs and link Pricing from the home page body",
+      "idea": "Make Docs and Pricing titles more descriptive with the brand name",
       "verdict": "useful",
-      "why": "The home page body has no links, so internal linking only comes from the nav; this is accurate and specific."
+      "why": "The titles are just 'Docs' and 'Pricing', which carry no brand context in results."
     },
     {
-      "idea": "If Pricing should be private, drop it from the sitemap and the canonical",
+      "idea": "Add <lastmod> to the sitemap or generate it with app/sitemap.ts",
       "verdict": "generic",
-      "why": "It's the conditional half of the known pricing noindex conflict, so it adds nothing new."
+      "why": "The sitemap has no lastmod, but adding it is optional and has little effect on a four-URL site."
     },
     {
-      "idea": "Add a canonical to Blog via a small server layout",
+      "idea": "Add a viewport tag (the item actually describes adding openGraph social tags)",
       "verdict": "generic",
-      "why": "It repeats the known missing-canonical problem, with the Blog angle already covered by the blog layout idea."
+      "why": "Open Graph tags are accurate for any site, but the item is mislabeled as a viewport tag, and Next adds a default viewport anyway."
     }
   ]
 }

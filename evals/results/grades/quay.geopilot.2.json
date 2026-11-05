@@ -3,12 +3,12 @@
   "arm": "geopilot",
   "run": 2,
   "found": [
-    "googlebot-blocked",
     "ssr-disabled",
-    "no-html-lang",
+    "googlebot-blocked",
+    "product-jsonld-incomplete",
     "empty-description-shop",
-    "product-jsonld-incomplete"
+    "no-html-lang"
   ],
   "flagged": [],
-  "extraIssues": 2
+  "extraIssues": 3
 }

@@ -1,0 +1,62 @@
+{
+  "fixture": "atlas",
+  "arm": "geopilot",
+  "run": 2,
+  "ideas": [
+    {
+      "idea": "Replace the div onClick on the home page with a real <Link to=\"/features\"> (with a nav link to Features)",
+      "verdict": "useful",
+      "why": "This is the same as the known /features link problem, but it is listed as a note; however it duplicates a known problem so it should be excluded. Treated here as a duplicate of the known issue."
+    },
+    {
+      "idea": "Back up the 'integrates with all the tools' claim by naming the actual tools on /features or a new page",
+      "verdict": "useful",
+      "why": "The home page makes a vague claim and /features has no integration details, so naming tools gives readers and machines something concrete."
+    },
+    {
+      "idea": "List plans and prices on /pricing, or say what a quote covers",
+      "verdict": "useful",
+      "why": "The pricing page has only 'Talk to us for a quote', so it gives users and AI answers no pricing content."
+    },
+    {
+      "idea": "Add Product/Offer structured data for pricing",
+      "verdict": "wrong",
+      "why": "It depends on JSON-LD, which is explicitly not a required fix, and there are no prices to mark up."
+    },
+    {
+      "idea": "Add Features and Home links to the nav in root.tsx",
+      "verdict": "useful",
+      "why": "The nav in root.tsx has only Pricing and Changelog, so a real crawlable link to /features in every page would fix discovery."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD site identity data in root.tsx",
+      "verdict": "wrong",
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it as a gap goes against that."
+    },
+    {
+      "idea": "Add <lastmod> dates to sitemap.xml using changelog release dates",
+      "verdict": "generic",
+      "why": "It is accurate but has little effect, and the changelog code has no dates in the repo."
+    },
+    {
+      "idea": "Add charset, viewport and og social tags to the head in root.tsx",
+      "verdict": "generic",
+      "why": "This is standard advice for almost any site, though the root head does lack them."
+    },
+    {
+      "idea": "Give each changelog release its own page/URL",
+      "verdict": "generic",
+      "why": "It could help, but it is a broad suggestion with no concrete tie to the repo beyond the single list page."
+    },
+    {
+      "idea": "Make the root description more specific",
+      "verdict": "generic",
+      "why": "The root description is overridden by the home page and most routes, so the effect is small."
+    },
+    {
+      "idea": "Run the tool's fix command to apply item 1 (Bingbot block removal)",
+      "verdict": "generic",
+      "why": "It is a tool workflow step, and the Bingbot fix itself is a known problem."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "fixture": "mugs",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add a viewport meta tag, description and social tags (og:title, og:image) in index.html",
+      "verdict": "generic",
+      "why": "Accurate (no viewport or og tags exist), but standard head hygiene with modest effect on being found."
+    },
+    {
+      "idea": "Give each mug its own page/route (/catalogue/:id) with links",
+      "verdict": "useful",
+      "why": "The catalogue renders only names as plain paragraphs with no per-item URLs, so individual mugs can't be linked or indexed."
+    },
+    {
+      "idea": "Show price, material and size per mug, with Product structured data",
+      "verdict": "useful",
+      "why": "Catalogue.jsx outputs only m.name, so adding product details and Product JSON-LD gives machines real information."
+    },
+    {
+      "idea": "Add a shipping/contact/about page and link it from navigation",
+      "verdict": "useful",
+      "why": "Home claims Bristol and worldwide shipping but no page supports it and the nav has only two items."
+    },
+    {
+      "idea": "Add Organization/WebSite structured data with the shop name",
+      "verdict": "generic",
+      "why": "No JSON-LD exists so it's accurate, but it applies to nearly any site and has small effect."
+    },
+    {
+      "idea": "Declare the site's domain once and use it for canonical tags and sitemap",
+      "verdict": "useful",
+      "why": "No domain or canonical exists in the repo, and canonicals and sitemap URLs need an absolute origin."
+    },
+    {
+      "idea": "Add a footer or fuller navigation with onward links from the home page to mug pages",
+      "verdict": "useful",
+      "why": "Home.jsx has no links to the catalogue or products; only the nav links, so internal linking is thin."
+    },
+    {
+      "idea": "Add <lastmod> to the sitemap once it exists",
+      "verdict": "generic",
+      "why": "Accurate but minor, and depends on a sitemap that doesn't exist yet."
+    },
+    {
+      "idea": "Add width and height to the hero image",
+      "verdict": "generic",
+      "why": "The img lacks dimensions, but this mainly affects layout shift and has little discoverability effect."
+    },
+    {
+      "idea": "Use per-page titles/meta via a head helper such as react-helmet or React 19 <title> tags",
+      "verdict": "useful",
+      "why": "Both routes share one static title and React 19 is in use, so per-route titles are a concrete fix."
+    },
+    {
+      "idea": "Prerender or server-render the catalogue data fetched from /api/mugs",
+      "verdict": "useful",
+      "why": "The catalogue list is fetched client-side in useEffect, so even prerendered shells would lack the mug names unless data is included at build or server time."
+    }
+  ]
+}

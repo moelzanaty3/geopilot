@@ -4,64 +4,54 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Replace the onClick div with a real link to /features",
+      "idea": "Back up the vague 'integrates with all the tools' claim by naming integrations, ideally on /features",
       "verdict": "useful",
-      "why": "This restates a known problem (the /features onClick link), but it is accurate and specific. It is excluded as already graded."
+      "why": "The home page makes an unsupported claim and features.tsx names no integrations, so specifics give readers and machines something concrete to quote."
     },
     {
-      "idea": "Name the actual integrations in the home page text instead of 'all the tools you already use'",
+      "idea": "Add plan names, prices and contents to /pricing, plus a contact route",
       "verdict": "useful",
-      "why": "The home page says 'Integrates with all the tools you already use.' and names none, so naming them gives people and machines concrete facts."
+      "why": "pricing.tsx has only a vague 'talk to us' line, so concrete plan details would answer what visitors come to learn."
     },
     {
-      "idea": "Add plan names, contents and prices to /pricing instead of 'Talk to us for a quote'",
+      "idea": "Expand the thin /features page with a section per feature",
       "verdict": "useful",
-      "why": "The pricing page has almost no substance, and concrete plan details would help people and machines understand the offering."
+      "why": "features.tsx has a single line of text, so more detail would help people and machines understand the product."
     },
     {
-      "idea": "Add Organization/WebSite JSON-LD in root.tsx",
+      "idea": "Add Organization/WebSite JSON-LD using the name and URL from geo.config.json",
       "verdict": "wrong",
-      "why": "The brief says having no JSON-LD is not a required fix, so recommending it goes against that."
+      "why": "The brief says having no JSON-LD is not a required fix, so this pushes something that was ruled out."
     },
     {
-      "idea": "Add lastmod dates to sitemap.xml",
+      "idea": "Add <lastmod> dates to sitemap.xml, especially for the changelog",
       "verdict": "generic",
-      "why": "This is accurate, since the sitemap has no lastmod, but it applies to almost any site and has little effect."
+      "why": "It's accurate because the sitemap has no lastmod, but it has little effect on discovery and applies to almost any sitemap."
     },
     {
-      "idea": "Give each changelog release its own page or URL",
+      "idea": "Give each changelog release its own URL",
       "verdict": "useful",
-      "why": "The changelog is a single list, so per-release URLs would let people link to and cite a release."
+      "why": "changelog.tsx renders one list, so separate addresses would let individual releases be linked and cited."
     },
     {
-      "idea": "Add charset and viewport meta tags in root.tsx",
+      "idea": "Add charset and viewport to root meta, plus og:title and og:description social tags",
       "verdict": "generic",
-      "why": "This is accurate, since root.tsx sets neither, but it applies to nearly any site and does little for discoverability."
+      "why": "This is accurate because root.tsx lacks them, but it is boilerplate advice for any site and does little for finding or understanding the content."
     },
     {
-      "idea": "Add Features to the nav in root.tsx",
-      "verdict": "useful",
-      "why": "The nav lists only Pricing and Changelog, so a real link to Features in the nav fixes a specific discovery gap."
-    },
-    {
-      "idea": "Expand the Features page with a section on each of timelines, sharing and status updates",
-      "verdict": "useful",
-      "why": "The page has only a one-sentence description, so more detail would help readers and machines understand the product."
-    },
-    {
-      "idea": "Improve the root fallback title and description to say what Atlas is",
+      "idea": "Drop the root default description once every route has its own",
       "verdict": "generic",
-      "why": "The title 'Atlas' is vague, but the fallback is overridden on most routes and only matters for /pricing, which is a known problem."
+      "why": "The root description is only a fallback and its overlap with the h1 is trivial, so removing it has almost no effect."
     },
     {
-      "idea": "Load changelog entries in a Remix loader",
+      "idea": "Add /features to the nav in root.tsx",
       "verdict": "useful",
-      "why": "This restates the known useEffect problem, but it is accurate and specific. It is excluded as already graded."
+      "why": "The nav in root.tsx links only Pricing and Changelog, so a real nav link would make /features reachable from every page."
     },
     {
-      "idea": "Disallow plus noindex on /dashboard: crawlers can't see the noindex",
-      "verdict": "generic",
-      "why": "The report itself calls this deliberate and harmless, and it only mentions it for awareness, so it is not a real action."
+      "idea": "Use a Remix loader for changelog entries",
+      "verdict": "useful",
+      "why": "This is the specific fix for the useEffect fetch, though it overlaps the known problem."
     }
   ]
 }

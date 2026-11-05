@@ -4,49 +4,49 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Render catalogue contents (mug names from /api/mugs) on the server or at build time",
+      "idea": "Give each mug its own page/route (/catalogue/:id) with details",
       "verdict": "useful",
-      "why": "Catalogue.jsx fetches in useEffect, so mug names are absent from initial HTML."
+      "why": "Catalogue renders mugs as bare paragraphs with no addresses, so per-item pages give linkable, quotable URLs."
     },
     {
-      "idea": "Give each mug its own page (/catalogue/:id) with description, price and photo",
+      "idea": "Add Product structured data for mugs once they have pages",
       "verdict": "useful",
-      "why": "Catalogue only renders bare names in <p> tags, so there's nothing detailed for people or machines to read."
+      "why": "Mug name is visible in Catalogue.jsx and there is no JSON-LD, so Product markup could help machines read it."
     },
     {
-      "idea": "Back up the 'shipped worldwide' claim with where, how long and cost",
-      "verdict": "useful",
-      "why": "Home.jsx makes the claim with no supporting detail, and concrete shipping facts help users and machines."
-    },
-    {
-      "idea": "Add Organization/LocalBusiness JSON-LD for the Bristol business",
-      "verdict": "useful",
-      "why": "There is no structured data, and Home.jsx states location and craft that could be machine-readable."
-    },
-    {
-      "idea": "Add viewport meta and Open Graph tags (og:title, og:image)",
-      "verdict": "useful",
-      "why": "index.html has only charset and title, so there's no viewport or social metadata."
-    },
-    {
-      "idea": "Include <lastmod> dates in the sitemap once created",
+      "idea": "Add Organization/WebSite structured data to index.html",
       "verdict": "generic",
-      "why": "It's accurate but has small effect and applies to any sitemap."
+      "why": "Accurate that no site identity markup exists, but it is standard advice with limited effect and the site shows no contact details."
     },
     {
-      "idea": "Link from the home page body into the catalogue",
+      "idea": "Add more buyer details on home page (shipping, materials, care, contact)",
       "verdict": "useful",
-      "why": "Home.jsx has no link to the catalogue, though the nav has a link-less button."
+      "why": "Home.jsx has a single sentence, so concrete shipping and product facts would add real quotable content."
     },
     {
-      "idea": "Make the catalogue h1 more descriptive (e.g. 'Handmade ceramic mugs, catalogue')",
+      "idea": "Add viewport meta and Open Graph tags in index.html",
       "verdict": "generic",
-      "why": "The h1 'Catalogue' is vague, but the change has little effect."
+      "why": "index.html has only charset so it is accurate, but this is boilerplate advice for any site."
     },
     {
-      "idea": "Use a head helper like react-helmet for per-page titles",
+      "idea": "Link from home page to the catalogue (Shop the catalogue link)",
       "verdict": "useful",
-      "why": "Both routes share one static title in index.html, so per-route titles need a head manager."
+      "why": "Home.jsx has no links onward, and a real link gives crawlers a path to /catalogue."
+    },
+    {
+      "idea": "Add a catch-all route so unknown URLs show a not-found page",
+      "verdict": "generic",
+      "why": "True that there is no catch-all route, but a client-side not-found page doesn't return a real 404 status, so the effect is small."
+    },
+    {
+      "idea": "Render the catalogue data server-side/prerender since it is fetched client-side in useEffect",
+      "verdict": "useful",
+      "why": "Catalogue.jsx fetches /api/mugs after load, so the mug list is absent from any static HTML."
+    },
+    {
+      "idea": "Add a canonical URL once the domain is known",
+      "verdict": "generic",
+      "why": "No canonical exists, but it depends on information not in the repo and is standard advice."
     }
   ]
 }

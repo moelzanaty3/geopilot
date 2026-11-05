@@ -4,54 +4,59 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Make /shop list real products with their own pages and links",
-      "verdict": "useful",
-      "why": "The shop page only has one sentence naming three categories, so individual product pages would give crawlers and readers real content."
-    },
-    {
-      "idea": "Move Product data to individual product pages with offers, and drop it from the list page",
-      "verdict": "useful",
-      "why": "The Product markup sits on a category-style page and has only a name, so this fits the repo."
-    },
-    {
-      "idea": "Add ordinary visible delivery terms or a delivery page linked from the nav",
-      "verdict": "useful",
-      "why": "Delivery information exists only in a data-nosnippet div, so no readable page answers delivery questions, and the report leaves the nosnippet choice alone."
-    },
-    {
-      "idea": "Support the 'shipped next day' claim with cutoff, countries and carrier details",
-      "verdict": "useful",
-      "why": "The home h1 makes the claim and nothing in the files backs it up."
-    },
-    {
-      "idea": "Add Organization/WebSite structured data with business name and contact details",
-      "verdict": "useful",
-      "why": "No entity markup exists, though the report admits the site shows no name or contact details to base it on."
-    },
-    {
-      "idea": "Add a viewport meta tag and a <main> element in app.html",
-      "verdict": "useful",
-      "why": "app.html has no viewport meta and wraps the body in a plain div, so both are accurate and concrete."
-    },
-    {
-      "idea": "Link the home page onward to /shop and categories in the body",
-      "verdict": "useful",
-      "why": "The home page has only an h1, and the nav is the only link path to the shop."
-    },
-    {
-      "idea": "Make the /shop title more descriptive and branded",
-      "verdict": "useful",
-      "why": "'Shop all parts' lacks the brand and category terms that the home title has."
-    },
-    {
-      "idea": "Add lastmod dates to the sitemap or generate it from routes",
+      "idea": "Add viewport meta tag in app.html",
       "verdict": "generic",
-      "why": "This is accurate, but a two-URL sitemap gains little from lastmod."
+      "why": "Accurate since app.html lacks it, but it's standard boilerplate with little effect on discoverability."
     },
     {
-      "idea": "Define the base URL in one place instead of hardcoding it",
+      "idea": "Replace placeholder domain quay.example with real domain before launch",
       "verdict": "generic",
-      "why": "It is accurate, but it is a maintainability tip that would apply to nearly any site."
+      "why": "Accurate, but it's an obvious placeholder issue that applies to any template site."
+    },
+    {
+      "idea": "Fix Product JSON-LD to describe real products with prices or remove it (single Bilge pump on a multi-item page)",
+      "verdict": "generic",
+      "why": "Largely duplicates the known missing offers/review issue on the same markup."
+    },
+    {
+      "idea": "Give product categories their own pages such as /shop/bilge-pumps with price and stock text",
+      "verdict": "useful",
+      "why": "The shop is a single page listing bilge pumps, cleats and rope, so separate crawlable pages would add findable content."
+    },
+    {
+      "idea": "Explain what 'next day' delivery covers (cut-off time, regions) on the home page",
+      "verdict": "useful",
+      "why": "The home page makes the claim with no detail, so spelling it out gives readers and machines the specifics."
+    },
+    {
+      "idea": "Move the delivery info out of data-nosnippet into normal body content if it should be quoted",
+      "verdict": "wrong",
+      "why": "The data-nosnippet on the delivery notice is a deliberate scoped choice, and this advice pushes against it."
+    },
+    {
+      "idea": "Add Organization structured data with name, address and contact",
+      "verdict": "useful",
+      "why": "The site has no identity markup, and Organization JSON-LD is a concrete way to state who runs it."
+    },
+    {
+      "idea": "Add brand to page titles (e.g. 'Shop all parts | Quay'), including /search",
+      "verdict": "generic",
+      "why": "Accurate, but it applies to almost any site and has little effect; the /search title is irrelevant since the page is noindex."
+    },
+    {
+      "idea": "Add <lastmod> to sitemap entries",
+      "verdict": "generic",
+      "why": "Accurate but low-impact for a two-URL sitemap."
+    },
+    {
+      "idea": "Add a <main> landmark in the layout",
+      "verdict": "useful",
+      "why": "The layout has only nav and div wrappers with no main landmark, so adding one helps parsers and assistive tech find the primary content."
+    },
+    {
+      "idea": "Add a page description on /search",
+      "verdict": "wrong",
+      "why": "/search is a deliberate noindex page, so a description does nothing."
     }
   ]
 }

@@ -4,59 +4,74 @@
   "run": 0,
   "ideas": [
     {
-      "idea": "Give each product its own page with price and description, with full Product data",
+      "idea": "Give each product its own page and add to sitemap",
       "verdict": "useful",
-      "why": "/shop only has a one-line paragraph and a bare Product schema, so per-product pages would give real content to read."
+      "why": "The shop page is a single listing of several parts, so separate URLs would give each item something to be found and quoted by."
     },
     {
-      "idea": "Add a shipping section (cutoff time, regions) in page text, since the delivery info is only in a data-nosnippet block",
-      "verdict": "useful",
-      "why": "The next-day claim in the h1 is backed only by a data-nosnippet notice, so visible detail would support it."
-    },
-    {
-      "idea": "Add a description to the /search page",
+      "idea": "Add offers with price and availability to Product JSON-LD",
       "verdict": "wrong",
-      "why": "The page is deliberately noindex, so the report's own note that it only matters if noindex is removed makes this low-value advice on a deliberate choice."
+      "why": "This is the known missing-offers problem on the Product JSON-LD."
     },
     {
-      "idea": "Add Organization/WebSite structured data in the layout",
+      "idea": "Mark up a real product page or use ItemList instead of a single Product on the listing page",
       "verdict": "useful",
-      "why": "The site has no entity markup, and the store name and URL could be added once in the shared layout."
+      "why": "The /shop page lists several parts but describes only one 'Bilge pump' as a Product, so the markup doesn't match the page."
     },
     {
-      "idea": "Add a viewport meta tag in app.html",
+      "idea": "Back up the delivery claim on a visible delivery page, since the free-delivery text is in data-nosnippet",
       "verdict": "useful",
-      "why": "app.html has a charset but no viewport, so mobile rendering is affected; this is accurate and a concrete fix."
+      "why": "The next-day shipping claim has no supporting details, and the only delivery text sits in the layout inside data-nosnippet, so a visible page with the terms would help."
     },
     {
-      "idea": "Add og:title/og:description social tags",
+      "idea": "Add a viewport meta tag to app.html",
       "verdict": "generic",
-      "why": "No page has social tags, but this is standard advice for almost any site and has small effect on being found."
+      "why": "It is accurate because app.html has no viewport tag, but it applies to almost any site and has little effect on being found."
     },
     {
-      "idea": "Wrap page content in a <main> element in the layout",
+      "idea": "Add Organization and WebSite JSON-LD in the layout",
       "verdict": "useful",
-      "why": "The layout has no main landmark, and adding one helps tools and readers locate the primary content."
+      "why": "No machine-readable statement of who Quay is exists, and the layout is a single place to add it."
     },
     {
-      "idea": "Add <lastmod> dates to the sitemap",
+      "idea": "Improve page titles, e.g. 'Boat parts shop | Quay'",
       "verdict": "generic",
-      "why": "This is accurate but minor, applies to almost any sitemap, and the report itself hedges it on having real update dates."
+      "why": "The current titles 'Shop all parts' and 'Quay: boat parts' are already descriptive, so rewording them has little effect."
     },
     {
-      "idea": "Generate the sitemap from routes once product pages exist",
+      "idea": "Wrap page content in <main> landmarks",
       "verdict": "generic",
-      "why": "With two URLs the static file is fine, and this is advice for a future state that applies to most sites."
+      "why": "It is accurate because the layout has no <main>, but it is a standard accessibility tweak with little effect on discovery."
     },
     {
-      "idea": "Fill the /shop meta description with text like 'Bilge pumps, cleats and rope for boats'",
+      "idea": "Add lastmod to the sitemap",
       "verdict": "generic",
-      "why": "This is the same as the known empty-description problem, so it adds only example wording."
+      "why": "It applies to nearly any sitemap and has a small effect on a two-URL site."
     },
     {
-      "idea": "Sitemap lists /shop but robots.txt blocks Googlebot, so remove the Googlebot block",
+      "idea": "Link home and shop pages to each other beyond the nav",
       "verdict": "generic",
-      "why": "This is a consequence of the known Googlebot block, so it adds nothing new."
+      "why": "The nav already links both pages on every route, so extra links add little."
+    },
+    {
+      "idea": "Generate the sitemap from routes once there are more pages",
+      "verdict": "generic",
+      "why": "This is general advice with no effect on a two-page site today."
+    },
+    {
+      "idea": "Fix the contradictory bot rules in robots.txt",
+      "verdict": "wrong",
+      "why": "This is the known Googlebot block, already covered in the known problems."
+    },
+    {
+      "idea": "Make pages render on the server (remove ssr=false or prerender)",
+      "verdict": "wrong",
+      "why": "This is the known ssr=false problem."
+    },
+    {
+      "idea": "Set html lang and fill the shop meta description",
+      "verdict": "wrong",
+      "why": "Both are known problems already graded."
     }
   ]
 }

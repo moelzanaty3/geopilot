@@ -1,0 +1,52 @@
+{
+  "fixture": "larder",
+  "arm": "geopilot",
+  "run": 0,
+  "ideas": [
+    {
+      "idea": "Add Bakery/LocalBusiness JSON-LD to the home page",
+      "verdict": "generic",
+      "why": "Accurate that none exists, but the site's no-JSON-LD choice is not a required fix and the benefit is modest."
+    },
+    {
+      "idea": "State address, opening hours and how to pre-order as text on the home page",
+      "verdict": "useful",
+      "why": "The home page mentions pre-ordering but gives no address, hours or method, so people and machines can't find this."
+    },
+    {
+      "idea": "List all loaves on the breads page with days and prices, optionally individual pages",
+      "verdict": "useful",
+      "why": "The page claims over twenty loaves but names only two, so listing them gives readers and crawlers real content."
+    },
+    {
+      "idea": "Add concrete class details (dates, price, size, booking route), optionally Event markup",
+      "verdict": "useful",
+      "why": "The classes page says to book early but gives no dates, price or booking route."
+    },
+    {
+      "idea": "Add in-content links between Breads, Classes and ordering",
+      "verdict": "generic",
+      "why": "Nav links already reach every page, so extra in-content links add little."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "Accurate since lastmod is missing, but the effect on a three-URL site is minimal."
+    },
+    {
+      "idea": "Add Open Graph tags (og:title, og:description, og:image)",
+      "verdict": "generic",
+      "why": "They're missing, but this applies to almost any site and mainly affects link previews."
+    },
+    {
+      "idea": "Add 'York' to the breads and classes page titles",
+      "verdict": "useful",
+      "why": "Those titles omit the location the home page includes, and local relevance matters for a York bakery."
+    },
+    {
+      "idea": "Remove the redundant noindex plus robots disallow on /members/",
+      "verdict": "wrong",
+      "why": "The report itself calls it harmless and deliberate, and the brief says /members being noindex and disallowed is correct."
+    }
+  ]
+}

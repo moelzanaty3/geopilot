@@ -4,54 +4,54 @@
   "run": 1,
   "ideas": [
     {
-      "idea": "Use <Link to='/features'> instead of onClick div for the main CTA",
-      "verdict": "useful",
-      "why": "This is the known /features div/onClick issue, but this is the same fix restated; it is accurate and concrete."
-    },
-    {
-      "idea": "Add a Features link to the root nav",
-      "verdict": "useful",
-      "why": "The nav in root.tsx only lists Pricing and Changelog, so a real server-rendered link to /features on every page would help crawlers find it."
-    },
-    {
-      "idea": "List plan names, prices and inclusions on the pricing page",
-      "verdict": "useful",
-      "why": "pricing.tsx has only a vague 'talk to us' line, so there is no concrete content for readers or machines to understand."
-    },
-    {
-      "idea": "Name the integrations in text on the home page, possibly with their own pages",
-      "verdict": "useful",
-      "why": "The home page claims 'all the tools you already use' without naming any, so naming them gives readers and machines specific content."
-    },
-    {
-      "idea": "Expand the thin Features page with a section per feature",
-      "verdict": "useful",
-      "why": "features.tsx has a single sentence, so more detail would help readers and machines understand the product."
-    },
-    {
-      "idea": "Add <lastmod> dates to the sitemap, especially for /changelog",
+      "idea": "Replace the home page div onClick with a real <Link to=\"/features\">",
       "verdict": "generic",
-      "why": "It's accurate, but lastmod has little effect and applies to almost any sitemap."
+      "why": "This is the same as the known problem about /features being reached only by a div, so it adds nothing new, though it is accurate."
     },
     {
-      "idea": "Add Organization/WebSite JSON-LD for site identity",
+      "idea": "Add real plan names, contents and prices to the pricing page",
+      "verdict": "useful",
+      "why": "pricing.tsx says only 'Plans that grow with your team. Talk to us for a quote.' and names no plan, so there is little for people or machines to read."
+    },
+    {
+      "idea": "Give pricing its own title and description",
+      "verdict": "generic",
+      "why": "This repeats the known problem that /pricing has no meta export."
+    },
+    {
+      "idea": "Name the integrations on the home page, perhaps with a page per integration",
+      "verdict": "useful",
+      "why": "The home page says 'Integrates with all the tools you already use' and names none, so listing them gives visitors and machines concrete content."
+    },
+    {
+      "idea": "Expand the features page with a short explanation and heading per feature",
+      "verdict": "useful",
+      "why": "features.tsx has one line of text and a single h1, so the page has very little content to explain."
+    },
+    {
+      "idea": "Add <lastmod> dates to sitemap.xml",
+      "verdict": "generic",
+      "why": "This is accurate because the sitemap has no dates, but it would apply to almost any site and has a small effect."
+    },
+    {
+      "idea": "Add internal links between pages and a footer linking all main pages",
+      "verdict": "useful",
+      "why": "The home page, features and pricing have no content links to each other and the only links are in the root nav, so a footer and cross-links would help discovery. The claim that the home page links nowhere is slightly overstated because the nav is on every page."
+    },
+    {
+      "idea": "Add Organization or WebSite JSON-LD in root.tsx",
       "verdict": "wrong",
-      "why": "It goes against the stated choice that having no JSON-LD is not a required fix."
+      "why": "The brief says having no JSON-LD is not a required fix, so recommending it as a gap goes against that."
     },
     {
-      "idea": "Generate the sitemap dynamically with a Remix resource route",
+      "idea": "Add charset, viewport and Open Graph tags to meta",
       "verdict": "generic",
-      "why": "With only four routes, a hand-kept sitemap is fine and the advice fits any site."
+      "why": "This is accurate because root.tsx has none of them, but it is standard advice for any site. Viewport and charset matter somewhat, and Open Graph tags matter little for being found."
     },
     {
-      "idea": "Add charset, viewport and og/social tags to the root head",
+      "idea": "Generate sitemap.xml from routes instead of keeping it by hand",
       "verdict": "generic",
-      "why": "This is accurate for root.tsx, but it is standard advice for almost any site and has little effect on discovery."
-    },
-    {
-      "idea": "Give each changelog release its own URL",
-      "verdict": "generic",
-      "why": "It is plausible, but it's speculative, would need a larger redesign, and the entries aren't even in server HTML yet."
+      "why": "This is accurate because the sitemap is a static file, but with four routes the maintenance benefit is small and the advice fits any site."
     }
   ]
 }

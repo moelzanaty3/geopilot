@@ -1,0 +1,14 @@
+{
+  "fixture": "ledger",
+  "arm": "geopilot",
+  "run": 0,
+  "found": [
+    "pricing-noindex",
+    "robots-no-sitemap-line",
+    "no-html-lang",
+    "docs-missing-canonical",
+    "blog-client-rendered"
+  ],
+  "flagged": [],
+  "extraIssues": 0
+}

@@ -1,0 +1,97 @@
+{
+  "fixture": "clinic",
+  "arm": "plain",
+  "run": 1,
+  "ideas": [
+    {
+      "idea": "Expose the production origin from geo.config.json as Eleventy global data and use it for the canonical",
+      "verdict": "useful",
+      "why": "Gives a concrete way to fix the canonical host using the existing config."
+    },
+    {
+      "idea": "Remove data-nosnippet from the insurance line",
+      "verdict": "wrong",
+      "why": "Reverses a deliberate, scoped choice that was declared fine."
+    },
+    {
+      "idea": "Extend the Dentist JSON-LD with url, address, openingHours, image, priceRange and sameAs",
+      "verdict": "useful",
+      "why": "The schema is minimal and the address 12 Park Row, Leeds is in the page, so richer local business data helps machines."
+    },
+    {
+      "idea": "Add Organization/WebSite schema in base.njk and Person schema on the team page",
+      "verdict": "generic",
+      "why": "Standard schema advice for any site, with little effect on a five-page site."
+    },
+    {
+      "idea": "Guard the meta description tag with {% if description %} in the template",
+      "verdict": "useful",
+      "why": "base.njk renders content=\"\" when description is missing, so a guard prevents empty tags."
+    },
+    {
+      "idea": "Replace vague claims with named dentists, GDC numbers, qualifications and photos on the team page",
+      "verdict": "useful",
+      "why": "team.njk only says 'decades of experience', so verifiable names and credentials add real substance."
+    },
+    {
+      "idea": "Give services real detail, prices and per-service sections or pages",
+      "verdict": "useful",
+      "why": "services.njk is a bare four-item list and says prices are clear without showing any."
+    },
+    {
+      "idea": "Add reviews, rating or credentials to back up 'Trusted by thousands' on the home page",
+      "verdict": "useful",
+      "why": "index.njk makes an unsupported claim that proof would substantiate."
+    },
+    {
+      "idea": "Add FAQ content with FAQPage markup",
+      "verdict": "wrong",
+      "why": "Relies on the mandatory-FAQ folklore, and FAQ rich results are largely restricted."
+    },
+    {
+      "idea": "Add Open Graph and Twitter card tags",
+      "verdict": "generic",
+      "why": "Accurate since base.njk has none, but it is standard advice for any site."
+    },
+    {
+      "idea": "Add the missing /img/reception.jpg and passthrough copy for src/img",
+      "verdict": "useful",
+      "why": "The image is referenced on the home page, but no file or passthrough exists, so it will 404."
+    },
+    {
+      "idea": "Add width, height and loading attributes to the image",
+      "verdict": "generic",
+      "why": "Standard image advice with minimal effect on a single image."
+    },
+    {
+      "idea": "Generate the sitemap from collections with lastmod and exclude noindex pages",
+      "verdict": "useful",
+      "why": "The sitemap is hand-written, passed through statically and already out of sync with noindex."
+    },
+    {
+      "idea": "Add explicit AI search bot groups to robots.txt",
+      "verdict": "generic",
+      "why": "The report concedes User-agent: * with Allow: / already permits them, so the effect is small."
+    },
+    {
+      "idea": "Add llms.txt",
+      "verdict": "wrong",
+      "why": "llms.txt is a stated non-issue and is folklore as a way to be found."
+    },
+    {
+      "idea": "Rewrite titles to include location and intent",
+      "verdict": "useful",
+      "why": "Titles like 'Contact' and 'Thanks' are weak, and local intent is missing from several pages."
+    },
+    {
+      "idea": "Add header and footer landmarks with name, address and phone (NAP) on every page",
+      "verdict": "useful",
+      "why": "base.njk has only nav and main, and NAP appears only on the contact page."
+    },
+    {
+      "idea": "Add h2s as pages grow",
+      "verdict": "generic",
+      "why": "Vague advice that would apply to any site."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "fixture": "orchard",
+  "arm": "plain",
+  "run": 2,
+  "found": [],
+  "flagged": [
+    "account-noindex-disallow",
+    "no-json-ld",
+    "no-faq-or-word-count"
+  ],
+  "extraIssues": 6
+}

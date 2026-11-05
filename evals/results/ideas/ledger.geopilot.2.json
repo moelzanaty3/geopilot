@@ -4,59 +4,49 @@
   "run": 2,
   "ideas": [
     {
-      "idea": "Make /pricing indexable / keep canonical consistent (or remove from sitemap if deliberate)",
+      "idea": "Render blog list on the server and give each post its own page/URL",
+      "verdict": "useful",
+      "why": "The blog is client-fetched in useEffect with no per-post pages, so posts exist neither as server text nor as links."
+    },
+    {
+      "idea": "Add actual plans and prices as text on /pricing",
+      "verdict": "useful",
+      "why": "The page only says 'Free for up to three people' despite describing plans for every team size, so concrete plan text helps readers and machines."
+    },
+    {
+      "idea": "Expand the thin /docs page with real setup steps",
+      "verdict": "useful",
+      "why": "The docs page has a single sentence, so real steps would give people and machines something to read and quote."
+    },
+    {
+      "idea": "Add Organization/WebSite JSON-LD in app/layout.tsx",
+      "verdict": "useful",
+      "why": "No structured data exists and the site's identity (Ledger, origin) could be declared in a machine-readable way."
+    },
+    {
+      "idea": "Give /blog its own distinct title and description",
+      "verdict": "useful",
+      "why": "/blog has no metadata so it inherits the home page's title and description, which is accurate per the layout."
+    },
+    {
+      "idea": "Add lastmod dates to sitemap.xml",
       "verdict": "generic",
-      "why": "This is the known pricing noindex problem restated, though the canonical note adds little."
+      "why": "Accurate since no lastmod exists, but it has little effect for a four-page site."
     },
     {
-      "idea": "Blog fetches /api/posts but no app/api route exists in the repo",
-      "verdict": "useful",
-      "why": "Accurate per the files: no API route is present, so the blog may render empty, and the fix is concrete."
-    },
-    {
-      "idea": "Give each blog post its own /blog/<slug> page listed in the sitemap",
-      "verdict": "useful",
-      "why": "The blog has only a list of titles, so individual post pages would make posts findable and quotable."
-    },
-    {
-      "idea": "Expand pricing page copy with plans, prices and limits to match its description",
-      "verdict": "useful",
-      "why": "The page has one sentence while the description promises plans for every team size."
-    },
-    {
-      "idea": "Expand docs content with setup steps, supported banks and import details",
-      "verdict": "useful",
-      "why": "The docs page is a single sentence despite its 'How to set up Ledger' description."
-    },
-    {
-      "idea": "Link from the home page to /docs or feature pages",
+      "idea": "Generate the sitemap with app/sitemap.ts",
       "verdict": "generic",
-      "why": "Accurate, but the nav already links to all pages, so the effect is small."
+      "why": "The sitemap is hand-kept, but with four routes this is a minor maintainability point that applies to most Next.js sites."
     },
     {
-      "idea": "Use a title template so Docs and Pricing titles name the site",
+      "idea": "Add a canonical to /blog via a server layout/page",
       "verdict": "useful",
-      "why": "Titles are bare 'Docs' and 'Pricing', and a template in layout.tsx fixes that concretely."
+      "why": "/blog has no canonical, and the report correctly notes the client component can't export metadata."
     },
     {
-      "idea": "Add Organization/WebSite JSON-LD",
+      "idea": "Remove the canonical/noindex contradiction on /pricing (canonical points at a noindex page)",
       "verdict": "generic",
-      "why": "Valid but standard advice for any site, with modest benefit."
-    },
-    {
-      "idea": "Add lastmod to sitemap entries",
-      "verdict": "generic",
-      "why": "Accurate but applies to almost any site and has little effect."
-    },
-    {
-      "idea": "Generate the sitemap with app/sitemap.ts instead of a hand-written file",
-      "verdict": "generic",
-      "why": "Reasonable, but with four static pages it is a minor maintenance convenience."
-    },
-    {
-      "idea": "Add a canonical to /blog (and fix /pricing canonical)",
-      "verdict": "useful",
-      "why": "/blog has no canonical in the files, and the known problem only names /docs."
+      "why": "This restates the known /pricing noindex-in-sitemap problem."
     }
   ]
 }
