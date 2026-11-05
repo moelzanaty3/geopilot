@@ -4,7 +4,7 @@
 
 Agents: `explainer`, `fixer`, `investigator`, `reviewer`, `scanner`. Commands (skills): `/geopilot:explain`, `/geopilot:fix`, `/geopilot:init`, `/geopilot:insights`, `/geopilot:review`, `/geopilot:scan`.
 
-Engine: geopilot 0.0.3.
+Engine: geopilot 0.0.4.
 
 ## Install
 

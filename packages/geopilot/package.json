@@ -1,6 +1,6 @@
 {
   "name": "geopilot",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Local-first technical readiness auditor for websites: find the observable issue, show the evidence, trace its source, propose the smallest safe change, and report honestly what was verified.",
   "type": "module",
   "license": "Apache-2.0",

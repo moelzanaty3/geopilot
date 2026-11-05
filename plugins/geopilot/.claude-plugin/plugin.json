@@ -1,7 +1,7 @@
 {
   "name": "geopilot",
   "displayName": "GeoPilot",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "GEO technical-readiness agents for websites: scan, fix with approval and honest verification, review changes, investigate and explain — driving the geopilot CLI.",
   "author": {
     "name": "Mohamed Elzanaty",
